@@ -499,6 +499,33 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__FormulaModel__Alternatives_2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getFormulaModelAccess().getMethodDefsAssignment_2_0()); }
+		(rule__FormulaModel__MethodDefsAssignment_2_0)
+		{ after(grammarAccess.getFormulaModelAccess().getMethodDefsAssignment_2_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getFormulaModelAccess().getVariablesAssignment_2_1()); }
+		(rule__FormulaModel__VariablesAssignment_2_1)
+		{ after(grammarAccess.getFormulaModelAccess().getVariablesAssignment_2_1()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getFormulaModelAccess().getValuesAssignment_2_2()); }
+		(rule__FormulaModel__ValuesAssignment_2_2)
+		{ after(grammarAccess.getFormulaModelAccess().getValuesAssignment_2_2()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__Addition__Alternatives_1_0
 	@init {
 		int stackSize = keepStackSize();
@@ -700,7 +727,6 @@ rule__FormulaModel__Group__2
 	}
 :
 	rule__FormulaModel__Group__2__Impl
-	rule__FormulaModel__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -712,62 +738,9 @@ rule__FormulaModel__Group__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getFormulaModelAccess().getMethodDefsAssignment_2()); }
-	(rule__FormulaModel__MethodDefsAssignment_2)*
-	{ after(grammarAccess.getFormulaModelAccess().getMethodDefsAssignment_2()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__FormulaModel__Group__3
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__FormulaModel__Group__3__Impl
-	rule__FormulaModel__Group__4
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__FormulaModel__Group__3__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getFormulaModelAccess().getVariablesAssignment_3()); }
-	(rule__FormulaModel__VariablesAssignment_3)*
-	{ after(grammarAccess.getFormulaModelAccess().getVariablesAssignment_3()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__FormulaModel__Group__4
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__FormulaModel__Group__4__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__FormulaModel__Group__4__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getFormulaModelAccess().getValuesAssignment_4()); }
-	(rule__FormulaModel__ValuesAssignment_4)*
-	{ after(grammarAccess.getFormulaModelAccess().getValuesAssignment_4()); }
+	{ before(grammarAccess.getFormulaModelAccess().getAlternatives_2()); }
+	(rule__FormulaModel__Alternatives_2)*
+	{ after(grammarAccess.getFormulaModelAccess().getAlternatives_2()); }
 )
 ;
 finally {
@@ -2803,45 +2776,45 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__FormulaModel__MethodDefsAssignment_2
+rule__FormulaModel__MethodDefsAssignment_2_0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getFormulaModelAccess().getMethodDefsDefinitionParserRuleCall_2_0()); }
+		{ before(grammarAccess.getFormulaModelAccess().getMethodDefsDefinitionParserRuleCall_2_0_0()); }
 		ruleDefinition
-		{ after(grammarAccess.getFormulaModelAccess().getMethodDefsDefinitionParserRuleCall_2_0()); }
+		{ after(grammarAccess.getFormulaModelAccess().getMethodDefsDefinitionParserRuleCall_2_0_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__FormulaModel__VariablesAssignment_3
+rule__FormulaModel__VariablesAssignment_2_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getFormulaModelAccess().getVariablesVariableAssignmentParserRuleCall_3_0()); }
+		{ before(grammarAccess.getFormulaModelAccess().getVariablesVariableAssignmentParserRuleCall_2_1_0()); }
 		ruleVariableAssignment
-		{ after(grammarAccess.getFormulaModelAccess().getVariablesVariableAssignmentParserRuleCall_3_0()); }
+		{ after(grammarAccess.getFormulaModelAccess().getVariablesVariableAssignmentParserRuleCall_2_1_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__FormulaModel__ValuesAssignment_4
+rule__FormulaModel__ValuesAssignment_2_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getFormulaModelAccess().getValuesEvaluationParserRuleCall_4_0()); }
+		{ before(grammarAccess.getFormulaModelAccess().getValuesEvaluationParserRuleCall_2_2_0()); }
 		ruleEvaluation
-		{ after(grammarAccess.getFormulaModelAccess().getValuesEvaluationParserRuleCall_4_0()); }
+		{ after(grammarAccess.getFormulaModelAccess().getValuesEvaluationParserRuleCall_2_2_0()); }
 	)
 ;
 finally {

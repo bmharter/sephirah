@@ -303,19 +303,8 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *
 	 * Constraint:
 	 *     (
-	 *         (name=DocName ((methodDefs+=Definition+ values+=Evaluation+) | values+=Evaluation+)) | 
-	 *         (((name=DocName imports+=Import+) | imports+=Import+) ((methodDefs+=Definition+ values+=Evaluation+) | values+=Evaluation+)) | 
-	 *         (
-	 *             (
-	 *                 (name=DocName ((imports+=Import+ methodDefs+=Definition+) | methodDefs+=Definition+)) | 
-	 *                 (imports+=Import+ methodDefs+=Definition+) | 
-	 *                 methodDefs+=Definition+
-	 *             )? 
-	 *             variables+=VariableAssignment+ 
-	 *             values+=Evaluation+
-	 *         ) | 
-	 *         (methodDefs+=Definition+ values+=Evaluation+) | 
-	 *         values+=Evaluation+
+	 *         (((name=DocName imports+=Import+) | imports+=Import+)? (methodDefs+=Definition | variables+=VariableAssignment | values+=Evaluation)+) | 
+	 *         (methodDefs+=Definition | variables+=VariableAssignment | values+=Evaluation)+
 	 *     )?
 	 * </pre>
 	 */

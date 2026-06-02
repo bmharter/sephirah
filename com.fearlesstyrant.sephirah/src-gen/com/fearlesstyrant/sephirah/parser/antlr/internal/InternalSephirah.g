@@ -116,59 +116,63 @@ ruleFormulaModel returns [EObject current=null]
 		)*
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getFormulaModelAccess().getMethodDefsDefinitionParserRuleCall_2_0());
-				}
-				lv_methodDefs_2_0=ruleDefinition
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFormulaModelRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getFormulaModelAccess().getMethodDefsDefinitionParserRuleCall_2_0_0());
 					}
-					add(
-						$current,
-						"methodDefs",
-						lv_methodDefs_2_0,
-						"com.fearlesstyrant.sephirah.Sephirah.Definition");
-					afterParserOrEnumRuleCall();
-				}
+					lv_methodDefs_2_0=ruleDefinition
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getFormulaModelRule());
+						}
+						add(
+							$current,
+							"methodDefs",
+							lv_methodDefs_2_0,
+							"com.fearlesstyrant.sephirah.Sephirah.Definition");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)*
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getFormulaModelAccess().getVariablesVariableAssignmentParserRuleCall_3_0());
-				}
-				lv_variables_3_0=ruleVariableAssignment
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFormulaModelRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getFormulaModelAccess().getVariablesVariableAssignmentParserRuleCall_2_1_0());
 					}
-					add(
-						$current,
-						"variables",
-						lv_variables_3_0,
-						"com.fearlesstyrant.sephirah.Sephirah.VariableAssignment");
-					afterParserOrEnumRuleCall();
-				}
+					lv_variables_3_0=ruleVariableAssignment
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getFormulaModelRule());
+						}
+						add(
+							$current,
+							"variables",
+							lv_variables_3_0,
+							"com.fearlesstyrant.sephirah.Sephirah.VariableAssignment");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)*
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getFormulaModelAccess().getValuesEvaluationParserRuleCall_4_0());
-				}
-				lv_values_4_0=ruleEvaluation
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFormulaModelRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getFormulaModelAccess().getValuesEvaluationParserRuleCall_2_2_0());
 					}
-					add(
-						$current,
-						"values",
-						lv_values_4_0,
-						"com.fearlesstyrant.sephirah.Sephirah.Evaluation");
-					afterParserOrEnumRuleCall();
-				}
+					lv_values_4_0=ruleEvaluation
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getFormulaModelRule());
+						}
+						add(
+							$current,
+							"values",
+							lv_values_4_0,
+							"com.fearlesstyrant.sephirah.Sephirah.Evaluation");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
 		)*
 	)

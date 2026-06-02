@@ -30,27 +30,32 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cNameDocNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final Assignment cImportsAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cImportsImportParserRuleCall_1_0 = (RuleCall)cImportsAssignment_1.eContents().get(0);
-		private final Assignment cMethodDefsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cMethodDefsDefinitionParserRuleCall_2_0 = (RuleCall)cMethodDefsAssignment_2.eContents().get(0);
-		private final Assignment cVariablesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cVariablesVariableAssignmentParserRuleCall_3_0 = (RuleCall)cVariablesAssignment_3.eContents().get(0);
-		private final Assignment cValuesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cValuesEvaluationParserRuleCall_4_0 = (RuleCall)cValuesAssignment_4.eContents().get(0);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cMethodDefsAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final RuleCall cMethodDefsDefinitionParserRuleCall_2_0_0 = (RuleCall)cMethodDefsAssignment_2_0.eContents().get(0);
+		private final Assignment cVariablesAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cVariablesVariableAssignmentParserRuleCall_2_1_0 = (RuleCall)cVariablesAssignment_2_1.eContents().get(0);
+		private final Assignment cValuesAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
+		private final RuleCall cValuesEvaluationParserRuleCall_2_2_0 = (RuleCall)cValuesAssignment_2_2.eContents().get(0);
 		
 		//FormulaModel:
 		//    (name=DocName)?
 		//    (imports+=Import)*
-		//    (methodDefs+=Definition)*
-		//    (variables+=VariableAssignment)*
-		//    (values+=Evaluation)*
+		//    (
+		//        methodDefs+=Definition
+		//        | variables+=VariableAssignment
+		//        | values+=Evaluation
+		//    )*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//(name=DocName)?
 		//(imports+=Import)*
-		//(methodDefs+=Definition)*
-		//(variables+=VariableAssignment)*
-		//(values+=Evaluation)*
+		//(
+		//    methodDefs+=Definition
+		//    | variables+=VariableAssignment
+		//    | values+=Evaluation
+		//)*
 		public Group getGroup() { return cGroup; }
 		
 		//(name=DocName)?
@@ -65,23 +70,30 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//Import
 		public RuleCall getImportsImportParserRuleCall_1_0() { return cImportsImportParserRuleCall_1_0; }
 		
-		//(methodDefs+=Definition)*
-		public Assignment getMethodDefsAssignment_2() { return cMethodDefsAssignment_2; }
+		//(
+		//    methodDefs+=Definition
+		//    | variables+=VariableAssignment
+		//    | values+=Evaluation
+		//)*
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//methodDefs+=Definition
+		public Assignment getMethodDefsAssignment_2_0() { return cMethodDefsAssignment_2_0; }
 		
 		//Definition
-		public RuleCall getMethodDefsDefinitionParserRuleCall_2_0() { return cMethodDefsDefinitionParserRuleCall_2_0; }
+		public RuleCall getMethodDefsDefinitionParserRuleCall_2_0_0() { return cMethodDefsDefinitionParserRuleCall_2_0_0; }
 		
-		//(variables+=VariableAssignment)*
-		public Assignment getVariablesAssignment_3() { return cVariablesAssignment_3; }
+		//variables+=VariableAssignment
+		public Assignment getVariablesAssignment_2_1() { return cVariablesAssignment_2_1; }
 		
 		//VariableAssignment
-		public RuleCall getVariablesVariableAssignmentParserRuleCall_3_0() { return cVariablesVariableAssignmentParserRuleCall_3_0; }
+		public RuleCall getVariablesVariableAssignmentParserRuleCall_2_1_0() { return cVariablesVariableAssignmentParserRuleCall_2_1_0; }
 		
-		//(values+=Evaluation)*
-		public Assignment getValuesAssignment_4() { return cValuesAssignment_4; }
+		//values+=Evaluation
+		public Assignment getValuesAssignment_2_2() { return cValuesAssignment_2_2; }
 		
 		//Evaluation
-		public RuleCall getValuesEvaluationParserRuleCall_4_0() { return cValuesEvaluationParserRuleCall_4_0; }
+		public RuleCall getValuesEvaluationParserRuleCall_2_2_0() { return cValuesEvaluationParserRuleCall_2_2_0; }
 	}
 	public class DocNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.DocName");
@@ -873,9 +885,11 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	//FormulaModel:
 	//    (name=DocName)?
 	//    (imports+=Import)*
-	//    (methodDefs+=Definition)*
-	//    (variables+=VariableAssignment)*
-	//    (values+=Evaluation)*
+	//    (
+	//        methodDefs+=Definition
+	//        | variables+=VariableAssignment
+	//        | values+=Evaluation
+	//    )*
 	//;
 	public FormulaModelElements getFormulaModelAccess() {
 		return pFormulaModel;

@@ -31,6 +31,7 @@ public class SephirahParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, SephirahGrammarAccess grammarAccess) {
+			builder.put(grammarAccess.getFormulaModelAccess().getAlternatives_2(), "rule__FormulaModel__Alternatives_2");
 			builder.put(grammarAccess.getStatementAccess().getAlternatives(), "rule__Statement__Alternatives");
 			builder.put(grammarAccess.getAdditionAccess().getAlternatives_1_0(), "rule__Addition__Alternatives_1_0");
 			builder.put(grammarAccess.getMultiplicationAccess().getAlternatives_1_0(), "rule__Multiplication__Alternatives_1_0");
@@ -69,9 +70,9 @@ public class SephirahParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDecimalAccess().getGroup_1(), "rule__Decimal__Group_1__0");
 			builder.put(grammarAccess.getFormulaModelAccess().getNameAssignment_0(), "rule__FormulaModel__NameAssignment_0");
 			builder.put(grammarAccess.getFormulaModelAccess().getImportsAssignment_1(), "rule__FormulaModel__ImportsAssignment_1");
-			builder.put(grammarAccess.getFormulaModelAccess().getMethodDefsAssignment_2(), "rule__FormulaModel__MethodDefsAssignment_2");
-			builder.put(grammarAccess.getFormulaModelAccess().getVariablesAssignment_3(), "rule__FormulaModel__VariablesAssignment_3");
-			builder.put(grammarAccess.getFormulaModelAccess().getValuesAssignment_4(), "rule__FormulaModel__ValuesAssignment_4");
+			builder.put(grammarAccess.getFormulaModelAccess().getMethodDefsAssignment_2_0(), "rule__FormulaModel__MethodDefsAssignment_2_0");
+			builder.put(grammarAccess.getFormulaModelAccess().getVariablesAssignment_2_1(), "rule__FormulaModel__VariablesAssignment_2_1");
+			builder.put(grammarAccess.getFormulaModelAccess().getValuesAssignment_2_2(), "rule__FormulaModel__ValuesAssignment_2_2");
 			builder.put(grammarAccess.getDocNameAccess().getNameAssignment_1(), "rule__DocName__NameAssignment_1");
 			builder.put(grammarAccess.getImportAccess().getNameAssignment_1(), "rule__Import__NameAssignment_1");
 			builder.put(grammarAccess.getDefinitionAccess().getNameAssignment_1(), "rule__Definition__NameAssignment_1");
