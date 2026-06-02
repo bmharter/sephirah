@@ -24,9 +24,10 @@ public final class EvaluationContext {
      * Shared empty context for evaluating expressions that do not require
      * external variable bindings.
      */
-    public static final EvaluationContext EMPTY = new EvaluationContext(Collections.emptyMap());
+    public static final EvaluationContext EMPTY = new EvaluationContext(Collections.emptyMap(), null);
 
     private final Map<String, BigDecimal> values;
+    private final ValueResolver resolver;
 
     /**
      * Creates a context using the supplied variable bindings.
@@ -34,9 +35,14 @@ public final class EvaluationContext {
      * @param values variable names mapped to numeric values
      */
     public EvaluationContext(Map<String, BigDecimal> values) {
+        this(values, null);
+    }
+    
+    public EvaluationContext(Map<String, BigDecimal> values, ValueResolver resolver) {
         Objects.requireNonNull(values, "values must not be null");
 
         this.values = Collections.unmodifiableMap(new HashMap<>(values));
+        this.resolver = resolver;
     }
 
     /**
@@ -55,7 +61,14 @@ public final class EvaluationContext {
      * @return a new evaluation context
      */
     public static EvaluationContext of(Map<String, BigDecimal> values) {
+    	Objects.requireNonNull(values, "values must not be null");
         return new EvaluationContext(values);
+    }
+    
+    public static EvaluationContext of(Map<String, BigDecimal> values, ValueResolver resolver) {
+    	Objects.requireNonNull(values, "values must not be null");
+    	Objects.requireNonNull(resolver, "resolver must not be null");
+    	return new EvaluationContext(values, resolver);
     }
 
     /**
@@ -72,7 +85,13 @@ public final class EvaluationContext {
         Map<String, BigDecimal> updatedValues = new HashMap<>(values);
         updatedValues.put(name, value);
 
-        return new EvaluationContext(updatedValues);
+        return new EvaluationContext(updatedValues, resolver);
+    }
+    
+    public EvaluationContext withResolver(ValueResolver resolver) {
+    	Objects.requireNonNull(resolver, "resolver must not be null");
+    	
+    	return new EvaluationContext(values, resolver);
     }
 
     /**
@@ -82,9 +101,19 @@ public final class EvaluationContext {
      * @return the resolved value, if bound
      */
     public Optional<BigDecimal> resolveValue(String name) {
-        Objects.requireNonNull(name, "name must not be null");
+    	Objects.requireNonNull(name, "name must not be null");
 
-        return Optional.ofNullable(values.get(name));
+        BigDecimal directValue = values.get(name);
+
+        if (directValue != null) {
+            return Optional.of(directValue);
+        }
+
+        if (resolver == null) {
+            return Optional.empty();
+        }
+
+        return resolver.resolveValue(name);
     }
 
     /**
@@ -97,4 +126,8 @@ public final class EvaluationContext {
         return resolveValue(name)
                 .orElseThrow(() -> new IllegalArgumentException("Unbound variable: " + name));
     }
+
+	public ValueResolver getResolver() {
+		return resolver;
+	}
 }
