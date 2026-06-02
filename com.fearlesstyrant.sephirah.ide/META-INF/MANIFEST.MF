@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.fearlesstyrant.sephirah.ide
+Bundle-ManifestVersion: 2
+Bundle-Name: com.fearlesstyrant.sephirah.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: com.fearlesstyrant.sephirah.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.fearlesstyrant.sephirah,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: com.fearlesstyrant.sephirah.ide.contentassist.antlr.internal,
+ com.fearlesstyrant.sephirah.ide.contentassist.antlr

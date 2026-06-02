@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.fearlesstyrant.sephirah
+Bundle-ManifestVersion: 2
+Bundle-Name: com.fearlesstyrant.sephirah
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: com.fearlesstyrant.sephirah; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.19.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.42.0",
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: com.fearlesstyrant.sephirah.sephirah.impl,
+ com.fearlesstyrant.sephirah.sephirah,
+ com.fearlesstyrant.sephirah.sephirah.util,
+ com.fearlesstyrant.sephirah.validation,
+ com.fearlesstyrant.sephirah.services,
+ com.fearlesstyrant.sephirah.parser.antlr,
+ com.fearlesstyrant.sephirah.serializer,
+ com.fearlesstyrant.sephirah.parser.antlr.internal,
+ com.fearlesstyrant.sephirah.scoping,
+ com.fearlesstyrant.sephirah.generator,
+ com.fearlesstyrant.sephirah
+Import-Package: org.apache.log4j
