@@ -43,6 +43,19 @@ public final class Methods {
                 .register("roll", Methods::roll)
                 .build();
     }
+    
+    public static FunctionRegistry previewRegistry() {
+    	return FunctionRegistry.builder()
+    			.register("abs", Methods::abs)
+                .register("ceil", Methods::ceil)
+                .register("floor", Methods::floor)
+                .register("min", Methods::min)
+                .register("max", Methods::max)
+                .register("roundHalfUp", Methods::roundHalfUp)
+                .register("roundHalfDown", Methods::roundHalfDown)
+                .register("sqrt", Methods::sqrt)
+                .build();
+    }
 
     private static BigDecimal abs(List<BigDecimal> args, EvaluationContext context) {
         requireArity("abs", args, 1);

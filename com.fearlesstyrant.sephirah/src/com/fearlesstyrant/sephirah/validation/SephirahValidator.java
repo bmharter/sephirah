@@ -14,24 +14,8 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 
-import com.fearlesstyrant.sephirah.sephirah.Add;
-import com.fearlesstyrant.sephirah.sephirah.Assignment;
-import com.fearlesstyrant.sephirah.sephirah.Constant;
-import com.fearlesstyrant.sephirah.sephirah.Definition;
-import com.fearlesstyrant.sephirah.sephirah.DefinitionVariable;
-import com.fearlesstyrant.sephirah.sephirah.Divide;
-import com.fearlesstyrant.sephirah.sephirah.Evaluation;
-import com.fearlesstyrant.sephirah.sephirah.Exponent;
-import com.fearlesstyrant.sephirah.sephirah.Expression;
-import com.fearlesstyrant.sephirah.sephirah.FormulaModel;
-import com.fearlesstyrant.sephirah.sephirah.MethodCall;
-import com.fearlesstyrant.sephirah.sephirah.Multiply;
-import com.fearlesstyrant.sephirah.sephirah.NumberLiteral;
-import com.fearlesstyrant.sephirah.sephirah.SephirahPackage;
-import com.fearlesstyrant.sephirah.sephirah.Subtract;
-import com.fearlesstyrant.sephirah.sephirah.Variable;
-import com.fearlesstyrant.sephirah.sephirah.VariableAssignment;
-import com.fearlesstyrant.sephirah.tools.Computer;
+import com.fearlesstyrant.sephirah.sephirah.*;
+import com.fearlesstyrant.sephirah.tools.*;
 
 /**
  * This class contains custom validation rules. 
@@ -46,7 +30,32 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	public static final String UNUSED_VARIABLE = CODE_PREFIX + "unused_variable";
 	public static final String DUPLICATE_VARIABLE = CODE_PREFIX + "duplicate_variable";
 	public static final String NO_VARIABLE = CODE_PREFIX + "no_variable";
+	public static final String EVALUATION_RESULT = CODE_PREFIX + "evaluation_result";
+	public static final String CYCLICAL_REFERENCE = CODE_PREFIX + "cyclical_reference";
 
+	@Check
+	public void checkCyclicalVariableReference(VariableAssignment assignment) {
+		FormulaModel model = EcoreUtil2.getContainerOfType(assignment, FormulaModel.class);
+		
+		if(model == null || assignment.getName() == null || assignment.getValue() == null) {
+			return;
+		}
+		
+		try {
+			ModuleValueResolver resolver = new ModuleValueResolver(model, 
+					Methods.previewRegistry());
+			
+			resolver.resolveValue(assignment.getName());
+		} catch(IllegalStateException exception) {
+			error(exception.getMessage(),
+					SephirahPackage.Literals.ASSIGNMENT__NAME,
+					CYCLICAL_REFERENCE,
+					assignment.getName()
+					);
+		} catch(RuntimeException exception) {
+			return;
+		}
+	}
 	@Check
 	public void checkDivByZero(Divide div) {
 		BigDecimal divisor = tryComputeStatic(div.getRight());
@@ -57,6 +66,27 @@ public class SephirahValidator extends AbstractSephirahValidator {
 
 		if (BigDecimal.ZERO.compareTo(divisor) == 0) {
 			error("Cannot divide by zero.", SephirahPackage.Literals.DIVIDE__RIGHT);
+		}
+	}
+	
+	@Check
+	public void checkEvaluationResult(Evaluation evaluation) {
+		FormulaModel model = EcoreUtil2.getContainerOfType(evaluation, FormulaModel.class);
+		
+		if(model == null || evaluation.getExpression() == null) {
+			return;
+		}
+		
+		try {
+		ModuleEvaluator evaluator = new ModuleEvaluator(model, Methods.previewRegistry());
+		BigDecimal result = evaluator.evaluate(evaluation);
+		
+		info("Result: " + result,
+				SephirahPackage.Literals.EVALUATION__EXPRESSION,
+				EVALUATION_RESULT,
+				result.toString());
+		} catch(RuntimeException exception) {
+			return;
 		}
 	}
 
@@ -86,7 +116,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 			warning("Expression could be normalized to constant '" + decimal + "'",
 					null,
 					ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
-					SephirahValidator.NORMALIZABLE,
+					NORMALIZABLE,
 					decimal.toString());
 		}
 	}
