@@ -2,6 +2,7 @@ package com.fearlesstyrant.sephirah.tools;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.function.Supplier;
 
 import com.fearlesstyrant.sephirah.sephirah.Assignment;
 import com.fearlesstyrant.sephirah.sephirah.FormulaModel;
@@ -23,7 +24,7 @@ public final class ModuleValueResolver implements ValueResolver {
 	private final Map<String, VariableAssignment> declarations;
 	private final Map<String, BigDecimal> cache;
 	private final Deque<String> resolutionStack;
-	private final FunctionRegistry functions;
+	private final Supplier<FunctionRegistry> functions;
 	    
 	 /**
      * Creates a module resolver using Sephirah's standard function registry.
@@ -31,7 +32,7 @@ public final class ModuleValueResolver implements ValueResolver {
      * @param model Sephirah module/document model
      */
 	public ModuleValueResolver(FormulaModel model) {
-		this(model, Methods.standardRegistry());
+		this(model, Methods::standardRegistry);
 	}
 	
 	  /**
@@ -41,6 +42,10 @@ public final class ModuleValueResolver implements ValueResolver {
      * @param functions functions available while evaluating variable values
      */
 	public ModuleValueResolver(FormulaModel model, FunctionRegistry functions) {
+		this(model, () -> functions);
+	}
+	
+	public ModuleValueResolver(FormulaModel model, Supplier<FunctionRegistry> functions) {
 		Objects.requireNonNull(model, "model must not be null");
 		Objects.requireNonNull(functions, "functions must not be null");
 		
@@ -74,7 +79,7 @@ public final class ModuleValueResolver implements ValueResolver {
 		try {
 			EvaluationContext context = new EvaluationContext(Collections.emptyMap(), this);
 			
-			BigDecimal value = new Computer(context, functions)
+			BigDecimal value = new Computer(context, functions.get())
 					.evaluate(declaration.getValue());
 			
 			cache.put(name, value);

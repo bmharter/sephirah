@@ -51,6 +51,16 @@ public final class FunctionRegistry {
     public static Builder builder() {
         return new Builder();
     }
+    
+    public Builder toBuilder() {
+        Builder builder = new Builder();
+
+        for (Map.Entry<String, SephirahFunction> entry : functions.entrySet()) {
+            builder.register(entry.getKey(), entry.getValue());
+        }
+
+        return builder;
+    }
 
     /**
      * Invokes a registered function.

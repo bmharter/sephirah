@@ -30,10 +30,23 @@ public final class ModuleEvaluator {
      */
     public ModuleEvaluator(FormulaModel model, FunctionRegistry functions) {
     	this.model = Objects.requireNonNull(model, "model must not be null");
-    	this.functions = Objects.requireNonNull(functions, "functions must not be null");
-    	this.resolver = new ModuleValueResolver(model, functions);
+    	
+    	FunctionRegistry baseFunctions =
+    	        Objects.requireNonNull(functions, "functions must not be null");
+    	
+    	MutableFunctionRegistryReference functionReference =
+    			new MutableFunctionRegistryReference(baseFunctions);
+
+    	this.resolver = new ModuleValueResolver(this.model, functionReference);
+    	this.functions = ModuleFunctionCompiler.compile(model,
+    			baseFunctions,
+    			resolver,
+    			functionReference);
+    	
+    	functionReference.set(this.functions);
+    	
     	this.context = new EvaluationContext(Collections.emptyMap(), resolver);
-    	this.computer = new Computer(context, functions);
+    	this.computer = new Computer(context, this.functions);
     }
     
     /**
