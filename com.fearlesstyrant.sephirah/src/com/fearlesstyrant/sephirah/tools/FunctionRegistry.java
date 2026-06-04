@@ -114,6 +114,10 @@ public final class FunctionRegistry {
             Objects.requireNonNull(name, "name must not be null");
             Objects.requireNonNull(function, "function must not be null");
 
+            if(functions.containsKey(name)) {
+            	throw new IllegalArgumentException("Function already registered: " + name);
+            }
+            
             functions.put(name, function);
             return this;
         }

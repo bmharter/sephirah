@@ -32,7 +32,25 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	public static final String NO_VARIABLE = CODE_PREFIX + "no_variable";
 	public static final String EVALUATION_RESULT = CODE_PREFIX + "evaluation_result";
 	public static final String CYCLICAL_REFERENCE = CODE_PREFIX + "cyclical_reference";
+	public static final String DUPLICATE_FUNCTION = CODE_PREFIX + "duplicate_function";
+	public static final String BUILTIN_FUNCTION_CONFLICT = CODE_PREFIX + "builtin_function_conflict";
 
+	@Check
+	public void checkBuiltinFunctionConflict(Definition definition) {
+		String name = definition.getName();
+		
+		if(name == null || name.isBlank()) {
+			return;
+		}
+		
+		if (Methods.previewRegistry().contains(name) || Methods.standardRegistry().contains(name)) {
+	        error("Function name " + name + " conflicts with a built-in function.",
+	                SephirahPackage.Literals.DEFINITION__NAME,
+	                BUILTIN_FUNCTION_CONFLICT,
+	                name);
+	    }
+	}
+	
 	@Check
 	public void checkCyclicalVariableReference(VariableAssignment assignment) {
 		FormulaModel model = EcoreUtil2.getContainerOfType(assignment, FormulaModel.class);
@@ -66,6 +84,42 @@ public class SephirahValidator extends AbstractSephirahValidator {
 
 		if (BigDecimal.ZERO.compareTo(divisor) == 0) {
 			error("Cannot divide by zero.", SephirahPackage.Literals.DIVIDE__RIGHT);
+		}
+	}
+	
+	@Check
+	public void checkDuplicateFunctions(Definition definition) {
+		FormulaModel model = EcoreUtil2.getContainerOfType(definition, FormulaModel.class);
+		
+		if(model == null) {
+			return;
+		}
+		
+		String name = definition.getName();
+		
+		if(name == null || name.isBlank()) {
+			return;
+		}
+		
+		boolean foundFirst = false;
+		
+		for(Definition other : model.getMethodDefs()) {
+			if(!name.equals(other.getName())) {
+				continue;
+			}
+			
+			if(!foundFirst) {
+				foundFirst = true;
+				continue;
+			}
+			
+			if (other == definition) {
+	            error("Function name " + name + " cannot be declared more than once.",
+	                    SephirahPackage.Literals.DEFINITION__NAME,
+	                    DUPLICATE_FUNCTION,
+	                    name);
+	            return;
+	        }
 		}
 	}
 	
