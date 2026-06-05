@@ -37,6 +37,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	public static final String BUILTIN_FUNCTION_CONFLICT = CODE_PREFIX + "builtin_function_conflict";
 	public static final String CYCLICAL_FUNCTION = CODE_PREFIX + "cyclical_function";
 	public static final String UNKNOWN_FUNCTION = CODE_PREFIX + "unknown_function";
+	public static final String FUNCTION_ARITY = CODE_PREFIX + "function_arity";
 	
 	@Check
 	public void checkBuiltinFunctionConflict(Definition definition) {
@@ -276,6 +277,42 @@ public class SephirahValidator extends AbstractSephirahValidator {
 				SephirahPackage.Literals.VARIABLE__NAME,
 				UNDECLARED_VARIABLE,
 				name);
+	}
+	
+	@Check
+	public void checkFunctionArity(MethodCall methodCall) {
+		String name = methodCall.getName();
+		
+		if(name == null || name.isBlank()) {
+			return;
+		}
+		
+		FormulaModel model = EcoreUtil2.getContainerOfType(methodCall, FormulaModel.class);
+
+	    if(model == null) {
+	        return;
+	    }
+
+	    Definition definition = findDefinition(model, name);
+
+	    if(definition == null) {
+	        return;
+	    }
+	    
+	    int expected = definition.getArgs().size();
+	    int actual = methodCall.getArgs().size();
+	    
+	    if(expected == actual) {
+	    	return;
+	    }
+	    
+	    error("Function " + name + " expects " + expected
+                + " argument(s), but received " + actual + ".",
+        SephirahPackage.Literals.METHOD_CALL__NAME,
+        FUNCTION_ARITY,
+        name,
+        String.valueOf(expected),
+        String.valueOf(actual));
 	}
 
 	@Check
