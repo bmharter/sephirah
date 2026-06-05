@@ -3,6 +3,7 @@
  */
 package com.fearlesstyrant.sephirah.validation;
 
+import java.util.*;
 import java.math.BigDecimal;
 
 import org.eclipse.emf.common.util.EList;
@@ -34,7 +35,8 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	public static final String CYCLICAL_REFERENCE = CODE_PREFIX + "cyclical_reference";
 	public static final String DUPLICATE_FUNCTION = CODE_PREFIX + "duplicate_function";
 	public static final String BUILTIN_FUNCTION_CONFLICT = CODE_PREFIX + "builtin_function_conflict";
-
+	public static final String CYCLICAL_FUNCTION = CODE_PREFIX + "cyclical_function";
+	
 	@Check
 	public void checkBuiltinFunctionConflict(Definition definition) {
 		String name = definition.getName();
@@ -47,6 +49,30 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	        error("Function name " + name + " conflicts with a built-in function.",
 	                SephirahPackage.Literals.DEFINITION__NAME,
 	                BUILTIN_FUNCTION_CONFLICT,
+	                name);
+	    }
+	}
+	
+	@Check
+	public void checkCyclicalFunctionReference(Definition definition) {
+		FormulaModel model = EcoreUtil2.getContainerOfType(definition, FormulaModel.class);
+		
+		if(model == null) {
+			return;
+		}
+		
+		String name = definition.getName();
+		
+		if(name == null || name.isBlank()) {
+			return;
+		}
+		
+		try {
+			checkFunctionCycle(model, name, new ArrayDeque<>());
+		} catch (IllegalStateException exception) {
+	        error(exception.getMessage(),
+	                SephirahPackage.Literals.DEFINITION__NAME,
+	                CYCLICAL_FUNCTION,
 	                name);
 	    }
 	}
@@ -304,29 +330,137 @@ public class SephirahValidator extends AbstractSephirahValidator {
 			}
 		}
 	}
-
+	
+	private static void checkFunctionCycle(
+			FormulaModel model,
+			String functionName,
+			Deque<String> stack) {
+		
+		if (stack.contains(functionName)) {
+	        throw new IllegalStateException("Cyclic function definition: "
+	                + formatFunctionCycle(functionName, stack));
+	    }
+		
+		Definition definition = findDefinition(model, functionName);
+		
+		if(definition == null || definition.getExpr() == null) {
+			return;
+		}
+		
+		stack.push(functionName);
+		
+		try {
+			for(String calledFunction : findCalledFunctionName(definition.getExpr())) {
+				if(isModuleFunction(model, calledFunction)) {
+					checkFunctionCycle(model, calledFunction, stack);
+				}
+			}
+		} finally {
+			stack.pop();
+		}
+	}
+	
+	private static Definition findDefinition(FormulaModel model, String name) {
+		for(Definition definition : model.getMethodDefs()) {
+			if(name.equals(definition.getName())) {
+				return definition;
+			}
+		}
+		
+		return null;
+	}
+	
+	private static boolean isModuleFunction(FormulaModel model, String name) {
+		return findDefinition(model, name) != null;
+	}
+	
+	private static Set<String> findCalledFunctionName(Expression expression){
+		Set<String> names = new HashSet<>();
+		
+		if(expression == null) {
+			return names;
+		}
+		
+		if(expression instanceof MethodCall) {
+			MethodCall methodCall = (MethodCall) expression;
+			
+			if(methodCall.getName() != null && !methodCall.getName().isBlank()) {
+				names.add(methodCall.getName());
+			}
+		}
+		
+		TreeIterator<EObject> contents = expression.eAllContents();
+		
+		while(contents.hasNext()) {
+			EObject object = contents.next();
+			
+			if(object instanceof MethodCall) {
+				MethodCall methodCall = (MethodCall) object;
+				
+				if(methodCall.getName() != null && !methodCall.getName().isBlank()) {
+					names.add(methodCall.getName());
+				}
+			}
+		}
+		
+		return names;
+	}
+	
+	private static String formatFunctionCycle(String repeatedName, Deque<String> stack) {
+		List<String> path = new ArrayList<String>(stack);
+		Collections.reverse(path);
+		
+		int cycleStart = path.indexOf(repeatedName);
+		
+		StringBuilder builder = new StringBuilder();
+		
+		if(cycleStart >= 0) {
+			for(int i = cycleStart; i < path.size(); i++) {
+				if(builder.length() > 0) {
+					builder.append(" -> ");
+				}
+				
+				builder.append(path.get(i));
+			}
+			
+			builder.append(" -> ").append(repeatedName);
+			
+			return builder.toString();
+		}
+		
+		builder.append(repeatedName);
+		
+		for(String name : path) {
+			builder.append(" -> ").append(name);
+		}
+		
+		builder.append(" -> ").append(repeatedName);
+		
+		return builder.toString();
+	}
+	
 	private static boolean isVariableDeclared(Variable variable, String name) {
 		Definition definition = EcoreUtil2.getContainerOfType(variable, Definition.class);
 
-		if (definition != null) {
-			for (Assignment arg : definition.getArgs()) {
-				if (name.equals(arg.getName())) {
-					return true;
-				}
-			}
-		}
+	    if (definition != null) {
+	        for (Assignment arg : definition.getArgs()) {
+	            if (name.equals(arg.getName())) {
+	                return true;
+	            }
+	        }
+	    }
 
-		FormulaModel model = EcoreUtil2.getContainerOfType(variable, FormulaModel.class);
+	    FormulaModel model = EcoreUtil2.getContainerOfType(variable, FormulaModel.class);
 
-		if (model != null) {
-			for (Assignment assignment : model.getVariables()) {
-				if (name.equals(assignment.getName())) {
-					return true;
-				}
-			}
-		}
+	    if (model != null) {
+	        for (Assignment assignment : model.getVariables()) {
+	            if (name.equals(assignment.getName())) {
+	                return true;
+	            }
+	        }
+	    }
 
-		return false;
+	    return false;
 	}
 
 	private static boolean isVariableUsedInModel(

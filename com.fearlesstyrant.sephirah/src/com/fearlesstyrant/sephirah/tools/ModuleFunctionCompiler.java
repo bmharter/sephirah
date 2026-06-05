@@ -29,6 +29,9 @@ public final class ModuleFunctionCompiler {
 		
 		FunctionRegistry.Builder builder = baseRegistry.toBuilder();
 		
+		ThreadLocal<Deque<String>> callStack =
+		        ThreadLocal.withInitial(ArrayDeque::new);
+		
 		for(Definition definition : model.getMethodDefs()) {
 			String name = definition.getName();
 			
@@ -41,7 +44,10 @@ public final class ModuleFunctionCompiler {
                         "Function declaration conflicts with built-in function: " + name);
             }
 			
-			builder.register(name, createFunction(definition, moduleResolver, registryReference));
+			builder.register(name, createFunction(definition,
+					moduleResolver,
+					registryReference,
+					callStack));
 		}
 		
 		return builder.build();
@@ -49,36 +55,92 @@ public final class ModuleFunctionCompiler {
 	
 	private static SephirahFunction createFunction(Definition definition,
 			ValueResolver moduleResolver,
-			MutableFunctionRegistryReference registryReference) {
+			MutableFunctionRegistryReference registryReference,
+			ThreadLocal<Deque<String>> callStack) {
 		
 		return (List<BigDecimal> arguments, EvaluationContext callerContext) -> {
-			EList<Assignment> parameters = definition.getArgs();
+			String functionName = definition.getName();
 			
-			if(arguments.size() != parameters.size()) {
-				throw new IllegalArgumentException("Function " + definition.getName()
-                + " expects " + parameters.size()
-                + " argument(s), but received " + arguments.size() + ".");
+			if (functionName == null || functionName.isBlank()) {
+	            throw new IllegalArgumentException("Cannot invoke unnamed function.");
+	        }
+			
+			Deque<String> stack = callStack.get();
+			
+			if(stack.contains(functionName)){
+				throw new IllegalStateException("Cyclic function invocation: "
+	                    + formatFunctionCycle(functionName, stack));
 			}
 			
-			Map<String, BigDecimal> localValues = new HashMap<>();
+			stack.push(functionName);
 			
-			for(int i = 0; i < parameters.size(); i++) {
-				Assignment parameter = parameters.get(i);
-				String parameterName = parameter.getName();
+			try {
+				EList<Assignment> parameters = definition.getArgs();
 				
-				if (parameterName == null || parameterName.isBlank()) {
-                    throw new IllegalArgumentException(
-                            "Function " + definition.getName()
-                            + " has an unnamed parameter.");
-                }
+				if(arguments.size() != parameters.size()) {
+					throw new IllegalArgumentException("Function " + definition.getName()
+	                + " expects " + parameters.size()
+	                + " argument(s), but received " + arguments.size() + ".");
+				}
 				
-				localValues.put(parameterName, arguments.get(i));
+				Map<String, BigDecimal> localValues = new HashMap<>();
+				
+				for(int i = 0; i < parameters.size(); i++) {
+					Assignment parameter = parameters.get(i);
+					String parameterName = parameter.getName();
+					
+					if (parameterName == null || parameterName.isBlank()) {
+	                    throw new IllegalArgumentException(
+	                            "Function " + definition.getName()
+	                            + " has an unnamed parameter.");
+	                }
+					
+					localValues.put(parameterName, arguments.get(i));
+				}
+				
+				EvaluationContext localContext = new EvaluationContext(localValues, moduleResolver);
+				
+				return new Computer(localContext, registryReference.get())
+						.evaluate(definition.getExpr());
+			} finally {
+				stack.pop();
+				
+				if(stack.isEmpty()) {
+					callStack.remove();
+				}
 			}
-			
-			EvaluationContext localContext = new EvaluationContext(localValues, moduleResolver);
-			
-			return new Computer(localContext, registryReference.get())
-					.evaluate(definition.getExpr());
 		};
+	}
+	
+	private static String formatFunctionCycle(String repeatedName, Deque<String> stack) {
+	    List<String> path = new ArrayList<>(stack);
+	    Collections.reverse(path);
+
+	    int cycleStart = path.indexOf(repeatedName);
+
+	    StringBuilder builder = new StringBuilder();
+
+	    if (cycleStart >= 0) {
+	        for (int i = cycleStart; i < path.size(); i++) {
+	            if (builder.length() > 0) {
+	                builder.append(" -> ");
+	            }
+
+	            builder.append(path.get(i));
+	        }
+
+	        builder.append(" -> ").append(repeatedName);
+	        return builder.toString();
+	    }
+
+	    builder.append(repeatedName);
+
+	    for (String name : path) {
+	        builder.append(" -> ").append(name);
+	    }
+
+	    builder.append(" -> ").append(repeatedName);
+
+	    return builder.toString();
 	}
 }
