@@ -26,34 +26,34 @@ public final class Methods {
      */
     public static FunctionRegistry standardRegistry() {
         return FunctionRegistry.builder()
-                .register("abs", Methods::abs)
-                .register("ceil", Methods::ceil)
-                .register("floor", Methods::floor)
-                .register("min", Methods::min)
-                .register("max", Methods::max)
-                .register("roundHalfUp", Methods::roundHalfUp)
-                .register("roundHalfDown", Methods::roundHalfDown)
-                .register("sqrt", Methods::sqrt)
+                .register("abs", FunctionSignature.exactly(1), Methods::abs)
+                .register("ceil", FunctionSignature.exactly(1), Methods::ceil)
+                .register("floor", FunctionSignature.exactly(1), Methods::floor)
+                .register("min", FunctionSignature.atLeast(1), Methods::min)
+                .register("max", FunctionSignature.atLeast(1), Methods::max)
+                .register("roundHalfUp", FunctionSignature.exactly(1), Methods::roundHalfUp)
+                .register("roundHalfDown", FunctionSignature.exactly(1), Methods::roundHalfDown)
+                .register("sqrt", FunctionSignature.exactly(1), Methods::sqrt)
 
                 /*
                  * Dice remains registered here for now so existing Sephirah
                  * expressions can keep using roll(num, sides). The Dice class
                  * itself is still scheduled for replacement by DiceService.
                  */
-                .register("roll", Methods::roll)
+                .register("roll", FunctionSignature.exactly(2), Methods::roll)
                 .build();
     }
     
     public static FunctionRegistry previewRegistry() {
     	return FunctionRegistry.builder()
-    			.register("abs", Methods::abs)
-                .register("ceil", Methods::ceil)
-                .register("floor", Methods::floor)
-                .register("min", Methods::min)
-                .register("max", Methods::max)
-                .register("roundHalfUp", Methods::roundHalfUp)
-                .register("roundHalfDown", Methods::roundHalfDown)
-                .register("sqrt", Methods::sqrt)
+    			.register("abs", FunctionSignature.exactly(1), Methods::abs)
+                .register("ceil", FunctionSignature.exactly(1), Methods::ceil)
+                .register("floor", FunctionSignature.exactly(1), Methods::floor)
+                .register("min", FunctionSignature.atLeast(1), Methods::min)
+                .register("max", FunctionSignature.atLeast(1), Methods::max)
+                .register("roundHalfUp", FunctionSignature.exactly(1), Methods::roundHalfUp)
+                .register("roundHalfDown", FunctionSignature.exactly(1), Methods::roundHalfDown)
+                .register("sqrt", FunctionSignature.exactly(1), Methods::sqrt)
                 .build();
     }
 

@@ -313,31 +313,22 @@ public class SephirahValidator extends AbstractSephirahValidator {
 			return;
 		}
 		
-		FormulaModel model = EcoreUtil2.getContainerOfType(methodCall, FormulaModel.class);
-
-	    if(model == null) {
-	        return;
-	    }
-
-	    Definition definition = findDefinition(model, name);
-
-	    if(definition == null) {
-	        return;
-	    }
+		FunctionSignature signature = getFunctionSignature(methodCall, name);
+		
+		if(signature == null) {
+			return;
+		}
 	    
-	    int expected = definition.getArgs().size();
-	    int actual = methodCall.getArgs().size();
-	    
-	    if(expected == actual) {
-	    	return;
-	    }
-	    
-	    error("Function " + name + " expects " + expected
-                + " argument(s), but received " + actual + ".",
+		int actual = methodCall.getArgs().size();
+		
+		if(signature.accepts(actual)) {
+			return;
+		}
+		
+	    error(signature.describeMismatch(name, actual),
         SephirahPackage.Literals.METHOD_CALL__NAME,
         FUNCTION_ARITY,
         name,
-        String.valueOf(expected),
         String.valueOf(actual));
 	}
 
@@ -445,6 +436,56 @@ public class SephirahValidator extends AbstractSephirahValidator {
 			stack.pop();
 		}
 	}
+
+	private static boolean expressionContainsVariableName(Expression expression, String name) {
+		if (expression == null) {
+			return false;
+		}
+
+		if (expression instanceof Variable) {
+			Variable variable = (Variable) expression;
+			return name.equals(variable.getName());
+		}
+
+		TreeIterator<EObject> contents = expression.eAllContents();
+
+		while (contents.hasNext()) {
+			EObject object = contents.next();
+
+			if (object instanceof Variable) {
+				Variable variable = (Variable) object;
+
+				if (name.equals(variable.getName())) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+	
+	private static FunctionSignature getFunctionSignature(EObject object, String name) {
+		FunctionSignature builtInSignature =
+				Methods.standardRegistry().getSignature(name);
+		
+		if(builtInSignature != null) {
+			return builtInSignature;
+		}
+		
+		FormulaModel model = EcoreUtil2.getContainerOfType(object, FormulaModel.class);
+		
+		if(model == null) {
+			return null;
+		}
+		
+		Definition definition = findDefinition(model, name);
+		
+		if(definition == null) {
+			return null;
+		}
+		
+		return FunctionSignature.exactly(definition.getArgs().size());
+	}
 	
 	private static Set<String> findCalledFunctionName(Expression expression){
 		Set<String> names = new HashSet<>();
@@ -519,33 +560,6 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		builder.append(" -> ").append(repeatedName);
 		
 		return builder.toString();
-	}
-	
-	private static boolean expressionContainsVariableName(Expression expression, String name) {
-		if (expression == null) {
-			return false;
-		}
-
-		if (expression instanceof Variable) {
-			Variable variable = (Variable) expression;
-			return name.equals(variable.getName());
-		}
-
-		TreeIterator<EObject> contents = expression.eAllContents();
-
-		while (contents.hasNext()) {
-			EObject object = contents.next();
-
-			if (object instanceof Variable) {
-				Variable variable = (Variable) object;
-
-				if (name.equals(variable.getName())) {
-					return true;
-				}
-			}
-		}
-
-		return false;
 	}
 	
 	private static boolean isKnownFunction(MethodCall methodCall, String name) {

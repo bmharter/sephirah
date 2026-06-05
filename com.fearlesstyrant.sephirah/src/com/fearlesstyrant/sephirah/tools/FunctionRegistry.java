@@ -21,14 +21,14 @@ public final class FunctionRegistry {
      */
     public static final FunctionRegistry EMPTY = new FunctionRegistry(Collections.emptyMap());
 
-    private final Map<String, SephirahFunction> functions;
+    private final Map<String, RegisteredFunction> functions;
 
     /**
      * Creates a registry from the supplied function map.
      *
      * @param functions function names mapped to implementations
      */
-    public FunctionRegistry(Map<String, SephirahFunction> functions) {
+    public FunctionRegistry(Map<String, RegisteredFunction> functions) {
         Objects.requireNonNull(functions, "functions must not be null");
 
         this.functions = Collections.unmodifiableMap(new HashMap<>(functions));
@@ -55,8 +55,8 @@ public final class FunctionRegistry {
     public Builder toBuilder() {
         Builder builder = new Builder();
 
-        for (Map.Entry<String, SephirahFunction> entry : functions.entrySet()) {
-            builder.register(entry.getKey(), entry.getValue());
+        for (Map.Entry<String, RegisteredFunction> entry : functions.entrySet()) {
+            builder.register(entry.getValue());
         }
 
         return builder;
@@ -75,13 +75,13 @@ public final class FunctionRegistry {
         Objects.requireNonNull(arguments, "arguments must not be null");
         Objects.requireNonNull(context, "context must not be null");
 
-        SephirahFunction function = functions.get(name);
+        RegisteredFunction function = functions.get(name);
 
         if (function == null) {
             throw new IllegalArgumentException("Unknown function: " + name);
         }
 
-        return function.apply(arguments, context);
+        return function.invoke(arguments, context);
     }
 
     /**
@@ -95,13 +95,25 @@ public final class FunctionRegistry {
 
         return functions.containsKey(name);
     }
+    
+    public FunctionSignature getSignature(String name) {
+        Objects.requireNonNull(name, "name must not be null");
+
+        RegisteredFunction function = functions.get(name);
+
+        if (function == null) {
+            return null;
+        }
+
+        return function.getSignature();
+    }
 
     /**
      * Mutable builder for {@link FunctionRegistry}.
      */
     public static final class Builder {
 
-        private final Map<String, SephirahFunction> functions = new HashMap<>();
+        private final Map<String, RegisteredFunction> functions = new HashMap<>();
 
         /**
          * Registers a function implementation.
@@ -110,14 +122,30 @@ public final class FunctionRegistry {
          * @param function function implementation
          * @return this builder
          */
-        public Builder register(String name, SephirahFunction function) {
+        public Builder register(String name,
+        		FunctionSignature signature,
+        		SephirahFunction function
+        		) {
             Objects.requireNonNull(name, "name must not be null");
             Objects.requireNonNull(function, "function must not be null");
+            Objects.requireNonNull(signature, "signature must not be null");
 
             if(functions.containsKey(name)) {
             	throw new IllegalArgumentException("Function already registered: " + name);
             }
             
+            return register(new RegisteredFunction(name, signature, function));
+        }
+        
+        public Builder register(RegisteredFunction function) {
+            Objects.requireNonNull(function, "function must not be null");
+
+            String name = function.getName();
+
+            if (functions.containsKey(name)) {
+                throw new IllegalArgumentException("Function already registered: " + name);
+            }
+
             functions.put(name, function);
             return this;
         }

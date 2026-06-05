@@ -44,10 +44,21 @@ public final class ModuleFunctionCompiler {
                         "Function declaration conflicts with built-in function: " + name);
             }
 			
-			builder.register(name, createFunction(definition,
-					moduleResolver,
-					registryReference,
-					callStack));
+			int totalArgs = definition.getArgs().size();
+			
+			FunctionSignature signature = FunctionSignature.exactly(totalArgs);
+			RegisteredFunction function = new RegisteredFunction(
+					name,
+					signature,
+					createFunction(
+							definition,
+							moduleResolver,
+							registryReference,
+							callStack
+							)
+					);
+			
+			builder.register(function);
 		}
 		
 		return builder.build();
