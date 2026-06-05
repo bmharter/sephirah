@@ -38,6 +38,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	public static final String CYCLICAL_FUNCTION = CODE_PREFIX + "cyclical_function";
 	public static final String UNKNOWN_FUNCTION = CODE_PREFIX + "unknown_function";
 	public static final String FUNCTION_ARITY = CODE_PREFIX + "function_arity";
+	public static final String DUPLICATE_PARAMETER = CODE_PREFIX + "duplicate_parameter";
 	
 	@Check
 	public void checkBuiltinFunctionConflict(Definition definition) {
@@ -178,6 +179,31 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	                    name);
 	            return;
 	        }
+		}
+	}
+	
+	@Check
+	public void checkDuplicateParameters(Definition definition) {
+		EList<Assignment> parameters = definition.getArgs();
+		
+		Set<String> seenNames = new HashSet<>();
+		
+		for(int i = 0; i < parameters.size(); i++) {
+			Assignment parameter = parameters.get(i);
+			String name = parameter.getName();
+			
+			if(name == null || name.isBlank()) {
+				continue;
+			}
+			
+			if(!seenNames.add(name)) {
+				error("Parameter name " + name + " cannot be used more than once.",
+	                    SephirahPackage.Literals.DEFINITION__ARGS,
+	                    i,
+	                    DUPLICATE_PARAMETER,
+	                    name);
+	            return;
+			}
 		}
 	}
 	
