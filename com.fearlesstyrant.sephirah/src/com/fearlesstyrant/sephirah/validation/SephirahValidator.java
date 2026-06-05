@@ -36,6 +36,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	public static final String DUPLICATE_FUNCTION = CODE_PREFIX + "duplicate_function";
 	public static final String BUILTIN_FUNCTION_CONFLICT = CODE_PREFIX + "builtin_function_conflict";
 	public static final String CYCLICAL_FUNCTION = CODE_PREFIX + "cyclical_function";
+	public static final String UNKNOWN_FUNCTION = CODE_PREFIX + "unknown_function";
 	
 	@Check
 	public void checkBuiltinFunctionConflict(Definition definition) {
@@ -100,6 +101,36 @@ public class SephirahValidator extends AbstractSephirahValidator {
 			return;
 		}
 	}
+	
+	@Check
+	public void checkDefinitionVariablesUsed(Definition def) {
+		EList<Assignment> args = def.getArgs();
+		Expression expr = def.getExpr();
+
+		if (expr == null) {
+			return;
+		}
+
+		for (Assignment arg : args) {
+			if (arg instanceof DefinitionVariable) {
+				DefinitionVariable definitionVariable = (DefinitionVariable) arg;
+				String varName = definitionVariable.getName();
+
+				if (varName == null || varName.isBlank()) {
+					continue;
+				}
+
+				if (!expressionContainsVariableName(expr, varName)) {
+					warning("Declared variable has not been used: " + varName,
+							SephirahPackage.Literals.DEFINITION__ARGS,
+							args.indexOf(arg),
+							UNUSED_VARIABLE,
+							varName);
+				}
+			}
+		}
+	}
+	
 	@Check
 	public void checkDivByZero(Divide div) {
 		BigDecimal divisor = tryComputeStatic(div.getRight());
@@ -150,146 +181,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	}
 	
 	@Check
-	public void checkEvaluationResult(Evaluation evaluation) {
-		FormulaModel model = EcoreUtil2.getContainerOfType(evaluation, FormulaModel.class);
-		
-		if(model == null || evaluation.getExpression() == null) {
-			return;
-		}
-		
-		try {
-		ModuleEvaluator evaluator = new ModuleEvaluator(model, Methods.previewRegistry());
-		BigDecimal result = evaluator.evaluate(evaluation);
-		
-		info("Result: " + result,
-				SephirahPackage.Literals.EVALUATION__EXPRESSION,
-				EVALUATION_RESULT,
-				result.toString());
-		} catch(RuntimeException exception) {
-			return;
-		}
-	}
-
-	@Check
-	public void checkNormalizable(Expression expr) {
-		if (expr instanceof NumberLiteral || expr instanceof MethodCall || expr instanceof Variable) {
-			return;
-		}
-
-		Evaluation eval = EcoreUtil2.getContainerOfType(expr, Evaluation.class);
-
-		if (eval != null) {
-			return;
-		}
-
-		if (!isStaticNumericExpression(expr)) {
-			return;
-		}
-
-		BigDecimal decimal = tryComputeStatic(expr);
-
-		if (decimal == null) {
-			return;
-		}
-
-		if (decimal.toString().length() <= 8) {
-			warning("Expression could be normalized to constant '" + decimal + "'",
-					null,
-					ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
-					NORMALIZABLE,
-					decimal.toString());
-		}
-	}
-
-	@Check
-	public void checkExistingVariable(Variable var) {
-		String name = var.getName();
-
-		if (name == null || name.isBlank()) {
-			error("Variable has no name.",
-					SephirahPackage.Literals.VARIABLE__NAME,
-					UNDECLARED_VARIABLE);
-			return;
-		}
-
-		/*
-		 * Qualified names are reserved for runtime/host-object paths for now:
-		 *
-		 *   self.strength
-		 *   weapon.damage
-		 *   target.armorClass
-		 *
-		 * These should not be forced to resolve as module-local variables.
-		 */
-		if (name.contains(".")) {
-			return;
-		}
-
-		if (isVariableDeclared(var, name)) {
-			return;
-		}
-
-		error("Variable has not been declared: " + name,
-				SephirahPackage.Literals.VARIABLE__NAME,
-				UNDECLARED_VARIABLE,
-				name);
-	}
-
-	@Check
-	public void checkVariableUsed(VariableAssignment assignment) {
-		String name = assignment.getName();
-
-		if (name == null || name.isBlank()) {
-			return;
-		}
-
-		FormulaModel model = EcoreUtil2.getContainerOfType(assignment, FormulaModel.class);
-
-		if (model == null) {
-			return;
-		}
-
-		if (isVariableUsedInModel(model, assignment, name)) {
-			return;
-		}
-
-		info("Declared variable has not been used.",
-				SephirahPackage.Literals.ASSIGNMENT__NAME,
-				UNUSED_VARIABLE,
-				name);
-	}
-
-	@Check
-	public void checkDefinitionVariablesUsed(Definition def) {
-		EList<Assignment> args = def.getArgs();
-		Expression expr = def.getExpr();
-
-		if (expr == null) {
-			return;
-		}
-
-		for (Assignment arg : args) {
-			if (arg instanceof DefinitionVariable) {
-				DefinitionVariable definitionVariable = (DefinitionVariable) arg;
-				String varName = definitionVariable.getName();
-
-				if (varName == null || varName.isBlank()) {
-					continue;
-				}
-
-				if (!expressionContainsVariableName(expr, varName)) {
-					warning("Declared variable has not been used: " + varName,
-							SephirahPackage.Literals.DEFINITION__ARGS,
-							args.indexOf(arg),
-							UNUSED_VARIABLE,
-							varName);
-				}
-			}
-		}
-	}
-
-	@Check
-	public void checkForDuplicateVariables(VariableAssignment variableAssignment) {
+	public void checkDuplicateVariables(VariableAssignment variableAssignment) {
 		FormulaModel model = EcoreUtil2.getContainerOfType(variableAssignment, FormulaModel.class);
 
 		if (model == null) {
@@ -331,6 +223,137 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		}
 	}
 	
+	@Check
+	public void checkEvaluationResult(Evaluation evaluation) {
+		FormulaModel model = EcoreUtil2.getContainerOfType(evaluation, FormulaModel.class);
+		
+		if(model == null || evaluation.getExpression() == null) {
+			return;
+		}
+		
+		try {
+		ModuleEvaluator evaluator = new ModuleEvaluator(model, Methods.previewRegistry());
+		BigDecimal result = evaluator.evaluate(evaluation);
+		
+		info("Result: " + result,
+				SephirahPackage.Literals.EVALUATION__EXPRESSION,
+				EVALUATION_RESULT,
+				result.toString());
+		} catch(RuntimeException exception) {
+			return;
+		}
+	}
+	
+	@Check
+	public void checkExistingVariable(Variable var) {
+		String name = var.getName();
+
+		if (name == null || name.isBlank()) {
+			error("Variable has no name.",
+					SephirahPackage.Literals.VARIABLE__NAME,
+					UNDECLARED_VARIABLE);
+			return;
+		}
+
+		/*
+		 * Qualified names are reserved for runtime/host-object paths for now:
+		 *
+		 *   self.strength
+		 *   weapon.damage
+		 *   target.armorClass
+		 *
+		 * These should not be forced to resolve as module-local variables.
+		 */
+		if (name.contains(".")) {
+			return;
+		}
+
+		if (isVariableDeclared(var, name)) {
+			return;
+		}
+
+		error("Variable has not been declared: " + name,
+				SephirahPackage.Literals.VARIABLE__NAME,
+				UNDECLARED_VARIABLE,
+				name);
+	}
+
+	@Check
+	public void checkKnownFunction(MethodCall methodCall) {
+		String name = methodCall.getName();
+		
+		if (name == null || name.isBlank()) {
+	        error("Function call has no name.",
+	                SephirahPackage.Literals.METHOD_CALL__NAME,
+	                UNKNOWN_FUNCTION);
+	        return;
+	    }
+		
+		if(isKnownFunction(methodCall, name)) {
+			return;
+		}
+		
+		error("Unknown function: " + name,
+	            SephirahPackage.Literals.METHOD_CALL__NAME,
+	            UNKNOWN_FUNCTION,
+	            name);
+	}
+
+	@Check
+	public void checkNormalizable(Expression expr) {
+		if (expr instanceof NumberLiteral || expr instanceof MethodCall || expr instanceof Variable) {
+			return;
+		}
+
+		Evaluation eval = EcoreUtil2.getContainerOfType(expr, Evaluation.class);
+
+		if (eval != null) {
+			return;
+		}
+
+		if (!isStaticNumericExpression(expr)) {
+			return;
+		}
+
+		BigDecimal decimal = tryComputeStatic(expr);
+
+		if (decimal == null) {
+			return;
+		}
+
+		if (decimal.toString().length() <= 8) {
+			warning("Expression could be normalized to constant '" + decimal + "'",
+					null,
+					ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
+					NORMALIZABLE,
+					decimal.toString());
+		}
+	}
+
+	@Check
+	public void checkVariableUsed(VariableAssignment assignment) {
+		String name = assignment.getName();
+
+		if (name == null || name.isBlank()) {
+			return;
+		}
+
+		FormulaModel model = EcoreUtil2.getContainerOfType(assignment, FormulaModel.class);
+
+		if (model == null) {
+			return;
+		}
+
+		if (isVariableUsedInModel(model, assignment, name)) {
+			return;
+		}
+
+		info("Declared variable has not been used.",
+				SephirahPackage.Literals.ASSIGNMENT__NAME,
+				UNUSED_VARIABLE,
+				name);
+	}
+
 	private static void checkFunctionCycle(
 			FormulaModel model,
 			String functionName,
@@ -358,20 +381,6 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		} finally {
 			stack.pop();
 		}
-	}
-	
-	private static Definition findDefinition(FormulaModel model, String name) {
-		for(Definition definition : model.getMethodDefs()) {
-			if(name.equals(definition.getName())) {
-				return definition;
-			}
-		}
-		
-		return null;
-	}
-	
-	private static boolean isModuleFunction(FormulaModel model, String name) {
-		return findDefinition(model, name) != null;
 	}
 	
 	private static Set<String> findCalledFunctionName(Expression expression){
@@ -404,6 +413,16 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		}
 		
 		return names;
+	}
+	
+	private static Definition findDefinition(FormulaModel model, String name) {
+		for(Definition definition : model.getMethodDefs()) {
+			if(name.equals(definition.getName())) {
+				return definition;
+			}
+		}
+		
+		return null;
 	}
 	
 	private static String formatFunctionCycle(String repeatedName, Deque<String> stack) {
@@ -439,6 +458,103 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		return builder.toString();
 	}
 	
+	private static boolean expressionContainsVariableName(Expression expression, String name) {
+		if (expression == null) {
+			return false;
+		}
+
+		if (expression instanceof Variable) {
+			Variable variable = (Variable) expression;
+			return name.equals(variable.getName());
+		}
+
+		TreeIterator<EObject> contents = expression.eAllContents();
+
+		while (contents.hasNext()) {
+			EObject object = contents.next();
+
+			if (object instanceof Variable) {
+				Variable variable = (Variable) object;
+
+				if (name.equals(variable.getName())) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+	
+	private static boolean isKnownFunction(MethodCall methodCall, String name) {
+		if(Methods.standardRegistry().contains(name)) {
+			return true;
+		}
+		
+		FormulaModel model = EcoreUtil2.getContainerOfType(methodCall, FormulaModel.class);
+		
+		if(model == null) {
+			return false;
+		}
+		
+		for(Definition definition : model.getMethodDefs()) {
+			if(definition.getName().equals(name)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private static boolean isModuleFunction(FormulaModel model, String name) {
+		return findDefinition(model, name) != null;
+	}
+	
+	private static boolean isStaticNumericExpression(Expression expression) {
+		if (expression == null) {
+			return false;
+		}
+
+		if (expression instanceof NumberLiteral || expression instanceof Constant) {
+			return true;
+		}
+
+		if (expression instanceof Variable || expression instanceof MethodCall) {
+			return false;
+		}
+
+		if (expression instanceof Add) {
+			Add add = (Add) expression;
+			return isStaticNumericExpression(add.getLeft())
+					&& isStaticNumericExpression(add.getRight());
+		}
+
+		if (expression instanceof Subtract) {
+			Subtract subtract = (Subtract) expression;
+			return isStaticNumericExpression(subtract.getLeft())
+					&& isStaticNumericExpression(subtract.getRight());
+		}
+
+		if (expression instanceof Multiply) {
+			Multiply multiply = (Multiply) expression;
+			return isStaticNumericExpression(multiply.getLeft())
+					&& isStaticNumericExpression(multiply.getRight());
+		}
+
+		if (expression instanceof Divide) {
+			Divide divide = (Divide) expression;
+			return isStaticNumericExpression(divide.getLeft())
+					&& isStaticNumericExpression(divide.getRight());
+		}
+
+		if (expression instanceof Exponent) {
+			Exponent exponent = (Exponent) expression;
+			return isStaticNumericExpression(exponent.getLeft())
+					&& isStaticNumericExpression(exponent.getRight());
+		}
+
+		return false;
+	}
+
 	private static boolean isVariableDeclared(Variable variable, String name) {
 		Definition definition = EcoreUtil2.getContainerOfType(variable, Definition.class);
 
@@ -498,92 +614,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 
 		return false;
 	}
-
-	private static boolean expressionContainsVariableName(Expression expression, String name) {
-		if (expression == null) {
-			return false;
-		}
-
-		if (expression instanceof Variable) {
-			Variable variable = (Variable) expression;
-			return name.equals(variable.getName());
-		}
-
-		TreeIterator<EObject> contents = expression.eAllContents();
-
-		while (contents.hasNext()) {
-			EObject object = contents.next();
-
-			if (object instanceof Variable) {
-				Variable variable = (Variable) object;
-
-				if (name.equals(variable.getName())) {
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	private static BigDecimal tryComputeStatic(Expression expression) {
-		if (!isStaticNumericExpression(expression)) {
-			return null;
-		}
-
-		try {
-			return Computer.compute(expression);
-		} catch (RuntimeException exception) {
-			return null;
-		}
-	}
-
-	private static boolean isStaticNumericExpression(Expression expression) {
-		if (expression == null) {
-			return false;
-		}
-
-		if (expression instanceof NumberLiteral || expression instanceof Constant) {
-			return true;
-		}
-
-		if (expression instanceof Variable || expression instanceof MethodCall) {
-			return false;
-		}
-
-		if (expression instanceof Add) {
-			Add add = (Add) expression;
-			return isStaticNumericExpression(add.getLeft())
-					&& isStaticNumericExpression(add.getRight());
-		}
-
-		if (expression instanceof Subtract) {
-			Subtract subtract = (Subtract) expression;
-			return isStaticNumericExpression(subtract.getLeft())
-					&& isStaticNumericExpression(subtract.getRight());
-		}
-
-		if (expression instanceof Multiply) {
-			Multiply multiply = (Multiply) expression;
-			return isStaticNumericExpression(multiply.getLeft())
-					&& isStaticNumericExpression(multiply.getRight());
-		}
-
-		if (expression instanceof Divide) {
-			Divide divide = (Divide) expression;
-			return isStaticNumericExpression(divide.getLeft())
-					&& isStaticNumericExpression(divide.getRight());
-		}
-
-		if (expression instanceof Exponent) {
-			Exponent exponent = (Exponent) expression;
-			return isStaticNumericExpression(exponent.getLeft())
-					&& isStaticNumericExpression(exponent.getRight());
-		}
-
-		return false;
-	}
-
+	
 	private static String sourceText(EObject object) {
 		if (object == null) {
 			return "";
@@ -597,5 +628,16 @@ public class SephirahValidator extends AbstractSephirahValidator {
 
 		return node.getText();
 	}
-	
+
+	private static BigDecimal tryComputeStatic(Expression expression) {
+		if (!isStaticNumericExpression(expression)) {
+			return null;
+		}
+
+		try {
+			return Computer.compute(expression);
+		} catch (RuntimeException exception) {
+			return null;
+		}
+	}
 }
