@@ -1,0 +1,4 @@
+SephirahDoc duplicateFunctionRegression
+
+def duplicateFunction(x) = x;
+def duplicateFunction(y) = y;

@@ -1,0 +1,3 @@
+SephirahDoc duplicateParameterRegression
+
+def duplicateParameter(x, x) = x + 1;

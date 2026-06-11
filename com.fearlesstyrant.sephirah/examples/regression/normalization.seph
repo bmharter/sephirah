@@ -1,0 +1,6 @@
+SephirahDoc normalizationRegression
+
+var foldedAddition = 1 + 1;
+var simpleNegative = -2;
+var compoundNegative = -(1 + 1);
+var staticConditional = if 5 > 3 and [10 == 10 or 2 > 8] then 100 else 200;

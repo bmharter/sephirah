@@ -100,6 +100,17 @@ public class SephirahValidator extends AbstractSephirahValidator {
 					assignment.getName()
 					);
 		} catch(RuntimeException exception) {
+			
+			String cycleMessage = findVariableCycleMessage(exception);
+			
+			if(cycleMessage != null) {
+				error(exception.getMessage(),
+						SephirahPackage.Literals.ASSIGNMENT__NAME,
+						CYCLICAL_REFERENCE,
+						assignment.getName()
+						);
+			}
+			
 			return;
 		}
 	}
@@ -535,6 +546,22 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		}
 		
 		return null;
+	}
+
+	private static String findVariableCycleMessage(Throwable throwable) {
+	    Throwable current = throwable;
+
+	    while (current != null) {
+	        String message = current.getMessage();
+
+	        if (message != null && message.startsWith("Cyclic variable definition:")) {
+	            return message;
+	        }
+
+	        current = current.getCause();
+	    }
+
+	    return null;
 	}
 	
 	private static String formatFunctionCycle(String repeatedName, Deque<String> stack) {
