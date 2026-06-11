@@ -586,47 +586,58 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		return findDefinition(model, name) != null;
 	}
 	
+	private static boolean isStaticCondition(Condition condition) {
+		if(condition == null) {
+			return false;
+		}
+		
+		return isStaticNumericExpression(condition.getLeft())
+				&& isStaticNumericExpression(condition.getRight())
+				&& condition.getOp() != null;
+	}
+	
 	private static boolean isStaticNumericExpression(Expression expression) {
-		if (expression == null) {
+		if(expression == null) {
 			return false;
 		}
 
-		if (expression instanceof NumberLiteral || expression instanceof Constant) {
+		if(expression instanceof NumberLiteral || expression instanceof Constant) {
 			return true;
 		}
 
-		if (expression instanceof Variable || expression instanceof MethodCall) {
+		if(expression instanceof Variable || expression instanceof MethodCall) {
 			return false;
 		}
 
-		if (expression instanceof Add) {
-			Add add = (Add) expression;
+		if(expression instanceof Add add) {
 			return isStaticNumericExpression(add.getLeft())
 					&& isStaticNumericExpression(add.getRight());
 		}
 
-		if (expression instanceof Subtract) {
-			Subtract subtract = (Subtract) expression;
+		if(expression instanceof Subtract subtract) {
 			return isStaticNumericExpression(subtract.getLeft())
 					&& isStaticNumericExpression(subtract.getRight());
 		}
 
-		if (expression instanceof Multiply) {
-			Multiply multiply = (Multiply) expression;
+		if(expression instanceof Multiply multiply) {
 			return isStaticNumericExpression(multiply.getLeft())
 					&& isStaticNumericExpression(multiply.getRight());
 		}
 
-		if (expression instanceof Divide) {
-			Divide divide = (Divide) expression;
+		if(expression instanceof Divide divide) {
 			return isStaticNumericExpression(divide.getLeft())
 					&& isStaticNumericExpression(divide.getRight());
 		}
 
-		if (expression instanceof Exponent) {
-			Exponent exponent = (Exponent) expression;
+		if(expression instanceof Exponent exponent) {
 			return isStaticNumericExpression(exponent.getLeft())
 					&& isStaticNumericExpression(exponent.getRight());
+		}
+		
+		if(expression instanceof Conditional conditional) {
+			return isStaticCondition(conditional.getCondition())
+					&& isStaticNumericExpression(conditional.getThenBranch())
+					&& isStaticNumericExpression(conditional.getElseBranch());
 		}
 
 		return false;
