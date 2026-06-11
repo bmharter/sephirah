@@ -11,6 +11,8 @@ import java.util.Objects;
 import org.eclipse.emf.common.util.EList;
 
 import com.fearlesstyrant.sephirah.sephirah.*;
+import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
+import com.fearlesstyrant.sephirah.tools.value.SephirahValues;
 
 /**
  * Evaluates Sephirah expression trees.
@@ -103,32 +105,47 @@ public final class Computer {
     public BigDecimal evaluate(Expression expression) {
         Objects.requireNonNull(expression, "expression must not be null");
 
-        if(expression instanceof NumberLiteral numberLiteral) {
-            return numberLiteral.getValue();
+        return SephirahValues.requireNumeric(evaluateValue(expression));
+    }
+    
+    public SephirahValue evaluateValue(Expression expression) {
+    	Objects.requireNonNull(expression, "expression must not be null");
+    	
+    	if(expression instanceof NumberLiteral numberLiteral) {
+            return SephirahValues.numeric(numberLiteral.getValue());
         }
 
         if(expression instanceof Constant constant) {
-            return Constants.getBDConstant(constant.getValue());
+            return SephirahValues.numeric(Constants.getBDConstant(constant.getValue()));
         }
 
         if(expression instanceof Variable variable) {
-            return context.requireValue(variable.getName());
+            return SephirahValues.numeric(context.requireValue(variable.getName()));
         }
         
         if(expression instanceof Conditional conditional) {
-        	return evaluateConditional(conditional);
+        	return SephirahValues.numeric(evaluateConditional(conditional));
         }
 
         if(expression instanceof Add add) {
-            return evaluate(add.getLeft()).add(evaluate(add.getRight()));
+        	BigDecimal left = evaluate(add.getLeft());
+        	BigDecimal right = evaluate(add.getRight());
+        	
+        	return SephirahValues.numeric(left.add(right));
         }
 
         if(expression instanceof Subtract subtract) {
-            return evaluate(subtract.getLeft()).subtract(evaluate(subtract.getRight()));
+            BigDecimal left = evaluate(subtract.getLeft());
+            BigDecimal right = evaluate(subtract.getRight());
+            
+            return SephirahValues.numeric(left.subtract(right));
         }
 
         if(expression instanceof Multiply multiply) {
-            return evaluate(multiply.getLeft()).multiply(evaluate(multiply.getRight()));
+            BigDecimal left = evaluate(multiply.getLeft());
+            BigDecimal right = evaluate(multiply.getRight());
+            
+            return SephirahValues.numeric(left.multiply(right));
         }
 
         if(expression instanceof Divide divide) {
@@ -138,7 +155,9 @@ public final class Computer {
                 throw new ArithmeticException("Cannot divide by zero.");
             }
 
-            return evaluate(divide.getLeft()).divide(divisor, DEFAULT_MATH_CONTEXT);
+            BigDecimal numerator = evaluate(divide.getLeft());
+            
+            return SephirahValues.numeric(numerator.divide(divisor));
         }
 
         if(expression instanceof Exponent exponent) {
@@ -150,16 +169,16 @@ public final class Computer {
              */
             double base = evaluate(exponent.getLeft()).doubleValue();
             double power = evaluate(exponent.getRight()).doubleValue();
-
-            return BigDecimal.valueOf(Math.pow(base, power));
+            
+            return SephirahValues.numeric(BigDecimal.valueOf(Math.pow(base, power)));
         }
 
         if(expression instanceof MethodCall methodCall) {
-            return evaluateMethodCall(methodCall);
+            return SephirahValues.numeric(evaluateMethodCall(methodCall));
         }
         
         if(expression instanceof Negate negate) {
-        	return evaluate(negate.getValue()).negate();
+        	return SephirahValues.numeric(evaluate(negate.getValue()).negate());
         }
         
         throw new IllegalArgumentException("Unhandled expression type: "
