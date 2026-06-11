@@ -38,6 +38,7 @@ public class SephirahParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMultiplicationAccess().getAlternatives_1_0(), "rule__Multiplication__Alternatives_1_0");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getAlternatives(), "rule__PrimaryExpression__Alternatives");
 			builder.put(grammarAccess.getNotConditionAccess().getAlternatives(), "rule__NotCondition__Alternatives");
+			builder.put(grammarAccess.getPrimaryConditionAccess().getAlternatives(), "rule__PrimaryCondition__Alternatives");
 			builder.put(grammarAccess.getConstantAccess().getValueAlternatives_1_0(), "rule__Constant__ValueAlternatives_1_0");
 			builder.put(grammarAccess.getValidIDAccess().getAlternatives(), "rule__ValidID__Alternatives");
 			builder.put(grammarAccess.getComparisonOperatorAccess().getAlternatives(), "rule__ComparisonOperator__Alternatives");
@@ -69,6 +70,7 @@ public class SephirahParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAndConditionAccess().getGroup(), "rule__AndCondition__Group__0");
 			builder.put(grammarAccess.getAndConditionAccess().getGroup_1(), "rule__AndCondition__Group_1__0");
 			builder.put(grammarAccess.getNotConditionAccess().getGroup_0(), "rule__NotCondition__Group_0__0");
+			builder.put(grammarAccess.getPrimaryConditionAccess().getGroup_1(), "rule__PrimaryCondition__Group_1__0");
 			builder.put(grammarAccess.getComparisonConditionAccess().getGroup(), "rule__ComparisonCondition__Group__0");
 			builder.put(grammarAccess.getMethodCallAccess().getGroup(), "rule__MethodCall__Group__0");
 			builder.put(grammarAccess.getMethodCallAccess().getGroup_3(), "rule__MethodCall__Group_3__0");

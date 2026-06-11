@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalSephirahParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_ESCAPED_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'pi'", "'G'", "'phi'", "'gamma'", "'e'", "'<='", "'>='", "'=='", "'!='", "'<'", "'>'", "'SephirahDoc'", "'import'", "';'", "'def'", "'('", "')'", "'='", "','", "'var'", "'if'", "'then'", "'else'", "'+'", "'-'", "'*'", "'/'", "'^'", "'or'", "'and'", "'not'", "'.'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_ESCAPED_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'pi'", "'G'", "'phi'", "'gamma'", "'e'", "'<='", "'>='", "'=='", "'!='", "'<'", "'>'", "'SephirahDoc'", "'import'", "';'", "'def'", "'('", "')'", "'='", "','", "'var'", "'if'", "'then'", "'else'", "'+'", "'-'", "'*'", "'/'", "'^'", "'or'", "'and'", "'not'", "'['", "']'", "'.'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -60,6 +60,8 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
     public static final int T__32=32;
     public static final int RULE_WS=10;
     public static final int RULE_ANY_OTHER=11;
+    public static final int T__44=44;
+    public static final int T__45=45;
     public static final int RULE_ESCAPED_ID=5;
     public static final int T__40=40;
     public static final int T__41=41;
@@ -1475,12 +1477,89 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
     // $ANTLR end "ruleNotCondition"
 
 
+    // $ANTLR start "entryRulePrimaryCondition"
+    // InternalSephirah.g:503:1: entryRulePrimaryCondition : rulePrimaryCondition EOF ;
+    public final void entryRulePrimaryCondition() throws RecognitionException {
+        try {
+            // InternalSephirah.g:504:1: ( rulePrimaryCondition EOF )
+            // InternalSephirah.g:505:1: rulePrimaryCondition EOF
+            {
+             before(grammarAccess.getPrimaryConditionRule()); 
+            pushFollow(FOLLOW_1);
+            rulePrimaryCondition();
+
+            state._fsp--;
+
+             after(grammarAccess.getPrimaryConditionRule()); 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRulePrimaryCondition"
+
+
+    // $ANTLR start "rulePrimaryCondition"
+    // InternalSephirah.g:512:1: rulePrimaryCondition : ( ( rule__PrimaryCondition__Alternatives ) ) ;
+    public final void rulePrimaryCondition() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalSephirah.g:516:2: ( ( ( rule__PrimaryCondition__Alternatives ) ) )
+            // InternalSephirah.g:517:2: ( ( rule__PrimaryCondition__Alternatives ) )
+            {
+            // InternalSephirah.g:517:2: ( ( rule__PrimaryCondition__Alternatives ) )
+            // InternalSephirah.g:518:3: ( rule__PrimaryCondition__Alternatives )
+            {
+             before(grammarAccess.getPrimaryConditionAccess().getAlternatives()); 
+            // InternalSephirah.g:519:3: ( rule__PrimaryCondition__Alternatives )
+            // InternalSephirah.g:519:4: rule__PrimaryCondition__Alternatives
+            {
+            pushFollow(FOLLOW_2);
+            rule__PrimaryCondition__Alternatives();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getPrimaryConditionAccess().getAlternatives()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rulePrimaryCondition"
+
+
     // $ANTLR start "entryRuleComparisonCondition"
-    // InternalSephirah.g:503:1: entryRuleComparisonCondition : ruleComparisonCondition EOF ;
+    // InternalSephirah.g:528:1: entryRuleComparisonCondition : ruleComparisonCondition EOF ;
     public final void entryRuleComparisonCondition() throws RecognitionException {
         try {
-            // InternalSephirah.g:504:1: ( ruleComparisonCondition EOF )
-            // InternalSephirah.g:505:1: ruleComparisonCondition EOF
+            // InternalSephirah.g:529:1: ( ruleComparisonCondition EOF )
+            // InternalSephirah.g:530:1: ruleComparisonCondition EOF
             {
              before(grammarAccess.getComparisonConditionRule()); 
             pushFollow(FOLLOW_1);
@@ -1506,21 +1585,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "ruleComparisonCondition"
-    // InternalSephirah.g:512:1: ruleComparisonCondition : ( ( rule__ComparisonCondition__Group__0 ) ) ;
+    // InternalSephirah.g:537:1: ruleComparisonCondition : ( ( rule__ComparisonCondition__Group__0 ) ) ;
     public final void ruleComparisonCondition() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:516:2: ( ( ( rule__ComparisonCondition__Group__0 ) ) )
-            // InternalSephirah.g:517:2: ( ( rule__ComparisonCondition__Group__0 ) )
+            // InternalSephirah.g:541:2: ( ( ( rule__ComparisonCondition__Group__0 ) ) )
+            // InternalSephirah.g:542:2: ( ( rule__ComparisonCondition__Group__0 ) )
             {
-            // InternalSephirah.g:517:2: ( ( rule__ComparisonCondition__Group__0 ) )
-            // InternalSephirah.g:518:3: ( rule__ComparisonCondition__Group__0 )
+            // InternalSephirah.g:542:2: ( ( rule__ComparisonCondition__Group__0 ) )
+            // InternalSephirah.g:543:3: ( rule__ComparisonCondition__Group__0 )
             {
              before(grammarAccess.getComparisonConditionAccess().getGroup()); 
-            // InternalSephirah.g:519:3: ( rule__ComparisonCondition__Group__0 )
-            // InternalSephirah.g:519:4: rule__ComparisonCondition__Group__0
+            // InternalSephirah.g:544:3: ( rule__ComparisonCondition__Group__0 )
+            // InternalSephirah.g:544:4: rule__ComparisonCondition__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__ComparisonCondition__Group__0();
@@ -1553,11 +1632,11 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "entryRuleMethodCall"
-    // InternalSephirah.g:528:1: entryRuleMethodCall : ruleMethodCall EOF ;
+    // InternalSephirah.g:553:1: entryRuleMethodCall : ruleMethodCall EOF ;
     public final void entryRuleMethodCall() throws RecognitionException {
         try {
-            // InternalSephirah.g:529:1: ( ruleMethodCall EOF )
-            // InternalSephirah.g:530:1: ruleMethodCall EOF
+            // InternalSephirah.g:554:1: ( ruleMethodCall EOF )
+            // InternalSephirah.g:555:1: ruleMethodCall EOF
             {
              before(grammarAccess.getMethodCallRule()); 
             pushFollow(FOLLOW_1);
@@ -1583,21 +1662,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "ruleMethodCall"
-    // InternalSephirah.g:537:1: ruleMethodCall : ( ( rule__MethodCall__Group__0 ) ) ;
+    // InternalSephirah.g:562:1: ruleMethodCall : ( ( rule__MethodCall__Group__0 ) ) ;
     public final void ruleMethodCall() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:541:2: ( ( ( rule__MethodCall__Group__0 ) ) )
-            // InternalSephirah.g:542:2: ( ( rule__MethodCall__Group__0 ) )
+            // InternalSephirah.g:566:2: ( ( ( rule__MethodCall__Group__0 ) ) )
+            // InternalSephirah.g:567:2: ( ( rule__MethodCall__Group__0 ) )
             {
-            // InternalSephirah.g:542:2: ( ( rule__MethodCall__Group__0 ) )
-            // InternalSephirah.g:543:3: ( rule__MethodCall__Group__0 )
+            // InternalSephirah.g:567:2: ( ( rule__MethodCall__Group__0 ) )
+            // InternalSephirah.g:568:3: ( rule__MethodCall__Group__0 )
             {
              before(grammarAccess.getMethodCallAccess().getGroup()); 
-            // InternalSephirah.g:544:3: ( rule__MethodCall__Group__0 )
-            // InternalSephirah.g:544:4: rule__MethodCall__Group__0
+            // InternalSephirah.g:569:3: ( rule__MethodCall__Group__0 )
+            // InternalSephirah.g:569:4: rule__MethodCall__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__MethodCall__Group__0();
@@ -1630,11 +1709,11 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "entryRuleConstant"
-    // InternalSephirah.g:553:1: entryRuleConstant : ruleConstant EOF ;
+    // InternalSephirah.g:578:1: entryRuleConstant : ruleConstant EOF ;
     public final void entryRuleConstant() throws RecognitionException {
         try {
-            // InternalSephirah.g:554:1: ( ruleConstant EOF )
-            // InternalSephirah.g:555:1: ruleConstant EOF
+            // InternalSephirah.g:579:1: ( ruleConstant EOF )
+            // InternalSephirah.g:580:1: ruleConstant EOF
             {
              before(grammarAccess.getConstantRule()); 
             pushFollow(FOLLOW_1);
@@ -1660,21 +1739,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "ruleConstant"
-    // InternalSephirah.g:562:1: ruleConstant : ( ( rule__Constant__Group__0 ) ) ;
+    // InternalSephirah.g:587:1: ruleConstant : ( ( rule__Constant__Group__0 ) ) ;
     public final void ruleConstant() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:566:2: ( ( ( rule__Constant__Group__0 ) ) )
-            // InternalSephirah.g:567:2: ( ( rule__Constant__Group__0 ) )
+            // InternalSephirah.g:591:2: ( ( ( rule__Constant__Group__0 ) ) )
+            // InternalSephirah.g:592:2: ( ( rule__Constant__Group__0 ) )
             {
-            // InternalSephirah.g:567:2: ( ( rule__Constant__Group__0 ) )
-            // InternalSephirah.g:568:3: ( rule__Constant__Group__0 )
+            // InternalSephirah.g:592:2: ( ( rule__Constant__Group__0 ) )
+            // InternalSephirah.g:593:3: ( rule__Constant__Group__0 )
             {
              before(grammarAccess.getConstantAccess().getGroup()); 
-            // InternalSephirah.g:569:3: ( rule__Constant__Group__0 )
-            // InternalSephirah.g:569:4: rule__Constant__Group__0
+            // InternalSephirah.g:594:3: ( rule__Constant__Group__0 )
+            // InternalSephirah.g:594:4: rule__Constant__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__Constant__Group__0();
@@ -1707,11 +1786,11 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "entryRuleQualifiedName"
-    // InternalSephirah.g:578:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
+    // InternalSephirah.g:603:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
     public final void entryRuleQualifiedName() throws RecognitionException {
         try {
-            // InternalSephirah.g:579:1: ( ruleQualifiedName EOF )
-            // InternalSephirah.g:580:1: ruleQualifiedName EOF
+            // InternalSephirah.g:604:1: ( ruleQualifiedName EOF )
+            // InternalSephirah.g:605:1: ruleQualifiedName EOF
             {
              before(grammarAccess.getQualifiedNameRule()); 
             pushFollow(FOLLOW_1);
@@ -1737,21 +1816,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "ruleQualifiedName"
-    // InternalSephirah.g:587:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
+    // InternalSephirah.g:612:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
     public final void ruleQualifiedName() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:591:2: ( ( ( rule__QualifiedName__Group__0 ) ) )
-            // InternalSephirah.g:592:2: ( ( rule__QualifiedName__Group__0 ) )
+            // InternalSephirah.g:616:2: ( ( ( rule__QualifiedName__Group__0 ) ) )
+            // InternalSephirah.g:617:2: ( ( rule__QualifiedName__Group__0 ) )
             {
-            // InternalSephirah.g:592:2: ( ( rule__QualifiedName__Group__0 ) )
-            // InternalSephirah.g:593:3: ( rule__QualifiedName__Group__0 )
+            // InternalSephirah.g:617:2: ( ( rule__QualifiedName__Group__0 ) )
+            // InternalSephirah.g:618:3: ( rule__QualifiedName__Group__0 )
             {
              before(grammarAccess.getQualifiedNameAccess().getGroup()); 
-            // InternalSephirah.g:594:3: ( rule__QualifiedName__Group__0 )
-            // InternalSephirah.g:594:4: rule__QualifiedName__Group__0
+            // InternalSephirah.g:619:3: ( rule__QualifiedName__Group__0 )
+            // InternalSephirah.g:619:4: rule__QualifiedName__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__QualifiedName__Group__0();
@@ -1784,11 +1863,11 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "entryRuleValidID"
-    // InternalSephirah.g:603:1: entryRuleValidID : ruleValidID EOF ;
+    // InternalSephirah.g:628:1: entryRuleValidID : ruleValidID EOF ;
     public final void entryRuleValidID() throws RecognitionException {
         try {
-            // InternalSephirah.g:604:1: ( ruleValidID EOF )
-            // InternalSephirah.g:605:1: ruleValidID EOF
+            // InternalSephirah.g:629:1: ( ruleValidID EOF )
+            // InternalSephirah.g:630:1: ruleValidID EOF
             {
              before(grammarAccess.getValidIDRule()); 
             pushFollow(FOLLOW_1);
@@ -1814,21 +1893,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "ruleValidID"
-    // InternalSephirah.g:612:1: ruleValidID : ( ( rule__ValidID__Alternatives ) ) ;
+    // InternalSephirah.g:637:1: ruleValidID : ( ( rule__ValidID__Alternatives ) ) ;
     public final void ruleValidID() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:616:2: ( ( ( rule__ValidID__Alternatives ) ) )
-            // InternalSephirah.g:617:2: ( ( rule__ValidID__Alternatives ) )
+            // InternalSephirah.g:641:2: ( ( ( rule__ValidID__Alternatives ) ) )
+            // InternalSephirah.g:642:2: ( ( rule__ValidID__Alternatives ) )
             {
-            // InternalSephirah.g:617:2: ( ( rule__ValidID__Alternatives ) )
-            // InternalSephirah.g:618:3: ( rule__ValidID__Alternatives )
+            // InternalSephirah.g:642:2: ( ( rule__ValidID__Alternatives ) )
+            // InternalSephirah.g:643:3: ( rule__ValidID__Alternatives )
             {
              before(grammarAccess.getValidIDAccess().getAlternatives()); 
-            // InternalSephirah.g:619:3: ( rule__ValidID__Alternatives )
-            // InternalSephirah.g:619:4: rule__ValidID__Alternatives
+            // InternalSephirah.g:644:3: ( rule__ValidID__Alternatives )
+            // InternalSephirah.g:644:4: rule__ValidID__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__ValidID__Alternatives();
@@ -1861,11 +1940,11 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "entryRuleDecimal"
-    // InternalSephirah.g:628:1: entryRuleDecimal : ruleDecimal EOF ;
+    // InternalSephirah.g:653:1: entryRuleDecimal : ruleDecimal EOF ;
     public final void entryRuleDecimal() throws RecognitionException {
         try {
-            // InternalSephirah.g:629:1: ( ruleDecimal EOF )
-            // InternalSephirah.g:630:1: ruleDecimal EOF
+            // InternalSephirah.g:654:1: ( ruleDecimal EOF )
+            // InternalSephirah.g:655:1: ruleDecimal EOF
             {
              before(grammarAccess.getDecimalRule()); 
             pushFollow(FOLLOW_1);
@@ -1891,21 +1970,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "ruleDecimal"
-    // InternalSephirah.g:637:1: ruleDecimal : ( ( rule__Decimal__Group__0 ) ) ;
+    // InternalSephirah.g:662:1: ruleDecimal : ( ( rule__Decimal__Group__0 ) ) ;
     public final void ruleDecimal() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:641:2: ( ( ( rule__Decimal__Group__0 ) ) )
-            // InternalSephirah.g:642:2: ( ( rule__Decimal__Group__0 ) )
+            // InternalSephirah.g:666:2: ( ( ( rule__Decimal__Group__0 ) ) )
+            // InternalSephirah.g:667:2: ( ( rule__Decimal__Group__0 ) )
             {
-            // InternalSephirah.g:642:2: ( ( rule__Decimal__Group__0 ) )
-            // InternalSephirah.g:643:3: ( rule__Decimal__Group__0 )
+            // InternalSephirah.g:667:2: ( ( rule__Decimal__Group__0 ) )
+            // InternalSephirah.g:668:3: ( rule__Decimal__Group__0 )
             {
              before(grammarAccess.getDecimalAccess().getGroup()); 
-            // InternalSephirah.g:644:3: ( rule__Decimal__Group__0 )
-            // InternalSephirah.g:644:4: rule__Decimal__Group__0
+            // InternalSephirah.g:669:3: ( rule__Decimal__Group__0 )
+            // InternalSephirah.g:669:4: rule__Decimal__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__Decimal__Group__0();
@@ -1938,21 +2017,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "ruleComparisonOperator"
-    // InternalSephirah.g:653:1: ruleComparisonOperator : ( ( rule__ComparisonOperator__Alternatives ) ) ;
+    // InternalSephirah.g:678:1: ruleComparisonOperator : ( ( rule__ComparisonOperator__Alternatives ) ) ;
     public final void ruleComparisonOperator() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:657:1: ( ( ( rule__ComparisonOperator__Alternatives ) ) )
-            // InternalSephirah.g:658:2: ( ( rule__ComparisonOperator__Alternatives ) )
+            // InternalSephirah.g:682:1: ( ( ( rule__ComparisonOperator__Alternatives ) ) )
+            // InternalSephirah.g:683:2: ( ( rule__ComparisonOperator__Alternatives ) )
             {
-            // InternalSephirah.g:658:2: ( ( rule__ComparisonOperator__Alternatives ) )
-            // InternalSephirah.g:659:3: ( rule__ComparisonOperator__Alternatives )
+            // InternalSephirah.g:683:2: ( ( rule__ComparisonOperator__Alternatives ) )
+            // InternalSephirah.g:684:3: ( rule__ComparisonOperator__Alternatives )
             {
              before(grammarAccess.getComparisonOperatorAccess().getAlternatives()); 
-            // InternalSephirah.g:660:3: ( rule__ComparisonOperator__Alternatives )
-            // InternalSephirah.g:660:4: rule__ComparisonOperator__Alternatives
+            // InternalSephirah.g:685:3: ( rule__ComparisonOperator__Alternatives )
+            // InternalSephirah.g:685:4: rule__ComparisonOperator__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__ComparisonOperator__Alternatives();
@@ -1985,13 +2064,13 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__FormulaModel__Alternatives_2"
-    // InternalSephirah.g:668:1: rule__FormulaModel__Alternatives_2 : ( ( ( rule__FormulaModel__MethodDefsAssignment_2_0 ) ) | ( ( rule__FormulaModel__VariablesAssignment_2_1 ) ) | ( ( rule__FormulaModel__ValuesAssignment_2_2 ) ) );
+    // InternalSephirah.g:693:1: rule__FormulaModel__Alternatives_2 : ( ( ( rule__FormulaModel__MethodDefsAssignment_2_0 ) ) | ( ( rule__FormulaModel__VariablesAssignment_2_1 ) ) | ( ( rule__FormulaModel__ValuesAssignment_2_2 ) ) );
     public final void rule__FormulaModel__Alternatives_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:672:1: ( ( ( rule__FormulaModel__MethodDefsAssignment_2_0 ) ) | ( ( rule__FormulaModel__VariablesAssignment_2_1 ) ) | ( ( rule__FormulaModel__ValuesAssignment_2_2 ) ) )
+            // InternalSephirah.g:697:1: ( ( ( rule__FormulaModel__MethodDefsAssignment_2_0 ) ) | ( ( rule__FormulaModel__VariablesAssignment_2_1 ) ) | ( ( rule__FormulaModel__ValuesAssignment_2_2 ) ) )
             int alt1=3;
             switch ( input.LA(1) ) {
             case 26:
@@ -2027,14 +2106,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
             switch (alt1) {
                 case 1 :
-                    // InternalSephirah.g:673:2: ( ( rule__FormulaModel__MethodDefsAssignment_2_0 ) )
+                    // InternalSephirah.g:698:2: ( ( rule__FormulaModel__MethodDefsAssignment_2_0 ) )
                     {
-                    // InternalSephirah.g:673:2: ( ( rule__FormulaModel__MethodDefsAssignment_2_0 ) )
-                    // InternalSephirah.g:674:3: ( rule__FormulaModel__MethodDefsAssignment_2_0 )
+                    // InternalSephirah.g:698:2: ( ( rule__FormulaModel__MethodDefsAssignment_2_0 ) )
+                    // InternalSephirah.g:699:3: ( rule__FormulaModel__MethodDefsAssignment_2_0 )
                     {
                      before(grammarAccess.getFormulaModelAccess().getMethodDefsAssignment_2_0()); 
-                    // InternalSephirah.g:675:3: ( rule__FormulaModel__MethodDefsAssignment_2_0 )
-                    // InternalSephirah.g:675:4: rule__FormulaModel__MethodDefsAssignment_2_0
+                    // InternalSephirah.g:700:3: ( rule__FormulaModel__MethodDefsAssignment_2_0 )
+                    // InternalSephirah.g:700:4: rule__FormulaModel__MethodDefsAssignment_2_0
                     {
                     pushFollow(FOLLOW_2);
                     rule__FormulaModel__MethodDefsAssignment_2_0();
@@ -2052,14 +2131,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:679:2: ( ( rule__FormulaModel__VariablesAssignment_2_1 ) )
+                    // InternalSephirah.g:704:2: ( ( rule__FormulaModel__VariablesAssignment_2_1 ) )
                     {
-                    // InternalSephirah.g:679:2: ( ( rule__FormulaModel__VariablesAssignment_2_1 ) )
-                    // InternalSephirah.g:680:3: ( rule__FormulaModel__VariablesAssignment_2_1 )
+                    // InternalSephirah.g:704:2: ( ( rule__FormulaModel__VariablesAssignment_2_1 ) )
+                    // InternalSephirah.g:705:3: ( rule__FormulaModel__VariablesAssignment_2_1 )
                     {
                      before(grammarAccess.getFormulaModelAccess().getVariablesAssignment_2_1()); 
-                    // InternalSephirah.g:681:3: ( rule__FormulaModel__VariablesAssignment_2_1 )
-                    // InternalSephirah.g:681:4: rule__FormulaModel__VariablesAssignment_2_1
+                    // InternalSephirah.g:706:3: ( rule__FormulaModel__VariablesAssignment_2_1 )
+                    // InternalSephirah.g:706:4: rule__FormulaModel__VariablesAssignment_2_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__FormulaModel__VariablesAssignment_2_1();
@@ -2077,14 +2156,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 3 :
-                    // InternalSephirah.g:685:2: ( ( rule__FormulaModel__ValuesAssignment_2_2 ) )
+                    // InternalSephirah.g:710:2: ( ( rule__FormulaModel__ValuesAssignment_2_2 ) )
                     {
-                    // InternalSephirah.g:685:2: ( ( rule__FormulaModel__ValuesAssignment_2_2 ) )
-                    // InternalSephirah.g:686:3: ( rule__FormulaModel__ValuesAssignment_2_2 )
+                    // InternalSephirah.g:710:2: ( ( rule__FormulaModel__ValuesAssignment_2_2 ) )
+                    // InternalSephirah.g:711:3: ( rule__FormulaModel__ValuesAssignment_2_2 )
                     {
                      before(grammarAccess.getFormulaModelAccess().getValuesAssignment_2_2()); 
-                    // InternalSephirah.g:687:3: ( rule__FormulaModel__ValuesAssignment_2_2 )
-                    // InternalSephirah.g:687:4: rule__FormulaModel__ValuesAssignment_2_2
+                    // InternalSephirah.g:712:3: ( rule__FormulaModel__ValuesAssignment_2_2 )
+                    // InternalSephirah.g:712:4: rule__FormulaModel__ValuesAssignment_2_2
                     {
                     pushFollow(FOLLOW_2);
                     rule__FormulaModel__ValuesAssignment_2_2();
@@ -2119,13 +2198,13 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Alternatives"
-    // InternalSephirah.g:695:1: rule__Conditional__Alternatives : ( ( ( rule__Conditional__Group_0__0 ) ) | ( ruleAddition ) );
+    // InternalSephirah.g:720:1: rule__Conditional__Alternatives : ( ( ( rule__Conditional__Group_0__0 ) ) | ( ruleAddition ) );
     public final void rule__Conditional__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:699:1: ( ( ( rule__Conditional__Group_0__0 ) ) | ( ruleAddition ) )
+            // InternalSephirah.g:724:1: ( ( ( rule__Conditional__Group_0__0 ) ) | ( ruleAddition ) )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -2143,14 +2222,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             }
             switch (alt2) {
                 case 1 :
-                    // InternalSephirah.g:700:2: ( ( rule__Conditional__Group_0__0 ) )
+                    // InternalSephirah.g:725:2: ( ( rule__Conditional__Group_0__0 ) )
                     {
-                    // InternalSephirah.g:700:2: ( ( rule__Conditional__Group_0__0 ) )
-                    // InternalSephirah.g:701:3: ( rule__Conditional__Group_0__0 )
+                    // InternalSephirah.g:725:2: ( ( rule__Conditional__Group_0__0 ) )
+                    // InternalSephirah.g:726:3: ( rule__Conditional__Group_0__0 )
                     {
                      before(grammarAccess.getConditionalAccess().getGroup_0()); 
-                    // InternalSephirah.g:702:3: ( rule__Conditional__Group_0__0 )
-                    // InternalSephirah.g:702:4: rule__Conditional__Group_0__0
+                    // InternalSephirah.g:727:3: ( rule__Conditional__Group_0__0 )
+                    // InternalSephirah.g:727:4: rule__Conditional__Group_0__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__Conditional__Group_0__0();
@@ -2168,10 +2247,10 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:706:2: ( ruleAddition )
+                    // InternalSephirah.g:731:2: ( ruleAddition )
                     {
-                    // InternalSephirah.g:706:2: ( ruleAddition )
-                    // InternalSephirah.g:707:3: ruleAddition
+                    // InternalSephirah.g:731:2: ( ruleAddition )
+                    // InternalSephirah.g:732:3: ruleAddition
                     {
                      before(grammarAccess.getConditionalAccess().getAdditionParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
@@ -2204,13 +2283,13 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Alternatives_1_0"
-    // InternalSephirah.g:716:1: rule__Addition__Alternatives_1_0 : ( ( ( rule__Addition__Group_1_0_0__0 ) ) | ( ( rule__Addition__Group_1_0_1__0 ) ) );
+    // InternalSephirah.g:741:1: rule__Addition__Alternatives_1_0 : ( ( ( rule__Addition__Group_1_0_0__0 ) ) | ( ( rule__Addition__Group_1_0_1__0 ) ) );
     public final void rule__Addition__Alternatives_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:720:1: ( ( ( rule__Addition__Group_1_0_0__0 ) ) | ( ( rule__Addition__Group_1_0_1__0 ) ) )
+            // InternalSephirah.g:745:1: ( ( ( rule__Addition__Group_1_0_0__0 ) ) | ( ( rule__Addition__Group_1_0_1__0 ) ) )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -2228,14 +2307,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             }
             switch (alt3) {
                 case 1 :
-                    // InternalSephirah.g:721:2: ( ( rule__Addition__Group_1_0_0__0 ) )
+                    // InternalSephirah.g:746:2: ( ( rule__Addition__Group_1_0_0__0 ) )
                     {
-                    // InternalSephirah.g:721:2: ( ( rule__Addition__Group_1_0_0__0 ) )
-                    // InternalSephirah.g:722:3: ( rule__Addition__Group_1_0_0__0 )
+                    // InternalSephirah.g:746:2: ( ( rule__Addition__Group_1_0_0__0 ) )
+                    // InternalSephirah.g:747:3: ( rule__Addition__Group_1_0_0__0 )
                     {
                      before(grammarAccess.getAdditionAccess().getGroup_1_0_0()); 
-                    // InternalSephirah.g:723:3: ( rule__Addition__Group_1_0_0__0 )
-                    // InternalSephirah.g:723:4: rule__Addition__Group_1_0_0__0
+                    // InternalSephirah.g:748:3: ( rule__Addition__Group_1_0_0__0 )
+                    // InternalSephirah.g:748:4: rule__Addition__Group_1_0_0__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__Addition__Group_1_0_0__0();
@@ -2253,14 +2332,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:727:2: ( ( rule__Addition__Group_1_0_1__0 ) )
+                    // InternalSephirah.g:752:2: ( ( rule__Addition__Group_1_0_1__0 ) )
                     {
-                    // InternalSephirah.g:727:2: ( ( rule__Addition__Group_1_0_1__0 ) )
-                    // InternalSephirah.g:728:3: ( rule__Addition__Group_1_0_1__0 )
+                    // InternalSephirah.g:752:2: ( ( rule__Addition__Group_1_0_1__0 ) )
+                    // InternalSephirah.g:753:3: ( rule__Addition__Group_1_0_1__0 )
                     {
                      before(grammarAccess.getAdditionAccess().getGroup_1_0_1()); 
-                    // InternalSephirah.g:729:3: ( rule__Addition__Group_1_0_1__0 )
-                    // InternalSephirah.g:729:4: rule__Addition__Group_1_0_1__0
+                    // InternalSephirah.g:754:3: ( rule__Addition__Group_1_0_1__0 )
+                    // InternalSephirah.g:754:4: rule__Addition__Group_1_0_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__Addition__Group_1_0_1__0();
@@ -2295,13 +2374,13 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Alternatives_1_0"
-    // InternalSephirah.g:737:1: rule__Multiplication__Alternatives_1_0 : ( ( ( rule__Multiplication__Group_1_0_0__0 ) ) | ( ( rule__Multiplication__Group_1_0_1__0 ) ) );
+    // InternalSephirah.g:762:1: rule__Multiplication__Alternatives_1_0 : ( ( ( rule__Multiplication__Group_1_0_0__0 ) ) | ( ( rule__Multiplication__Group_1_0_1__0 ) ) );
     public final void rule__Multiplication__Alternatives_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:741:1: ( ( ( rule__Multiplication__Group_1_0_0__0 ) ) | ( ( rule__Multiplication__Group_1_0_1__0 ) ) )
+            // InternalSephirah.g:766:1: ( ( ( rule__Multiplication__Group_1_0_0__0 ) ) | ( ( rule__Multiplication__Group_1_0_1__0 ) ) )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -2319,14 +2398,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             }
             switch (alt4) {
                 case 1 :
-                    // InternalSephirah.g:742:2: ( ( rule__Multiplication__Group_1_0_0__0 ) )
+                    // InternalSephirah.g:767:2: ( ( rule__Multiplication__Group_1_0_0__0 ) )
                     {
-                    // InternalSephirah.g:742:2: ( ( rule__Multiplication__Group_1_0_0__0 ) )
-                    // InternalSephirah.g:743:3: ( rule__Multiplication__Group_1_0_0__0 )
+                    // InternalSephirah.g:767:2: ( ( rule__Multiplication__Group_1_0_0__0 ) )
+                    // InternalSephirah.g:768:3: ( rule__Multiplication__Group_1_0_0__0 )
                     {
                      before(grammarAccess.getMultiplicationAccess().getGroup_1_0_0()); 
-                    // InternalSephirah.g:744:3: ( rule__Multiplication__Group_1_0_0__0 )
-                    // InternalSephirah.g:744:4: rule__Multiplication__Group_1_0_0__0
+                    // InternalSephirah.g:769:3: ( rule__Multiplication__Group_1_0_0__0 )
+                    // InternalSephirah.g:769:4: rule__Multiplication__Group_1_0_0__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__Multiplication__Group_1_0_0__0();
@@ -2344,14 +2423,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:748:2: ( ( rule__Multiplication__Group_1_0_1__0 ) )
+                    // InternalSephirah.g:773:2: ( ( rule__Multiplication__Group_1_0_1__0 ) )
                     {
-                    // InternalSephirah.g:748:2: ( ( rule__Multiplication__Group_1_0_1__0 ) )
-                    // InternalSephirah.g:749:3: ( rule__Multiplication__Group_1_0_1__0 )
+                    // InternalSephirah.g:773:2: ( ( rule__Multiplication__Group_1_0_1__0 ) )
+                    // InternalSephirah.g:774:3: ( rule__Multiplication__Group_1_0_1__0 )
                     {
                      before(grammarAccess.getMultiplicationAccess().getGroup_1_0_1()); 
-                    // InternalSephirah.g:750:3: ( rule__Multiplication__Group_1_0_1__0 )
-                    // InternalSephirah.g:750:4: rule__Multiplication__Group_1_0_1__0
+                    // InternalSephirah.g:775:3: ( rule__Multiplication__Group_1_0_1__0 )
+                    // InternalSephirah.g:775:4: rule__Multiplication__Group_1_0_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__Multiplication__Group_1_0_1__0();
@@ -2386,25 +2465,25 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__PrimaryExpression__Alternatives"
-    // InternalSephirah.g:758:1: rule__PrimaryExpression__Alternatives : ( ( ( rule__PrimaryExpression__Group_0__0 ) ) | ( ( rule__PrimaryExpression__Group_1__0 ) ) | ( ruleMethodCall ) | ( ruleConstant ) | ( ruleVariable ) );
+    // InternalSephirah.g:783:1: rule__PrimaryExpression__Alternatives : ( ( ( rule__PrimaryExpression__Group_0__0 ) ) | ( ( rule__PrimaryExpression__Group_1__0 ) ) | ( ruleMethodCall ) | ( ruleConstant ) | ( ruleVariable ) );
     public final void rule__PrimaryExpression__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:762:1: ( ( ( rule__PrimaryExpression__Group_0__0 ) ) | ( ( rule__PrimaryExpression__Group_1__0 ) ) | ( ruleMethodCall ) | ( ruleConstant ) | ( ruleVariable ) )
+            // InternalSephirah.g:787:1: ( ( ( rule__PrimaryExpression__Group_0__0 ) ) | ( ( rule__PrimaryExpression__Group_1__0 ) ) | ( ruleMethodCall ) | ( ruleConstant ) | ( ruleVariable ) )
             int alt5=5;
             alt5 = dfa5.predict(input);
             switch (alt5) {
                 case 1 :
-                    // InternalSephirah.g:763:2: ( ( rule__PrimaryExpression__Group_0__0 ) )
+                    // InternalSephirah.g:788:2: ( ( rule__PrimaryExpression__Group_0__0 ) )
                     {
-                    // InternalSephirah.g:763:2: ( ( rule__PrimaryExpression__Group_0__0 ) )
-                    // InternalSephirah.g:764:3: ( rule__PrimaryExpression__Group_0__0 )
+                    // InternalSephirah.g:788:2: ( ( rule__PrimaryExpression__Group_0__0 ) )
+                    // InternalSephirah.g:789:3: ( rule__PrimaryExpression__Group_0__0 )
                     {
                      before(grammarAccess.getPrimaryExpressionAccess().getGroup_0()); 
-                    // InternalSephirah.g:765:3: ( rule__PrimaryExpression__Group_0__0 )
-                    // InternalSephirah.g:765:4: rule__PrimaryExpression__Group_0__0
+                    // InternalSephirah.g:790:3: ( rule__PrimaryExpression__Group_0__0 )
+                    // InternalSephirah.g:790:4: rule__PrimaryExpression__Group_0__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__PrimaryExpression__Group_0__0();
@@ -2422,14 +2501,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:769:2: ( ( rule__PrimaryExpression__Group_1__0 ) )
+                    // InternalSephirah.g:794:2: ( ( rule__PrimaryExpression__Group_1__0 ) )
                     {
-                    // InternalSephirah.g:769:2: ( ( rule__PrimaryExpression__Group_1__0 ) )
-                    // InternalSephirah.g:770:3: ( rule__PrimaryExpression__Group_1__0 )
+                    // InternalSephirah.g:794:2: ( ( rule__PrimaryExpression__Group_1__0 ) )
+                    // InternalSephirah.g:795:3: ( rule__PrimaryExpression__Group_1__0 )
                     {
                      before(grammarAccess.getPrimaryExpressionAccess().getGroup_1()); 
-                    // InternalSephirah.g:771:3: ( rule__PrimaryExpression__Group_1__0 )
-                    // InternalSephirah.g:771:4: rule__PrimaryExpression__Group_1__0
+                    // InternalSephirah.g:796:3: ( rule__PrimaryExpression__Group_1__0 )
+                    // InternalSephirah.g:796:4: rule__PrimaryExpression__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__PrimaryExpression__Group_1__0();
@@ -2447,10 +2526,10 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 3 :
-                    // InternalSephirah.g:775:2: ( ruleMethodCall )
+                    // InternalSephirah.g:800:2: ( ruleMethodCall )
                     {
-                    // InternalSephirah.g:775:2: ( ruleMethodCall )
-                    // InternalSephirah.g:776:3: ruleMethodCall
+                    // InternalSephirah.g:800:2: ( ruleMethodCall )
+                    // InternalSephirah.g:801:3: ruleMethodCall
                     {
                      before(grammarAccess.getPrimaryExpressionAccess().getMethodCallParserRuleCall_2()); 
                     pushFollow(FOLLOW_2);
@@ -2466,10 +2545,10 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 4 :
-                    // InternalSephirah.g:781:2: ( ruleConstant )
+                    // InternalSephirah.g:806:2: ( ruleConstant )
                     {
-                    // InternalSephirah.g:781:2: ( ruleConstant )
-                    // InternalSephirah.g:782:3: ruleConstant
+                    // InternalSephirah.g:806:2: ( ruleConstant )
+                    // InternalSephirah.g:807:3: ruleConstant
                     {
                      before(grammarAccess.getPrimaryExpressionAccess().getConstantParserRuleCall_3()); 
                     pushFollow(FOLLOW_2);
@@ -2485,10 +2564,10 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 5 :
-                    // InternalSephirah.g:787:2: ( ruleVariable )
+                    // InternalSephirah.g:812:2: ( ruleVariable )
                     {
-                    // InternalSephirah.g:787:2: ( ruleVariable )
-                    // InternalSephirah.g:788:3: ruleVariable
+                    // InternalSephirah.g:812:2: ( ruleVariable )
+                    // InternalSephirah.g:813:3: ruleVariable
                     {
                      before(grammarAccess.getPrimaryExpressionAccess().getVariableParserRuleCall_4()); 
                     pushFollow(FOLLOW_2);
@@ -2521,20 +2600,20 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__NotCondition__Alternatives"
-    // InternalSephirah.g:797:1: rule__NotCondition__Alternatives : ( ( ( rule__NotCondition__Group_0__0 ) ) | ( ruleComparisonCondition ) );
+    // InternalSephirah.g:822:1: rule__NotCondition__Alternatives : ( ( ( rule__NotCondition__Group_0__0 ) ) | ( rulePrimaryCondition ) );
     public final void rule__NotCondition__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:801:1: ( ( ( rule__NotCondition__Group_0__0 ) ) | ( ruleComparisonCondition ) )
+            // InternalSephirah.g:826:1: ( ( ( rule__NotCondition__Group_0__0 ) ) | ( rulePrimaryCondition ) )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
             if ( (LA6_0==42) ) {
                 alt6=1;
             }
-            else if ( ((LA6_0>=RULE_ID && LA6_0<=RULE_INT)||(LA6_0>=12 && LA6_0<=16)||LA6_0==27) ) {
+            else if ( ((LA6_0>=RULE_ID && LA6_0<=RULE_INT)||(LA6_0>=12 && LA6_0<=16)||LA6_0==27||LA6_0==43) ) {
                 alt6=2;
             }
             else {
@@ -2545,14 +2624,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             }
             switch (alt6) {
                 case 1 :
-                    // InternalSephirah.g:802:2: ( ( rule__NotCondition__Group_0__0 ) )
+                    // InternalSephirah.g:827:2: ( ( rule__NotCondition__Group_0__0 ) )
                     {
-                    // InternalSephirah.g:802:2: ( ( rule__NotCondition__Group_0__0 ) )
-                    // InternalSephirah.g:803:3: ( rule__NotCondition__Group_0__0 )
+                    // InternalSephirah.g:827:2: ( ( rule__NotCondition__Group_0__0 ) )
+                    // InternalSephirah.g:828:3: ( rule__NotCondition__Group_0__0 )
                     {
                      before(grammarAccess.getNotConditionAccess().getGroup_0()); 
-                    // InternalSephirah.g:804:3: ( rule__NotCondition__Group_0__0 )
-                    // InternalSephirah.g:804:4: rule__NotCondition__Group_0__0
+                    // InternalSephirah.g:829:3: ( rule__NotCondition__Group_0__0 )
+                    // InternalSephirah.g:829:4: rule__NotCondition__Group_0__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__NotCondition__Group_0__0();
@@ -2570,18 +2649,18 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:808:2: ( ruleComparisonCondition )
+                    // InternalSephirah.g:833:2: ( rulePrimaryCondition )
                     {
-                    // InternalSephirah.g:808:2: ( ruleComparisonCondition )
-                    // InternalSephirah.g:809:3: ruleComparisonCondition
+                    // InternalSephirah.g:833:2: ( rulePrimaryCondition )
+                    // InternalSephirah.g:834:3: rulePrimaryCondition
                     {
-                     before(grammarAccess.getNotConditionAccess().getComparisonConditionParserRuleCall_1()); 
+                     before(grammarAccess.getNotConditionAccess().getPrimaryConditionParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
-                    ruleComparisonCondition();
+                    rulePrimaryCondition();
 
                     state._fsp--;
 
-                     after(grammarAccess.getNotConditionAccess().getComparisonConditionParserRuleCall_1()); 
+                     after(grammarAccess.getNotConditionAccess().getPrimaryConditionParserRuleCall_1()); 
 
                     }
 
@@ -2605,54 +2684,139 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
     // $ANTLR end "rule__NotCondition__Alternatives"
 
 
-    // $ANTLR start "rule__Constant__ValueAlternatives_1_0"
-    // InternalSephirah.g:818:1: rule__Constant__ValueAlternatives_1_0 : ( ( 'pi' ) | ( 'G' ) | ( 'phi' ) | ( 'gamma' ) | ( 'e' ) );
-    public final void rule__Constant__ValueAlternatives_1_0() throws RecognitionException {
+    // $ANTLR start "rule__PrimaryCondition__Alternatives"
+    // InternalSephirah.g:843:1: rule__PrimaryCondition__Alternatives : ( ( ruleComparisonCondition ) | ( ( rule__PrimaryCondition__Group_1__0 ) ) );
+    public final void rule__PrimaryCondition__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:822:1: ( ( 'pi' ) | ( 'G' ) | ( 'phi' ) | ( 'gamma' ) | ( 'e' ) )
-            int alt7=5;
-            switch ( input.LA(1) ) {
-            case 12:
-                {
+            // InternalSephirah.g:847:1: ( ( ruleComparisonCondition ) | ( ( rule__PrimaryCondition__Group_1__0 ) ) )
+            int alt7=2;
+            int LA7_0 = input.LA(1);
+
+            if ( ((LA7_0>=RULE_ID && LA7_0<=RULE_INT)||(LA7_0>=12 && LA7_0<=16)||LA7_0==27) ) {
                 alt7=1;
-                }
-                break;
-            case 13:
-                {
+            }
+            else if ( (LA7_0==43) ) {
                 alt7=2;
-                }
-                break;
-            case 14:
-                {
-                alt7=3;
-                }
-                break;
-            case 15:
-                {
-                alt7=4;
-                }
-                break;
-            case 16:
-                {
-                alt7=5;
-                }
-                break;
-            default:
+            }
+            else {
                 NoViableAltException nvae =
                     new NoViableAltException("", 7, 0, input);
 
                 throw nvae;
             }
-
             switch (alt7) {
                 case 1 :
-                    // InternalSephirah.g:823:2: ( 'pi' )
+                    // InternalSephirah.g:848:2: ( ruleComparisonCondition )
                     {
-                    // InternalSephirah.g:823:2: ( 'pi' )
-                    // InternalSephirah.g:824:3: 'pi'
+                    // InternalSephirah.g:848:2: ( ruleComparisonCondition )
+                    // InternalSephirah.g:849:3: ruleComparisonCondition
+                    {
+                     before(grammarAccess.getPrimaryConditionAccess().getComparisonConditionParserRuleCall_0()); 
+                    pushFollow(FOLLOW_2);
+                    ruleComparisonCondition();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getPrimaryConditionAccess().getComparisonConditionParserRuleCall_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalSephirah.g:854:2: ( ( rule__PrimaryCondition__Group_1__0 ) )
+                    {
+                    // InternalSephirah.g:854:2: ( ( rule__PrimaryCondition__Group_1__0 ) )
+                    // InternalSephirah.g:855:3: ( rule__PrimaryCondition__Group_1__0 )
+                    {
+                     before(grammarAccess.getPrimaryConditionAccess().getGroup_1()); 
+                    // InternalSephirah.g:856:3: ( rule__PrimaryCondition__Group_1__0 )
+                    // InternalSephirah.g:856:4: rule__PrimaryCondition__Group_1__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__PrimaryCondition__Group_1__0();
+
+                    state._fsp--;
+
+
+                    }
+
+                     after(grammarAccess.getPrimaryConditionAccess().getGroup_1()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__PrimaryCondition__Alternatives"
+
+
+    // $ANTLR start "rule__Constant__ValueAlternatives_1_0"
+    // InternalSephirah.g:864:1: rule__Constant__ValueAlternatives_1_0 : ( ( 'pi' ) | ( 'G' ) | ( 'phi' ) | ( 'gamma' ) | ( 'e' ) );
+    public final void rule__Constant__ValueAlternatives_1_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalSephirah.g:868:1: ( ( 'pi' ) | ( 'G' ) | ( 'phi' ) | ( 'gamma' ) | ( 'e' ) )
+            int alt8=5;
+            switch ( input.LA(1) ) {
+            case 12:
+                {
+                alt8=1;
+                }
+                break;
+            case 13:
+                {
+                alt8=2;
+                }
+                break;
+            case 14:
+                {
+                alt8=3;
+                }
+                break;
+            case 15:
+                {
+                alt8=4;
+                }
+                break;
+            case 16:
+                {
+                alt8=5;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 8, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt8) {
+                case 1 :
+                    // InternalSephirah.g:869:2: ( 'pi' )
+                    {
+                    // InternalSephirah.g:869:2: ( 'pi' )
+                    // InternalSephirah.g:870:3: 'pi'
                     {
                      before(grammarAccess.getConstantAccess().getValuePiKeyword_1_0_0()); 
                     match(input,12,FOLLOW_2); 
@@ -2664,10 +2828,10 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:829:2: ( 'G' )
+                    // InternalSephirah.g:875:2: ( 'G' )
                     {
-                    // InternalSephirah.g:829:2: ( 'G' )
-                    // InternalSephirah.g:830:3: 'G'
+                    // InternalSephirah.g:875:2: ( 'G' )
+                    // InternalSephirah.g:876:3: 'G'
                     {
                      before(grammarAccess.getConstantAccess().getValueGKeyword_1_0_1()); 
                     match(input,13,FOLLOW_2); 
@@ -2679,10 +2843,10 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 3 :
-                    // InternalSephirah.g:835:2: ( 'phi' )
+                    // InternalSephirah.g:881:2: ( 'phi' )
                     {
-                    // InternalSephirah.g:835:2: ( 'phi' )
-                    // InternalSephirah.g:836:3: 'phi'
+                    // InternalSephirah.g:881:2: ( 'phi' )
+                    // InternalSephirah.g:882:3: 'phi'
                     {
                      before(grammarAccess.getConstantAccess().getValuePhiKeyword_1_0_2()); 
                     match(input,14,FOLLOW_2); 
@@ -2694,10 +2858,10 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 4 :
-                    // InternalSephirah.g:841:2: ( 'gamma' )
+                    // InternalSephirah.g:887:2: ( 'gamma' )
                     {
-                    // InternalSephirah.g:841:2: ( 'gamma' )
-                    // InternalSephirah.g:842:3: 'gamma'
+                    // InternalSephirah.g:887:2: ( 'gamma' )
+                    // InternalSephirah.g:888:3: 'gamma'
                     {
                      before(grammarAccess.getConstantAccess().getValueGammaKeyword_1_0_3()); 
                     match(input,15,FOLLOW_2); 
@@ -2709,10 +2873,10 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 5 :
-                    // InternalSephirah.g:847:2: ( 'e' )
+                    // InternalSephirah.g:893:2: ( 'e' )
                     {
-                    // InternalSephirah.g:847:2: ( 'e' )
-                    // InternalSephirah.g:848:3: 'e'
+                    // InternalSephirah.g:893:2: ( 'e' )
+                    // InternalSephirah.g:894:3: 'e'
                     {
                      before(grammarAccess.getConstantAccess().getValueEKeyword_1_0_4()); 
                     match(input,16,FOLLOW_2); 
@@ -2741,34 +2905,34 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ValidID__Alternatives"
-    // InternalSephirah.g:857:1: rule__ValidID__Alternatives : ( ( RULE_ID ) | ( RULE_ESCAPED_ID ) );
+    // InternalSephirah.g:903:1: rule__ValidID__Alternatives : ( ( RULE_ID ) | ( RULE_ESCAPED_ID ) );
     public final void rule__ValidID__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:861:1: ( ( RULE_ID ) | ( RULE_ESCAPED_ID ) )
-            int alt8=2;
-            int LA8_0 = input.LA(1);
+            // InternalSephirah.g:907:1: ( ( RULE_ID ) | ( RULE_ESCAPED_ID ) )
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( (LA8_0==RULE_ID) ) {
-                alt8=1;
+            if ( (LA9_0==RULE_ID) ) {
+                alt9=1;
             }
-            else if ( (LA8_0==RULE_ESCAPED_ID) ) {
-                alt8=2;
+            else if ( (LA9_0==RULE_ESCAPED_ID) ) {
+                alt9=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 8, 0, input);
+                    new NoViableAltException("", 9, 0, input);
 
                 throw nvae;
             }
-            switch (alt8) {
+            switch (alt9) {
                 case 1 :
-                    // InternalSephirah.g:862:2: ( RULE_ID )
+                    // InternalSephirah.g:908:2: ( RULE_ID )
                     {
-                    // InternalSephirah.g:862:2: ( RULE_ID )
-                    // InternalSephirah.g:863:3: RULE_ID
+                    // InternalSephirah.g:908:2: ( RULE_ID )
+                    // InternalSephirah.g:909:3: RULE_ID
                     {
                      before(grammarAccess.getValidIDAccess().getIDTerminalRuleCall_0()); 
                     match(input,RULE_ID,FOLLOW_2); 
@@ -2780,10 +2944,10 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:868:2: ( RULE_ESCAPED_ID )
+                    // InternalSephirah.g:914:2: ( RULE_ESCAPED_ID )
                     {
-                    // InternalSephirah.g:868:2: ( RULE_ESCAPED_ID )
-                    // InternalSephirah.g:869:3: RULE_ESCAPED_ID
+                    // InternalSephirah.g:914:2: ( RULE_ESCAPED_ID )
+                    // InternalSephirah.g:915:3: RULE_ESCAPED_ID
                     {
                      before(grammarAccess.getValidIDAccess().getESCAPED_IDTerminalRuleCall_1()); 
                     match(input,RULE_ESCAPED_ID,FOLLOW_2); 
@@ -2812,62 +2976,62 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ComparisonOperator__Alternatives"
-    // InternalSephirah.g:878:1: rule__ComparisonOperator__Alternatives : ( ( ( '<=' ) ) | ( ( '>=' ) ) | ( ( '==' ) ) | ( ( '!=' ) ) | ( ( '<' ) ) | ( ( '>' ) ) );
+    // InternalSephirah.g:924:1: rule__ComparisonOperator__Alternatives : ( ( ( '<=' ) ) | ( ( '>=' ) ) | ( ( '==' ) ) | ( ( '!=' ) ) | ( ( '<' ) ) | ( ( '>' ) ) );
     public final void rule__ComparisonOperator__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:882:1: ( ( ( '<=' ) ) | ( ( '>=' ) ) | ( ( '==' ) ) | ( ( '!=' ) ) | ( ( '<' ) ) | ( ( '>' ) ) )
-            int alt9=6;
+            // InternalSephirah.g:928:1: ( ( ( '<=' ) ) | ( ( '>=' ) ) | ( ( '==' ) ) | ( ( '!=' ) ) | ( ( '<' ) ) | ( ( '>' ) ) )
+            int alt10=6;
             switch ( input.LA(1) ) {
             case 17:
                 {
-                alt9=1;
+                alt10=1;
                 }
                 break;
             case 18:
                 {
-                alt9=2;
+                alt10=2;
                 }
                 break;
             case 19:
                 {
-                alt9=3;
+                alt10=3;
                 }
                 break;
             case 20:
                 {
-                alt9=4;
+                alt10=4;
                 }
                 break;
             case 21:
                 {
-                alt9=5;
+                alt10=5;
                 }
                 break;
             case 22:
                 {
-                alt9=6;
+                alt10=6;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 9, 0, input);
+                    new NoViableAltException("", 10, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt9) {
+            switch (alt10) {
                 case 1 :
-                    // InternalSephirah.g:883:2: ( ( '<=' ) )
+                    // InternalSephirah.g:929:2: ( ( '<=' ) )
                     {
-                    // InternalSephirah.g:883:2: ( ( '<=' ) )
-                    // InternalSephirah.g:884:3: ( '<=' )
+                    // InternalSephirah.g:929:2: ( ( '<=' ) )
+                    // InternalSephirah.g:930:3: ( '<=' )
                     {
                      before(grammarAccess.getComparisonOperatorAccess().getLTEEnumLiteralDeclaration_0()); 
-                    // InternalSephirah.g:885:3: ( '<=' )
-                    // InternalSephirah.g:885:4: '<='
+                    // InternalSephirah.g:931:3: ( '<=' )
+                    // InternalSephirah.g:931:4: '<='
                     {
                     match(input,17,FOLLOW_2); 
 
@@ -2881,14 +3045,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:889:2: ( ( '>=' ) )
+                    // InternalSephirah.g:935:2: ( ( '>=' ) )
                     {
-                    // InternalSephirah.g:889:2: ( ( '>=' ) )
-                    // InternalSephirah.g:890:3: ( '>=' )
+                    // InternalSephirah.g:935:2: ( ( '>=' ) )
+                    // InternalSephirah.g:936:3: ( '>=' )
                     {
                      before(grammarAccess.getComparisonOperatorAccess().getGTEEnumLiteralDeclaration_1()); 
-                    // InternalSephirah.g:891:3: ( '>=' )
-                    // InternalSephirah.g:891:4: '>='
+                    // InternalSephirah.g:937:3: ( '>=' )
+                    // InternalSephirah.g:937:4: '>='
                     {
                     match(input,18,FOLLOW_2); 
 
@@ -2902,14 +3066,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 3 :
-                    // InternalSephirah.g:895:2: ( ( '==' ) )
+                    // InternalSephirah.g:941:2: ( ( '==' ) )
                     {
-                    // InternalSephirah.g:895:2: ( ( '==' ) )
-                    // InternalSephirah.g:896:3: ( '==' )
+                    // InternalSephirah.g:941:2: ( ( '==' ) )
+                    // InternalSephirah.g:942:3: ( '==' )
                     {
                      before(grammarAccess.getComparisonOperatorAccess().getEQEnumLiteralDeclaration_2()); 
-                    // InternalSephirah.g:897:3: ( '==' )
-                    // InternalSephirah.g:897:4: '=='
+                    // InternalSephirah.g:943:3: ( '==' )
+                    // InternalSephirah.g:943:4: '=='
                     {
                     match(input,19,FOLLOW_2); 
 
@@ -2923,14 +3087,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 4 :
-                    // InternalSephirah.g:901:2: ( ( '!=' ) )
+                    // InternalSephirah.g:947:2: ( ( '!=' ) )
                     {
-                    // InternalSephirah.g:901:2: ( ( '!=' ) )
-                    // InternalSephirah.g:902:3: ( '!=' )
+                    // InternalSephirah.g:947:2: ( ( '!=' ) )
+                    // InternalSephirah.g:948:3: ( '!=' )
                     {
                      before(grammarAccess.getComparisonOperatorAccess().getNEQEnumLiteralDeclaration_3()); 
-                    // InternalSephirah.g:903:3: ( '!=' )
-                    // InternalSephirah.g:903:4: '!='
+                    // InternalSephirah.g:949:3: ( '!=' )
+                    // InternalSephirah.g:949:4: '!='
                     {
                     match(input,20,FOLLOW_2); 
 
@@ -2944,14 +3108,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 5 :
-                    // InternalSephirah.g:907:2: ( ( '<' ) )
+                    // InternalSephirah.g:953:2: ( ( '<' ) )
                     {
-                    // InternalSephirah.g:907:2: ( ( '<' ) )
-                    // InternalSephirah.g:908:3: ( '<' )
+                    // InternalSephirah.g:953:2: ( ( '<' ) )
+                    // InternalSephirah.g:954:3: ( '<' )
                     {
                      before(grammarAccess.getComparisonOperatorAccess().getLTEnumLiteralDeclaration_4()); 
-                    // InternalSephirah.g:909:3: ( '<' )
-                    // InternalSephirah.g:909:4: '<'
+                    // InternalSephirah.g:955:3: ( '<' )
+                    // InternalSephirah.g:955:4: '<'
                     {
                     match(input,21,FOLLOW_2); 
 
@@ -2965,14 +3129,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
                     }
                     break;
                 case 6 :
-                    // InternalSephirah.g:913:2: ( ( '>' ) )
+                    // InternalSephirah.g:959:2: ( ( '>' ) )
                     {
-                    // InternalSephirah.g:913:2: ( ( '>' ) )
-                    // InternalSephirah.g:914:3: ( '>' )
+                    // InternalSephirah.g:959:2: ( ( '>' ) )
+                    // InternalSephirah.g:960:3: ( '>' )
                     {
                      before(grammarAccess.getComparisonOperatorAccess().getGTEnumLiteralDeclaration_5()); 
-                    // InternalSephirah.g:915:3: ( '>' )
-                    // InternalSephirah.g:915:4: '>'
+                    // InternalSephirah.g:961:3: ( '>' )
+                    // InternalSephirah.g:961:4: '>'
                     {
                     match(input,22,FOLLOW_2); 
 
@@ -3003,14 +3167,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__FormulaModel__Group__0"
-    // InternalSephirah.g:923:1: rule__FormulaModel__Group__0 : rule__FormulaModel__Group__0__Impl rule__FormulaModel__Group__1 ;
+    // InternalSephirah.g:969:1: rule__FormulaModel__Group__0 : rule__FormulaModel__Group__0__Impl rule__FormulaModel__Group__1 ;
     public final void rule__FormulaModel__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:927:1: ( rule__FormulaModel__Group__0__Impl rule__FormulaModel__Group__1 )
-            // InternalSephirah.g:928:2: rule__FormulaModel__Group__0__Impl rule__FormulaModel__Group__1
+            // InternalSephirah.g:973:1: ( rule__FormulaModel__Group__0__Impl rule__FormulaModel__Group__1 )
+            // InternalSephirah.g:974:2: rule__FormulaModel__Group__0__Impl rule__FormulaModel__Group__1
             {
             pushFollow(FOLLOW_3);
             rule__FormulaModel__Group__0__Impl();
@@ -3041,29 +3205,29 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__FormulaModel__Group__0__Impl"
-    // InternalSephirah.g:935:1: rule__FormulaModel__Group__0__Impl : ( ( rule__FormulaModel__NameAssignment_0 )? ) ;
+    // InternalSephirah.g:981:1: rule__FormulaModel__Group__0__Impl : ( ( rule__FormulaModel__NameAssignment_0 )? ) ;
     public final void rule__FormulaModel__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:939:1: ( ( ( rule__FormulaModel__NameAssignment_0 )? ) )
-            // InternalSephirah.g:940:1: ( ( rule__FormulaModel__NameAssignment_0 )? )
+            // InternalSephirah.g:985:1: ( ( ( rule__FormulaModel__NameAssignment_0 )? ) )
+            // InternalSephirah.g:986:1: ( ( rule__FormulaModel__NameAssignment_0 )? )
             {
-            // InternalSephirah.g:940:1: ( ( rule__FormulaModel__NameAssignment_0 )? )
-            // InternalSephirah.g:941:2: ( rule__FormulaModel__NameAssignment_0 )?
+            // InternalSephirah.g:986:1: ( ( rule__FormulaModel__NameAssignment_0 )? )
+            // InternalSephirah.g:987:2: ( rule__FormulaModel__NameAssignment_0 )?
             {
              before(grammarAccess.getFormulaModelAccess().getNameAssignment_0()); 
-            // InternalSephirah.g:942:2: ( rule__FormulaModel__NameAssignment_0 )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            // InternalSephirah.g:988:2: ( rule__FormulaModel__NameAssignment_0 )?
+            int alt11=2;
+            int LA11_0 = input.LA(1);
 
-            if ( (LA10_0==23) ) {
-                alt10=1;
+            if ( (LA11_0==23) ) {
+                alt11=1;
             }
-            switch (alt10) {
+            switch (alt11) {
                 case 1 :
-                    // InternalSephirah.g:942:3: rule__FormulaModel__NameAssignment_0
+                    // InternalSephirah.g:988:3: rule__FormulaModel__NameAssignment_0
                     {
                     pushFollow(FOLLOW_2);
                     rule__FormulaModel__NameAssignment_0();
@@ -3099,14 +3263,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__FormulaModel__Group__1"
-    // InternalSephirah.g:950:1: rule__FormulaModel__Group__1 : rule__FormulaModel__Group__1__Impl rule__FormulaModel__Group__2 ;
+    // InternalSephirah.g:996:1: rule__FormulaModel__Group__1 : rule__FormulaModel__Group__1__Impl rule__FormulaModel__Group__2 ;
     public final void rule__FormulaModel__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:954:1: ( rule__FormulaModel__Group__1__Impl rule__FormulaModel__Group__2 )
-            // InternalSephirah.g:955:2: rule__FormulaModel__Group__1__Impl rule__FormulaModel__Group__2
+            // InternalSephirah.g:1000:1: ( rule__FormulaModel__Group__1__Impl rule__FormulaModel__Group__2 )
+            // InternalSephirah.g:1001:2: rule__FormulaModel__Group__1__Impl rule__FormulaModel__Group__2
             {
             pushFollow(FOLLOW_3);
             rule__FormulaModel__Group__1__Impl();
@@ -3137,33 +3301,33 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__FormulaModel__Group__1__Impl"
-    // InternalSephirah.g:962:1: rule__FormulaModel__Group__1__Impl : ( ( rule__FormulaModel__ImportsAssignment_1 )* ) ;
+    // InternalSephirah.g:1008:1: rule__FormulaModel__Group__1__Impl : ( ( rule__FormulaModel__ImportsAssignment_1 )* ) ;
     public final void rule__FormulaModel__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:966:1: ( ( ( rule__FormulaModel__ImportsAssignment_1 )* ) )
-            // InternalSephirah.g:967:1: ( ( rule__FormulaModel__ImportsAssignment_1 )* )
+            // InternalSephirah.g:1012:1: ( ( ( rule__FormulaModel__ImportsAssignment_1 )* ) )
+            // InternalSephirah.g:1013:1: ( ( rule__FormulaModel__ImportsAssignment_1 )* )
             {
-            // InternalSephirah.g:967:1: ( ( rule__FormulaModel__ImportsAssignment_1 )* )
-            // InternalSephirah.g:968:2: ( rule__FormulaModel__ImportsAssignment_1 )*
+            // InternalSephirah.g:1013:1: ( ( rule__FormulaModel__ImportsAssignment_1 )* )
+            // InternalSephirah.g:1014:2: ( rule__FormulaModel__ImportsAssignment_1 )*
             {
              before(grammarAccess.getFormulaModelAccess().getImportsAssignment_1()); 
-            // InternalSephirah.g:969:2: ( rule__FormulaModel__ImportsAssignment_1 )*
-            loop11:
+            // InternalSephirah.g:1015:2: ( rule__FormulaModel__ImportsAssignment_1 )*
+            loop12:
             do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
+                int alt12=2;
+                int LA12_0 = input.LA(1);
 
-                if ( (LA11_0==24) ) {
-                    alt11=1;
+                if ( (LA12_0==24) ) {
+                    alt12=1;
                 }
 
 
-                switch (alt11) {
+                switch (alt12) {
             	case 1 :
-            	    // InternalSephirah.g:969:3: rule__FormulaModel__ImportsAssignment_1
+            	    // InternalSephirah.g:1015:3: rule__FormulaModel__ImportsAssignment_1
             	    {
             	    pushFollow(FOLLOW_4);
             	    rule__FormulaModel__ImportsAssignment_1();
@@ -3175,7 +3339,7 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             	    break;
 
             	default :
-            	    break loop11;
+            	    break loop12;
                 }
             } while (true);
 
@@ -3202,14 +3366,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__FormulaModel__Group__2"
-    // InternalSephirah.g:977:1: rule__FormulaModel__Group__2 : rule__FormulaModel__Group__2__Impl ;
+    // InternalSephirah.g:1023:1: rule__FormulaModel__Group__2 : rule__FormulaModel__Group__2__Impl ;
     public final void rule__FormulaModel__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:981:1: ( rule__FormulaModel__Group__2__Impl )
-            // InternalSephirah.g:982:2: rule__FormulaModel__Group__2__Impl
+            // InternalSephirah.g:1027:1: ( rule__FormulaModel__Group__2__Impl )
+            // InternalSephirah.g:1028:2: rule__FormulaModel__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__FormulaModel__Group__2__Impl();
@@ -3235,33 +3399,33 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__FormulaModel__Group__2__Impl"
-    // InternalSephirah.g:988:1: rule__FormulaModel__Group__2__Impl : ( ( rule__FormulaModel__Alternatives_2 )* ) ;
+    // InternalSephirah.g:1034:1: rule__FormulaModel__Group__2__Impl : ( ( rule__FormulaModel__Alternatives_2 )* ) ;
     public final void rule__FormulaModel__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:992:1: ( ( ( rule__FormulaModel__Alternatives_2 )* ) )
-            // InternalSephirah.g:993:1: ( ( rule__FormulaModel__Alternatives_2 )* )
+            // InternalSephirah.g:1038:1: ( ( ( rule__FormulaModel__Alternatives_2 )* ) )
+            // InternalSephirah.g:1039:1: ( ( rule__FormulaModel__Alternatives_2 )* )
             {
-            // InternalSephirah.g:993:1: ( ( rule__FormulaModel__Alternatives_2 )* )
-            // InternalSephirah.g:994:2: ( rule__FormulaModel__Alternatives_2 )*
+            // InternalSephirah.g:1039:1: ( ( rule__FormulaModel__Alternatives_2 )* )
+            // InternalSephirah.g:1040:2: ( rule__FormulaModel__Alternatives_2 )*
             {
              before(grammarAccess.getFormulaModelAccess().getAlternatives_2()); 
-            // InternalSephirah.g:995:2: ( rule__FormulaModel__Alternatives_2 )*
-            loop12:
+            // InternalSephirah.g:1041:2: ( rule__FormulaModel__Alternatives_2 )*
+            loop13:
             do {
-                int alt12=2;
-                int LA12_0 = input.LA(1);
+                int alt13=2;
+                int LA13_0 = input.LA(1);
 
-                if ( ((LA12_0>=RULE_ID && LA12_0<=RULE_INT)||(LA12_0>=12 && LA12_0<=16)||(LA12_0>=26 && LA12_0<=27)||(LA12_0>=31 && LA12_0<=32)) ) {
-                    alt12=1;
+                if ( ((LA13_0>=RULE_ID && LA13_0<=RULE_INT)||(LA13_0>=12 && LA13_0<=16)||(LA13_0>=26 && LA13_0<=27)||(LA13_0>=31 && LA13_0<=32)) ) {
+                    alt13=1;
                 }
 
 
-                switch (alt12) {
+                switch (alt13) {
             	case 1 :
-            	    // InternalSephirah.g:995:3: rule__FormulaModel__Alternatives_2
+            	    // InternalSephirah.g:1041:3: rule__FormulaModel__Alternatives_2
             	    {
             	    pushFollow(FOLLOW_5);
             	    rule__FormulaModel__Alternatives_2();
@@ -3273,7 +3437,7 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             	    break;
 
             	default :
-            	    break loop12;
+            	    break loop13;
                 }
             } while (true);
 
@@ -3300,14 +3464,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__DocName__Group__0"
-    // InternalSephirah.g:1004:1: rule__DocName__Group__0 : rule__DocName__Group__0__Impl rule__DocName__Group__1 ;
+    // InternalSephirah.g:1050:1: rule__DocName__Group__0 : rule__DocName__Group__0__Impl rule__DocName__Group__1 ;
     public final void rule__DocName__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1008:1: ( rule__DocName__Group__0__Impl rule__DocName__Group__1 )
-            // InternalSephirah.g:1009:2: rule__DocName__Group__0__Impl rule__DocName__Group__1
+            // InternalSephirah.g:1054:1: ( rule__DocName__Group__0__Impl rule__DocName__Group__1 )
+            // InternalSephirah.g:1055:2: rule__DocName__Group__0__Impl rule__DocName__Group__1
             {
             pushFollow(FOLLOW_6);
             rule__DocName__Group__0__Impl();
@@ -3338,17 +3502,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__DocName__Group__0__Impl"
-    // InternalSephirah.g:1016:1: rule__DocName__Group__0__Impl : ( 'SephirahDoc' ) ;
+    // InternalSephirah.g:1062:1: rule__DocName__Group__0__Impl : ( 'SephirahDoc' ) ;
     public final void rule__DocName__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1020:1: ( ( 'SephirahDoc' ) )
-            // InternalSephirah.g:1021:1: ( 'SephirahDoc' )
+            // InternalSephirah.g:1066:1: ( ( 'SephirahDoc' ) )
+            // InternalSephirah.g:1067:1: ( 'SephirahDoc' )
             {
-            // InternalSephirah.g:1021:1: ( 'SephirahDoc' )
-            // InternalSephirah.g:1022:2: 'SephirahDoc'
+            // InternalSephirah.g:1067:1: ( 'SephirahDoc' )
+            // InternalSephirah.g:1068:2: 'SephirahDoc'
             {
              before(grammarAccess.getDocNameAccess().getSephirahDocKeyword_0()); 
             match(input,23,FOLLOW_2); 
@@ -3375,14 +3539,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__DocName__Group__1"
-    // InternalSephirah.g:1031:1: rule__DocName__Group__1 : rule__DocName__Group__1__Impl ;
+    // InternalSephirah.g:1077:1: rule__DocName__Group__1 : rule__DocName__Group__1__Impl ;
     public final void rule__DocName__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1035:1: ( rule__DocName__Group__1__Impl )
-            // InternalSephirah.g:1036:2: rule__DocName__Group__1__Impl
+            // InternalSephirah.g:1081:1: ( rule__DocName__Group__1__Impl )
+            // InternalSephirah.g:1082:2: rule__DocName__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__DocName__Group__1__Impl();
@@ -3408,21 +3572,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__DocName__Group__1__Impl"
-    // InternalSephirah.g:1042:1: rule__DocName__Group__1__Impl : ( ( rule__DocName__NameAssignment_1 ) ) ;
+    // InternalSephirah.g:1088:1: rule__DocName__Group__1__Impl : ( ( rule__DocName__NameAssignment_1 ) ) ;
     public final void rule__DocName__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1046:1: ( ( ( rule__DocName__NameAssignment_1 ) ) )
-            // InternalSephirah.g:1047:1: ( ( rule__DocName__NameAssignment_1 ) )
+            // InternalSephirah.g:1092:1: ( ( ( rule__DocName__NameAssignment_1 ) ) )
+            // InternalSephirah.g:1093:1: ( ( rule__DocName__NameAssignment_1 ) )
             {
-            // InternalSephirah.g:1047:1: ( ( rule__DocName__NameAssignment_1 ) )
-            // InternalSephirah.g:1048:2: ( rule__DocName__NameAssignment_1 )
+            // InternalSephirah.g:1093:1: ( ( rule__DocName__NameAssignment_1 ) )
+            // InternalSephirah.g:1094:2: ( rule__DocName__NameAssignment_1 )
             {
              before(grammarAccess.getDocNameAccess().getNameAssignment_1()); 
-            // InternalSephirah.g:1049:2: ( rule__DocName__NameAssignment_1 )
-            // InternalSephirah.g:1049:3: rule__DocName__NameAssignment_1
+            // InternalSephirah.g:1095:2: ( rule__DocName__NameAssignment_1 )
+            // InternalSephirah.g:1095:3: rule__DocName__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__DocName__NameAssignment_1();
@@ -3455,14 +3619,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Import__Group__0"
-    // InternalSephirah.g:1058:1: rule__Import__Group__0 : rule__Import__Group__0__Impl rule__Import__Group__1 ;
+    // InternalSephirah.g:1104:1: rule__Import__Group__0 : rule__Import__Group__0__Impl rule__Import__Group__1 ;
     public final void rule__Import__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1062:1: ( rule__Import__Group__0__Impl rule__Import__Group__1 )
-            // InternalSephirah.g:1063:2: rule__Import__Group__0__Impl rule__Import__Group__1
+            // InternalSephirah.g:1108:1: ( rule__Import__Group__0__Impl rule__Import__Group__1 )
+            // InternalSephirah.g:1109:2: rule__Import__Group__0__Impl rule__Import__Group__1
             {
             pushFollow(FOLLOW_6);
             rule__Import__Group__0__Impl();
@@ -3493,17 +3657,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Import__Group__0__Impl"
-    // InternalSephirah.g:1070:1: rule__Import__Group__0__Impl : ( 'import' ) ;
+    // InternalSephirah.g:1116:1: rule__Import__Group__0__Impl : ( 'import' ) ;
     public final void rule__Import__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1074:1: ( ( 'import' ) )
-            // InternalSephirah.g:1075:1: ( 'import' )
+            // InternalSephirah.g:1120:1: ( ( 'import' ) )
+            // InternalSephirah.g:1121:1: ( 'import' )
             {
-            // InternalSephirah.g:1075:1: ( 'import' )
-            // InternalSephirah.g:1076:2: 'import'
+            // InternalSephirah.g:1121:1: ( 'import' )
+            // InternalSephirah.g:1122:2: 'import'
             {
              before(grammarAccess.getImportAccess().getImportKeyword_0()); 
             match(input,24,FOLLOW_2); 
@@ -3530,14 +3694,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Import__Group__1"
-    // InternalSephirah.g:1085:1: rule__Import__Group__1 : rule__Import__Group__1__Impl rule__Import__Group__2 ;
+    // InternalSephirah.g:1131:1: rule__Import__Group__1 : rule__Import__Group__1__Impl rule__Import__Group__2 ;
     public final void rule__Import__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1089:1: ( rule__Import__Group__1__Impl rule__Import__Group__2 )
-            // InternalSephirah.g:1090:2: rule__Import__Group__1__Impl rule__Import__Group__2
+            // InternalSephirah.g:1135:1: ( rule__Import__Group__1__Impl rule__Import__Group__2 )
+            // InternalSephirah.g:1136:2: rule__Import__Group__1__Impl rule__Import__Group__2
             {
             pushFollow(FOLLOW_7);
             rule__Import__Group__1__Impl();
@@ -3568,21 +3732,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Import__Group__1__Impl"
-    // InternalSephirah.g:1097:1: rule__Import__Group__1__Impl : ( ( rule__Import__NameAssignment_1 ) ) ;
+    // InternalSephirah.g:1143:1: rule__Import__Group__1__Impl : ( ( rule__Import__NameAssignment_1 ) ) ;
     public final void rule__Import__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1101:1: ( ( ( rule__Import__NameAssignment_1 ) ) )
-            // InternalSephirah.g:1102:1: ( ( rule__Import__NameAssignment_1 ) )
+            // InternalSephirah.g:1147:1: ( ( ( rule__Import__NameAssignment_1 ) ) )
+            // InternalSephirah.g:1148:1: ( ( rule__Import__NameAssignment_1 ) )
             {
-            // InternalSephirah.g:1102:1: ( ( rule__Import__NameAssignment_1 ) )
-            // InternalSephirah.g:1103:2: ( rule__Import__NameAssignment_1 )
+            // InternalSephirah.g:1148:1: ( ( rule__Import__NameAssignment_1 ) )
+            // InternalSephirah.g:1149:2: ( rule__Import__NameAssignment_1 )
             {
              before(grammarAccess.getImportAccess().getNameAssignment_1()); 
-            // InternalSephirah.g:1104:2: ( rule__Import__NameAssignment_1 )
-            // InternalSephirah.g:1104:3: rule__Import__NameAssignment_1
+            // InternalSephirah.g:1150:2: ( rule__Import__NameAssignment_1 )
+            // InternalSephirah.g:1150:3: rule__Import__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Import__NameAssignment_1();
@@ -3615,14 +3779,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Import__Group__2"
-    // InternalSephirah.g:1112:1: rule__Import__Group__2 : rule__Import__Group__2__Impl ;
+    // InternalSephirah.g:1158:1: rule__Import__Group__2 : rule__Import__Group__2__Impl ;
     public final void rule__Import__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1116:1: ( rule__Import__Group__2__Impl )
-            // InternalSephirah.g:1117:2: rule__Import__Group__2__Impl
+            // InternalSephirah.g:1162:1: ( rule__Import__Group__2__Impl )
+            // InternalSephirah.g:1163:2: rule__Import__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Import__Group__2__Impl();
@@ -3648,17 +3812,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Import__Group__2__Impl"
-    // InternalSephirah.g:1123:1: rule__Import__Group__2__Impl : ( ';' ) ;
+    // InternalSephirah.g:1169:1: rule__Import__Group__2__Impl : ( ';' ) ;
     public final void rule__Import__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1127:1: ( ( ';' ) )
-            // InternalSephirah.g:1128:1: ( ';' )
+            // InternalSephirah.g:1173:1: ( ( ';' ) )
+            // InternalSephirah.g:1174:1: ( ';' )
             {
-            // InternalSephirah.g:1128:1: ( ';' )
-            // InternalSephirah.g:1129:2: ';'
+            // InternalSephirah.g:1174:1: ( ';' )
+            // InternalSephirah.g:1175:2: ';'
             {
              before(grammarAccess.getImportAccess().getSemicolonKeyword_2()); 
             match(input,25,FOLLOW_2); 
@@ -3685,14 +3849,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__0"
-    // InternalSephirah.g:1139:1: rule__Definition__Group__0 : rule__Definition__Group__0__Impl rule__Definition__Group__1 ;
+    // InternalSephirah.g:1185:1: rule__Definition__Group__0 : rule__Definition__Group__0__Impl rule__Definition__Group__1 ;
     public final void rule__Definition__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1143:1: ( rule__Definition__Group__0__Impl rule__Definition__Group__1 )
-            // InternalSephirah.g:1144:2: rule__Definition__Group__0__Impl rule__Definition__Group__1
+            // InternalSephirah.g:1189:1: ( rule__Definition__Group__0__Impl rule__Definition__Group__1 )
+            // InternalSephirah.g:1190:2: rule__Definition__Group__0__Impl rule__Definition__Group__1
             {
             pushFollow(FOLLOW_6);
             rule__Definition__Group__0__Impl();
@@ -3723,17 +3887,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__0__Impl"
-    // InternalSephirah.g:1151:1: rule__Definition__Group__0__Impl : ( 'def' ) ;
+    // InternalSephirah.g:1197:1: rule__Definition__Group__0__Impl : ( 'def' ) ;
     public final void rule__Definition__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1155:1: ( ( 'def' ) )
-            // InternalSephirah.g:1156:1: ( 'def' )
+            // InternalSephirah.g:1201:1: ( ( 'def' ) )
+            // InternalSephirah.g:1202:1: ( 'def' )
             {
-            // InternalSephirah.g:1156:1: ( 'def' )
-            // InternalSephirah.g:1157:2: 'def'
+            // InternalSephirah.g:1202:1: ( 'def' )
+            // InternalSephirah.g:1203:2: 'def'
             {
              before(grammarAccess.getDefinitionAccess().getDefKeyword_0()); 
             match(input,26,FOLLOW_2); 
@@ -3760,14 +3924,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__1"
-    // InternalSephirah.g:1166:1: rule__Definition__Group__1 : rule__Definition__Group__1__Impl rule__Definition__Group__2 ;
+    // InternalSephirah.g:1212:1: rule__Definition__Group__1 : rule__Definition__Group__1__Impl rule__Definition__Group__2 ;
     public final void rule__Definition__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1170:1: ( rule__Definition__Group__1__Impl rule__Definition__Group__2 )
-            // InternalSephirah.g:1171:2: rule__Definition__Group__1__Impl rule__Definition__Group__2
+            // InternalSephirah.g:1216:1: ( rule__Definition__Group__1__Impl rule__Definition__Group__2 )
+            // InternalSephirah.g:1217:2: rule__Definition__Group__1__Impl rule__Definition__Group__2
             {
             pushFollow(FOLLOW_8);
             rule__Definition__Group__1__Impl();
@@ -3798,21 +3962,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__1__Impl"
-    // InternalSephirah.g:1178:1: rule__Definition__Group__1__Impl : ( ( rule__Definition__NameAssignment_1 ) ) ;
+    // InternalSephirah.g:1224:1: rule__Definition__Group__1__Impl : ( ( rule__Definition__NameAssignment_1 ) ) ;
     public final void rule__Definition__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1182:1: ( ( ( rule__Definition__NameAssignment_1 ) ) )
-            // InternalSephirah.g:1183:1: ( ( rule__Definition__NameAssignment_1 ) )
+            // InternalSephirah.g:1228:1: ( ( ( rule__Definition__NameAssignment_1 ) ) )
+            // InternalSephirah.g:1229:1: ( ( rule__Definition__NameAssignment_1 ) )
             {
-            // InternalSephirah.g:1183:1: ( ( rule__Definition__NameAssignment_1 ) )
-            // InternalSephirah.g:1184:2: ( rule__Definition__NameAssignment_1 )
+            // InternalSephirah.g:1229:1: ( ( rule__Definition__NameAssignment_1 ) )
+            // InternalSephirah.g:1230:2: ( rule__Definition__NameAssignment_1 )
             {
              before(grammarAccess.getDefinitionAccess().getNameAssignment_1()); 
-            // InternalSephirah.g:1185:2: ( rule__Definition__NameAssignment_1 )
-            // InternalSephirah.g:1185:3: rule__Definition__NameAssignment_1
+            // InternalSephirah.g:1231:2: ( rule__Definition__NameAssignment_1 )
+            // InternalSephirah.g:1231:3: rule__Definition__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Definition__NameAssignment_1();
@@ -3845,14 +4009,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__2"
-    // InternalSephirah.g:1193:1: rule__Definition__Group__2 : rule__Definition__Group__2__Impl rule__Definition__Group__3 ;
+    // InternalSephirah.g:1239:1: rule__Definition__Group__2 : rule__Definition__Group__2__Impl rule__Definition__Group__3 ;
     public final void rule__Definition__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1197:1: ( rule__Definition__Group__2__Impl rule__Definition__Group__3 )
-            // InternalSephirah.g:1198:2: rule__Definition__Group__2__Impl rule__Definition__Group__3
+            // InternalSephirah.g:1243:1: ( rule__Definition__Group__2__Impl rule__Definition__Group__3 )
+            // InternalSephirah.g:1244:2: rule__Definition__Group__2__Impl rule__Definition__Group__3
             {
             pushFollow(FOLLOW_9);
             rule__Definition__Group__2__Impl();
@@ -3883,17 +4047,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__2__Impl"
-    // InternalSephirah.g:1205:1: rule__Definition__Group__2__Impl : ( '(' ) ;
+    // InternalSephirah.g:1251:1: rule__Definition__Group__2__Impl : ( '(' ) ;
     public final void rule__Definition__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1209:1: ( ( '(' ) )
-            // InternalSephirah.g:1210:1: ( '(' )
+            // InternalSephirah.g:1255:1: ( ( '(' ) )
+            // InternalSephirah.g:1256:1: ( '(' )
             {
-            // InternalSephirah.g:1210:1: ( '(' )
-            // InternalSephirah.g:1211:2: '('
+            // InternalSephirah.g:1256:1: ( '(' )
+            // InternalSephirah.g:1257:2: '('
             {
              before(grammarAccess.getDefinitionAccess().getLeftParenthesisKeyword_2()); 
             match(input,27,FOLLOW_2); 
@@ -3920,14 +4084,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__3"
-    // InternalSephirah.g:1220:1: rule__Definition__Group__3 : rule__Definition__Group__3__Impl rule__Definition__Group__4 ;
+    // InternalSephirah.g:1266:1: rule__Definition__Group__3 : rule__Definition__Group__3__Impl rule__Definition__Group__4 ;
     public final void rule__Definition__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1224:1: ( rule__Definition__Group__3__Impl rule__Definition__Group__4 )
-            // InternalSephirah.g:1225:2: rule__Definition__Group__3__Impl rule__Definition__Group__4
+            // InternalSephirah.g:1270:1: ( rule__Definition__Group__3__Impl rule__Definition__Group__4 )
+            // InternalSephirah.g:1271:2: rule__Definition__Group__3__Impl rule__Definition__Group__4
             {
             pushFollow(FOLLOW_9);
             rule__Definition__Group__3__Impl();
@@ -3958,29 +4122,29 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__3__Impl"
-    // InternalSephirah.g:1232:1: rule__Definition__Group__3__Impl : ( ( rule__Definition__Group_3__0 )? ) ;
+    // InternalSephirah.g:1278:1: rule__Definition__Group__3__Impl : ( ( rule__Definition__Group_3__0 )? ) ;
     public final void rule__Definition__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1236:1: ( ( ( rule__Definition__Group_3__0 )? ) )
-            // InternalSephirah.g:1237:1: ( ( rule__Definition__Group_3__0 )? )
+            // InternalSephirah.g:1282:1: ( ( ( rule__Definition__Group_3__0 )? ) )
+            // InternalSephirah.g:1283:1: ( ( rule__Definition__Group_3__0 )? )
             {
-            // InternalSephirah.g:1237:1: ( ( rule__Definition__Group_3__0 )? )
-            // InternalSephirah.g:1238:2: ( rule__Definition__Group_3__0 )?
+            // InternalSephirah.g:1283:1: ( ( rule__Definition__Group_3__0 )? )
+            // InternalSephirah.g:1284:2: ( rule__Definition__Group_3__0 )?
             {
              before(grammarAccess.getDefinitionAccess().getGroup_3()); 
-            // InternalSephirah.g:1239:2: ( rule__Definition__Group_3__0 )?
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            // InternalSephirah.g:1285:2: ( rule__Definition__Group_3__0 )?
+            int alt14=2;
+            int LA14_0 = input.LA(1);
 
-            if ( ((LA13_0>=RULE_ID && LA13_0<=RULE_ESCAPED_ID)) ) {
-                alt13=1;
+            if ( ((LA14_0>=RULE_ID && LA14_0<=RULE_ESCAPED_ID)) ) {
+                alt14=1;
             }
-            switch (alt13) {
+            switch (alt14) {
                 case 1 :
-                    // InternalSephirah.g:1239:3: rule__Definition__Group_3__0
+                    // InternalSephirah.g:1285:3: rule__Definition__Group_3__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__Definition__Group_3__0();
@@ -4016,14 +4180,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__4"
-    // InternalSephirah.g:1247:1: rule__Definition__Group__4 : rule__Definition__Group__4__Impl rule__Definition__Group__5 ;
+    // InternalSephirah.g:1293:1: rule__Definition__Group__4 : rule__Definition__Group__4__Impl rule__Definition__Group__5 ;
     public final void rule__Definition__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1251:1: ( rule__Definition__Group__4__Impl rule__Definition__Group__5 )
-            // InternalSephirah.g:1252:2: rule__Definition__Group__4__Impl rule__Definition__Group__5
+            // InternalSephirah.g:1297:1: ( rule__Definition__Group__4__Impl rule__Definition__Group__5 )
+            // InternalSephirah.g:1298:2: rule__Definition__Group__4__Impl rule__Definition__Group__5
             {
             pushFollow(FOLLOW_10);
             rule__Definition__Group__4__Impl();
@@ -4054,17 +4218,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__4__Impl"
-    // InternalSephirah.g:1259:1: rule__Definition__Group__4__Impl : ( ')' ) ;
+    // InternalSephirah.g:1305:1: rule__Definition__Group__4__Impl : ( ')' ) ;
     public final void rule__Definition__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1263:1: ( ( ')' ) )
-            // InternalSephirah.g:1264:1: ( ')' )
+            // InternalSephirah.g:1309:1: ( ( ')' ) )
+            // InternalSephirah.g:1310:1: ( ')' )
             {
-            // InternalSephirah.g:1264:1: ( ')' )
-            // InternalSephirah.g:1265:2: ')'
+            // InternalSephirah.g:1310:1: ( ')' )
+            // InternalSephirah.g:1311:2: ')'
             {
              before(grammarAccess.getDefinitionAccess().getRightParenthesisKeyword_4()); 
             match(input,28,FOLLOW_2); 
@@ -4091,14 +4255,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__5"
-    // InternalSephirah.g:1274:1: rule__Definition__Group__5 : rule__Definition__Group__5__Impl rule__Definition__Group__6 ;
+    // InternalSephirah.g:1320:1: rule__Definition__Group__5 : rule__Definition__Group__5__Impl rule__Definition__Group__6 ;
     public final void rule__Definition__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1278:1: ( rule__Definition__Group__5__Impl rule__Definition__Group__6 )
-            // InternalSephirah.g:1279:2: rule__Definition__Group__5__Impl rule__Definition__Group__6
+            // InternalSephirah.g:1324:1: ( rule__Definition__Group__5__Impl rule__Definition__Group__6 )
+            // InternalSephirah.g:1325:2: rule__Definition__Group__5__Impl rule__Definition__Group__6
             {
             pushFollow(FOLLOW_11);
             rule__Definition__Group__5__Impl();
@@ -4129,17 +4293,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__5__Impl"
-    // InternalSephirah.g:1286:1: rule__Definition__Group__5__Impl : ( '=' ) ;
+    // InternalSephirah.g:1332:1: rule__Definition__Group__5__Impl : ( '=' ) ;
     public final void rule__Definition__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1290:1: ( ( '=' ) )
-            // InternalSephirah.g:1291:1: ( '=' )
+            // InternalSephirah.g:1336:1: ( ( '=' ) )
+            // InternalSephirah.g:1337:1: ( '=' )
             {
-            // InternalSephirah.g:1291:1: ( '=' )
-            // InternalSephirah.g:1292:2: '='
+            // InternalSephirah.g:1337:1: ( '=' )
+            // InternalSephirah.g:1338:2: '='
             {
              before(grammarAccess.getDefinitionAccess().getEqualsSignKeyword_5()); 
             match(input,29,FOLLOW_2); 
@@ -4166,14 +4330,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__6"
-    // InternalSephirah.g:1301:1: rule__Definition__Group__6 : rule__Definition__Group__6__Impl rule__Definition__Group__7 ;
+    // InternalSephirah.g:1347:1: rule__Definition__Group__6 : rule__Definition__Group__6__Impl rule__Definition__Group__7 ;
     public final void rule__Definition__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1305:1: ( rule__Definition__Group__6__Impl rule__Definition__Group__7 )
-            // InternalSephirah.g:1306:2: rule__Definition__Group__6__Impl rule__Definition__Group__7
+            // InternalSephirah.g:1351:1: ( rule__Definition__Group__6__Impl rule__Definition__Group__7 )
+            // InternalSephirah.g:1352:2: rule__Definition__Group__6__Impl rule__Definition__Group__7
             {
             pushFollow(FOLLOW_7);
             rule__Definition__Group__6__Impl();
@@ -4204,21 +4368,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__6__Impl"
-    // InternalSephirah.g:1313:1: rule__Definition__Group__6__Impl : ( ( rule__Definition__ExprAssignment_6 ) ) ;
+    // InternalSephirah.g:1359:1: rule__Definition__Group__6__Impl : ( ( rule__Definition__ExprAssignment_6 ) ) ;
     public final void rule__Definition__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1317:1: ( ( ( rule__Definition__ExprAssignment_6 ) ) )
-            // InternalSephirah.g:1318:1: ( ( rule__Definition__ExprAssignment_6 ) )
+            // InternalSephirah.g:1363:1: ( ( ( rule__Definition__ExprAssignment_6 ) ) )
+            // InternalSephirah.g:1364:1: ( ( rule__Definition__ExprAssignment_6 ) )
             {
-            // InternalSephirah.g:1318:1: ( ( rule__Definition__ExprAssignment_6 ) )
-            // InternalSephirah.g:1319:2: ( rule__Definition__ExprAssignment_6 )
+            // InternalSephirah.g:1364:1: ( ( rule__Definition__ExprAssignment_6 ) )
+            // InternalSephirah.g:1365:2: ( rule__Definition__ExprAssignment_6 )
             {
              before(grammarAccess.getDefinitionAccess().getExprAssignment_6()); 
-            // InternalSephirah.g:1320:2: ( rule__Definition__ExprAssignment_6 )
-            // InternalSephirah.g:1320:3: rule__Definition__ExprAssignment_6
+            // InternalSephirah.g:1366:2: ( rule__Definition__ExprAssignment_6 )
+            // InternalSephirah.g:1366:3: rule__Definition__ExprAssignment_6
             {
             pushFollow(FOLLOW_2);
             rule__Definition__ExprAssignment_6();
@@ -4251,14 +4415,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__7"
-    // InternalSephirah.g:1328:1: rule__Definition__Group__7 : rule__Definition__Group__7__Impl ;
+    // InternalSephirah.g:1374:1: rule__Definition__Group__7 : rule__Definition__Group__7__Impl ;
     public final void rule__Definition__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1332:1: ( rule__Definition__Group__7__Impl )
-            // InternalSephirah.g:1333:2: rule__Definition__Group__7__Impl
+            // InternalSephirah.g:1378:1: ( rule__Definition__Group__7__Impl )
+            // InternalSephirah.g:1379:2: rule__Definition__Group__7__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Definition__Group__7__Impl();
@@ -4284,17 +4448,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group__7__Impl"
-    // InternalSephirah.g:1339:1: rule__Definition__Group__7__Impl : ( ';' ) ;
+    // InternalSephirah.g:1385:1: rule__Definition__Group__7__Impl : ( ';' ) ;
     public final void rule__Definition__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1343:1: ( ( ';' ) )
-            // InternalSephirah.g:1344:1: ( ';' )
+            // InternalSephirah.g:1389:1: ( ( ';' ) )
+            // InternalSephirah.g:1390:1: ( ';' )
             {
-            // InternalSephirah.g:1344:1: ( ';' )
-            // InternalSephirah.g:1345:2: ';'
+            // InternalSephirah.g:1390:1: ( ';' )
+            // InternalSephirah.g:1391:2: ';'
             {
              before(grammarAccess.getDefinitionAccess().getSemicolonKeyword_7()); 
             match(input,25,FOLLOW_2); 
@@ -4321,14 +4485,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group_3__0"
-    // InternalSephirah.g:1355:1: rule__Definition__Group_3__0 : rule__Definition__Group_3__0__Impl rule__Definition__Group_3__1 ;
+    // InternalSephirah.g:1401:1: rule__Definition__Group_3__0 : rule__Definition__Group_3__0__Impl rule__Definition__Group_3__1 ;
     public final void rule__Definition__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1359:1: ( rule__Definition__Group_3__0__Impl rule__Definition__Group_3__1 )
-            // InternalSephirah.g:1360:2: rule__Definition__Group_3__0__Impl rule__Definition__Group_3__1
+            // InternalSephirah.g:1405:1: ( rule__Definition__Group_3__0__Impl rule__Definition__Group_3__1 )
+            // InternalSephirah.g:1406:2: rule__Definition__Group_3__0__Impl rule__Definition__Group_3__1
             {
             pushFollow(FOLLOW_12);
             rule__Definition__Group_3__0__Impl();
@@ -4359,21 +4523,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group_3__0__Impl"
-    // InternalSephirah.g:1367:1: rule__Definition__Group_3__0__Impl : ( ( rule__Definition__ArgsAssignment_3_0 ) ) ;
+    // InternalSephirah.g:1413:1: rule__Definition__Group_3__0__Impl : ( ( rule__Definition__ArgsAssignment_3_0 ) ) ;
     public final void rule__Definition__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1371:1: ( ( ( rule__Definition__ArgsAssignment_3_0 ) ) )
-            // InternalSephirah.g:1372:1: ( ( rule__Definition__ArgsAssignment_3_0 ) )
+            // InternalSephirah.g:1417:1: ( ( ( rule__Definition__ArgsAssignment_3_0 ) ) )
+            // InternalSephirah.g:1418:1: ( ( rule__Definition__ArgsAssignment_3_0 ) )
             {
-            // InternalSephirah.g:1372:1: ( ( rule__Definition__ArgsAssignment_3_0 ) )
-            // InternalSephirah.g:1373:2: ( rule__Definition__ArgsAssignment_3_0 )
+            // InternalSephirah.g:1418:1: ( ( rule__Definition__ArgsAssignment_3_0 ) )
+            // InternalSephirah.g:1419:2: ( rule__Definition__ArgsAssignment_3_0 )
             {
              before(grammarAccess.getDefinitionAccess().getArgsAssignment_3_0()); 
-            // InternalSephirah.g:1374:2: ( rule__Definition__ArgsAssignment_3_0 )
-            // InternalSephirah.g:1374:3: rule__Definition__ArgsAssignment_3_0
+            // InternalSephirah.g:1420:2: ( rule__Definition__ArgsAssignment_3_0 )
+            // InternalSephirah.g:1420:3: rule__Definition__ArgsAssignment_3_0
             {
             pushFollow(FOLLOW_2);
             rule__Definition__ArgsAssignment_3_0();
@@ -4406,14 +4570,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group_3__1"
-    // InternalSephirah.g:1382:1: rule__Definition__Group_3__1 : rule__Definition__Group_3__1__Impl ;
+    // InternalSephirah.g:1428:1: rule__Definition__Group_3__1 : rule__Definition__Group_3__1__Impl ;
     public final void rule__Definition__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1386:1: ( rule__Definition__Group_3__1__Impl )
-            // InternalSephirah.g:1387:2: rule__Definition__Group_3__1__Impl
+            // InternalSephirah.g:1432:1: ( rule__Definition__Group_3__1__Impl )
+            // InternalSephirah.g:1433:2: rule__Definition__Group_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Definition__Group_3__1__Impl();
@@ -4439,33 +4603,33 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group_3__1__Impl"
-    // InternalSephirah.g:1393:1: rule__Definition__Group_3__1__Impl : ( ( rule__Definition__Group_3_1__0 )* ) ;
+    // InternalSephirah.g:1439:1: rule__Definition__Group_3__1__Impl : ( ( rule__Definition__Group_3_1__0 )* ) ;
     public final void rule__Definition__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1397:1: ( ( ( rule__Definition__Group_3_1__0 )* ) )
-            // InternalSephirah.g:1398:1: ( ( rule__Definition__Group_3_1__0 )* )
+            // InternalSephirah.g:1443:1: ( ( ( rule__Definition__Group_3_1__0 )* ) )
+            // InternalSephirah.g:1444:1: ( ( rule__Definition__Group_3_1__0 )* )
             {
-            // InternalSephirah.g:1398:1: ( ( rule__Definition__Group_3_1__0 )* )
-            // InternalSephirah.g:1399:2: ( rule__Definition__Group_3_1__0 )*
+            // InternalSephirah.g:1444:1: ( ( rule__Definition__Group_3_1__0 )* )
+            // InternalSephirah.g:1445:2: ( rule__Definition__Group_3_1__0 )*
             {
              before(grammarAccess.getDefinitionAccess().getGroup_3_1()); 
-            // InternalSephirah.g:1400:2: ( rule__Definition__Group_3_1__0 )*
-            loop14:
+            // InternalSephirah.g:1446:2: ( rule__Definition__Group_3_1__0 )*
+            loop15:
             do {
-                int alt14=2;
-                int LA14_0 = input.LA(1);
+                int alt15=2;
+                int LA15_0 = input.LA(1);
 
-                if ( (LA14_0==30) ) {
-                    alt14=1;
+                if ( (LA15_0==30) ) {
+                    alt15=1;
                 }
 
 
-                switch (alt14) {
+                switch (alt15) {
             	case 1 :
-            	    // InternalSephirah.g:1400:3: rule__Definition__Group_3_1__0
+            	    // InternalSephirah.g:1446:3: rule__Definition__Group_3_1__0
             	    {
             	    pushFollow(FOLLOW_13);
             	    rule__Definition__Group_3_1__0();
@@ -4477,7 +4641,7 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             	    break;
 
             	default :
-            	    break loop14;
+            	    break loop15;
                 }
             } while (true);
 
@@ -4504,14 +4668,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group_3_1__0"
-    // InternalSephirah.g:1409:1: rule__Definition__Group_3_1__0 : rule__Definition__Group_3_1__0__Impl rule__Definition__Group_3_1__1 ;
+    // InternalSephirah.g:1455:1: rule__Definition__Group_3_1__0 : rule__Definition__Group_3_1__0__Impl rule__Definition__Group_3_1__1 ;
     public final void rule__Definition__Group_3_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1413:1: ( rule__Definition__Group_3_1__0__Impl rule__Definition__Group_3_1__1 )
-            // InternalSephirah.g:1414:2: rule__Definition__Group_3_1__0__Impl rule__Definition__Group_3_1__1
+            // InternalSephirah.g:1459:1: ( rule__Definition__Group_3_1__0__Impl rule__Definition__Group_3_1__1 )
+            // InternalSephirah.g:1460:2: rule__Definition__Group_3_1__0__Impl rule__Definition__Group_3_1__1
             {
             pushFollow(FOLLOW_6);
             rule__Definition__Group_3_1__0__Impl();
@@ -4542,17 +4706,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group_3_1__0__Impl"
-    // InternalSephirah.g:1421:1: rule__Definition__Group_3_1__0__Impl : ( ',' ) ;
+    // InternalSephirah.g:1467:1: rule__Definition__Group_3_1__0__Impl : ( ',' ) ;
     public final void rule__Definition__Group_3_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1425:1: ( ( ',' ) )
-            // InternalSephirah.g:1426:1: ( ',' )
+            // InternalSephirah.g:1471:1: ( ( ',' ) )
+            // InternalSephirah.g:1472:1: ( ',' )
             {
-            // InternalSephirah.g:1426:1: ( ',' )
-            // InternalSephirah.g:1427:2: ','
+            // InternalSephirah.g:1472:1: ( ',' )
+            // InternalSephirah.g:1473:2: ','
             {
              before(grammarAccess.getDefinitionAccess().getCommaKeyword_3_1_0()); 
             match(input,30,FOLLOW_2); 
@@ -4579,14 +4743,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group_3_1__1"
-    // InternalSephirah.g:1436:1: rule__Definition__Group_3_1__1 : rule__Definition__Group_3_1__1__Impl ;
+    // InternalSephirah.g:1482:1: rule__Definition__Group_3_1__1 : rule__Definition__Group_3_1__1__Impl ;
     public final void rule__Definition__Group_3_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1440:1: ( rule__Definition__Group_3_1__1__Impl )
-            // InternalSephirah.g:1441:2: rule__Definition__Group_3_1__1__Impl
+            // InternalSephirah.g:1486:1: ( rule__Definition__Group_3_1__1__Impl )
+            // InternalSephirah.g:1487:2: rule__Definition__Group_3_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Definition__Group_3_1__1__Impl();
@@ -4612,21 +4776,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__Group_3_1__1__Impl"
-    // InternalSephirah.g:1447:1: rule__Definition__Group_3_1__1__Impl : ( ( rule__Definition__ArgsAssignment_3_1_1 ) ) ;
+    // InternalSephirah.g:1493:1: rule__Definition__Group_3_1__1__Impl : ( ( rule__Definition__ArgsAssignment_3_1_1 ) ) ;
     public final void rule__Definition__Group_3_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1451:1: ( ( ( rule__Definition__ArgsAssignment_3_1_1 ) ) )
-            // InternalSephirah.g:1452:1: ( ( rule__Definition__ArgsAssignment_3_1_1 ) )
+            // InternalSephirah.g:1497:1: ( ( ( rule__Definition__ArgsAssignment_3_1_1 ) ) )
+            // InternalSephirah.g:1498:1: ( ( rule__Definition__ArgsAssignment_3_1_1 ) )
             {
-            // InternalSephirah.g:1452:1: ( ( rule__Definition__ArgsAssignment_3_1_1 ) )
-            // InternalSephirah.g:1453:2: ( rule__Definition__ArgsAssignment_3_1_1 )
+            // InternalSephirah.g:1498:1: ( ( rule__Definition__ArgsAssignment_3_1_1 ) )
+            // InternalSephirah.g:1499:2: ( rule__Definition__ArgsAssignment_3_1_1 )
             {
              before(grammarAccess.getDefinitionAccess().getArgsAssignment_3_1_1()); 
-            // InternalSephirah.g:1454:2: ( rule__Definition__ArgsAssignment_3_1_1 )
-            // InternalSephirah.g:1454:3: rule__Definition__ArgsAssignment_3_1_1
+            // InternalSephirah.g:1500:2: ( rule__Definition__ArgsAssignment_3_1_1 )
+            // InternalSephirah.g:1500:3: rule__Definition__ArgsAssignment_3_1_1
             {
             pushFollow(FOLLOW_2);
             rule__Definition__ArgsAssignment_3_1_1();
@@ -4659,14 +4823,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__Group__0"
-    // InternalSephirah.g:1463:1: rule__VariableAssignment__Group__0 : rule__VariableAssignment__Group__0__Impl rule__VariableAssignment__Group__1 ;
+    // InternalSephirah.g:1509:1: rule__VariableAssignment__Group__0 : rule__VariableAssignment__Group__0__Impl rule__VariableAssignment__Group__1 ;
     public final void rule__VariableAssignment__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1467:1: ( rule__VariableAssignment__Group__0__Impl rule__VariableAssignment__Group__1 )
-            // InternalSephirah.g:1468:2: rule__VariableAssignment__Group__0__Impl rule__VariableAssignment__Group__1
+            // InternalSephirah.g:1513:1: ( rule__VariableAssignment__Group__0__Impl rule__VariableAssignment__Group__1 )
+            // InternalSephirah.g:1514:2: rule__VariableAssignment__Group__0__Impl rule__VariableAssignment__Group__1
             {
             pushFollow(FOLLOW_14);
             rule__VariableAssignment__Group__0__Impl();
@@ -4697,21 +4861,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__Group__0__Impl"
-    // InternalSephirah.g:1475:1: rule__VariableAssignment__Group__0__Impl : ( () ) ;
+    // InternalSephirah.g:1521:1: rule__VariableAssignment__Group__0__Impl : ( () ) ;
     public final void rule__VariableAssignment__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1479:1: ( ( () ) )
-            // InternalSephirah.g:1480:1: ( () )
+            // InternalSephirah.g:1525:1: ( ( () ) )
+            // InternalSephirah.g:1526:1: ( () )
             {
-            // InternalSephirah.g:1480:1: ( () )
-            // InternalSephirah.g:1481:2: ()
+            // InternalSephirah.g:1526:1: ( () )
+            // InternalSephirah.g:1527:2: ()
             {
              before(grammarAccess.getVariableAssignmentAccess().getVariableAssignmentAction_0()); 
-            // InternalSephirah.g:1482:2: ()
-            // InternalSephirah.g:1482:3: 
+            // InternalSephirah.g:1528:2: ()
+            // InternalSephirah.g:1528:3: 
             {
             }
 
@@ -4734,14 +4898,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__Group__1"
-    // InternalSephirah.g:1490:1: rule__VariableAssignment__Group__1 : rule__VariableAssignment__Group__1__Impl rule__VariableAssignment__Group__2 ;
+    // InternalSephirah.g:1536:1: rule__VariableAssignment__Group__1 : rule__VariableAssignment__Group__1__Impl rule__VariableAssignment__Group__2 ;
     public final void rule__VariableAssignment__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1494:1: ( rule__VariableAssignment__Group__1__Impl rule__VariableAssignment__Group__2 )
-            // InternalSephirah.g:1495:2: rule__VariableAssignment__Group__1__Impl rule__VariableAssignment__Group__2
+            // InternalSephirah.g:1540:1: ( rule__VariableAssignment__Group__1__Impl rule__VariableAssignment__Group__2 )
+            // InternalSephirah.g:1541:2: rule__VariableAssignment__Group__1__Impl rule__VariableAssignment__Group__2
             {
             pushFollow(FOLLOW_6);
             rule__VariableAssignment__Group__1__Impl();
@@ -4772,17 +4936,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__Group__1__Impl"
-    // InternalSephirah.g:1502:1: rule__VariableAssignment__Group__1__Impl : ( 'var' ) ;
+    // InternalSephirah.g:1548:1: rule__VariableAssignment__Group__1__Impl : ( 'var' ) ;
     public final void rule__VariableAssignment__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1506:1: ( ( 'var' ) )
-            // InternalSephirah.g:1507:1: ( 'var' )
+            // InternalSephirah.g:1552:1: ( ( 'var' ) )
+            // InternalSephirah.g:1553:1: ( 'var' )
             {
-            // InternalSephirah.g:1507:1: ( 'var' )
-            // InternalSephirah.g:1508:2: 'var'
+            // InternalSephirah.g:1553:1: ( 'var' )
+            // InternalSephirah.g:1554:2: 'var'
             {
              before(grammarAccess.getVariableAssignmentAccess().getVarKeyword_1()); 
             match(input,31,FOLLOW_2); 
@@ -4809,14 +4973,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__Group__2"
-    // InternalSephirah.g:1517:1: rule__VariableAssignment__Group__2 : rule__VariableAssignment__Group__2__Impl rule__VariableAssignment__Group__3 ;
+    // InternalSephirah.g:1563:1: rule__VariableAssignment__Group__2 : rule__VariableAssignment__Group__2__Impl rule__VariableAssignment__Group__3 ;
     public final void rule__VariableAssignment__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1521:1: ( rule__VariableAssignment__Group__2__Impl rule__VariableAssignment__Group__3 )
-            // InternalSephirah.g:1522:2: rule__VariableAssignment__Group__2__Impl rule__VariableAssignment__Group__3
+            // InternalSephirah.g:1567:1: ( rule__VariableAssignment__Group__2__Impl rule__VariableAssignment__Group__3 )
+            // InternalSephirah.g:1568:2: rule__VariableAssignment__Group__2__Impl rule__VariableAssignment__Group__3
             {
             pushFollow(FOLLOW_10);
             rule__VariableAssignment__Group__2__Impl();
@@ -4847,21 +5011,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__Group__2__Impl"
-    // InternalSephirah.g:1529:1: rule__VariableAssignment__Group__2__Impl : ( ( rule__VariableAssignment__NameAssignment_2 ) ) ;
+    // InternalSephirah.g:1575:1: rule__VariableAssignment__Group__2__Impl : ( ( rule__VariableAssignment__NameAssignment_2 ) ) ;
     public final void rule__VariableAssignment__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1533:1: ( ( ( rule__VariableAssignment__NameAssignment_2 ) ) )
-            // InternalSephirah.g:1534:1: ( ( rule__VariableAssignment__NameAssignment_2 ) )
+            // InternalSephirah.g:1579:1: ( ( ( rule__VariableAssignment__NameAssignment_2 ) ) )
+            // InternalSephirah.g:1580:1: ( ( rule__VariableAssignment__NameAssignment_2 ) )
             {
-            // InternalSephirah.g:1534:1: ( ( rule__VariableAssignment__NameAssignment_2 ) )
-            // InternalSephirah.g:1535:2: ( rule__VariableAssignment__NameAssignment_2 )
+            // InternalSephirah.g:1580:1: ( ( rule__VariableAssignment__NameAssignment_2 ) )
+            // InternalSephirah.g:1581:2: ( rule__VariableAssignment__NameAssignment_2 )
             {
              before(grammarAccess.getVariableAssignmentAccess().getNameAssignment_2()); 
-            // InternalSephirah.g:1536:2: ( rule__VariableAssignment__NameAssignment_2 )
-            // InternalSephirah.g:1536:3: rule__VariableAssignment__NameAssignment_2
+            // InternalSephirah.g:1582:2: ( rule__VariableAssignment__NameAssignment_2 )
+            // InternalSephirah.g:1582:3: rule__VariableAssignment__NameAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__VariableAssignment__NameAssignment_2();
@@ -4894,14 +5058,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__Group__3"
-    // InternalSephirah.g:1544:1: rule__VariableAssignment__Group__3 : rule__VariableAssignment__Group__3__Impl rule__VariableAssignment__Group__4 ;
+    // InternalSephirah.g:1590:1: rule__VariableAssignment__Group__3 : rule__VariableAssignment__Group__3__Impl rule__VariableAssignment__Group__4 ;
     public final void rule__VariableAssignment__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1548:1: ( rule__VariableAssignment__Group__3__Impl rule__VariableAssignment__Group__4 )
-            // InternalSephirah.g:1549:2: rule__VariableAssignment__Group__3__Impl rule__VariableAssignment__Group__4
+            // InternalSephirah.g:1594:1: ( rule__VariableAssignment__Group__3__Impl rule__VariableAssignment__Group__4 )
+            // InternalSephirah.g:1595:2: rule__VariableAssignment__Group__3__Impl rule__VariableAssignment__Group__4
             {
             pushFollow(FOLLOW_11);
             rule__VariableAssignment__Group__3__Impl();
@@ -4932,17 +5096,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__Group__3__Impl"
-    // InternalSephirah.g:1556:1: rule__VariableAssignment__Group__3__Impl : ( '=' ) ;
+    // InternalSephirah.g:1602:1: rule__VariableAssignment__Group__3__Impl : ( '=' ) ;
     public final void rule__VariableAssignment__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1560:1: ( ( '=' ) )
-            // InternalSephirah.g:1561:1: ( '=' )
+            // InternalSephirah.g:1606:1: ( ( '=' ) )
+            // InternalSephirah.g:1607:1: ( '=' )
             {
-            // InternalSephirah.g:1561:1: ( '=' )
-            // InternalSephirah.g:1562:2: '='
+            // InternalSephirah.g:1607:1: ( '=' )
+            // InternalSephirah.g:1608:2: '='
             {
              before(grammarAccess.getVariableAssignmentAccess().getEqualsSignKeyword_3()); 
             match(input,29,FOLLOW_2); 
@@ -4969,14 +5133,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__Group__4"
-    // InternalSephirah.g:1571:1: rule__VariableAssignment__Group__4 : rule__VariableAssignment__Group__4__Impl rule__VariableAssignment__Group__5 ;
+    // InternalSephirah.g:1617:1: rule__VariableAssignment__Group__4 : rule__VariableAssignment__Group__4__Impl rule__VariableAssignment__Group__5 ;
     public final void rule__VariableAssignment__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1575:1: ( rule__VariableAssignment__Group__4__Impl rule__VariableAssignment__Group__5 )
-            // InternalSephirah.g:1576:2: rule__VariableAssignment__Group__4__Impl rule__VariableAssignment__Group__5
+            // InternalSephirah.g:1621:1: ( rule__VariableAssignment__Group__4__Impl rule__VariableAssignment__Group__5 )
+            // InternalSephirah.g:1622:2: rule__VariableAssignment__Group__4__Impl rule__VariableAssignment__Group__5
             {
             pushFollow(FOLLOW_7);
             rule__VariableAssignment__Group__4__Impl();
@@ -5007,21 +5171,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__Group__4__Impl"
-    // InternalSephirah.g:1583:1: rule__VariableAssignment__Group__4__Impl : ( ( rule__VariableAssignment__ValueAssignment_4 ) ) ;
+    // InternalSephirah.g:1629:1: rule__VariableAssignment__Group__4__Impl : ( ( rule__VariableAssignment__ValueAssignment_4 ) ) ;
     public final void rule__VariableAssignment__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1587:1: ( ( ( rule__VariableAssignment__ValueAssignment_4 ) ) )
-            // InternalSephirah.g:1588:1: ( ( rule__VariableAssignment__ValueAssignment_4 ) )
+            // InternalSephirah.g:1633:1: ( ( ( rule__VariableAssignment__ValueAssignment_4 ) ) )
+            // InternalSephirah.g:1634:1: ( ( rule__VariableAssignment__ValueAssignment_4 ) )
             {
-            // InternalSephirah.g:1588:1: ( ( rule__VariableAssignment__ValueAssignment_4 ) )
-            // InternalSephirah.g:1589:2: ( rule__VariableAssignment__ValueAssignment_4 )
+            // InternalSephirah.g:1634:1: ( ( rule__VariableAssignment__ValueAssignment_4 ) )
+            // InternalSephirah.g:1635:2: ( rule__VariableAssignment__ValueAssignment_4 )
             {
              before(grammarAccess.getVariableAssignmentAccess().getValueAssignment_4()); 
-            // InternalSephirah.g:1590:2: ( rule__VariableAssignment__ValueAssignment_4 )
-            // InternalSephirah.g:1590:3: rule__VariableAssignment__ValueAssignment_4
+            // InternalSephirah.g:1636:2: ( rule__VariableAssignment__ValueAssignment_4 )
+            // InternalSephirah.g:1636:3: rule__VariableAssignment__ValueAssignment_4
             {
             pushFollow(FOLLOW_2);
             rule__VariableAssignment__ValueAssignment_4();
@@ -5054,14 +5218,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__Group__5"
-    // InternalSephirah.g:1598:1: rule__VariableAssignment__Group__5 : rule__VariableAssignment__Group__5__Impl ;
+    // InternalSephirah.g:1644:1: rule__VariableAssignment__Group__5 : rule__VariableAssignment__Group__5__Impl ;
     public final void rule__VariableAssignment__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1602:1: ( rule__VariableAssignment__Group__5__Impl )
-            // InternalSephirah.g:1603:2: rule__VariableAssignment__Group__5__Impl
+            // InternalSephirah.g:1648:1: ( rule__VariableAssignment__Group__5__Impl )
+            // InternalSephirah.g:1649:2: rule__VariableAssignment__Group__5__Impl
             {
             pushFollow(FOLLOW_2);
             rule__VariableAssignment__Group__5__Impl();
@@ -5087,17 +5251,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__Group__5__Impl"
-    // InternalSephirah.g:1609:1: rule__VariableAssignment__Group__5__Impl : ( ';' ) ;
+    // InternalSephirah.g:1655:1: rule__VariableAssignment__Group__5__Impl : ( ';' ) ;
     public final void rule__VariableAssignment__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1613:1: ( ( ';' ) )
-            // InternalSephirah.g:1614:1: ( ';' )
+            // InternalSephirah.g:1659:1: ( ( ';' ) )
+            // InternalSephirah.g:1660:1: ( ';' )
             {
-            // InternalSephirah.g:1614:1: ( ';' )
-            // InternalSephirah.g:1615:2: ';'
+            // InternalSephirah.g:1660:1: ( ';' )
+            // InternalSephirah.g:1661:2: ';'
             {
              before(grammarAccess.getVariableAssignmentAccess().getSemicolonKeyword_5()); 
             match(input,25,FOLLOW_2); 
@@ -5124,14 +5288,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Variable__Group__0"
-    // InternalSephirah.g:1625:1: rule__Variable__Group__0 : rule__Variable__Group__0__Impl rule__Variable__Group__1 ;
+    // InternalSephirah.g:1671:1: rule__Variable__Group__0 : rule__Variable__Group__0__Impl rule__Variable__Group__1 ;
     public final void rule__Variable__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1629:1: ( rule__Variable__Group__0__Impl rule__Variable__Group__1 )
-            // InternalSephirah.g:1630:2: rule__Variable__Group__0__Impl rule__Variable__Group__1
+            // InternalSephirah.g:1675:1: ( rule__Variable__Group__0__Impl rule__Variable__Group__1 )
+            // InternalSephirah.g:1676:2: rule__Variable__Group__0__Impl rule__Variable__Group__1
             {
             pushFollow(FOLLOW_11);
             rule__Variable__Group__0__Impl();
@@ -5162,21 +5326,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Variable__Group__0__Impl"
-    // InternalSephirah.g:1637:1: rule__Variable__Group__0__Impl : ( () ) ;
+    // InternalSephirah.g:1683:1: rule__Variable__Group__0__Impl : ( () ) ;
     public final void rule__Variable__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1641:1: ( ( () ) )
-            // InternalSephirah.g:1642:1: ( () )
+            // InternalSephirah.g:1687:1: ( ( () ) )
+            // InternalSephirah.g:1688:1: ( () )
             {
-            // InternalSephirah.g:1642:1: ( () )
-            // InternalSephirah.g:1643:2: ()
+            // InternalSephirah.g:1688:1: ( () )
+            // InternalSephirah.g:1689:2: ()
             {
              before(grammarAccess.getVariableAccess().getVariableAction_0()); 
-            // InternalSephirah.g:1644:2: ()
-            // InternalSephirah.g:1644:3: 
+            // InternalSephirah.g:1690:2: ()
+            // InternalSephirah.g:1690:3: 
             {
             }
 
@@ -5199,14 +5363,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Variable__Group__1"
-    // InternalSephirah.g:1652:1: rule__Variable__Group__1 : rule__Variable__Group__1__Impl ;
+    // InternalSephirah.g:1698:1: rule__Variable__Group__1 : rule__Variable__Group__1__Impl ;
     public final void rule__Variable__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1656:1: ( rule__Variable__Group__1__Impl )
-            // InternalSephirah.g:1657:2: rule__Variable__Group__1__Impl
+            // InternalSephirah.g:1702:1: ( rule__Variable__Group__1__Impl )
+            // InternalSephirah.g:1703:2: rule__Variable__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Variable__Group__1__Impl();
@@ -5232,21 +5396,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Variable__Group__1__Impl"
-    // InternalSephirah.g:1663:1: rule__Variable__Group__1__Impl : ( ( rule__Variable__NameAssignment_1 ) ) ;
+    // InternalSephirah.g:1709:1: rule__Variable__Group__1__Impl : ( ( rule__Variable__NameAssignment_1 ) ) ;
     public final void rule__Variable__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1667:1: ( ( ( rule__Variable__NameAssignment_1 ) ) )
-            // InternalSephirah.g:1668:1: ( ( rule__Variable__NameAssignment_1 ) )
+            // InternalSephirah.g:1713:1: ( ( ( rule__Variable__NameAssignment_1 ) ) )
+            // InternalSephirah.g:1714:1: ( ( rule__Variable__NameAssignment_1 ) )
             {
-            // InternalSephirah.g:1668:1: ( ( rule__Variable__NameAssignment_1 ) )
-            // InternalSephirah.g:1669:2: ( rule__Variable__NameAssignment_1 )
+            // InternalSephirah.g:1714:1: ( ( rule__Variable__NameAssignment_1 ) )
+            // InternalSephirah.g:1715:2: ( rule__Variable__NameAssignment_1 )
             {
              before(grammarAccess.getVariableAccess().getNameAssignment_1()); 
-            // InternalSephirah.g:1670:2: ( rule__Variable__NameAssignment_1 )
-            // InternalSephirah.g:1670:3: rule__Variable__NameAssignment_1
+            // InternalSephirah.g:1716:2: ( rule__Variable__NameAssignment_1 )
+            // InternalSephirah.g:1716:3: rule__Variable__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Variable__NameAssignment_1();
@@ -5279,14 +5443,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__DefinitionVariable__Group__0"
-    // InternalSephirah.g:1679:1: rule__DefinitionVariable__Group__0 : rule__DefinitionVariable__Group__0__Impl rule__DefinitionVariable__Group__1 ;
+    // InternalSephirah.g:1725:1: rule__DefinitionVariable__Group__0 : rule__DefinitionVariable__Group__0__Impl rule__DefinitionVariable__Group__1 ;
     public final void rule__DefinitionVariable__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1683:1: ( rule__DefinitionVariable__Group__0__Impl rule__DefinitionVariable__Group__1 )
-            // InternalSephirah.g:1684:2: rule__DefinitionVariable__Group__0__Impl rule__DefinitionVariable__Group__1
+            // InternalSephirah.g:1729:1: ( rule__DefinitionVariable__Group__0__Impl rule__DefinitionVariable__Group__1 )
+            // InternalSephirah.g:1730:2: rule__DefinitionVariable__Group__0__Impl rule__DefinitionVariable__Group__1
             {
             pushFollow(FOLLOW_6);
             rule__DefinitionVariable__Group__0__Impl();
@@ -5317,21 +5481,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__DefinitionVariable__Group__0__Impl"
-    // InternalSephirah.g:1691:1: rule__DefinitionVariable__Group__0__Impl : ( () ) ;
+    // InternalSephirah.g:1737:1: rule__DefinitionVariable__Group__0__Impl : ( () ) ;
     public final void rule__DefinitionVariable__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1695:1: ( ( () ) )
-            // InternalSephirah.g:1696:1: ( () )
+            // InternalSephirah.g:1741:1: ( ( () ) )
+            // InternalSephirah.g:1742:1: ( () )
             {
-            // InternalSephirah.g:1696:1: ( () )
-            // InternalSephirah.g:1697:2: ()
+            // InternalSephirah.g:1742:1: ( () )
+            // InternalSephirah.g:1743:2: ()
             {
              before(grammarAccess.getDefinitionVariableAccess().getDefinitionVariableAction_0()); 
-            // InternalSephirah.g:1698:2: ()
-            // InternalSephirah.g:1698:3: 
+            // InternalSephirah.g:1744:2: ()
+            // InternalSephirah.g:1744:3: 
             {
             }
 
@@ -5354,14 +5518,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__DefinitionVariable__Group__1"
-    // InternalSephirah.g:1706:1: rule__DefinitionVariable__Group__1 : rule__DefinitionVariable__Group__1__Impl ;
+    // InternalSephirah.g:1752:1: rule__DefinitionVariable__Group__1 : rule__DefinitionVariable__Group__1__Impl ;
     public final void rule__DefinitionVariable__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1710:1: ( rule__DefinitionVariable__Group__1__Impl )
-            // InternalSephirah.g:1711:2: rule__DefinitionVariable__Group__1__Impl
+            // InternalSephirah.g:1756:1: ( rule__DefinitionVariable__Group__1__Impl )
+            // InternalSephirah.g:1757:2: rule__DefinitionVariable__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__DefinitionVariable__Group__1__Impl();
@@ -5387,21 +5551,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__DefinitionVariable__Group__1__Impl"
-    // InternalSephirah.g:1717:1: rule__DefinitionVariable__Group__1__Impl : ( ( rule__DefinitionVariable__NameAssignment_1 ) ) ;
+    // InternalSephirah.g:1763:1: rule__DefinitionVariable__Group__1__Impl : ( ( rule__DefinitionVariable__NameAssignment_1 ) ) ;
     public final void rule__DefinitionVariable__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1721:1: ( ( ( rule__DefinitionVariable__NameAssignment_1 ) ) )
-            // InternalSephirah.g:1722:1: ( ( rule__DefinitionVariable__NameAssignment_1 ) )
+            // InternalSephirah.g:1767:1: ( ( ( rule__DefinitionVariable__NameAssignment_1 ) ) )
+            // InternalSephirah.g:1768:1: ( ( rule__DefinitionVariable__NameAssignment_1 ) )
             {
-            // InternalSephirah.g:1722:1: ( ( rule__DefinitionVariable__NameAssignment_1 ) )
-            // InternalSephirah.g:1723:2: ( rule__DefinitionVariable__NameAssignment_1 )
+            // InternalSephirah.g:1768:1: ( ( rule__DefinitionVariable__NameAssignment_1 ) )
+            // InternalSephirah.g:1769:2: ( rule__DefinitionVariable__NameAssignment_1 )
             {
              before(grammarAccess.getDefinitionVariableAccess().getNameAssignment_1()); 
-            // InternalSephirah.g:1724:2: ( rule__DefinitionVariable__NameAssignment_1 )
-            // InternalSephirah.g:1724:3: rule__DefinitionVariable__NameAssignment_1
+            // InternalSephirah.g:1770:2: ( rule__DefinitionVariable__NameAssignment_1 )
+            // InternalSephirah.g:1770:3: rule__DefinitionVariable__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__DefinitionVariable__NameAssignment_1();
@@ -5434,14 +5598,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Evaluation__Group__0"
-    // InternalSephirah.g:1733:1: rule__Evaluation__Group__0 : rule__Evaluation__Group__0__Impl rule__Evaluation__Group__1 ;
+    // InternalSephirah.g:1779:1: rule__Evaluation__Group__0 : rule__Evaluation__Group__0__Impl rule__Evaluation__Group__1 ;
     public final void rule__Evaluation__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1737:1: ( rule__Evaluation__Group__0__Impl rule__Evaluation__Group__1 )
-            // InternalSephirah.g:1738:2: rule__Evaluation__Group__0__Impl rule__Evaluation__Group__1
+            // InternalSephirah.g:1783:1: ( rule__Evaluation__Group__0__Impl rule__Evaluation__Group__1 )
+            // InternalSephirah.g:1784:2: rule__Evaluation__Group__0__Impl rule__Evaluation__Group__1
             {
             pushFollow(FOLLOW_7);
             rule__Evaluation__Group__0__Impl();
@@ -5472,21 +5636,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Evaluation__Group__0__Impl"
-    // InternalSephirah.g:1745:1: rule__Evaluation__Group__0__Impl : ( ( rule__Evaluation__ExpressionAssignment_0 ) ) ;
+    // InternalSephirah.g:1791:1: rule__Evaluation__Group__0__Impl : ( ( rule__Evaluation__ExpressionAssignment_0 ) ) ;
     public final void rule__Evaluation__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1749:1: ( ( ( rule__Evaluation__ExpressionAssignment_0 ) ) )
-            // InternalSephirah.g:1750:1: ( ( rule__Evaluation__ExpressionAssignment_0 ) )
+            // InternalSephirah.g:1795:1: ( ( ( rule__Evaluation__ExpressionAssignment_0 ) ) )
+            // InternalSephirah.g:1796:1: ( ( rule__Evaluation__ExpressionAssignment_0 ) )
             {
-            // InternalSephirah.g:1750:1: ( ( rule__Evaluation__ExpressionAssignment_0 ) )
-            // InternalSephirah.g:1751:2: ( rule__Evaluation__ExpressionAssignment_0 )
+            // InternalSephirah.g:1796:1: ( ( rule__Evaluation__ExpressionAssignment_0 ) )
+            // InternalSephirah.g:1797:2: ( rule__Evaluation__ExpressionAssignment_0 )
             {
              before(grammarAccess.getEvaluationAccess().getExpressionAssignment_0()); 
-            // InternalSephirah.g:1752:2: ( rule__Evaluation__ExpressionAssignment_0 )
-            // InternalSephirah.g:1752:3: rule__Evaluation__ExpressionAssignment_0
+            // InternalSephirah.g:1798:2: ( rule__Evaluation__ExpressionAssignment_0 )
+            // InternalSephirah.g:1798:3: rule__Evaluation__ExpressionAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__Evaluation__ExpressionAssignment_0();
@@ -5519,14 +5683,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Evaluation__Group__1"
-    // InternalSephirah.g:1760:1: rule__Evaluation__Group__1 : rule__Evaluation__Group__1__Impl ;
+    // InternalSephirah.g:1806:1: rule__Evaluation__Group__1 : rule__Evaluation__Group__1__Impl ;
     public final void rule__Evaluation__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1764:1: ( rule__Evaluation__Group__1__Impl )
-            // InternalSephirah.g:1765:2: rule__Evaluation__Group__1__Impl
+            // InternalSephirah.g:1810:1: ( rule__Evaluation__Group__1__Impl )
+            // InternalSephirah.g:1811:2: rule__Evaluation__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Evaluation__Group__1__Impl();
@@ -5552,17 +5716,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Evaluation__Group__1__Impl"
-    // InternalSephirah.g:1771:1: rule__Evaluation__Group__1__Impl : ( ';' ) ;
+    // InternalSephirah.g:1817:1: rule__Evaluation__Group__1__Impl : ( ';' ) ;
     public final void rule__Evaluation__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1775:1: ( ( ';' ) )
-            // InternalSephirah.g:1776:1: ( ';' )
+            // InternalSephirah.g:1821:1: ( ( ';' ) )
+            // InternalSephirah.g:1822:1: ( ';' )
             {
-            // InternalSephirah.g:1776:1: ( ';' )
-            // InternalSephirah.g:1777:2: ';'
+            // InternalSephirah.g:1822:1: ( ';' )
+            // InternalSephirah.g:1823:2: ';'
             {
              before(grammarAccess.getEvaluationAccess().getSemicolonKeyword_1()); 
             match(input,25,FOLLOW_2); 
@@ -5589,14 +5753,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__0"
-    // InternalSephirah.g:1787:1: rule__Conditional__Group_0__0 : rule__Conditional__Group_0__0__Impl rule__Conditional__Group_0__1 ;
+    // InternalSephirah.g:1833:1: rule__Conditional__Group_0__0 : rule__Conditional__Group_0__0__Impl rule__Conditional__Group_0__1 ;
     public final void rule__Conditional__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1791:1: ( rule__Conditional__Group_0__0__Impl rule__Conditional__Group_0__1 )
-            // InternalSephirah.g:1792:2: rule__Conditional__Group_0__0__Impl rule__Conditional__Group_0__1
+            // InternalSephirah.g:1837:1: ( rule__Conditional__Group_0__0__Impl rule__Conditional__Group_0__1 )
+            // InternalSephirah.g:1838:2: rule__Conditional__Group_0__0__Impl rule__Conditional__Group_0__1
             {
             pushFollow(FOLLOW_15);
             rule__Conditional__Group_0__0__Impl();
@@ -5627,21 +5791,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__0__Impl"
-    // InternalSephirah.g:1799:1: rule__Conditional__Group_0__0__Impl : ( () ) ;
+    // InternalSephirah.g:1845:1: rule__Conditional__Group_0__0__Impl : ( () ) ;
     public final void rule__Conditional__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1803:1: ( ( () ) )
-            // InternalSephirah.g:1804:1: ( () )
+            // InternalSephirah.g:1849:1: ( ( () ) )
+            // InternalSephirah.g:1850:1: ( () )
             {
-            // InternalSephirah.g:1804:1: ( () )
-            // InternalSephirah.g:1805:2: ()
+            // InternalSephirah.g:1850:1: ( () )
+            // InternalSephirah.g:1851:2: ()
             {
              before(grammarAccess.getConditionalAccess().getConditionalAction_0_0()); 
-            // InternalSephirah.g:1806:2: ()
-            // InternalSephirah.g:1806:3: 
+            // InternalSephirah.g:1852:2: ()
+            // InternalSephirah.g:1852:3: 
             {
             }
 
@@ -5664,14 +5828,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__1"
-    // InternalSephirah.g:1814:1: rule__Conditional__Group_0__1 : rule__Conditional__Group_0__1__Impl rule__Conditional__Group_0__2 ;
+    // InternalSephirah.g:1860:1: rule__Conditional__Group_0__1 : rule__Conditional__Group_0__1__Impl rule__Conditional__Group_0__2 ;
     public final void rule__Conditional__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1818:1: ( rule__Conditional__Group_0__1__Impl rule__Conditional__Group_0__2 )
-            // InternalSephirah.g:1819:2: rule__Conditional__Group_0__1__Impl rule__Conditional__Group_0__2
+            // InternalSephirah.g:1864:1: ( rule__Conditional__Group_0__1__Impl rule__Conditional__Group_0__2 )
+            // InternalSephirah.g:1865:2: rule__Conditional__Group_0__1__Impl rule__Conditional__Group_0__2
             {
             pushFollow(FOLLOW_16);
             rule__Conditional__Group_0__1__Impl();
@@ -5702,17 +5866,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__1__Impl"
-    // InternalSephirah.g:1826:1: rule__Conditional__Group_0__1__Impl : ( 'if' ) ;
+    // InternalSephirah.g:1872:1: rule__Conditional__Group_0__1__Impl : ( 'if' ) ;
     public final void rule__Conditional__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1830:1: ( ( 'if' ) )
-            // InternalSephirah.g:1831:1: ( 'if' )
+            // InternalSephirah.g:1876:1: ( ( 'if' ) )
+            // InternalSephirah.g:1877:1: ( 'if' )
             {
-            // InternalSephirah.g:1831:1: ( 'if' )
-            // InternalSephirah.g:1832:2: 'if'
+            // InternalSephirah.g:1877:1: ( 'if' )
+            // InternalSephirah.g:1878:2: 'if'
             {
              before(grammarAccess.getConditionalAccess().getIfKeyword_0_1()); 
             match(input,32,FOLLOW_2); 
@@ -5739,14 +5903,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__2"
-    // InternalSephirah.g:1841:1: rule__Conditional__Group_0__2 : rule__Conditional__Group_0__2__Impl rule__Conditional__Group_0__3 ;
+    // InternalSephirah.g:1887:1: rule__Conditional__Group_0__2 : rule__Conditional__Group_0__2__Impl rule__Conditional__Group_0__3 ;
     public final void rule__Conditional__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1845:1: ( rule__Conditional__Group_0__2__Impl rule__Conditional__Group_0__3 )
-            // InternalSephirah.g:1846:2: rule__Conditional__Group_0__2__Impl rule__Conditional__Group_0__3
+            // InternalSephirah.g:1891:1: ( rule__Conditional__Group_0__2__Impl rule__Conditional__Group_0__3 )
+            // InternalSephirah.g:1892:2: rule__Conditional__Group_0__2__Impl rule__Conditional__Group_0__3
             {
             pushFollow(FOLLOW_17);
             rule__Conditional__Group_0__2__Impl();
@@ -5777,21 +5941,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__2__Impl"
-    // InternalSephirah.g:1853:1: rule__Conditional__Group_0__2__Impl : ( ( rule__Conditional__ConditionAssignment_0_2 ) ) ;
+    // InternalSephirah.g:1899:1: rule__Conditional__Group_0__2__Impl : ( ( rule__Conditional__ConditionAssignment_0_2 ) ) ;
     public final void rule__Conditional__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1857:1: ( ( ( rule__Conditional__ConditionAssignment_0_2 ) ) )
-            // InternalSephirah.g:1858:1: ( ( rule__Conditional__ConditionAssignment_0_2 ) )
+            // InternalSephirah.g:1903:1: ( ( ( rule__Conditional__ConditionAssignment_0_2 ) ) )
+            // InternalSephirah.g:1904:1: ( ( rule__Conditional__ConditionAssignment_0_2 ) )
             {
-            // InternalSephirah.g:1858:1: ( ( rule__Conditional__ConditionAssignment_0_2 ) )
-            // InternalSephirah.g:1859:2: ( rule__Conditional__ConditionAssignment_0_2 )
+            // InternalSephirah.g:1904:1: ( ( rule__Conditional__ConditionAssignment_0_2 ) )
+            // InternalSephirah.g:1905:2: ( rule__Conditional__ConditionAssignment_0_2 )
             {
              before(grammarAccess.getConditionalAccess().getConditionAssignment_0_2()); 
-            // InternalSephirah.g:1860:2: ( rule__Conditional__ConditionAssignment_0_2 )
-            // InternalSephirah.g:1860:3: rule__Conditional__ConditionAssignment_0_2
+            // InternalSephirah.g:1906:2: ( rule__Conditional__ConditionAssignment_0_2 )
+            // InternalSephirah.g:1906:3: rule__Conditional__ConditionAssignment_0_2
             {
             pushFollow(FOLLOW_2);
             rule__Conditional__ConditionAssignment_0_2();
@@ -5824,14 +5988,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__3"
-    // InternalSephirah.g:1868:1: rule__Conditional__Group_0__3 : rule__Conditional__Group_0__3__Impl rule__Conditional__Group_0__4 ;
+    // InternalSephirah.g:1914:1: rule__Conditional__Group_0__3 : rule__Conditional__Group_0__3__Impl rule__Conditional__Group_0__4 ;
     public final void rule__Conditional__Group_0__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1872:1: ( rule__Conditional__Group_0__3__Impl rule__Conditional__Group_0__4 )
-            // InternalSephirah.g:1873:2: rule__Conditional__Group_0__3__Impl rule__Conditional__Group_0__4
+            // InternalSephirah.g:1918:1: ( rule__Conditional__Group_0__3__Impl rule__Conditional__Group_0__4 )
+            // InternalSephirah.g:1919:2: rule__Conditional__Group_0__3__Impl rule__Conditional__Group_0__4
             {
             pushFollow(FOLLOW_11);
             rule__Conditional__Group_0__3__Impl();
@@ -5862,17 +6026,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__3__Impl"
-    // InternalSephirah.g:1880:1: rule__Conditional__Group_0__3__Impl : ( 'then' ) ;
+    // InternalSephirah.g:1926:1: rule__Conditional__Group_0__3__Impl : ( 'then' ) ;
     public final void rule__Conditional__Group_0__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1884:1: ( ( 'then' ) )
-            // InternalSephirah.g:1885:1: ( 'then' )
+            // InternalSephirah.g:1930:1: ( ( 'then' ) )
+            // InternalSephirah.g:1931:1: ( 'then' )
             {
-            // InternalSephirah.g:1885:1: ( 'then' )
-            // InternalSephirah.g:1886:2: 'then'
+            // InternalSephirah.g:1931:1: ( 'then' )
+            // InternalSephirah.g:1932:2: 'then'
             {
              before(grammarAccess.getConditionalAccess().getThenKeyword_0_3()); 
             match(input,33,FOLLOW_2); 
@@ -5899,14 +6063,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__4"
-    // InternalSephirah.g:1895:1: rule__Conditional__Group_0__4 : rule__Conditional__Group_0__4__Impl rule__Conditional__Group_0__5 ;
+    // InternalSephirah.g:1941:1: rule__Conditional__Group_0__4 : rule__Conditional__Group_0__4__Impl rule__Conditional__Group_0__5 ;
     public final void rule__Conditional__Group_0__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1899:1: ( rule__Conditional__Group_0__4__Impl rule__Conditional__Group_0__5 )
-            // InternalSephirah.g:1900:2: rule__Conditional__Group_0__4__Impl rule__Conditional__Group_0__5
+            // InternalSephirah.g:1945:1: ( rule__Conditional__Group_0__4__Impl rule__Conditional__Group_0__5 )
+            // InternalSephirah.g:1946:2: rule__Conditional__Group_0__4__Impl rule__Conditional__Group_0__5
             {
             pushFollow(FOLLOW_18);
             rule__Conditional__Group_0__4__Impl();
@@ -5937,21 +6101,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__4__Impl"
-    // InternalSephirah.g:1907:1: rule__Conditional__Group_0__4__Impl : ( ( rule__Conditional__ThenBranchAssignment_0_4 ) ) ;
+    // InternalSephirah.g:1953:1: rule__Conditional__Group_0__4__Impl : ( ( rule__Conditional__ThenBranchAssignment_0_4 ) ) ;
     public final void rule__Conditional__Group_0__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1911:1: ( ( ( rule__Conditional__ThenBranchAssignment_0_4 ) ) )
-            // InternalSephirah.g:1912:1: ( ( rule__Conditional__ThenBranchAssignment_0_4 ) )
+            // InternalSephirah.g:1957:1: ( ( ( rule__Conditional__ThenBranchAssignment_0_4 ) ) )
+            // InternalSephirah.g:1958:1: ( ( rule__Conditional__ThenBranchAssignment_0_4 ) )
             {
-            // InternalSephirah.g:1912:1: ( ( rule__Conditional__ThenBranchAssignment_0_4 ) )
-            // InternalSephirah.g:1913:2: ( rule__Conditional__ThenBranchAssignment_0_4 )
+            // InternalSephirah.g:1958:1: ( ( rule__Conditional__ThenBranchAssignment_0_4 ) )
+            // InternalSephirah.g:1959:2: ( rule__Conditional__ThenBranchAssignment_0_4 )
             {
              before(grammarAccess.getConditionalAccess().getThenBranchAssignment_0_4()); 
-            // InternalSephirah.g:1914:2: ( rule__Conditional__ThenBranchAssignment_0_4 )
-            // InternalSephirah.g:1914:3: rule__Conditional__ThenBranchAssignment_0_4
+            // InternalSephirah.g:1960:2: ( rule__Conditional__ThenBranchAssignment_0_4 )
+            // InternalSephirah.g:1960:3: rule__Conditional__ThenBranchAssignment_0_4
             {
             pushFollow(FOLLOW_2);
             rule__Conditional__ThenBranchAssignment_0_4();
@@ -5984,14 +6148,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__5"
-    // InternalSephirah.g:1922:1: rule__Conditional__Group_0__5 : rule__Conditional__Group_0__5__Impl rule__Conditional__Group_0__6 ;
+    // InternalSephirah.g:1968:1: rule__Conditional__Group_0__5 : rule__Conditional__Group_0__5__Impl rule__Conditional__Group_0__6 ;
     public final void rule__Conditional__Group_0__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1926:1: ( rule__Conditional__Group_0__5__Impl rule__Conditional__Group_0__6 )
-            // InternalSephirah.g:1927:2: rule__Conditional__Group_0__5__Impl rule__Conditional__Group_0__6
+            // InternalSephirah.g:1972:1: ( rule__Conditional__Group_0__5__Impl rule__Conditional__Group_0__6 )
+            // InternalSephirah.g:1973:2: rule__Conditional__Group_0__5__Impl rule__Conditional__Group_0__6
             {
             pushFollow(FOLLOW_11);
             rule__Conditional__Group_0__5__Impl();
@@ -6022,17 +6186,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__5__Impl"
-    // InternalSephirah.g:1934:1: rule__Conditional__Group_0__5__Impl : ( 'else' ) ;
+    // InternalSephirah.g:1980:1: rule__Conditional__Group_0__5__Impl : ( 'else' ) ;
     public final void rule__Conditional__Group_0__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1938:1: ( ( 'else' ) )
-            // InternalSephirah.g:1939:1: ( 'else' )
+            // InternalSephirah.g:1984:1: ( ( 'else' ) )
+            // InternalSephirah.g:1985:1: ( 'else' )
             {
-            // InternalSephirah.g:1939:1: ( 'else' )
-            // InternalSephirah.g:1940:2: 'else'
+            // InternalSephirah.g:1985:1: ( 'else' )
+            // InternalSephirah.g:1986:2: 'else'
             {
              before(grammarAccess.getConditionalAccess().getElseKeyword_0_5()); 
             match(input,34,FOLLOW_2); 
@@ -6059,14 +6223,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__6"
-    // InternalSephirah.g:1949:1: rule__Conditional__Group_0__6 : rule__Conditional__Group_0__6__Impl ;
+    // InternalSephirah.g:1995:1: rule__Conditional__Group_0__6 : rule__Conditional__Group_0__6__Impl ;
     public final void rule__Conditional__Group_0__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1953:1: ( rule__Conditional__Group_0__6__Impl )
-            // InternalSephirah.g:1954:2: rule__Conditional__Group_0__6__Impl
+            // InternalSephirah.g:1999:1: ( rule__Conditional__Group_0__6__Impl )
+            // InternalSephirah.g:2000:2: rule__Conditional__Group_0__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Conditional__Group_0__6__Impl();
@@ -6092,21 +6256,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__Group_0__6__Impl"
-    // InternalSephirah.g:1960:1: rule__Conditional__Group_0__6__Impl : ( ( rule__Conditional__ElseBranchAssignment_0_6 ) ) ;
+    // InternalSephirah.g:2006:1: rule__Conditional__Group_0__6__Impl : ( ( rule__Conditional__ElseBranchAssignment_0_6 ) ) ;
     public final void rule__Conditional__Group_0__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1964:1: ( ( ( rule__Conditional__ElseBranchAssignment_0_6 ) ) )
-            // InternalSephirah.g:1965:1: ( ( rule__Conditional__ElseBranchAssignment_0_6 ) )
+            // InternalSephirah.g:2010:1: ( ( ( rule__Conditional__ElseBranchAssignment_0_6 ) ) )
+            // InternalSephirah.g:2011:1: ( ( rule__Conditional__ElseBranchAssignment_0_6 ) )
             {
-            // InternalSephirah.g:1965:1: ( ( rule__Conditional__ElseBranchAssignment_0_6 ) )
-            // InternalSephirah.g:1966:2: ( rule__Conditional__ElseBranchAssignment_0_6 )
+            // InternalSephirah.g:2011:1: ( ( rule__Conditional__ElseBranchAssignment_0_6 ) )
+            // InternalSephirah.g:2012:2: ( rule__Conditional__ElseBranchAssignment_0_6 )
             {
              before(grammarAccess.getConditionalAccess().getElseBranchAssignment_0_6()); 
-            // InternalSephirah.g:1967:2: ( rule__Conditional__ElseBranchAssignment_0_6 )
-            // InternalSephirah.g:1967:3: rule__Conditional__ElseBranchAssignment_0_6
+            // InternalSephirah.g:2013:2: ( rule__Conditional__ElseBranchAssignment_0_6 )
+            // InternalSephirah.g:2013:3: rule__Conditional__ElseBranchAssignment_0_6
             {
             pushFollow(FOLLOW_2);
             rule__Conditional__ElseBranchAssignment_0_6();
@@ -6139,14 +6303,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group__0"
-    // InternalSephirah.g:1976:1: rule__Addition__Group__0 : rule__Addition__Group__0__Impl rule__Addition__Group__1 ;
+    // InternalSephirah.g:2022:1: rule__Addition__Group__0 : rule__Addition__Group__0__Impl rule__Addition__Group__1 ;
     public final void rule__Addition__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1980:1: ( rule__Addition__Group__0__Impl rule__Addition__Group__1 )
-            // InternalSephirah.g:1981:2: rule__Addition__Group__0__Impl rule__Addition__Group__1
+            // InternalSephirah.g:2026:1: ( rule__Addition__Group__0__Impl rule__Addition__Group__1 )
+            // InternalSephirah.g:2027:2: rule__Addition__Group__0__Impl rule__Addition__Group__1
             {
             pushFollow(FOLLOW_19);
             rule__Addition__Group__0__Impl();
@@ -6177,17 +6341,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group__0__Impl"
-    // InternalSephirah.g:1988:1: rule__Addition__Group__0__Impl : ( ruleMultiplication ) ;
+    // InternalSephirah.g:2034:1: rule__Addition__Group__0__Impl : ( ruleMultiplication ) ;
     public final void rule__Addition__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:1992:1: ( ( ruleMultiplication ) )
-            // InternalSephirah.g:1993:1: ( ruleMultiplication )
+            // InternalSephirah.g:2038:1: ( ( ruleMultiplication ) )
+            // InternalSephirah.g:2039:1: ( ruleMultiplication )
             {
-            // InternalSephirah.g:1993:1: ( ruleMultiplication )
-            // InternalSephirah.g:1994:2: ruleMultiplication
+            // InternalSephirah.g:2039:1: ( ruleMultiplication )
+            // InternalSephirah.g:2040:2: ruleMultiplication
             {
              before(grammarAccess.getAdditionAccess().getMultiplicationParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -6218,14 +6382,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group__1"
-    // InternalSephirah.g:2003:1: rule__Addition__Group__1 : rule__Addition__Group__1__Impl ;
+    // InternalSephirah.g:2049:1: rule__Addition__Group__1 : rule__Addition__Group__1__Impl ;
     public final void rule__Addition__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2007:1: ( rule__Addition__Group__1__Impl )
-            // InternalSephirah.g:2008:2: rule__Addition__Group__1__Impl
+            // InternalSephirah.g:2053:1: ( rule__Addition__Group__1__Impl )
+            // InternalSephirah.g:2054:2: rule__Addition__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Addition__Group__1__Impl();
@@ -6251,33 +6415,33 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group__1__Impl"
-    // InternalSephirah.g:2014:1: rule__Addition__Group__1__Impl : ( ( rule__Addition__Group_1__0 )* ) ;
+    // InternalSephirah.g:2060:1: rule__Addition__Group__1__Impl : ( ( rule__Addition__Group_1__0 )* ) ;
     public final void rule__Addition__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2018:1: ( ( ( rule__Addition__Group_1__0 )* ) )
-            // InternalSephirah.g:2019:1: ( ( rule__Addition__Group_1__0 )* )
+            // InternalSephirah.g:2064:1: ( ( ( rule__Addition__Group_1__0 )* ) )
+            // InternalSephirah.g:2065:1: ( ( rule__Addition__Group_1__0 )* )
             {
-            // InternalSephirah.g:2019:1: ( ( rule__Addition__Group_1__0 )* )
-            // InternalSephirah.g:2020:2: ( rule__Addition__Group_1__0 )*
+            // InternalSephirah.g:2065:1: ( ( rule__Addition__Group_1__0 )* )
+            // InternalSephirah.g:2066:2: ( rule__Addition__Group_1__0 )*
             {
              before(grammarAccess.getAdditionAccess().getGroup_1()); 
-            // InternalSephirah.g:2021:2: ( rule__Addition__Group_1__0 )*
-            loop15:
+            // InternalSephirah.g:2067:2: ( rule__Addition__Group_1__0 )*
+            loop16:
             do {
-                int alt15=2;
-                int LA15_0 = input.LA(1);
+                int alt16=2;
+                int LA16_0 = input.LA(1);
 
-                if ( ((LA15_0>=35 && LA15_0<=36)) ) {
-                    alt15=1;
+                if ( ((LA16_0>=35 && LA16_0<=36)) ) {
+                    alt16=1;
                 }
 
 
-                switch (alt15) {
+                switch (alt16) {
             	case 1 :
-            	    // InternalSephirah.g:2021:3: rule__Addition__Group_1__0
+            	    // InternalSephirah.g:2067:3: rule__Addition__Group_1__0
             	    {
             	    pushFollow(FOLLOW_20);
             	    rule__Addition__Group_1__0();
@@ -6289,7 +6453,7 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             	    break;
 
             	default :
-            	    break loop15;
+            	    break loop16;
                 }
             } while (true);
 
@@ -6316,14 +6480,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group_1__0"
-    // InternalSephirah.g:2030:1: rule__Addition__Group_1__0 : rule__Addition__Group_1__0__Impl rule__Addition__Group_1__1 ;
+    // InternalSephirah.g:2076:1: rule__Addition__Group_1__0 : rule__Addition__Group_1__0__Impl rule__Addition__Group_1__1 ;
     public final void rule__Addition__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2034:1: ( rule__Addition__Group_1__0__Impl rule__Addition__Group_1__1 )
-            // InternalSephirah.g:2035:2: rule__Addition__Group_1__0__Impl rule__Addition__Group_1__1
+            // InternalSephirah.g:2080:1: ( rule__Addition__Group_1__0__Impl rule__Addition__Group_1__1 )
+            // InternalSephirah.g:2081:2: rule__Addition__Group_1__0__Impl rule__Addition__Group_1__1
             {
             pushFollow(FOLLOW_11);
             rule__Addition__Group_1__0__Impl();
@@ -6354,21 +6518,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group_1__0__Impl"
-    // InternalSephirah.g:2042:1: rule__Addition__Group_1__0__Impl : ( ( rule__Addition__Alternatives_1_0 ) ) ;
+    // InternalSephirah.g:2088:1: rule__Addition__Group_1__0__Impl : ( ( rule__Addition__Alternatives_1_0 ) ) ;
     public final void rule__Addition__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2046:1: ( ( ( rule__Addition__Alternatives_1_0 ) ) )
-            // InternalSephirah.g:2047:1: ( ( rule__Addition__Alternatives_1_0 ) )
+            // InternalSephirah.g:2092:1: ( ( ( rule__Addition__Alternatives_1_0 ) ) )
+            // InternalSephirah.g:2093:1: ( ( rule__Addition__Alternatives_1_0 ) )
             {
-            // InternalSephirah.g:2047:1: ( ( rule__Addition__Alternatives_1_0 ) )
-            // InternalSephirah.g:2048:2: ( rule__Addition__Alternatives_1_0 )
+            // InternalSephirah.g:2093:1: ( ( rule__Addition__Alternatives_1_0 ) )
+            // InternalSephirah.g:2094:2: ( rule__Addition__Alternatives_1_0 )
             {
              before(grammarAccess.getAdditionAccess().getAlternatives_1_0()); 
-            // InternalSephirah.g:2049:2: ( rule__Addition__Alternatives_1_0 )
-            // InternalSephirah.g:2049:3: rule__Addition__Alternatives_1_0
+            // InternalSephirah.g:2095:2: ( rule__Addition__Alternatives_1_0 )
+            // InternalSephirah.g:2095:3: rule__Addition__Alternatives_1_0
             {
             pushFollow(FOLLOW_2);
             rule__Addition__Alternatives_1_0();
@@ -6401,14 +6565,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group_1__1"
-    // InternalSephirah.g:2057:1: rule__Addition__Group_1__1 : rule__Addition__Group_1__1__Impl ;
+    // InternalSephirah.g:2103:1: rule__Addition__Group_1__1 : rule__Addition__Group_1__1__Impl ;
     public final void rule__Addition__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2061:1: ( rule__Addition__Group_1__1__Impl )
-            // InternalSephirah.g:2062:2: rule__Addition__Group_1__1__Impl
+            // InternalSephirah.g:2107:1: ( rule__Addition__Group_1__1__Impl )
+            // InternalSephirah.g:2108:2: rule__Addition__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Addition__Group_1__1__Impl();
@@ -6434,21 +6598,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group_1__1__Impl"
-    // InternalSephirah.g:2068:1: rule__Addition__Group_1__1__Impl : ( ( rule__Addition__RightAssignment_1_1 ) ) ;
+    // InternalSephirah.g:2114:1: rule__Addition__Group_1__1__Impl : ( ( rule__Addition__RightAssignment_1_1 ) ) ;
     public final void rule__Addition__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2072:1: ( ( ( rule__Addition__RightAssignment_1_1 ) ) )
-            // InternalSephirah.g:2073:1: ( ( rule__Addition__RightAssignment_1_1 ) )
+            // InternalSephirah.g:2118:1: ( ( ( rule__Addition__RightAssignment_1_1 ) ) )
+            // InternalSephirah.g:2119:1: ( ( rule__Addition__RightAssignment_1_1 ) )
             {
-            // InternalSephirah.g:2073:1: ( ( rule__Addition__RightAssignment_1_1 ) )
-            // InternalSephirah.g:2074:2: ( rule__Addition__RightAssignment_1_1 )
+            // InternalSephirah.g:2119:1: ( ( rule__Addition__RightAssignment_1_1 ) )
+            // InternalSephirah.g:2120:2: ( rule__Addition__RightAssignment_1_1 )
             {
              before(grammarAccess.getAdditionAccess().getRightAssignment_1_1()); 
-            // InternalSephirah.g:2075:2: ( rule__Addition__RightAssignment_1_1 )
-            // InternalSephirah.g:2075:3: rule__Addition__RightAssignment_1_1
+            // InternalSephirah.g:2121:2: ( rule__Addition__RightAssignment_1_1 )
+            // InternalSephirah.g:2121:3: rule__Addition__RightAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__Addition__RightAssignment_1_1();
@@ -6481,14 +6645,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group_1_0_0__0"
-    // InternalSephirah.g:2084:1: rule__Addition__Group_1_0_0__0 : rule__Addition__Group_1_0_0__0__Impl rule__Addition__Group_1_0_0__1 ;
+    // InternalSephirah.g:2130:1: rule__Addition__Group_1_0_0__0 : rule__Addition__Group_1_0_0__0__Impl rule__Addition__Group_1_0_0__1 ;
     public final void rule__Addition__Group_1_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2088:1: ( rule__Addition__Group_1_0_0__0__Impl rule__Addition__Group_1_0_0__1 )
-            // InternalSephirah.g:2089:2: rule__Addition__Group_1_0_0__0__Impl rule__Addition__Group_1_0_0__1
+            // InternalSephirah.g:2134:1: ( rule__Addition__Group_1_0_0__0__Impl rule__Addition__Group_1_0_0__1 )
+            // InternalSephirah.g:2135:2: rule__Addition__Group_1_0_0__0__Impl rule__Addition__Group_1_0_0__1
             {
             pushFollow(FOLLOW_21);
             rule__Addition__Group_1_0_0__0__Impl();
@@ -6519,21 +6683,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group_1_0_0__0__Impl"
-    // InternalSephirah.g:2096:1: rule__Addition__Group_1_0_0__0__Impl : ( () ) ;
+    // InternalSephirah.g:2142:1: rule__Addition__Group_1_0_0__0__Impl : ( () ) ;
     public final void rule__Addition__Group_1_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2100:1: ( ( () ) )
-            // InternalSephirah.g:2101:1: ( () )
+            // InternalSephirah.g:2146:1: ( ( () ) )
+            // InternalSephirah.g:2147:1: ( () )
             {
-            // InternalSephirah.g:2101:1: ( () )
-            // InternalSephirah.g:2102:2: ()
+            // InternalSephirah.g:2147:1: ( () )
+            // InternalSephirah.g:2148:2: ()
             {
              before(grammarAccess.getAdditionAccess().getAddLeftAction_1_0_0_0()); 
-            // InternalSephirah.g:2103:2: ()
-            // InternalSephirah.g:2103:3: 
+            // InternalSephirah.g:2149:2: ()
+            // InternalSephirah.g:2149:3: 
             {
             }
 
@@ -6556,14 +6720,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group_1_0_0__1"
-    // InternalSephirah.g:2111:1: rule__Addition__Group_1_0_0__1 : rule__Addition__Group_1_0_0__1__Impl ;
+    // InternalSephirah.g:2157:1: rule__Addition__Group_1_0_0__1 : rule__Addition__Group_1_0_0__1__Impl ;
     public final void rule__Addition__Group_1_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2115:1: ( rule__Addition__Group_1_0_0__1__Impl )
-            // InternalSephirah.g:2116:2: rule__Addition__Group_1_0_0__1__Impl
+            // InternalSephirah.g:2161:1: ( rule__Addition__Group_1_0_0__1__Impl )
+            // InternalSephirah.g:2162:2: rule__Addition__Group_1_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Addition__Group_1_0_0__1__Impl();
@@ -6589,17 +6753,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group_1_0_0__1__Impl"
-    // InternalSephirah.g:2122:1: rule__Addition__Group_1_0_0__1__Impl : ( '+' ) ;
+    // InternalSephirah.g:2168:1: rule__Addition__Group_1_0_0__1__Impl : ( '+' ) ;
     public final void rule__Addition__Group_1_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2126:1: ( ( '+' ) )
-            // InternalSephirah.g:2127:1: ( '+' )
+            // InternalSephirah.g:2172:1: ( ( '+' ) )
+            // InternalSephirah.g:2173:1: ( '+' )
             {
-            // InternalSephirah.g:2127:1: ( '+' )
-            // InternalSephirah.g:2128:2: '+'
+            // InternalSephirah.g:2173:1: ( '+' )
+            // InternalSephirah.g:2174:2: '+'
             {
              before(grammarAccess.getAdditionAccess().getPlusSignKeyword_1_0_0_1()); 
             match(input,35,FOLLOW_2); 
@@ -6626,14 +6790,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group_1_0_1__0"
-    // InternalSephirah.g:2138:1: rule__Addition__Group_1_0_1__0 : rule__Addition__Group_1_0_1__0__Impl rule__Addition__Group_1_0_1__1 ;
+    // InternalSephirah.g:2184:1: rule__Addition__Group_1_0_1__0 : rule__Addition__Group_1_0_1__0__Impl rule__Addition__Group_1_0_1__1 ;
     public final void rule__Addition__Group_1_0_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2142:1: ( rule__Addition__Group_1_0_1__0__Impl rule__Addition__Group_1_0_1__1 )
-            // InternalSephirah.g:2143:2: rule__Addition__Group_1_0_1__0__Impl rule__Addition__Group_1_0_1__1
+            // InternalSephirah.g:2188:1: ( rule__Addition__Group_1_0_1__0__Impl rule__Addition__Group_1_0_1__1 )
+            // InternalSephirah.g:2189:2: rule__Addition__Group_1_0_1__0__Impl rule__Addition__Group_1_0_1__1
             {
             pushFollow(FOLLOW_19);
             rule__Addition__Group_1_0_1__0__Impl();
@@ -6664,21 +6828,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group_1_0_1__0__Impl"
-    // InternalSephirah.g:2150:1: rule__Addition__Group_1_0_1__0__Impl : ( () ) ;
+    // InternalSephirah.g:2196:1: rule__Addition__Group_1_0_1__0__Impl : ( () ) ;
     public final void rule__Addition__Group_1_0_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2154:1: ( ( () ) )
-            // InternalSephirah.g:2155:1: ( () )
+            // InternalSephirah.g:2200:1: ( ( () ) )
+            // InternalSephirah.g:2201:1: ( () )
             {
-            // InternalSephirah.g:2155:1: ( () )
-            // InternalSephirah.g:2156:2: ()
+            // InternalSephirah.g:2201:1: ( () )
+            // InternalSephirah.g:2202:2: ()
             {
              before(grammarAccess.getAdditionAccess().getSubtractLeftAction_1_0_1_0()); 
-            // InternalSephirah.g:2157:2: ()
-            // InternalSephirah.g:2157:3: 
+            // InternalSephirah.g:2203:2: ()
+            // InternalSephirah.g:2203:3: 
             {
             }
 
@@ -6701,14 +6865,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group_1_0_1__1"
-    // InternalSephirah.g:2165:1: rule__Addition__Group_1_0_1__1 : rule__Addition__Group_1_0_1__1__Impl ;
+    // InternalSephirah.g:2211:1: rule__Addition__Group_1_0_1__1 : rule__Addition__Group_1_0_1__1__Impl ;
     public final void rule__Addition__Group_1_0_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2169:1: ( rule__Addition__Group_1_0_1__1__Impl )
-            // InternalSephirah.g:2170:2: rule__Addition__Group_1_0_1__1__Impl
+            // InternalSephirah.g:2215:1: ( rule__Addition__Group_1_0_1__1__Impl )
+            // InternalSephirah.g:2216:2: rule__Addition__Group_1_0_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Addition__Group_1_0_1__1__Impl();
@@ -6734,17 +6898,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__Group_1_0_1__1__Impl"
-    // InternalSephirah.g:2176:1: rule__Addition__Group_1_0_1__1__Impl : ( '-' ) ;
+    // InternalSephirah.g:2222:1: rule__Addition__Group_1_0_1__1__Impl : ( '-' ) ;
     public final void rule__Addition__Group_1_0_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2180:1: ( ( '-' ) )
-            // InternalSephirah.g:2181:1: ( '-' )
+            // InternalSephirah.g:2226:1: ( ( '-' ) )
+            // InternalSephirah.g:2227:1: ( '-' )
             {
-            // InternalSephirah.g:2181:1: ( '-' )
-            // InternalSephirah.g:2182:2: '-'
+            // InternalSephirah.g:2227:1: ( '-' )
+            // InternalSephirah.g:2228:2: '-'
             {
              before(grammarAccess.getAdditionAccess().getHyphenMinusKeyword_1_0_1_1()); 
             match(input,36,FOLLOW_2); 
@@ -6771,14 +6935,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group__0"
-    // InternalSephirah.g:2192:1: rule__Multiplication__Group__0 : rule__Multiplication__Group__0__Impl rule__Multiplication__Group__1 ;
+    // InternalSephirah.g:2238:1: rule__Multiplication__Group__0 : rule__Multiplication__Group__0__Impl rule__Multiplication__Group__1 ;
     public final void rule__Multiplication__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2196:1: ( rule__Multiplication__Group__0__Impl rule__Multiplication__Group__1 )
-            // InternalSephirah.g:2197:2: rule__Multiplication__Group__0__Impl rule__Multiplication__Group__1
+            // InternalSephirah.g:2242:1: ( rule__Multiplication__Group__0__Impl rule__Multiplication__Group__1 )
+            // InternalSephirah.g:2243:2: rule__Multiplication__Group__0__Impl rule__Multiplication__Group__1
             {
             pushFollow(FOLLOW_22);
             rule__Multiplication__Group__0__Impl();
@@ -6809,17 +6973,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group__0__Impl"
-    // InternalSephirah.g:2204:1: rule__Multiplication__Group__0__Impl : ( ruleExponent ) ;
+    // InternalSephirah.g:2250:1: rule__Multiplication__Group__0__Impl : ( ruleExponent ) ;
     public final void rule__Multiplication__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2208:1: ( ( ruleExponent ) )
-            // InternalSephirah.g:2209:1: ( ruleExponent )
+            // InternalSephirah.g:2254:1: ( ( ruleExponent ) )
+            // InternalSephirah.g:2255:1: ( ruleExponent )
             {
-            // InternalSephirah.g:2209:1: ( ruleExponent )
-            // InternalSephirah.g:2210:2: ruleExponent
+            // InternalSephirah.g:2255:1: ( ruleExponent )
+            // InternalSephirah.g:2256:2: ruleExponent
             {
              before(grammarAccess.getMultiplicationAccess().getExponentParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -6850,14 +7014,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group__1"
-    // InternalSephirah.g:2219:1: rule__Multiplication__Group__1 : rule__Multiplication__Group__1__Impl ;
+    // InternalSephirah.g:2265:1: rule__Multiplication__Group__1 : rule__Multiplication__Group__1__Impl ;
     public final void rule__Multiplication__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2223:1: ( rule__Multiplication__Group__1__Impl )
-            // InternalSephirah.g:2224:2: rule__Multiplication__Group__1__Impl
+            // InternalSephirah.g:2269:1: ( rule__Multiplication__Group__1__Impl )
+            // InternalSephirah.g:2270:2: rule__Multiplication__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Multiplication__Group__1__Impl();
@@ -6883,33 +7047,33 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group__1__Impl"
-    // InternalSephirah.g:2230:1: rule__Multiplication__Group__1__Impl : ( ( rule__Multiplication__Group_1__0 )* ) ;
+    // InternalSephirah.g:2276:1: rule__Multiplication__Group__1__Impl : ( ( rule__Multiplication__Group_1__0 )* ) ;
     public final void rule__Multiplication__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2234:1: ( ( ( rule__Multiplication__Group_1__0 )* ) )
-            // InternalSephirah.g:2235:1: ( ( rule__Multiplication__Group_1__0 )* )
+            // InternalSephirah.g:2280:1: ( ( ( rule__Multiplication__Group_1__0 )* ) )
+            // InternalSephirah.g:2281:1: ( ( rule__Multiplication__Group_1__0 )* )
             {
-            // InternalSephirah.g:2235:1: ( ( rule__Multiplication__Group_1__0 )* )
-            // InternalSephirah.g:2236:2: ( rule__Multiplication__Group_1__0 )*
+            // InternalSephirah.g:2281:1: ( ( rule__Multiplication__Group_1__0 )* )
+            // InternalSephirah.g:2282:2: ( rule__Multiplication__Group_1__0 )*
             {
              before(grammarAccess.getMultiplicationAccess().getGroup_1()); 
-            // InternalSephirah.g:2237:2: ( rule__Multiplication__Group_1__0 )*
-            loop16:
+            // InternalSephirah.g:2283:2: ( rule__Multiplication__Group_1__0 )*
+            loop17:
             do {
-                int alt16=2;
-                int LA16_0 = input.LA(1);
+                int alt17=2;
+                int LA17_0 = input.LA(1);
 
-                if ( ((LA16_0>=37 && LA16_0<=38)) ) {
-                    alt16=1;
+                if ( ((LA17_0>=37 && LA17_0<=38)) ) {
+                    alt17=1;
                 }
 
 
-                switch (alt16) {
+                switch (alt17) {
             	case 1 :
-            	    // InternalSephirah.g:2237:3: rule__Multiplication__Group_1__0
+            	    // InternalSephirah.g:2283:3: rule__Multiplication__Group_1__0
             	    {
             	    pushFollow(FOLLOW_23);
             	    rule__Multiplication__Group_1__0();
@@ -6921,7 +7085,7 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             	    break;
 
             	default :
-            	    break loop16;
+            	    break loop17;
                 }
             } while (true);
 
@@ -6948,14 +7112,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group_1__0"
-    // InternalSephirah.g:2246:1: rule__Multiplication__Group_1__0 : rule__Multiplication__Group_1__0__Impl rule__Multiplication__Group_1__1 ;
+    // InternalSephirah.g:2292:1: rule__Multiplication__Group_1__0 : rule__Multiplication__Group_1__0__Impl rule__Multiplication__Group_1__1 ;
     public final void rule__Multiplication__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2250:1: ( rule__Multiplication__Group_1__0__Impl rule__Multiplication__Group_1__1 )
-            // InternalSephirah.g:2251:2: rule__Multiplication__Group_1__0__Impl rule__Multiplication__Group_1__1
+            // InternalSephirah.g:2296:1: ( rule__Multiplication__Group_1__0__Impl rule__Multiplication__Group_1__1 )
+            // InternalSephirah.g:2297:2: rule__Multiplication__Group_1__0__Impl rule__Multiplication__Group_1__1
             {
             pushFollow(FOLLOW_11);
             rule__Multiplication__Group_1__0__Impl();
@@ -6986,21 +7150,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group_1__0__Impl"
-    // InternalSephirah.g:2258:1: rule__Multiplication__Group_1__0__Impl : ( ( rule__Multiplication__Alternatives_1_0 ) ) ;
+    // InternalSephirah.g:2304:1: rule__Multiplication__Group_1__0__Impl : ( ( rule__Multiplication__Alternatives_1_0 ) ) ;
     public final void rule__Multiplication__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2262:1: ( ( ( rule__Multiplication__Alternatives_1_0 ) ) )
-            // InternalSephirah.g:2263:1: ( ( rule__Multiplication__Alternatives_1_0 ) )
+            // InternalSephirah.g:2308:1: ( ( ( rule__Multiplication__Alternatives_1_0 ) ) )
+            // InternalSephirah.g:2309:1: ( ( rule__Multiplication__Alternatives_1_0 ) )
             {
-            // InternalSephirah.g:2263:1: ( ( rule__Multiplication__Alternatives_1_0 ) )
-            // InternalSephirah.g:2264:2: ( rule__Multiplication__Alternatives_1_0 )
+            // InternalSephirah.g:2309:1: ( ( rule__Multiplication__Alternatives_1_0 ) )
+            // InternalSephirah.g:2310:2: ( rule__Multiplication__Alternatives_1_0 )
             {
              before(grammarAccess.getMultiplicationAccess().getAlternatives_1_0()); 
-            // InternalSephirah.g:2265:2: ( rule__Multiplication__Alternatives_1_0 )
-            // InternalSephirah.g:2265:3: rule__Multiplication__Alternatives_1_0
+            // InternalSephirah.g:2311:2: ( rule__Multiplication__Alternatives_1_0 )
+            // InternalSephirah.g:2311:3: rule__Multiplication__Alternatives_1_0
             {
             pushFollow(FOLLOW_2);
             rule__Multiplication__Alternatives_1_0();
@@ -7033,14 +7197,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group_1__1"
-    // InternalSephirah.g:2273:1: rule__Multiplication__Group_1__1 : rule__Multiplication__Group_1__1__Impl ;
+    // InternalSephirah.g:2319:1: rule__Multiplication__Group_1__1 : rule__Multiplication__Group_1__1__Impl ;
     public final void rule__Multiplication__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2277:1: ( rule__Multiplication__Group_1__1__Impl )
-            // InternalSephirah.g:2278:2: rule__Multiplication__Group_1__1__Impl
+            // InternalSephirah.g:2323:1: ( rule__Multiplication__Group_1__1__Impl )
+            // InternalSephirah.g:2324:2: rule__Multiplication__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Multiplication__Group_1__1__Impl();
@@ -7066,21 +7230,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group_1__1__Impl"
-    // InternalSephirah.g:2284:1: rule__Multiplication__Group_1__1__Impl : ( ( rule__Multiplication__RightAssignment_1_1 ) ) ;
+    // InternalSephirah.g:2330:1: rule__Multiplication__Group_1__1__Impl : ( ( rule__Multiplication__RightAssignment_1_1 ) ) ;
     public final void rule__Multiplication__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2288:1: ( ( ( rule__Multiplication__RightAssignment_1_1 ) ) )
-            // InternalSephirah.g:2289:1: ( ( rule__Multiplication__RightAssignment_1_1 ) )
+            // InternalSephirah.g:2334:1: ( ( ( rule__Multiplication__RightAssignment_1_1 ) ) )
+            // InternalSephirah.g:2335:1: ( ( rule__Multiplication__RightAssignment_1_1 ) )
             {
-            // InternalSephirah.g:2289:1: ( ( rule__Multiplication__RightAssignment_1_1 ) )
-            // InternalSephirah.g:2290:2: ( rule__Multiplication__RightAssignment_1_1 )
+            // InternalSephirah.g:2335:1: ( ( rule__Multiplication__RightAssignment_1_1 ) )
+            // InternalSephirah.g:2336:2: ( rule__Multiplication__RightAssignment_1_1 )
             {
              before(grammarAccess.getMultiplicationAccess().getRightAssignment_1_1()); 
-            // InternalSephirah.g:2291:2: ( rule__Multiplication__RightAssignment_1_1 )
-            // InternalSephirah.g:2291:3: rule__Multiplication__RightAssignment_1_1
+            // InternalSephirah.g:2337:2: ( rule__Multiplication__RightAssignment_1_1 )
+            // InternalSephirah.g:2337:3: rule__Multiplication__RightAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__Multiplication__RightAssignment_1_1();
@@ -7113,14 +7277,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group_1_0_0__0"
-    // InternalSephirah.g:2300:1: rule__Multiplication__Group_1_0_0__0 : rule__Multiplication__Group_1_0_0__0__Impl rule__Multiplication__Group_1_0_0__1 ;
+    // InternalSephirah.g:2346:1: rule__Multiplication__Group_1_0_0__0 : rule__Multiplication__Group_1_0_0__0__Impl rule__Multiplication__Group_1_0_0__1 ;
     public final void rule__Multiplication__Group_1_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2304:1: ( rule__Multiplication__Group_1_0_0__0__Impl rule__Multiplication__Group_1_0_0__1 )
-            // InternalSephirah.g:2305:2: rule__Multiplication__Group_1_0_0__0__Impl rule__Multiplication__Group_1_0_0__1
+            // InternalSephirah.g:2350:1: ( rule__Multiplication__Group_1_0_0__0__Impl rule__Multiplication__Group_1_0_0__1 )
+            // InternalSephirah.g:2351:2: rule__Multiplication__Group_1_0_0__0__Impl rule__Multiplication__Group_1_0_0__1
             {
             pushFollow(FOLLOW_24);
             rule__Multiplication__Group_1_0_0__0__Impl();
@@ -7151,21 +7315,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group_1_0_0__0__Impl"
-    // InternalSephirah.g:2312:1: rule__Multiplication__Group_1_0_0__0__Impl : ( () ) ;
+    // InternalSephirah.g:2358:1: rule__Multiplication__Group_1_0_0__0__Impl : ( () ) ;
     public final void rule__Multiplication__Group_1_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2316:1: ( ( () ) )
-            // InternalSephirah.g:2317:1: ( () )
+            // InternalSephirah.g:2362:1: ( ( () ) )
+            // InternalSephirah.g:2363:1: ( () )
             {
-            // InternalSephirah.g:2317:1: ( () )
-            // InternalSephirah.g:2318:2: ()
+            // InternalSephirah.g:2363:1: ( () )
+            // InternalSephirah.g:2364:2: ()
             {
              before(grammarAccess.getMultiplicationAccess().getMultiplyLeftAction_1_0_0_0()); 
-            // InternalSephirah.g:2319:2: ()
-            // InternalSephirah.g:2319:3: 
+            // InternalSephirah.g:2365:2: ()
+            // InternalSephirah.g:2365:3: 
             {
             }
 
@@ -7188,14 +7352,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group_1_0_0__1"
-    // InternalSephirah.g:2327:1: rule__Multiplication__Group_1_0_0__1 : rule__Multiplication__Group_1_0_0__1__Impl ;
+    // InternalSephirah.g:2373:1: rule__Multiplication__Group_1_0_0__1 : rule__Multiplication__Group_1_0_0__1__Impl ;
     public final void rule__Multiplication__Group_1_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2331:1: ( rule__Multiplication__Group_1_0_0__1__Impl )
-            // InternalSephirah.g:2332:2: rule__Multiplication__Group_1_0_0__1__Impl
+            // InternalSephirah.g:2377:1: ( rule__Multiplication__Group_1_0_0__1__Impl )
+            // InternalSephirah.g:2378:2: rule__Multiplication__Group_1_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Multiplication__Group_1_0_0__1__Impl();
@@ -7221,17 +7385,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group_1_0_0__1__Impl"
-    // InternalSephirah.g:2338:1: rule__Multiplication__Group_1_0_0__1__Impl : ( '*' ) ;
+    // InternalSephirah.g:2384:1: rule__Multiplication__Group_1_0_0__1__Impl : ( '*' ) ;
     public final void rule__Multiplication__Group_1_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2342:1: ( ( '*' ) )
-            // InternalSephirah.g:2343:1: ( '*' )
+            // InternalSephirah.g:2388:1: ( ( '*' ) )
+            // InternalSephirah.g:2389:1: ( '*' )
             {
-            // InternalSephirah.g:2343:1: ( '*' )
-            // InternalSephirah.g:2344:2: '*'
+            // InternalSephirah.g:2389:1: ( '*' )
+            // InternalSephirah.g:2390:2: '*'
             {
              before(grammarAccess.getMultiplicationAccess().getAsteriskKeyword_1_0_0_1()); 
             match(input,37,FOLLOW_2); 
@@ -7258,14 +7422,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group_1_0_1__0"
-    // InternalSephirah.g:2354:1: rule__Multiplication__Group_1_0_1__0 : rule__Multiplication__Group_1_0_1__0__Impl rule__Multiplication__Group_1_0_1__1 ;
+    // InternalSephirah.g:2400:1: rule__Multiplication__Group_1_0_1__0 : rule__Multiplication__Group_1_0_1__0__Impl rule__Multiplication__Group_1_0_1__1 ;
     public final void rule__Multiplication__Group_1_0_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2358:1: ( rule__Multiplication__Group_1_0_1__0__Impl rule__Multiplication__Group_1_0_1__1 )
-            // InternalSephirah.g:2359:2: rule__Multiplication__Group_1_0_1__0__Impl rule__Multiplication__Group_1_0_1__1
+            // InternalSephirah.g:2404:1: ( rule__Multiplication__Group_1_0_1__0__Impl rule__Multiplication__Group_1_0_1__1 )
+            // InternalSephirah.g:2405:2: rule__Multiplication__Group_1_0_1__0__Impl rule__Multiplication__Group_1_0_1__1
             {
             pushFollow(FOLLOW_22);
             rule__Multiplication__Group_1_0_1__0__Impl();
@@ -7296,21 +7460,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group_1_0_1__0__Impl"
-    // InternalSephirah.g:2366:1: rule__Multiplication__Group_1_0_1__0__Impl : ( () ) ;
+    // InternalSephirah.g:2412:1: rule__Multiplication__Group_1_0_1__0__Impl : ( () ) ;
     public final void rule__Multiplication__Group_1_0_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2370:1: ( ( () ) )
-            // InternalSephirah.g:2371:1: ( () )
+            // InternalSephirah.g:2416:1: ( ( () ) )
+            // InternalSephirah.g:2417:1: ( () )
             {
-            // InternalSephirah.g:2371:1: ( () )
-            // InternalSephirah.g:2372:2: ()
+            // InternalSephirah.g:2417:1: ( () )
+            // InternalSephirah.g:2418:2: ()
             {
              before(grammarAccess.getMultiplicationAccess().getDivideLeftAction_1_0_1_0()); 
-            // InternalSephirah.g:2373:2: ()
-            // InternalSephirah.g:2373:3: 
+            // InternalSephirah.g:2419:2: ()
+            // InternalSephirah.g:2419:3: 
             {
             }
 
@@ -7333,14 +7497,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group_1_0_1__1"
-    // InternalSephirah.g:2381:1: rule__Multiplication__Group_1_0_1__1 : rule__Multiplication__Group_1_0_1__1__Impl ;
+    // InternalSephirah.g:2427:1: rule__Multiplication__Group_1_0_1__1 : rule__Multiplication__Group_1_0_1__1__Impl ;
     public final void rule__Multiplication__Group_1_0_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2385:1: ( rule__Multiplication__Group_1_0_1__1__Impl )
-            // InternalSephirah.g:2386:2: rule__Multiplication__Group_1_0_1__1__Impl
+            // InternalSephirah.g:2431:1: ( rule__Multiplication__Group_1_0_1__1__Impl )
+            // InternalSephirah.g:2432:2: rule__Multiplication__Group_1_0_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Multiplication__Group_1_0_1__1__Impl();
@@ -7366,17 +7530,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__Group_1_0_1__1__Impl"
-    // InternalSephirah.g:2392:1: rule__Multiplication__Group_1_0_1__1__Impl : ( '/' ) ;
+    // InternalSephirah.g:2438:1: rule__Multiplication__Group_1_0_1__1__Impl : ( '/' ) ;
     public final void rule__Multiplication__Group_1_0_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2396:1: ( ( '/' ) )
-            // InternalSephirah.g:2397:1: ( '/' )
+            // InternalSephirah.g:2442:1: ( ( '/' ) )
+            // InternalSephirah.g:2443:1: ( '/' )
             {
-            // InternalSephirah.g:2397:1: ( '/' )
-            // InternalSephirah.g:2398:2: '/'
+            // InternalSephirah.g:2443:1: ( '/' )
+            // InternalSephirah.g:2444:2: '/'
             {
              before(grammarAccess.getMultiplicationAccess().getSolidusKeyword_1_0_1_1()); 
             match(input,38,FOLLOW_2); 
@@ -7403,14 +7567,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Exponent__Group__0"
-    // InternalSephirah.g:2408:1: rule__Exponent__Group__0 : rule__Exponent__Group__0__Impl rule__Exponent__Group__1 ;
+    // InternalSephirah.g:2454:1: rule__Exponent__Group__0 : rule__Exponent__Group__0__Impl rule__Exponent__Group__1 ;
     public final void rule__Exponent__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2412:1: ( rule__Exponent__Group__0__Impl rule__Exponent__Group__1 )
-            // InternalSephirah.g:2413:2: rule__Exponent__Group__0__Impl rule__Exponent__Group__1
+            // InternalSephirah.g:2458:1: ( rule__Exponent__Group__0__Impl rule__Exponent__Group__1 )
+            // InternalSephirah.g:2459:2: rule__Exponent__Group__0__Impl rule__Exponent__Group__1
             {
             pushFollow(FOLLOW_25);
             rule__Exponent__Group__0__Impl();
@@ -7441,17 +7605,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Exponent__Group__0__Impl"
-    // InternalSephirah.g:2420:1: rule__Exponent__Group__0__Impl : ( rulePrimaryExpression ) ;
+    // InternalSephirah.g:2466:1: rule__Exponent__Group__0__Impl : ( rulePrimaryExpression ) ;
     public final void rule__Exponent__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2424:1: ( ( rulePrimaryExpression ) )
-            // InternalSephirah.g:2425:1: ( rulePrimaryExpression )
+            // InternalSephirah.g:2470:1: ( ( rulePrimaryExpression ) )
+            // InternalSephirah.g:2471:1: ( rulePrimaryExpression )
             {
-            // InternalSephirah.g:2425:1: ( rulePrimaryExpression )
-            // InternalSephirah.g:2426:2: rulePrimaryExpression
+            // InternalSephirah.g:2471:1: ( rulePrimaryExpression )
+            // InternalSephirah.g:2472:2: rulePrimaryExpression
             {
              before(grammarAccess.getExponentAccess().getPrimaryExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -7482,14 +7646,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Exponent__Group__1"
-    // InternalSephirah.g:2435:1: rule__Exponent__Group__1 : rule__Exponent__Group__1__Impl ;
+    // InternalSephirah.g:2481:1: rule__Exponent__Group__1 : rule__Exponent__Group__1__Impl ;
     public final void rule__Exponent__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2439:1: ( rule__Exponent__Group__1__Impl )
-            // InternalSephirah.g:2440:2: rule__Exponent__Group__1__Impl
+            // InternalSephirah.g:2485:1: ( rule__Exponent__Group__1__Impl )
+            // InternalSephirah.g:2486:2: rule__Exponent__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Exponent__Group__1__Impl();
@@ -7515,29 +7679,29 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Exponent__Group__1__Impl"
-    // InternalSephirah.g:2446:1: rule__Exponent__Group__1__Impl : ( ( rule__Exponent__Group_1__0 )? ) ;
+    // InternalSephirah.g:2492:1: rule__Exponent__Group__1__Impl : ( ( rule__Exponent__Group_1__0 )? ) ;
     public final void rule__Exponent__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2450:1: ( ( ( rule__Exponent__Group_1__0 )? ) )
-            // InternalSephirah.g:2451:1: ( ( rule__Exponent__Group_1__0 )? )
+            // InternalSephirah.g:2496:1: ( ( ( rule__Exponent__Group_1__0 )? ) )
+            // InternalSephirah.g:2497:1: ( ( rule__Exponent__Group_1__0 )? )
             {
-            // InternalSephirah.g:2451:1: ( ( rule__Exponent__Group_1__0 )? )
-            // InternalSephirah.g:2452:2: ( rule__Exponent__Group_1__0 )?
+            // InternalSephirah.g:2497:1: ( ( rule__Exponent__Group_1__0 )? )
+            // InternalSephirah.g:2498:2: ( rule__Exponent__Group_1__0 )?
             {
              before(grammarAccess.getExponentAccess().getGroup_1()); 
-            // InternalSephirah.g:2453:2: ( rule__Exponent__Group_1__0 )?
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            // InternalSephirah.g:2499:2: ( rule__Exponent__Group_1__0 )?
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( (LA17_0==39) ) {
-                alt17=1;
+            if ( (LA18_0==39) ) {
+                alt18=1;
             }
-            switch (alt17) {
+            switch (alt18) {
                 case 1 :
-                    // InternalSephirah.g:2453:3: rule__Exponent__Group_1__0
+                    // InternalSephirah.g:2499:3: rule__Exponent__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__Exponent__Group_1__0();
@@ -7573,14 +7737,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Exponent__Group_1__0"
-    // InternalSephirah.g:2462:1: rule__Exponent__Group_1__0 : rule__Exponent__Group_1__0__Impl rule__Exponent__Group_1__1 ;
+    // InternalSephirah.g:2508:1: rule__Exponent__Group_1__0 : rule__Exponent__Group_1__0__Impl rule__Exponent__Group_1__1 ;
     public final void rule__Exponent__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2466:1: ( rule__Exponent__Group_1__0__Impl rule__Exponent__Group_1__1 )
-            // InternalSephirah.g:2467:2: rule__Exponent__Group_1__0__Impl rule__Exponent__Group_1__1
+            // InternalSephirah.g:2512:1: ( rule__Exponent__Group_1__0__Impl rule__Exponent__Group_1__1 )
+            // InternalSephirah.g:2513:2: rule__Exponent__Group_1__0__Impl rule__Exponent__Group_1__1
             {
             pushFollow(FOLLOW_25);
             rule__Exponent__Group_1__0__Impl();
@@ -7611,21 +7775,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Exponent__Group_1__0__Impl"
-    // InternalSephirah.g:2474:1: rule__Exponent__Group_1__0__Impl : ( () ) ;
+    // InternalSephirah.g:2520:1: rule__Exponent__Group_1__0__Impl : ( () ) ;
     public final void rule__Exponent__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2478:1: ( ( () ) )
-            // InternalSephirah.g:2479:1: ( () )
+            // InternalSephirah.g:2524:1: ( ( () ) )
+            // InternalSephirah.g:2525:1: ( () )
             {
-            // InternalSephirah.g:2479:1: ( () )
-            // InternalSephirah.g:2480:2: ()
+            // InternalSephirah.g:2525:1: ( () )
+            // InternalSephirah.g:2526:2: ()
             {
              before(grammarAccess.getExponentAccess().getExponentLeftAction_1_0()); 
-            // InternalSephirah.g:2481:2: ()
-            // InternalSephirah.g:2481:3: 
+            // InternalSephirah.g:2527:2: ()
+            // InternalSephirah.g:2527:3: 
             {
             }
 
@@ -7648,14 +7812,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Exponent__Group_1__1"
-    // InternalSephirah.g:2489:1: rule__Exponent__Group_1__1 : rule__Exponent__Group_1__1__Impl rule__Exponent__Group_1__2 ;
+    // InternalSephirah.g:2535:1: rule__Exponent__Group_1__1 : rule__Exponent__Group_1__1__Impl rule__Exponent__Group_1__2 ;
     public final void rule__Exponent__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2493:1: ( rule__Exponent__Group_1__1__Impl rule__Exponent__Group_1__2 )
-            // InternalSephirah.g:2494:2: rule__Exponent__Group_1__1__Impl rule__Exponent__Group_1__2
+            // InternalSephirah.g:2539:1: ( rule__Exponent__Group_1__1__Impl rule__Exponent__Group_1__2 )
+            // InternalSephirah.g:2540:2: rule__Exponent__Group_1__1__Impl rule__Exponent__Group_1__2
             {
             pushFollow(FOLLOW_11);
             rule__Exponent__Group_1__1__Impl();
@@ -7686,17 +7850,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Exponent__Group_1__1__Impl"
-    // InternalSephirah.g:2501:1: rule__Exponent__Group_1__1__Impl : ( '^' ) ;
+    // InternalSephirah.g:2547:1: rule__Exponent__Group_1__1__Impl : ( '^' ) ;
     public final void rule__Exponent__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2505:1: ( ( '^' ) )
-            // InternalSephirah.g:2506:1: ( '^' )
+            // InternalSephirah.g:2551:1: ( ( '^' ) )
+            // InternalSephirah.g:2552:1: ( '^' )
             {
-            // InternalSephirah.g:2506:1: ( '^' )
-            // InternalSephirah.g:2507:2: '^'
+            // InternalSephirah.g:2552:1: ( '^' )
+            // InternalSephirah.g:2553:2: '^'
             {
              before(grammarAccess.getExponentAccess().getCircumflexAccentKeyword_1_1()); 
             match(input,39,FOLLOW_2); 
@@ -7723,14 +7887,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Exponent__Group_1__2"
-    // InternalSephirah.g:2516:1: rule__Exponent__Group_1__2 : rule__Exponent__Group_1__2__Impl ;
+    // InternalSephirah.g:2562:1: rule__Exponent__Group_1__2 : rule__Exponent__Group_1__2__Impl ;
     public final void rule__Exponent__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2520:1: ( rule__Exponent__Group_1__2__Impl )
-            // InternalSephirah.g:2521:2: rule__Exponent__Group_1__2__Impl
+            // InternalSephirah.g:2566:1: ( rule__Exponent__Group_1__2__Impl )
+            // InternalSephirah.g:2567:2: rule__Exponent__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Exponent__Group_1__2__Impl();
@@ -7756,21 +7920,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Exponent__Group_1__2__Impl"
-    // InternalSephirah.g:2527:1: rule__Exponent__Group_1__2__Impl : ( ( rule__Exponent__RightAssignment_1_2 ) ) ;
+    // InternalSephirah.g:2573:1: rule__Exponent__Group_1__2__Impl : ( ( rule__Exponent__RightAssignment_1_2 ) ) ;
     public final void rule__Exponent__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2531:1: ( ( ( rule__Exponent__RightAssignment_1_2 ) ) )
-            // InternalSephirah.g:2532:1: ( ( rule__Exponent__RightAssignment_1_2 ) )
+            // InternalSephirah.g:2577:1: ( ( ( rule__Exponent__RightAssignment_1_2 ) ) )
+            // InternalSephirah.g:2578:1: ( ( rule__Exponent__RightAssignment_1_2 ) )
             {
-            // InternalSephirah.g:2532:1: ( ( rule__Exponent__RightAssignment_1_2 ) )
-            // InternalSephirah.g:2533:2: ( rule__Exponent__RightAssignment_1_2 )
+            // InternalSephirah.g:2578:1: ( ( rule__Exponent__RightAssignment_1_2 ) )
+            // InternalSephirah.g:2579:2: ( rule__Exponent__RightAssignment_1_2 )
             {
              before(grammarAccess.getExponentAccess().getRightAssignment_1_2()); 
-            // InternalSephirah.g:2534:2: ( rule__Exponent__RightAssignment_1_2 )
-            // InternalSephirah.g:2534:3: rule__Exponent__RightAssignment_1_2
+            // InternalSephirah.g:2580:2: ( rule__Exponent__RightAssignment_1_2 )
+            // InternalSephirah.g:2580:3: rule__Exponent__RightAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__Exponent__RightAssignment_1_2();
@@ -7803,14 +7967,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_0__0"
-    // InternalSephirah.g:2543:1: rule__PrimaryExpression__Group_0__0 : rule__PrimaryExpression__Group_0__0__Impl rule__PrimaryExpression__Group_0__1 ;
+    // InternalSephirah.g:2589:1: rule__PrimaryExpression__Group_0__0 : rule__PrimaryExpression__Group_0__0__Impl rule__PrimaryExpression__Group_0__1 ;
     public final void rule__PrimaryExpression__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2547:1: ( rule__PrimaryExpression__Group_0__0__Impl rule__PrimaryExpression__Group_0__1 )
-            // InternalSephirah.g:2548:2: rule__PrimaryExpression__Group_0__0__Impl rule__PrimaryExpression__Group_0__1
+            // InternalSephirah.g:2593:1: ( rule__PrimaryExpression__Group_0__0__Impl rule__PrimaryExpression__Group_0__1 )
+            // InternalSephirah.g:2594:2: rule__PrimaryExpression__Group_0__0__Impl rule__PrimaryExpression__Group_0__1
             {
             pushFollow(FOLLOW_11);
             rule__PrimaryExpression__Group_0__0__Impl();
@@ -7841,17 +8005,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_0__0__Impl"
-    // InternalSephirah.g:2555:1: rule__PrimaryExpression__Group_0__0__Impl : ( '(' ) ;
+    // InternalSephirah.g:2601:1: rule__PrimaryExpression__Group_0__0__Impl : ( '(' ) ;
     public final void rule__PrimaryExpression__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2559:1: ( ( '(' ) )
-            // InternalSephirah.g:2560:1: ( '(' )
+            // InternalSephirah.g:2605:1: ( ( '(' ) )
+            // InternalSephirah.g:2606:1: ( '(' )
             {
-            // InternalSephirah.g:2560:1: ( '(' )
-            // InternalSephirah.g:2561:2: '('
+            // InternalSephirah.g:2606:1: ( '(' )
+            // InternalSephirah.g:2607:2: '('
             {
              before(grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_0_0()); 
             match(input,27,FOLLOW_2); 
@@ -7878,14 +8042,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_0__1"
-    // InternalSephirah.g:2570:1: rule__PrimaryExpression__Group_0__1 : rule__PrimaryExpression__Group_0__1__Impl rule__PrimaryExpression__Group_0__2 ;
+    // InternalSephirah.g:2616:1: rule__PrimaryExpression__Group_0__1 : rule__PrimaryExpression__Group_0__1__Impl rule__PrimaryExpression__Group_0__2 ;
     public final void rule__PrimaryExpression__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2574:1: ( rule__PrimaryExpression__Group_0__1__Impl rule__PrimaryExpression__Group_0__2 )
-            // InternalSephirah.g:2575:2: rule__PrimaryExpression__Group_0__1__Impl rule__PrimaryExpression__Group_0__2
+            // InternalSephirah.g:2620:1: ( rule__PrimaryExpression__Group_0__1__Impl rule__PrimaryExpression__Group_0__2 )
+            // InternalSephirah.g:2621:2: rule__PrimaryExpression__Group_0__1__Impl rule__PrimaryExpression__Group_0__2
             {
             pushFollow(FOLLOW_26);
             rule__PrimaryExpression__Group_0__1__Impl();
@@ -7916,17 +8080,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_0__1__Impl"
-    // InternalSephirah.g:2582:1: rule__PrimaryExpression__Group_0__1__Impl : ( ruleExpression ) ;
+    // InternalSephirah.g:2628:1: rule__PrimaryExpression__Group_0__1__Impl : ( ruleExpression ) ;
     public final void rule__PrimaryExpression__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2586:1: ( ( ruleExpression ) )
-            // InternalSephirah.g:2587:1: ( ruleExpression )
+            // InternalSephirah.g:2632:1: ( ( ruleExpression ) )
+            // InternalSephirah.g:2633:1: ( ruleExpression )
             {
-            // InternalSephirah.g:2587:1: ( ruleExpression )
-            // InternalSephirah.g:2588:2: ruleExpression
+            // InternalSephirah.g:2633:1: ( ruleExpression )
+            // InternalSephirah.g:2634:2: ruleExpression
             {
              before(grammarAccess.getPrimaryExpressionAccess().getExpressionParserRuleCall_0_1()); 
             pushFollow(FOLLOW_2);
@@ -7957,14 +8121,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_0__2"
-    // InternalSephirah.g:2597:1: rule__PrimaryExpression__Group_0__2 : rule__PrimaryExpression__Group_0__2__Impl ;
+    // InternalSephirah.g:2643:1: rule__PrimaryExpression__Group_0__2 : rule__PrimaryExpression__Group_0__2__Impl ;
     public final void rule__PrimaryExpression__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2601:1: ( rule__PrimaryExpression__Group_0__2__Impl )
-            // InternalSephirah.g:2602:2: rule__PrimaryExpression__Group_0__2__Impl
+            // InternalSephirah.g:2647:1: ( rule__PrimaryExpression__Group_0__2__Impl )
+            // InternalSephirah.g:2648:2: rule__PrimaryExpression__Group_0__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__Group_0__2__Impl();
@@ -7990,17 +8154,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_0__2__Impl"
-    // InternalSephirah.g:2608:1: rule__PrimaryExpression__Group_0__2__Impl : ( ')' ) ;
+    // InternalSephirah.g:2654:1: rule__PrimaryExpression__Group_0__2__Impl : ( ')' ) ;
     public final void rule__PrimaryExpression__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2612:1: ( ( ')' ) )
-            // InternalSephirah.g:2613:1: ( ')' )
+            // InternalSephirah.g:2658:1: ( ( ')' ) )
+            // InternalSephirah.g:2659:1: ( ')' )
             {
-            // InternalSephirah.g:2613:1: ( ')' )
-            // InternalSephirah.g:2614:2: ')'
+            // InternalSephirah.g:2659:1: ( ')' )
+            // InternalSephirah.g:2660:2: ')'
             {
              before(grammarAccess.getPrimaryExpressionAccess().getRightParenthesisKeyword_0_2()); 
             match(input,28,FOLLOW_2); 
@@ -8027,14 +8191,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1__0"
-    // InternalSephirah.g:2624:1: rule__PrimaryExpression__Group_1__0 : rule__PrimaryExpression__Group_1__0__Impl rule__PrimaryExpression__Group_1__1 ;
+    // InternalSephirah.g:2670:1: rule__PrimaryExpression__Group_1__0 : rule__PrimaryExpression__Group_1__0__Impl rule__PrimaryExpression__Group_1__1 ;
     public final void rule__PrimaryExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2628:1: ( rule__PrimaryExpression__Group_1__0__Impl rule__PrimaryExpression__Group_1__1 )
-            // InternalSephirah.g:2629:2: rule__PrimaryExpression__Group_1__0__Impl rule__PrimaryExpression__Group_1__1
+            // InternalSephirah.g:2674:1: ( rule__PrimaryExpression__Group_1__0__Impl rule__PrimaryExpression__Group_1__1 )
+            // InternalSephirah.g:2675:2: rule__PrimaryExpression__Group_1__0__Impl rule__PrimaryExpression__Group_1__1
             {
             pushFollow(FOLLOW_27);
             rule__PrimaryExpression__Group_1__0__Impl();
@@ -8065,21 +8229,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1__0__Impl"
-    // InternalSephirah.g:2636:1: rule__PrimaryExpression__Group_1__0__Impl : ( () ) ;
+    // InternalSephirah.g:2682:1: rule__PrimaryExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__PrimaryExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2640:1: ( ( () ) )
-            // InternalSephirah.g:2641:1: ( () )
+            // InternalSephirah.g:2686:1: ( ( () ) )
+            // InternalSephirah.g:2687:1: ( () )
             {
-            // InternalSephirah.g:2641:1: ( () )
-            // InternalSephirah.g:2642:2: ()
+            // InternalSephirah.g:2687:1: ( () )
+            // InternalSephirah.g:2688:2: ()
             {
              before(grammarAccess.getPrimaryExpressionAccess().getNumberLiteralAction_1_0()); 
-            // InternalSephirah.g:2643:2: ()
-            // InternalSephirah.g:2643:3: 
+            // InternalSephirah.g:2689:2: ()
+            // InternalSephirah.g:2689:3: 
             {
             }
 
@@ -8102,14 +8266,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1__1"
-    // InternalSephirah.g:2651:1: rule__PrimaryExpression__Group_1__1 : rule__PrimaryExpression__Group_1__1__Impl ;
+    // InternalSephirah.g:2697:1: rule__PrimaryExpression__Group_1__1 : rule__PrimaryExpression__Group_1__1__Impl ;
     public final void rule__PrimaryExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2655:1: ( rule__PrimaryExpression__Group_1__1__Impl )
-            // InternalSephirah.g:2656:2: rule__PrimaryExpression__Group_1__1__Impl
+            // InternalSephirah.g:2701:1: ( rule__PrimaryExpression__Group_1__1__Impl )
+            // InternalSephirah.g:2702:2: rule__PrimaryExpression__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__Group_1__1__Impl();
@@ -8135,21 +8299,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1__1__Impl"
-    // InternalSephirah.g:2662:1: rule__PrimaryExpression__Group_1__1__Impl : ( ( rule__PrimaryExpression__ValueAssignment_1_1 ) ) ;
+    // InternalSephirah.g:2708:1: rule__PrimaryExpression__Group_1__1__Impl : ( ( rule__PrimaryExpression__ValueAssignment_1_1 ) ) ;
     public final void rule__PrimaryExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2666:1: ( ( ( rule__PrimaryExpression__ValueAssignment_1_1 ) ) )
-            // InternalSephirah.g:2667:1: ( ( rule__PrimaryExpression__ValueAssignment_1_1 ) )
+            // InternalSephirah.g:2712:1: ( ( ( rule__PrimaryExpression__ValueAssignment_1_1 ) ) )
+            // InternalSephirah.g:2713:1: ( ( rule__PrimaryExpression__ValueAssignment_1_1 ) )
             {
-            // InternalSephirah.g:2667:1: ( ( rule__PrimaryExpression__ValueAssignment_1_1 ) )
-            // InternalSephirah.g:2668:2: ( rule__PrimaryExpression__ValueAssignment_1_1 )
+            // InternalSephirah.g:2713:1: ( ( rule__PrimaryExpression__ValueAssignment_1_1 ) )
+            // InternalSephirah.g:2714:2: ( rule__PrimaryExpression__ValueAssignment_1_1 )
             {
              before(grammarAccess.getPrimaryExpressionAccess().getValueAssignment_1_1()); 
-            // InternalSephirah.g:2669:2: ( rule__PrimaryExpression__ValueAssignment_1_1 )
-            // InternalSephirah.g:2669:3: rule__PrimaryExpression__ValueAssignment_1_1
+            // InternalSephirah.g:2715:2: ( rule__PrimaryExpression__ValueAssignment_1_1 )
+            // InternalSephirah.g:2715:3: rule__PrimaryExpression__ValueAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__ValueAssignment_1_1();
@@ -8182,14 +8346,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__OrCondition__Group__0"
-    // InternalSephirah.g:2678:1: rule__OrCondition__Group__0 : rule__OrCondition__Group__0__Impl rule__OrCondition__Group__1 ;
+    // InternalSephirah.g:2724:1: rule__OrCondition__Group__0 : rule__OrCondition__Group__0__Impl rule__OrCondition__Group__1 ;
     public final void rule__OrCondition__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2682:1: ( rule__OrCondition__Group__0__Impl rule__OrCondition__Group__1 )
-            // InternalSephirah.g:2683:2: rule__OrCondition__Group__0__Impl rule__OrCondition__Group__1
+            // InternalSephirah.g:2728:1: ( rule__OrCondition__Group__0__Impl rule__OrCondition__Group__1 )
+            // InternalSephirah.g:2729:2: rule__OrCondition__Group__0__Impl rule__OrCondition__Group__1
             {
             pushFollow(FOLLOW_28);
             rule__OrCondition__Group__0__Impl();
@@ -8220,17 +8384,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__OrCondition__Group__0__Impl"
-    // InternalSephirah.g:2690:1: rule__OrCondition__Group__0__Impl : ( ruleAndCondition ) ;
+    // InternalSephirah.g:2736:1: rule__OrCondition__Group__0__Impl : ( ruleAndCondition ) ;
     public final void rule__OrCondition__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2694:1: ( ( ruleAndCondition ) )
-            // InternalSephirah.g:2695:1: ( ruleAndCondition )
+            // InternalSephirah.g:2740:1: ( ( ruleAndCondition ) )
+            // InternalSephirah.g:2741:1: ( ruleAndCondition )
             {
-            // InternalSephirah.g:2695:1: ( ruleAndCondition )
-            // InternalSephirah.g:2696:2: ruleAndCondition
+            // InternalSephirah.g:2741:1: ( ruleAndCondition )
+            // InternalSephirah.g:2742:2: ruleAndCondition
             {
              before(grammarAccess.getOrConditionAccess().getAndConditionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -8261,14 +8425,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__OrCondition__Group__1"
-    // InternalSephirah.g:2705:1: rule__OrCondition__Group__1 : rule__OrCondition__Group__1__Impl ;
+    // InternalSephirah.g:2751:1: rule__OrCondition__Group__1 : rule__OrCondition__Group__1__Impl ;
     public final void rule__OrCondition__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2709:1: ( rule__OrCondition__Group__1__Impl )
-            // InternalSephirah.g:2710:2: rule__OrCondition__Group__1__Impl
+            // InternalSephirah.g:2755:1: ( rule__OrCondition__Group__1__Impl )
+            // InternalSephirah.g:2756:2: rule__OrCondition__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__OrCondition__Group__1__Impl();
@@ -8294,33 +8458,33 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__OrCondition__Group__1__Impl"
-    // InternalSephirah.g:2716:1: rule__OrCondition__Group__1__Impl : ( ( rule__OrCondition__Group_1__0 )* ) ;
+    // InternalSephirah.g:2762:1: rule__OrCondition__Group__1__Impl : ( ( rule__OrCondition__Group_1__0 )* ) ;
     public final void rule__OrCondition__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2720:1: ( ( ( rule__OrCondition__Group_1__0 )* ) )
-            // InternalSephirah.g:2721:1: ( ( rule__OrCondition__Group_1__0 )* )
+            // InternalSephirah.g:2766:1: ( ( ( rule__OrCondition__Group_1__0 )* ) )
+            // InternalSephirah.g:2767:1: ( ( rule__OrCondition__Group_1__0 )* )
             {
-            // InternalSephirah.g:2721:1: ( ( rule__OrCondition__Group_1__0 )* )
-            // InternalSephirah.g:2722:2: ( rule__OrCondition__Group_1__0 )*
+            // InternalSephirah.g:2767:1: ( ( rule__OrCondition__Group_1__0 )* )
+            // InternalSephirah.g:2768:2: ( rule__OrCondition__Group_1__0 )*
             {
              before(grammarAccess.getOrConditionAccess().getGroup_1()); 
-            // InternalSephirah.g:2723:2: ( rule__OrCondition__Group_1__0 )*
-            loop18:
+            // InternalSephirah.g:2769:2: ( rule__OrCondition__Group_1__0 )*
+            loop19:
             do {
-                int alt18=2;
-                int LA18_0 = input.LA(1);
+                int alt19=2;
+                int LA19_0 = input.LA(1);
 
-                if ( (LA18_0==40) ) {
-                    alt18=1;
+                if ( (LA19_0==40) ) {
+                    alt19=1;
                 }
 
 
-                switch (alt18) {
+                switch (alt19) {
             	case 1 :
-            	    // InternalSephirah.g:2723:3: rule__OrCondition__Group_1__0
+            	    // InternalSephirah.g:2769:3: rule__OrCondition__Group_1__0
             	    {
             	    pushFollow(FOLLOW_29);
             	    rule__OrCondition__Group_1__0();
@@ -8332,7 +8496,7 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             	    break;
 
             	default :
-            	    break loop18;
+            	    break loop19;
                 }
             } while (true);
 
@@ -8359,14 +8523,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__OrCondition__Group_1__0"
-    // InternalSephirah.g:2732:1: rule__OrCondition__Group_1__0 : rule__OrCondition__Group_1__0__Impl rule__OrCondition__Group_1__1 ;
+    // InternalSephirah.g:2778:1: rule__OrCondition__Group_1__0 : rule__OrCondition__Group_1__0__Impl rule__OrCondition__Group_1__1 ;
     public final void rule__OrCondition__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2736:1: ( rule__OrCondition__Group_1__0__Impl rule__OrCondition__Group_1__1 )
-            // InternalSephirah.g:2737:2: rule__OrCondition__Group_1__0__Impl rule__OrCondition__Group_1__1
+            // InternalSephirah.g:2782:1: ( rule__OrCondition__Group_1__0__Impl rule__OrCondition__Group_1__1 )
+            // InternalSephirah.g:2783:2: rule__OrCondition__Group_1__0__Impl rule__OrCondition__Group_1__1
             {
             pushFollow(FOLLOW_28);
             rule__OrCondition__Group_1__0__Impl();
@@ -8397,21 +8561,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__OrCondition__Group_1__0__Impl"
-    // InternalSephirah.g:2744:1: rule__OrCondition__Group_1__0__Impl : ( () ) ;
+    // InternalSephirah.g:2790:1: rule__OrCondition__Group_1__0__Impl : ( () ) ;
     public final void rule__OrCondition__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2748:1: ( ( () ) )
-            // InternalSephirah.g:2749:1: ( () )
+            // InternalSephirah.g:2794:1: ( ( () ) )
+            // InternalSephirah.g:2795:1: ( () )
             {
-            // InternalSephirah.g:2749:1: ( () )
-            // InternalSephirah.g:2750:2: ()
+            // InternalSephirah.g:2795:1: ( () )
+            // InternalSephirah.g:2796:2: ()
             {
              before(grammarAccess.getOrConditionAccess().getOrConditionLeftAction_1_0()); 
-            // InternalSephirah.g:2751:2: ()
-            // InternalSephirah.g:2751:3: 
+            // InternalSephirah.g:2797:2: ()
+            // InternalSephirah.g:2797:3: 
             {
             }
 
@@ -8434,14 +8598,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__OrCondition__Group_1__1"
-    // InternalSephirah.g:2759:1: rule__OrCondition__Group_1__1 : rule__OrCondition__Group_1__1__Impl rule__OrCondition__Group_1__2 ;
+    // InternalSephirah.g:2805:1: rule__OrCondition__Group_1__1 : rule__OrCondition__Group_1__1__Impl rule__OrCondition__Group_1__2 ;
     public final void rule__OrCondition__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2763:1: ( rule__OrCondition__Group_1__1__Impl rule__OrCondition__Group_1__2 )
-            // InternalSephirah.g:2764:2: rule__OrCondition__Group_1__1__Impl rule__OrCondition__Group_1__2
+            // InternalSephirah.g:2809:1: ( rule__OrCondition__Group_1__1__Impl rule__OrCondition__Group_1__2 )
+            // InternalSephirah.g:2810:2: rule__OrCondition__Group_1__1__Impl rule__OrCondition__Group_1__2
             {
             pushFollow(FOLLOW_16);
             rule__OrCondition__Group_1__1__Impl();
@@ -8472,17 +8636,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__OrCondition__Group_1__1__Impl"
-    // InternalSephirah.g:2771:1: rule__OrCondition__Group_1__1__Impl : ( 'or' ) ;
+    // InternalSephirah.g:2817:1: rule__OrCondition__Group_1__1__Impl : ( 'or' ) ;
     public final void rule__OrCondition__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2775:1: ( ( 'or' ) )
-            // InternalSephirah.g:2776:1: ( 'or' )
+            // InternalSephirah.g:2821:1: ( ( 'or' ) )
+            // InternalSephirah.g:2822:1: ( 'or' )
             {
-            // InternalSephirah.g:2776:1: ( 'or' )
-            // InternalSephirah.g:2777:2: 'or'
+            // InternalSephirah.g:2822:1: ( 'or' )
+            // InternalSephirah.g:2823:2: 'or'
             {
              before(grammarAccess.getOrConditionAccess().getOrKeyword_1_1()); 
             match(input,40,FOLLOW_2); 
@@ -8509,14 +8673,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__OrCondition__Group_1__2"
-    // InternalSephirah.g:2786:1: rule__OrCondition__Group_1__2 : rule__OrCondition__Group_1__2__Impl ;
+    // InternalSephirah.g:2832:1: rule__OrCondition__Group_1__2 : rule__OrCondition__Group_1__2__Impl ;
     public final void rule__OrCondition__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2790:1: ( rule__OrCondition__Group_1__2__Impl )
-            // InternalSephirah.g:2791:2: rule__OrCondition__Group_1__2__Impl
+            // InternalSephirah.g:2836:1: ( rule__OrCondition__Group_1__2__Impl )
+            // InternalSephirah.g:2837:2: rule__OrCondition__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__OrCondition__Group_1__2__Impl();
@@ -8542,21 +8706,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__OrCondition__Group_1__2__Impl"
-    // InternalSephirah.g:2797:1: rule__OrCondition__Group_1__2__Impl : ( ( rule__OrCondition__RightAssignment_1_2 ) ) ;
+    // InternalSephirah.g:2843:1: rule__OrCondition__Group_1__2__Impl : ( ( rule__OrCondition__RightAssignment_1_2 ) ) ;
     public final void rule__OrCondition__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2801:1: ( ( ( rule__OrCondition__RightAssignment_1_2 ) ) )
-            // InternalSephirah.g:2802:1: ( ( rule__OrCondition__RightAssignment_1_2 ) )
+            // InternalSephirah.g:2847:1: ( ( ( rule__OrCondition__RightAssignment_1_2 ) ) )
+            // InternalSephirah.g:2848:1: ( ( rule__OrCondition__RightAssignment_1_2 ) )
             {
-            // InternalSephirah.g:2802:1: ( ( rule__OrCondition__RightAssignment_1_2 ) )
-            // InternalSephirah.g:2803:2: ( rule__OrCondition__RightAssignment_1_2 )
+            // InternalSephirah.g:2848:1: ( ( rule__OrCondition__RightAssignment_1_2 ) )
+            // InternalSephirah.g:2849:2: ( rule__OrCondition__RightAssignment_1_2 )
             {
              before(grammarAccess.getOrConditionAccess().getRightAssignment_1_2()); 
-            // InternalSephirah.g:2804:2: ( rule__OrCondition__RightAssignment_1_2 )
-            // InternalSephirah.g:2804:3: rule__OrCondition__RightAssignment_1_2
+            // InternalSephirah.g:2850:2: ( rule__OrCondition__RightAssignment_1_2 )
+            // InternalSephirah.g:2850:3: rule__OrCondition__RightAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__OrCondition__RightAssignment_1_2();
@@ -8589,14 +8753,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AndCondition__Group__0"
-    // InternalSephirah.g:2813:1: rule__AndCondition__Group__0 : rule__AndCondition__Group__0__Impl rule__AndCondition__Group__1 ;
+    // InternalSephirah.g:2859:1: rule__AndCondition__Group__0 : rule__AndCondition__Group__0__Impl rule__AndCondition__Group__1 ;
     public final void rule__AndCondition__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2817:1: ( rule__AndCondition__Group__0__Impl rule__AndCondition__Group__1 )
-            // InternalSephirah.g:2818:2: rule__AndCondition__Group__0__Impl rule__AndCondition__Group__1
+            // InternalSephirah.g:2863:1: ( rule__AndCondition__Group__0__Impl rule__AndCondition__Group__1 )
+            // InternalSephirah.g:2864:2: rule__AndCondition__Group__0__Impl rule__AndCondition__Group__1
             {
             pushFollow(FOLLOW_30);
             rule__AndCondition__Group__0__Impl();
@@ -8627,17 +8791,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AndCondition__Group__0__Impl"
-    // InternalSephirah.g:2825:1: rule__AndCondition__Group__0__Impl : ( ruleNotCondition ) ;
+    // InternalSephirah.g:2871:1: rule__AndCondition__Group__0__Impl : ( ruleNotCondition ) ;
     public final void rule__AndCondition__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2829:1: ( ( ruleNotCondition ) )
-            // InternalSephirah.g:2830:1: ( ruleNotCondition )
+            // InternalSephirah.g:2875:1: ( ( ruleNotCondition ) )
+            // InternalSephirah.g:2876:1: ( ruleNotCondition )
             {
-            // InternalSephirah.g:2830:1: ( ruleNotCondition )
-            // InternalSephirah.g:2831:2: ruleNotCondition
+            // InternalSephirah.g:2876:1: ( ruleNotCondition )
+            // InternalSephirah.g:2877:2: ruleNotCondition
             {
              before(grammarAccess.getAndConditionAccess().getNotConditionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -8668,14 +8832,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AndCondition__Group__1"
-    // InternalSephirah.g:2840:1: rule__AndCondition__Group__1 : rule__AndCondition__Group__1__Impl ;
+    // InternalSephirah.g:2886:1: rule__AndCondition__Group__1 : rule__AndCondition__Group__1__Impl ;
     public final void rule__AndCondition__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2844:1: ( rule__AndCondition__Group__1__Impl )
-            // InternalSephirah.g:2845:2: rule__AndCondition__Group__1__Impl
+            // InternalSephirah.g:2890:1: ( rule__AndCondition__Group__1__Impl )
+            // InternalSephirah.g:2891:2: rule__AndCondition__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AndCondition__Group__1__Impl();
@@ -8701,33 +8865,33 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AndCondition__Group__1__Impl"
-    // InternalSephirah.g:2851:1: rule__AndCondition__Group__1__Impl : ( ( rule__AndCondition__Group_1__0 )* ) ;
+    // InternalSephirah.g:2897:1: rule__AndCondition__Group__1__Impl : ( ( rule__AndCondition__Group_1__0 )* ) ;
     public final void rule__AndCondition__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2855:1: ( ( ( rule__AndCondition__Group_1__0 )* ) )
-            // InternalSephirah.g:2856:1: ( ( rule__AndCondition__Group_1__0 )* )
+            // InternalSephirah.g:2901:1: ( ( ( rule__AndCondition__Group_1__0 )* ) )
+            // InternalSephirah.g:2902:1: ( ( rule__AndCondition__Group_1__0 )* )
             {
-            // InternalSephirah.g:2856:1: ( ( rule__AndCondition__Group_1__0 )* )
-            // InternalSephirah.g:2857:2: ( rule__AndCondition__Group_1__0 )*
+            // InternalSephirah.g:2902:1: ( ( rule__AndCondition__Group_1__0 )* )
+            // InternalSephirah.g:2903:2: ( rule__AndCondition__Group_1__0 )*
             {
              before(grammarAccess.getAndConditionAccess().getGroup_1()); 
-            // InternalSephirah.g:2858:2: ( rule__AndCondition__Group_1__0 )*
-            loop19:
+            // InternalSephirah.g:2904:2: ( rule__AndCondition__Group_1__0 )*
+            loop20:
             do {
-                int alt19=2;
-                int LA19_0 = input.LA(1);
+                int alt20=2;
+                int LA20_0 = input.LA(1);
 
-                if ( (LA19_0==41) ) {
-                    alt19=1;
+                if ( (LA20_0==41) ) {
+                    alt20=1;
                 }
 
 
-                switch (alt19) {
+                switch (alt20) {
             	case 1 :
-            	    // InternalSephirah.g:2858:3: rule__AndCondition__Group_1__0
+            	    // InternalSephirah.g:2904:3: rule__AndCondition__Group_1__0
             	    {
             	    pushFollow(FOLLOW_31);
             	    rule__AndCondition__Group_1__0();
@@ -8739,7 +8903,7 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             	    break;
 
             	default :
-            	    break loop19;
+            	    break loop20;
                 }
             } while (true);
 
@@ -8766,14 +8930,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AndCondition__Group_1__0"
-    // InternalSephirah.g:2867:1: rule__AndCondition__Group_1__0 : rule__AndCondition__Group_1__0__Impl rule__AndCondition__Group_1__1 ;
+    // InternalSephirah.g:2913:1: rule__AndCondition__Group_1__0 : rule__AndCondition__Group_1__0__Impl rule__AndCondition__Group_1__1 ;
     public final void rule__AndCondition__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2871:1: ( rule__AndCondition__Group_1__0__Impl rule__AndCondition__Group_1__1 )
-            // InternalSephirah.g:2872:2: rule__AndCondition__Group_1__0__Impl rule__AndCondition__Group_1__1
+            // InternalSephirah.g:2917:1: ( rule__AndCondition__Group_1__0__Impl rule__AndCondition__Group_1__1 )
+            // InternalSephirah.g:2918:2: rule__AndCondition__Group_1__0__Impl rule__AndCondition__Group_1__1
             {
             pushFollow(FOLLOW_30);
             rule__AndCondition__Group_1__0__Impl();
@@ -8804,21 +8968,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AndCondition__Group_1__0__Impl"
-    // InternalSephirah.g:2879:1: rule__AndCondition__Group_1__0__Impl : ( () ) ;
+    // InternalSephirah.g:2925:1: rule__AndCondition__Group_1__0__Impl : ( () ) ;
     public final void rule__AndCondition__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2883:1: ( ( () ) )
-            // InternalSephirah.g:2884:1: ( () )
+            // InternalSephirah.g:2929:1: ( ( () ) )
+            // InternalSephirah.g:2930:1: ( () )
             {
-            // InternalSephirah.g:2884:1: ( () )
-            // InternalSephirah.g:2885:2: ()
+            // InternalSephirah.g:2930:1: ( () )
+            // InternalSephirah.g:2931:2: ()
             {
              before(grammarAccess.getAndConditionAccess().getAndConditionLeftAction_1_0()); 
-            // InternalSephirah.g:2886:2: ()
-            // InternalSephirah.g:2886:3: 
+            // InternalSephirah.g:2932:2: ()
+            // InternalSephirah.g:2932:3: 
             {
             }
 
@@ -8841,14 +9005,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AndCondition__Group_1__1"
-    // InternalSephirah.g:2894:1: rule__AndCondition__Group_1__1 : rule__AndCondition__Group_1__1__Impl rule__AndCondition__Group_1__2 ;
+    // InternalSephirah.g:2940:1: rule__AndCondition__Group_1__1 : rule__AndCondition__Group_1__1__Impl rule__AndCondition__Group_1__2 ;
     public final void rule__AndCondition__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2898:1: ( rule__AndCondition__Group_1__1__Impl rule__AndCondition__Group_1__2 )
-            // InternalSephirah.g:2899:2: rule__AndCondition__Group_1__1__Impl rule__AndCondition__Group_1__2
+            // InternalSephirah.g:2944:1: ( rule__AndCondition__Group_1__1__Impl rule__AndCondition__Group_1__2 )
+            // InternalSephirah.g:2945:2: rule__AndCondition__Group_1__1__Impl rule__AndCondition__Group_1__2
             {
             pushFollow(FOLLOW_16);
             rule__AndCondition__Group_1__1__Impl();
@@ -8879,17 +9043,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AndCondition__Group_1__1__Impl"
-    // InternalSephirah.g:2906:1: rule__AndCondition__Group_1__1__Impl : ( 'and' ) ;
+    // InternalSephirah.g:2952:1: rule__AndCondition__Group_1__1__Impl : ( 'and' ) ;
     public final void rule__AndCondition__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2910:1: ( ( 'and' ) )
-            // InternalSephirah.g:2911:1: ( 'and' )
+            // InternalSephirah.g:2956:1: ( ( 'and' ) )
+            // InternalSephirah.g:2957:1: ( 'and' )
             {
-            // InternalSephirah.g:2911:1: ( 'and' )
-            // InternalSephirah.g:2912:2: 'and'
+            // InternalSephirah.g:2957:1: ( 'and' )
+            // InternalSephirah.g:2958:2: 'and'
             {
              before(grammarAccess.getAndConditionAccess().getAndKeyword_1_1()); 
             match(input,41,FOLLOW_2); 
@@ -8916,14 +9080,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AndCondition__Group_1__2"
-    // InternalSephirah.g:2921:1: rule__AndCondition__Group_1__2 : rule__AndCondition__Group_1__2__Impl ;
+    // InternalSephirah.g:2967:1: rule__AndCondition__Group_1__2 : rule__AndCondition__Group_1__2__Impl ;
     public final void rule__AndCondition__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2925:1: ( rule__AndCondition__Group_1__2__Impl )
-            // InternalSephirah.g:2926:2: rule__AndCondition__Group_1__2__Impl
+            // InternalSephirah.g:2971:1: ( rule__AndCondition__Group_1__2__Impl )
+            // InternalSephirah.g:2972:2: rule__AndCondition__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AndCondition__Group_1__2__Impl();
@@ -8949,21 +9113,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AndCondition__Group_1__2__Impl"
-    // InternalSephirah.g:2932:1: rule__AndCondition__Group_1__2__Impl : ( ( rule__AndCondition__RightAssignment_1_2 ) ) ;
+    // InternalSephirah.g:2978:1: rule__AndCondition__Group_1__2__Impl : ( ( rule__AndCondition__RightAssignment_1_2 ) ) ;
     public final void rule__AndCondition__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2936:1: ( ( ( rule__AndCondition__RightAssignment_1_2 ) ) )
-            // InternalSephirah.g:2937:1: ( ( rule__AndCondition__RightAssignment_1_2 ) )
+            // InternalSephirah.g:2982:1: ( ( ( rule__AndCondition__RightAssignment_1_2 ) ) )
+            // InternalSephirah.g:2983:1: ( ( rule__AndCondition__RightAssignment_1_2 ) )
             {
-            // InternalSephirah.g:2937:1: ( ( rule__AndCondition__RightAssignment_1_2 ) )
-            // InternalSephirah.g:2938:2: ( rule__AndCondition__RightAssignment_1_2 )
+            // InternalSephirah.g:2983:1: ( ( rule__AndCondition__RightAssignment_1_2 ) )
+            // InternalSephirah.g:2984:2: ( rule__AndCondition__RightAssignment_1_2 )
             {
              before(grammarAccess.getAndConditionAccess().getRightAssignment_1_2()); 
-            // InternalSephirah.g:2939:2: ( rule__AndCondition__RightAssignment_1_2 )
-            // InternalSephirah.g:2939:3: rule__AndCondition__RightAssignment_1_2
+            // InternalSephirah.g:2985:2: ( rule__AndCondition__RightAssignment_1_2 )
+            // InternalSephirah.g:2985:3: rule__AndCondition__RightAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__AndCondition__RightAssignment_1_2();
@@ -8996,14 +9160,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__NotCondition__Group_0__0"
-    // InternalSephirah.g:2948:1: rule__NotCondition__Group_0__0 : rule__NotCondition__Group_0__0__Impl rule__NotCondition__Group_0__1 ;
+    // InternalSephirah.g:2994:1: rule__NotCondition__Group_0__0 : rule__NotCondition__Group_0__0__Impl rule__NotCondition__Group_0__1 ;
     public final void rule__NotCondition__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2952:1: ( rule__NotCondition__Group_0__0__Impl rule__NotCondition__Group_0__1 )
-            // InternalSephirah.g:2953:2: rule__NotCondition__Group_0__0__Impl rule__NotCondition__Group_0__1
+            // InternalSephirah.g:2998:1: ( rule__NotCondition__Group_0__0__Impl rule__NotCondition__Group_0__1 )
+            // InternalSephirah.g:2999:2: rule__NotCondition__Group_0__0__Impl rule__NotCondition__Group_0__1
             {
             pushFollow(FOLLOW_32);
             rule__NotCondition__Group_0__0__Impl();
@@ -9034,21 +9198,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__NotCondition__Group_0__0__Impl"
-    // InternalSephirah.g:2960:1: rule__NotCondition__Group_0__0__Impl : ( () ) ;
+    // InternalSephirah.g:3006:1: rule__NotCondition__Group_0__0__Impl : ( () ) ;
     public final void rule__NotCondition__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2964:1: ( ( () ) )
-            // InternalSephirah.g:2965:1: ( () )
+            // InternalSephirah.g:3010:1: ( ( () ) )
+            // InternalSephirah.g:3011:1: ( () )
             {
-            // InternalSephirah.g:2965:1: ( () )
-            // InternalSephirah.g:2966:2: ()
+            // InternalSephirah.g:3011:1: ( () )
+            // InternalSephirah.g:3012:2: ()
             {
              before(grammarAccess.getNotConditionAccess().getNotConditionAction_0_0()); 
-            // InternalSephirah.g:2967:2: ()
-            // InternalSephirah.g:2967:3: 
+            // InternalSephirah.g:3013:2: ()
+            // InternalSephirah.g:3013:3: 
             {
             }
 
@@ -9071,14 +9235,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__NotCondition__Group_0__1"
-    // InternalSephirah.g:2975:1: rule__NotCondition__Group_0__1 : rule__NotCondition__Group_0__1__Impl rule__NotCondition__Group_0__2 ;
+    // InternalSephirah.g:3021:1: rule__NotCondition__Group_0__1 : rule__NotCondition__Group_0__1__Impl rule__NotCondition__Group_0__2 ;
     public final void rule__NotCondition__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2979:1: ( rule__NotCondition__Group_0__1__Impl rule__NotCondition__Group_0__2 )
-            // InternalSephirah.g:2980:2: rule__NotCondition__Group_0__1__Impl rule__NotCondition__Group_0__2
+            // InternalSephirah.g:3025:1: ( rule__NotCondition__Group_0__1__Impl rule__NotCondition__Group_0__2 )
+            // InternalSephirah.g:3026:2: rule__NotCondition__Group_0__1__Impl rule__NotCondition__Group_0__2
             {
             pushFollow(FOLLOW_16);
             rule__NotCondition__Group_0__1__Impl();
@@ -9109,17 +9273,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__NotCondition__Group_0__1__Impl"
-    // InternalSephirah.g:2987:1: rule__NotCondition__Group_0__1__Impl : ( 'not' ) ;
+    // InternalSephirah.g:3033:1: rule__NotCondition__Group_0__1__Impl : ( 'not' ) ;
     public final void rule__NotCondition__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:2991:1: ( ( 'not' ) )
-            // InternalSephirah.g:2992:1: ( 'not' )
+            // InternalSephirah.g:3037:1: ( ( 'not' ) )
+            // InternalSephirah.g:3038:1: ( 'not' )
             {
-            // InternalSephirah.g:2992:1: ( 'not' )
-            // InternalSephirah.g:2993:2: 'not'
+            // InternalSephirah.g:3038:1: ( 'not' )
+            // InternalSephirah.g:3039:2: 'not'
             {
              before(grammarAccess.getNotConditionAccess().getNotKeyword_0_1()); 
             match(input,42,FOLLOW_2); 
@@ -9146,14 +9310,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__NotCondition__Group_0__2"
-    // InternalSephirah.g:3002:1: rule__NotCondition__Group_0__2 : rule__NotCondition__Group_0__2__Impl ;
+    // InternalSephirah.g:3048:1: rule__NotCondition__Group_0__2 : rule__NotCondition__Group_0__2__Impl ;
     public final void rule__NotCondition__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3006:1: ( rule__NotCondition__Group_0__2__Impl )
-            // InternalSephirah.g:3007:2: rule__NotCondition__Group_0__2__Impl
+            // InternalSephirah.g:3052:1: ( rule__NotCondition__Group_0__2__Impl )
+            // InternalSephirah.g:3053:2: rule__NotCondition__Group_0__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__NotCondition__Group_0__2__Impl();
@@ -9179,21 +9343,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__NotCondition__Group_0__2__Impl"
-    // InternalSephirah.g:3013:1: rule__NotCondition__Group_0__2__Impl : ( ( rule__NotCondition__ConditionAssignment_0_2 ) ) ;
+    // InternalSephirah.g:3059:1: rule__NotCondition__Group_0__2__Impl : ( ( rule__NotCondition__ConditionAssignment_0_2 ) ) ;
     public final void rule__NotCondition__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3017:1: ( ( ( rule__NotCondition__ConditionAssignment_0_2 ) ) )
-            // InternalSephirah.g:3018:1: ( ( rule__NotCondition__ConditionAssignment_0_2 ) )
+            // InternalSephirah.g:3063:1: ( ( ( rule__NotCondition__ConditionAssignment_0_2 ) ) )
+            // InternalSephirah.g:3064:1: ( ( rule__NotCondition__ConditionAssignment_0_2 ) )
             {
-            // InternalSephirah.g:3018:1: ( ( rule__NotCondition__ConditionAssignment_0_2 ) )
-            // InternalSephirah.g:3019:2: ( rule__NotCondition__ConditionAssignment_0_2 )
+            // InternalSephirah.g:3064:1: ( ( rule__NotCondition__ConditionAssignment_0_2 ) )
+            // InternalSephirah.g:3065:2: ( rule__NotCondition__ConditionAssignment_0_2 )
             {
              before(grammarAccess.getNotConditionAccess().getConditionAssignment_0_2()); 
-            // InternalSephirah.g:3020:2: ( rule__NotCondition__ConditionAssignment_0_2 )
-            // InternalSephirah.g:3020:3: rule__NotCondition__ConditionAssignment_0_2
+            // InternalSephirah.g:3066:2: ( rule__NotCondition__ConditionAssignment_0_2 )
+            // InternalSephirah.g:3066:3: rule__NotCondition__ConditionAssignment_0_2
             {
             pushFollow(FOLLOW_2);
             rule__NotCondition__ConditionAssignment_0_2();
@@ -9225,17 +9389,241 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
     // $ANTLR end "rule__NotCondition__Group_0__2__Impl"
 
 
+    // $ANTLR start "rule__PrimaryCondition__Group_1__0"
+    // InternalSephirah.g:3075:1: rule__PrimaryCondition__Group_1__0 : rule__PrimaryCondition__Group_1__0__Impl rule__PrimaryCondition__Group_1__1 ;
+    public final void rule__PrimaryCondition__Group_1__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalSephirah.g:3079:1: ( rule__PrimaryCondition__Group_1__0__Impl rule__PrimaryCondition__Group_1__1 )
+            // InternalSephirah.g:3080:2: rule__PrimaryCondition__Group_1__0__Impl rule__PrimaryCondition__Group_1__1
+            {
+            pushFollow(FOLLOW_16);
+            rule__PrimaryCondition__Group_1__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__PrimaryCondition__Group_1__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__PrimaryCondition__Group_1__0"
+
+
+    // $ANTLR start "rule__PrimaryCondition__Group_1__0__Impl"
+    // InternalSephirah.g:3087:1: rule__PrimaryCondition__Group_1__0__Impl : ( '[' ) ;
+    public final void rule__PrimaryCondition__Group_1__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalSephirah.g:3091:1: ( ( '[' ) )
+            // InternalSephirah.g:3092:1: ( '[' )
+            {
+            // InternalSephirah.g:3092:1: ( '[' )
+            // InternalSephirah.g:3093:2: '['
+            {
+             before(grammarAccess.getPrimaryConditionAccess().getLeftSquareBracketKeyword_1_0()); 
+            match(input,43,FOLLOW_2); 
+             after(grammarAccess.getPrimaryConditionAccess().getLeftSquareBracketKeyword_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__PrimaryCondition__Group_1__0__Impl"
+
+
+    // $ANTLR start "rule__PrimaryCondition__Group_1__1"
+    // InternalSephirah.g:3102:1: rule__PrimaryCondition__Group_1__1 : rule__PrimaryCondition__Group_1__1__Impl rule__PrimaryCondition__Group_1__2 ;
+    public final void rule__PrimaryCondition__Group_1__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalSephirah.g:3106:1: ( rule__PrimaryCondition__Group_1__1__Impl rule__PrimaryCondition__Group_1__2 )
+            // InternalSephirah.g:3107:2: rule__PrimaryCondition__Group_1__1__Impl rule__PrimaryCondition__Group_1__2
+            {
+            pushFollow(FOLLOW_33);
+            rule__PrimaryCondition__Group_1__1__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__PrimaryCondition__Group_1__2();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__PrimaryCondition__Group_1__1"
+
+
+    // $ANTLR start "rule__PrimaryCondition__Group_1__1__Impl"
+    // InternalSephirah.g:3114:1: rule__PrimaryCondition__Group_1__1__Impl : ( ruleCondition ) ;
+    public final void rule__PrimaryCondition__Group_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalSephirah.g:3118:1: ( ( ruleCondition ) )
+            // InternalSephirah.g:3119:1: ( ruleCondition )
+            {
+            // InternalSephirah.g:3119:1: ( ruleCondition )
+            // InternalSephirah.g:3120:2: ruleCondition
+            {
+             before(grammarAccess.getPrimaryConditionAccess().getConditionParserRuleCall_1_1()); 
+            pushFollow(FOLLOW_2);
+            ruleCondition();
+
+            state._fsp--;
+
+             after(grammarAccess.getPrimaryConditionAccess().getConditionParserRuleCall_1_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__PrimaryCondition__Group_1__1__Impl"
+
+
+    // $ANTLR start "rule__PrimaryCondition__Group_1__2"
+    // InternalSephirah.g:3129:1: rule__PrimaryCondition__Group_1__2 : rule__PrimaryCondition__Group_1__2__Impl ;
+    public final void rule__PrimaryCondition__Group_1__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalSephirah.g:3133:1: ( rule__PrimaryCondition__Group_1__2__Impl )
+            // InternalSephirah.g:3134:2: rule__PrimaryCondition__Group_1__2__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__PrimaryCondition__Group_1__2__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__PrimaryCondition__Group_1__2"
+
+
+    // $ANTLR start "rule__PrimaryCondition__Group_1__2__Impl"
+    // InternalSephirah.g:3140:1: rule__PrimaryCondition__Group_1__2__Impl : ( ']' ) ;
+    public final void rule__PrimaryCondition__Group_1__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalSephirah.g:3144:1: ( ( ']' ) )
+            // InternalSephirah.g:3145:1: ( ']' )
+            {
+            // InternalSephirah.g:3145:1: ( ']' )
+            // InternalSephirah.g:3146:2: ']'
+            {
+             before(grammarAccess.getPrimaryConditionAccess().getRightSquareBracketKeyword_1_2()); 
+            match(input,44,FOLLOW_2); 
+             after(grammarAccess.getPrimaryConditionAccess().getRightSquareBracketKeyword_1_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__PrimaryCondition__Group_1__2__Impl"
+
+
     // $ANTLR start "rule__ComparisonCondition__Group__0"
-    // InternalSephirah.g:3029:1: rule__ComparisonCondition__Group__0 : rule__ComparisonCondition__Group__0__Impl rule__ComparisonCondition__Group__1 ;
+    // InternalSephirah.g:3156:1: rule__ComparisonCondition__Group__0 : rule__ComparisonCondition__Group__0__Impl rule__ComparisonCondition__Group__1 ;
     public final void rule__ComparisonCondition__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3033:1: ( rule__ComparisonCondition__Group__0__Impl rule__ComparisonCondition__Group__1 )
-            // InternalSephirah.g:3034:2: rule__ComparisonCondition__Group__0__Impl rule__ComparisonCondition__Group__1
+            // InternalSephirah.g:3160:1: ( rule__ComparisonCondition__Group__0__Impl rule__ComparisonCondition__Group__1 )
+            // InternalSephirah.g:3161:2: rule__ComparisonCondition__Group__0__Impl rule__ComparisonCondition__Group__1
             {
-            pushFollow(FOLLOW_16);
+            pushFollow(FOLLOW_11);
             rule__ComparisonCondition__Group__0__Impl();
 
             state._fsp--;
@@ -9264,21 +9652,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ComparisonCondition__Group__0__Impl"
-    // InternalSephirah.g:3041:1: rule__ComparisonCondition__Group__0__Impl : ( () ) ;
+    // InternalSephirah.g:3168:1: rule__ComparisonCondition__Group__0__Impl : ( () ) ;
     public final void rule__ComparisonCondition__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3045:1: ( ( () ) )
-            // InternalSephirah.g:3046:1: ( () )
+            // InternalSephirah.g:3172:1: ( ( () ) )
+            // InternalSephirah.g:3173:1: ( () )
             {
-            // InternalSephirah.g:3046:1: ( () )
-            // InternalSephirah.g:3047:2: ()
+            // InternalSephirah.g:3173:1: ( () )
+            // InternalSephirah.g:3174:2: ()
             {
              before(grammarAccess.getComparisonConditionAccess().getComparisonConditionAction_0()); 
-            // InternalSephirah.g:3048:2: ()
-            // InternalSephirah.g:3048:3: 
+            // InternalSephirah.g:3175:2: ()
+            // InternalSephirah.g:3175:3: 
             {
             }
 
@@ -9301,16 +9689,16 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ComparisonCondition__Group__1"
-    // InternalSephirah.g:3056:1: rule__ComparisonCondition__Group__1 : rule__ComparisonCondition__Group__1__Impl rule__ComparisonCondition__Group__2 ;
+    // InternalSephirah.g:3183:1: rule__ComparisonCondition__Group__1 : rule__ComparisonCondition__Group__1__Impl rule__ComparisonCondition__Group__2 ;
     public final void rule__ComparisonCondition__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3060:1: ( rule__ComparisonCondition__Group__1__Impl rule__ComparisonCondition__Group__2 )
-            // InternalSephirah.g:3061:2: rule__ComparisonCondition__Group__1__Impl rule__ComparisonCondition__Group__2
+            // InternalSephirah.g:3187:1: ( rule__ComparisonCondition__Group__1__Impl rule__ComparisonCondition__Group__2 )
+            // InternalSephirah.g:3188:2: rule__ComparisonCondition__Group__1__Impl rule__ComparisonCondition__Group__2
             {
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_34);
             rule__ComparisonCondition__Group__1__Impl();
 
             state._fsp--;
@@ -9339,21 +9727,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ComparisonCondition__Group__1__Impl"
-    // InternalSephirah.g:3068:1: rule__ComparisonCondition__Group__1__Impl : ( ( rule__ComparisonCondition__LeftAssignment_1 ) ) ;
+    // InternalSephirah.g:3195:1: rule__ComparisonCondition__Group__1__Impl : ( ( rule__ComparisonCondition__LeftAssignment_1 ) ) ;
     public final void rule__ComparisonCondition__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3072:1: ( ( ( rule__ComparisonCondition__LeftAssignment_1 ) ) )
-            // InternalSephirah.g:3073:1: ( ( rule__ComparisonCondition__LeftAssignment_1 ) )
+            // InternalSephirah.g:3199:1: ( ( ( rule__ComparisonCondition__LeftAssignment_1 ) ) )
+            // InternalSephirah.g:3200:1: ( ( rule__ComparisonCondition__LeftAssignment_1 ) )
             {
-            // InternalSephirah.g:3073:1: ( ( rule__ComparisonCondition__LeftAssignment_1 ) )
-            // InternalSephirah.g:3074:2: ( rule__ComparisonCondition__LeftAssignment_1 )
+            // InternalSephirah.g:3200:1: ( ( rule__ComparisonCondition__LeftAssignment_1 ) )
+            // InternalSephirah.g:3201:2: ( rule__ComparisonCondition__LeftAssignment_1 )
             {
              before(grammarAccess.getComparisonConditionAccess().getLeftAssignment_1()); 
-            // InternalSephirah.g:3075:2: ( rule__ComparisonCondition__LeftAssignment_1 )
-            // InternalSephirah.g:3075:3: rule__ComparisonCondition__LeftAssignment_1
+            // InternalSephirah.g:3202:2: ( rule__ComparisonCondition__LeftAssignment_1 )
+            // InternalSephirah.g:3202:3: rule__ComparisonCondition__LeftAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__ComparisonCondition__LeftAssignment_1();
@@ -9386,14 +9774,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ComparisonCondition__Group__2"
-    // InternalSephirah.g:3083:1: rule__ComparisonCondition__Group__2 : rule__ComparisonCondition__Group__2__Impl rule__ComparisonCondition__Group__3 ;
+    // InternalSephirah.g:3210:1: rule__ComparisonCondition__Group__2 : rule__ComparisonCondition__Group__2__Impl rule__ComparisonCondition__Group__3 ;
     public final void rule__ComparisonCondition__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3087:1: ( rule__ComparisonCondition__Group__2__Impl rule__ComparisonCondition__Group__3 )
-            // InternalSephirah.g:3088:2: rule__ComparisonCondition__Group__2__Impl rule__ComparisonCondition__Group__3
+            // InternalSephirah.g:3214:1: ( rule__ComparisonCondition__Group__2__Impl rule__ComparisonCondition__Group__3 )
+            // InternalSephirah.g:3215:2: rule__ComparisonCondition__Group__2__Impl rule__ComparisonCondition__Group__3
             {
             pushFollow(FOLLOW_11);
             rule__ComparisonCondition__Group__2__Impl();
@@ -9424,21 +9812,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ComparisonCondition__Group__2__Impl"
-    // InternalSephirah.g:3095:1: rule__ComparisonCondition__Group__2__Impl : ( ( rule__ComparisonCondition__OpAssignment_2 ) ) ;
+    // InternalSephirah.g:3222:1: rule__ComparisonCondition__Group__2__Impl : ( ( rule__ComparisonCondition__OpAssignment_2 ) ) ;
     public final void rule__ComparisonCondition__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3099:1: ( ( ( rule__ComparisonCondition__OpAssignment_2 ) ) )
-            // InternalSephirah.g:3100:1: ( ( rule__ComparisonCondition__OpAssignment_2 ) )
+            // InternalSephirah.g:3226:1: ( ( ( rule__ComparisonCondition__OpAssignment_2 ) ) )
+            // InternalSephirah.g:3227:1: ( ( rule__ComparisonCondition__OpAssignment_2 ) )
             {
-            // InternalSephirah.g:3100:1: ( ( rule__ComparisonCondition__OpAssignment_2 ) )
-            // InternalSephirah.g:3101:2: ( rule__ComparisonCondition__OpAssignment_2 )
+            // InternalSephirah.g:3227:1: ( ( rule__ComparisonCondition__OpAssignment_2 ) )
+            // InternalSephirah.g:3228:2: ( rule__ComparisonCondition__OpAssignment_2 )
             {
              before(grammarAccess.getComparisonConditionAccess().getOpAssignment_2()); 
-            // InternalSephirah.g:3102:2: ( rule__ComparisonCondition__OpAssignment_2 )
-            // InternalSephirah.g:3102:3: rule__ComparisonCondition__OpAssignment_2
+            // InternalSephirah.g:3229:2: ( rule__ComparisonCondition__OpAssignment_2 )
+            // InternalSephirah.g:3229:3: rule__ComparisonCondition__OpAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__ComparisonCondition__OpAssignment_2();
@@ -9471,14 +9859,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ComparisonCondition__Group__3"
-    // InternalSephirah.g:3110:1: rule__ComparisonCondition__Group__3 : rule__ComparisonCondition__Group__3__Impl ;
+    // InternalSephirah.g:3237:1: rule__ComparisonCondition__Group__3 : rule__ComparisonCondition__Group__3__Impl ;
     public final void rule__ComparisonCondition__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3114:1: ( rule__ComparisonCondition__Group__3__Impl )
-            // InternalSephirah.g:3115:2: rule__ComparisonCondition__Group__3__Impl
+            // InternalSephirah.g:3241:1: ( rule__ComparisonCondition__Group__3__Impl )
+            // InternalSephirah.g:3242:2: rule__ComparisonCondition__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ComparisonCondition__Group__3__Impl();
@@ -9504,21 +9892,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ComparisonCondition__Group__3__Impl"
-    // InternalSephirah.g:3121:1: rule__ComparisonCondition__Group__3__Impl : ( ( rule__ComparisonCondition__RightAssignment_3 ) ) ;
+    // InternalSephirah.g:3248:1: rule__ComparisonCondition__Group__3__Impl : ( ( rule__ComparisonCondition__RightAssignment_3 ) ) ;
     public final void rule__ComparisonCondition__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3125:1: ( ( ( rule__ComparisonCondition__RightAssignment_3 ) ) )
-            // InternalSephirah.g:3126:1: ( ( rule__ComparisonCondition__RightAssignment_3 ) )
+            // InternalSephirah.g:3252:1: ( ( ( rule__ComparisonCondition__RightAssignment_3 ) ) )
+            // InternalSephirah.g:3253:1: ( ( rule__ComparisonCondition__RightAssignment_3 ) )
             {
-            // InternalSephirah.g:3126:1: ( ( rule__ComparisonCondition__RightAssignment_3 ) )
-            // InternalSephirah.g:3127:2: ( rule__ComparisonCondition__RightAssignment_3 )
+            // InternalSephirah.g:3253:1: ( ( rule__ComparisonCondition__RightAssignment_3 ) )
+            // InternalSephirah.g:3254:2: ( rule__ComparisonCondition__RightAssignment_3 )
             {
              before(grammarAccess.getComparisonConditionAccess().getRightAssignment_3()); 
-            // InternalSephirah.g:3128:2: ( rule__ComparisonCondition__RightAssignment_3 )
-            // InternalSephirah.g:3128:3: rule__ComparisonCondition__RightAssignment_3
+            // InternalSephirah.g:3255:2: ( rule__ComparisonCondition__RightAssignment_3 )
+            // InternalSephirah.g:3255:3: rule__ComparisonCondition__RightAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__ComparisonCondition__RightAssignment_3();
@@ -9551,14 +9939,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group__0"
-    // InternalSephirah.g:3137:1: rule__MethodCall__Group__0 : rule__MethodCall__Group__0__Impl rule__MethodCall__Group__1 ;
+    // InternalSephirah.g:3264:1: rule__MethodCall__Group__0 : rule__MethodCall__Group__0__Impl rule__MethodCall__Group__1 ;
     public final void rule__MethodCall__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3141:1: ( rule__MethodCall__Group__0__Impl rule__MethodCall__Group__1 )
-            // InternalSephirah.g:3142:2: rule__MethodCall__Group__0__Impl rule__MethodCall__Group__1
+            // InternalSephirah.g:3268:1: ( rule__MethodCall__Group__0__Impl rule__MethodCall__Group__1 )
+            // InternalSephirah.g:3269:2: rule__MethodCall__Group__0__Impl rule__MethodCall__Group__1
             {
             pushFollow(FOLLOW_6);
             rule__MethodCall__Group__0__Impl();
@@ -9589,21 +9977,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group__0__Impl"
-    // InternalSephirah.g:3149:1: rule__MethodCall__Group__0__Impl : ( () ) ;
+    // InternalSephirah.g:3276:1: rule__MethodCall__Group__0__Impl : ( () ) ;
     public final void rule__MethodCall__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3153:1: ( ( () ) )
-            // InternalSephirah.g:3154:1: ( () )
+            // InternalSephirah.g:3280:1: ( ( () ) )
+            // InternalSephirah.g:3281:1: ( () )
             {
-            // InternalSephirah.g:3154:1: ( () )
-            // InternalSephirah.g:3155:2: ()
+            // InternalSephirah.g:3281:1: ( () )
+            // InternalSephirah.g:3282:2: ()
             {
              before(grammarAccess.getMethodCallAccess().getMethodCallAction_0()); 
-            // InternalSephirah.g:3156:2: ()
-            // InternalSephirah.g:3156:3: 
+            // InternalSephirah.g:3283:2: ()
+            // InternalSephirah.g:3283:3: 
             {
             }
 
@@ -9626,14 +10014,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group__1"
-    // InternalSephirah.g:3164:1: rule__MethodCall__Group__1 : rule__MethodCall__Group__1__Impl rule__MethodCall__Group__2 ;
+    // InternalSephirah.g:3291:1: rule__MethodCall__Group__1 : rule__MethodCall__Group__1__Impl rule__MethodCall__Group__2 ;
     public final void rule__MethodCall__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3168:1: ( rule__MethodCall__Group__1__Impl rule__MethodCall__Group__2 )
-            // InternalSephirah.g:3169:2: rule__MethodCall__Group__1__Impl rule__MethodCall__Group__2
+            // InternalSephirah.g:3295:1: ( rule__MethodCall__Group__1__Impl rule__MethodCall__Group__2 )
+            // InternalSephirah.g:3296:2: rule__MethodCall__Group__1__Impl rule__MethodCall__Group__2
             {
             pushFollow(FOLLOW_8);
             rule__MethodCall__Group__1__Impl();
@@ -9664,21 +10052,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group__1__Impl"
-    // InternalSephirah.g:3176:1: rule__MethodCall__Group__1__Impl : ( ( rule__MethodCall__NameAssignment_1 ) ) ;
+    // InternalSephirah.g:3303:1: rule__MethodCall__Group__1__Impl : ( ( rule__MethodCall__NameAssignment_1 ) ) ;
     public final void rule__MethodCall__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3180:1: ( ( ( rule__MethodCall__NameAssignment_1 ) ) )
-            // InternalSephirah.g:3181:1: ( ( rule__MethodCall__NameAssignment_1 ) )
+            // InternalSephirah.g:3307:1: ( ( ( rule__MethodCall__NameAssignment_1 ) ) )
+            // InternalSephirah.g:3308:1: ( ( rule__MethodCall__NameAssignment_1 ) )
             {
-            // InternalSephirah.g:3181:1: ( ( rule__MethodCall__NameAssignment_1 ) )
-            // InternalSephirah.g:3182:2: ( rule__MethodCall__NameAssignment_1 )
+            // InternalSephirah.g:3308:1: ( ( rule__MethodCall__NameAssignment_1 ) )
+            // InternalSephirah.g:3309:2: ( rule__MethodCall__NameAssignment_1 )
             {
              before(grammarAccess.getMethodCallAccess().getNameAssignment_1()); 
-            // InternalSephirah.g:3183:2: ( rule__MethodCall__NameAssignment_1 )
-            // InternalSephirah.g:3183:3: rule__MethodCall__NameAssignment_1
+            // InternalSephirah.g:3310:2: ( rule__MethodCall__NameAssignment_1 )
+            // InternalSephirah.g:3310:3: rule__MethodCall__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__MethodCall__NameAssignment_1();
@@ -9711,16 +10099,16 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group__2"
-    // InternalSephirah.g:3191:1: rule__MethodCall__Group__2 : rule__MethodCall__Group__2__Impl rule__MethodCall__Group__3 ;
+    // InternalSephirah.g:3318:1: rule__MethodCall__Group__2 : rule__MethodCall__Group__2__Impl rule__MethodCall__Group__3 ;
     public final void rule__MethodCall__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3195:1: ( rule__MethodCall__Group__2__Impl rule__MethodCall__Group__3 )
-            // InternalSephirah.g:3196:2: rule__MethodCall__Group__2__Impl rule__MethodCall__Group__3
+            // InternalSephirah.g:3322:1: ( rule__MethodCall__Group__2__Impl rule__MethodCall__Group__3 )
+            // InternalSephirah.g:3323:2: rule__MethodCall__Group__2__Impl rule__MethodCall__Group__3
             {
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_35);
             rule__MethodCall__Group__2__Impl();
 
             state._fsp--;
@@ -9749,17 +10137,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group__2__Impl"
-    // InternalSephirah.g:3203:1: rule__MethodCall__Group__2__Impl : ( '(' ) ;
+    // InternalSephirah.g:3330:1: rule__MethodCall__Group__2__Impl : ( '(' ) ;
     public final void rule__MethodCall__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3207:1: ( ( '(' ) )
-            // InternalSephirah.g:3208:1: ( '(' )
+            // InternalSephirah.g:3334:1: ( ( '(' ) )
+            // InternalSephirah.g:3335:1: ( '(' )
             {
-            // InternalSephirah.g:3208:1: ( '(' )
-            // InternalSephirah.g:3209:2: '('
+            // InternalSephirah.g:3335:1: ( '(' )
+            // InternalSephirah.g:3336:2: '('
             {
              before(grammarAccess.getMethodCallAccess().getLeftParenthesisKeyword_2()); 
             match(input,27,FOLLOW_2); 
@@ -9786,16 +10174,16 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group__3"
-    // InternalSephirah.g:3218:1: rule__MethodCall__Group__3 : rule__MethodCall__Group__3__Impl rule__MethodCall__Group__4 ;
+    // InternalSephirah.g:3345:1: rule__MethodCall__Group__3 : rule__MethodCall__Group__3__Impl rule__MethodCall__Group__4 ;
     public final void rule__MethodCall__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3222:1: ( rule__MethodCall__Group__3__Impl rule__MethodCall__Group__4 )
-            // InternalSephirah.g:3223:2: rule__MethodCall__Group__3__Impl rule__MethodCall__Group__4
+            // InternalSephirah.g:3349:1: ( rule__MethodCall__Group__3__Impl rule__MethodCall__Group__4 )
+            // InternalSephirah.g:3350:2: rule__MethodCall__Group__3__Impl rule__MethodCall__Group__4
             {
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_35);
             rule__MethodCall__Group__3__Impl();
 
             state._fsp--;
@@ -9824,29 +10212,29 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group__3__Impl"
-    // InternalSephirah.g:3230:1: rule__MethodCall__Group__3__Impl : ( ( rule__MethodCall__Group_3__0 )? ) ;
+    // InternalSephirah.g:3357:1: rule__MethodCall__Group__3__Impl : ( ( rule__MethodCall__Group_3__0 )? ) ;
     public final void rule__MethodCall__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3234:1: ( ( ( rule__MethodCall__Group_3__0 )? ) )
-            // InternalSephirah.g:3235:1: ( ( rule__MethodCall__Group_3__0 )? )
+            // InternalSephirah.g:3361:1: ( ( ( rule__MethodCall__Group_3__0 )? ) )
+            // InternalSephirah.g:3362:1: ( ( rule__MethodCall__Group_3__0 )? )
             {
-            // InternalSephirah.g:3235:1: ( ( rule__MethodCall__Group_3__0 )? )
-            // InternalSephirah.g:3236:2: ( rule__MethodCall__Group_3__0 )?
+            // InternalSephirah.g:3362:1: ( ( rule__MethodCall__Group_3__0 )? )
+            // InternalSephirah.g:3363:2: ( rule__MethodCall__Group_3__0 )?
             {
              before(grammarAccess.getMethodCallAccess().getGroup_3()); 
-            // InternalSephirah.g:3237:2: ( rule__MethodCall__Group_3__0 )?
-            int alt20=2;
-            int LA20_0 = input.LA(1);
+            // InternalSephirah.g:3364:2: ( rule__MethodCall__Group_3__0 )?
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( ((LA20_0>=RULE_ID && LA20_0<=RULE_INT)||(LA20_0>=12 && LA20_0<=16)||LA20_0==27||LA20_0==32) ) {
-                alt20=1;
+            if ( ((LA21_0>=RULE_ID && LA21_0<=RULE_INT)||(LA21_0>=12 && LA21_0<=16)||LA21_0==27||LA21_0==32) ) {
+                alt21=1;
             }
-            switch (alt20) {
+            switch (alt21) {
                 case 1 :
-                    // InternalSephirah.g:3237:3: rule__MethodCall__Group_3__0
+                    // InternalSephirah.g:3364:3: rule__MethodCall__Group_3__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__MethodCall__Group_3__0();
@@ -9882,14 +10270,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group__4"
-    // InternalSephirah.g:3245:1: rule__MethodCall__Group__4 : rule__MethodCall__Group__4__Impl ;
+    // InternalSephirah.g:3372:1: rule__MethodCall__Group__4 : rule__MethodCall__Group__4__Impl ;
     public final void rule__MethodCall__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3249:1: ( rule__MethodCall__Group__4__Impl )
-            // InternalSephirah.g:3250:2: rule__MethodCall__Group__4__Impl
+            // InternalSephirah.g:3376:1: ( rule__MethodCall__Group__4__Impl )
+            // InternalSephirah.g:3377:2: rule__MethodCall__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodCall__Group__4__Impl();
@@ -9915,17 +10303,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group__4__Impl"
-    // InternalSephirah.g:3256:1: rule__MethodCall__Group__4__Impl : ( ')' ) ;
+    // InternalSephirah.g:3383:1: rule__MethodCall__Group__4__Impl : ( ')' ) ;
     public final void rule__MethodCall__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3260:1: ( ( ')' ) )
-            // InternalSephirah.g:3261:1: ( ')' )
+            // InternalSephirah.g:3387:1: ( ( ')' ) )
+            // InternalSephirah.g:3388:1: ( ')' )
             {
-            // InternalSephirah.g:3261:1: ( ')' )
-            // InternalSephirah.g:3262:2: ')'
+            // InternalSephirah.g:3388:1: ( ')' )
+            // InternalSephirah.g:3389:2: ')'
             {
              before(grammarAccess.getMethodCallAccess().getRightParenthesisKeyword_4()); 
             match(input,28,FOLLOW_2); 
@@ -9952,14 +10340,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group_3__0"
-    // InternalSephirah.g:3272:1: rule__MethodCall__Group_3__0 : rule__MethodCall__Group_3__0__Impl rule__MethodCall__Group_3__1 ;
+    // InternalSephirah.g:3399:1: rule__MethodCall__Group_3__0 : rule__MethodCall__Group_3__0__Impl rule__MethodCall__Group_3__1 ;
     public final void rule__MethodCall__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3276:1: ( rule__MethodCall__Group_3__0__Impl rule__MethodCall__Group_3__1 )
-            // InternalSephirah.g:3277:2: rule__MethodCall__Group_3__0__Impl rule__MethodCall__Group_3__1
+            // InternalSephirah.g:3403:1: ( rule__MethodCall__Group_3__0__Impl rule__MethodCall__Group_3__1 )
+            // InternalSephirah.g:3404:2: rule__MethodCall__Group_3__0__Impl rule__MethodCall__Group_3__1
             {
             pushFollow(FOLLOW_12);
             rule__MethodCall__Group_3__0__Impl();
@@ -9990,21 +10378,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group_3__0__Impl"
-    // InternalSephirah.g:3284:1: rule__MethodCall__Group_3__0__Impl : ( ( rule__MethodCall__ArgsAssignment_3_0 ) ) ;
+    // InternalSephirah.g:3411:1: rule__MethodCall__Group_3__0__Impl : ( ( rule__MethodCall__ArgsAssignment_3_0 ) ) ;
     public final void rule__MethodCall__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3288:1: ( ( ( rule__MethodCall__ArgsAssignment_3_0 ) ) )
-            // InternalSephirah.g:3289:1: ( ( rule__MethodCall__ArgsAssignment_3_0 ) )
+            // InternalSephirah.g:3415:1: ( ( ( rule__MethodCall__ArgsAssignment_3_0 ) ) )
+            // InternalSephirah.g:3416:1: ( ( rule__MethodCall__ArgsAssignment_3_0 ) )
             {
-            // InternalSephirah.g:3289:1: ( ( rule__MethodCall__ArgsAssignment_3_0 ) )
-            // InternalSephirah.g:3290:2: ( rule__MethodCall__ArgsAssignment_3_0 )
+            // InternalSephirah.g:3416:1: ( ( rule__MethodCall__ArgsAssignment_3_0 ) )
+            // InternalSephirah.g:3417:2: ( rule__MethodCall__ArgsAssignment_3_0 )
             {
              before(grammarAccess.getMethodCallAccess().getArgsAssignment_3_0()); 
-            // InternalSephirah.g:3291:2: ( rule__MethodCall__ArgsAssignment_3_0 )
-            // InternalSephirah.g:3291:3: rule__MethodCall__ArgsAssignment_3_0
+            // InternalSephirah.g:3418:2: ( rule__MethodCall__ArgsAssignment_3_0 )
+            // InternalSephirah.g:3418:3: rule__MethodCall__ArgsAssignment_3_0
             {
             pushFollow(FOLLOW_2);
             rule__MethodCall__ArgsAssignment_3_0();
@@ -10037,14 +10425,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group_3__1"
-    // InternalSephirah.g:3299:1: rule__MethodCall__Group_3__1 : rule__MethodCall__Group_3__1__Impl ;
+    // InternalSephirah.g:3426:1: rule__MethodCall__Group_3__1 : rule__MethodCall__Group_3__1__Impl ;
     public final void rule__MethodCall__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3303:1: ( rule__MethodCall__Group_3__1__Impl )
-            // InternalSephirah.g:3304:2: rule__MethodCall__Group_3__1__Impl
+            // InternalSephirah.g:3430:1: ( rule__MethodCall__Group_3__1__Impl )
+            // InternalSephirah.g:3431:2: rule__MethodCall__Group_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodCall__Group_3__1__Impl();
@@ -10070,33 +10458,33 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group_3__1__Impl"
-    // InternalSephirah.g:3310:1: rule__MethodCall__Group_3__1__Impl : ( ( rule__MethodCall__Group_3_1__0 )* ) ;
+    // InternalSephirah.g:3437:1: rule__MethodCall__Group_3__1__Impl : ( ( rule__MethodCall__Group_3_1__0 )* ) ;
     public final void rule__MethodCall__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3314:1: ( ( ( rule__MethodCall__Group_3_1__0 )* ) )
-            // InternalSephirah.g:3315:1: ( ( rule__MethodCall__Group_3_1__0 )* )
+            // InternalSephirah.g:3441:1: ( ( ( rule__MethodCall__Group_3_1__0 )* ) )
+            // InternalSephirah.g:3442:1: ( ( rule__MethodCall__Group_3_1__0 )* )
             {
-            // InternalSephirah.g:3315:1: ( ( rule__MethodCall__Group_3_1__0 )* )
-            // InternalSephirah.g:3316:2: ( rule__MethodCall__Group_3_1__0 )*
+            // InternalSephirah.g:3442:1: ( ( rule__MethodCall__Group_3_1__0 )* )
+            // InternalSephirah.g:3443:2: ( rule__MethodCall__Group_3_1__0 )*
             {
              before(grammarAccess.getMethodCallAccess().getGroup_3_1()); 
-            // InternalSephirah.g:3317:2: ( rule__MethodCall__Group_3_1__0 )*
-            loop21:
+            // InternalSephirah.g:3444:2: ( rule__MethodCall__Group_3_1__0 )*
+            loop22:
             do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+                int alt22=2;
+                int LA22_0 = input.LA(1);
 
-                if ( (LA21_0==30) ) {
-                    alt21=1;
+                if ( (LA22_0==30) ) {
+                    alt22=1;
                 }
 
 
-                switch (alt21) {
+                switch (alt22) {
             	case 1 :
-            	    // InternalSephirah.g:3317:3: rule__MethodCall__Group_3_1__0
+            	    // InternalSephirah.g:3444:3: rule__MethodCall__Group_3_1__0
             	    {
             	    pushFollow(FOLLOW_13);
             	    rule__MethodCall__Group_3_1__0();
@@ -10108,7 +10496,7 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop22;
                 }
             } while (true);
 
@@ -10135,14 +10523,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group_3_1__0"
-    // InternalSephirah.g:3326:1: rule__MethodCall__Group_3_1__0 : rule__MethodCall__Group_3_1__0__Impl rule__MethodCall__Group_3_1__1 ;
+    // InternalSephirah.g:3453:1: rule__MethodCall__Group_3_1__0 : rule__MethodCall__Group_3_1__0__Impl rule__MethodCall__Group_3_1__1 ;
     public final void rule__MethodCall__Group_3_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3330:1: ( rule__MethodCall__Group_3_1__0__Impl rule__MethodCall__Group_3_1__1 )
-            // InternalSephirah.g:3331:2: rule__MethodCall__Group_3_1__0__Impl rule__MethodCall__Group_3_1__1
+            // InternalSephirah.g:3457:1: ( rule__MethodCall__Group_3_1__0__Impl rule__MethodCall__Group_3_1__1 )
+            // InternalSephirah.g:3458:2: rule__MethodCall__Group_3_1__0__Impl rule__MethodCall__Group_3_1__1
             {
             pushFollow(FOLLOW_11);
             rule__MethodCall__Group_3_1__0__Impl();
@@ -10173,17 +10561,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group_3_1__0__Impl"
-    // InternalSephirah.g:3338:1: rule__MethodCall__Group_3_1__0__Impl : ( ',' ) ;
+    // InternalSephirah.g:3465:1: rule__MethodCall__Group_3_1__0__Impl : ( ',' ) ;
     public final void rule__MethodCall__Group_3_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3342:1: ( ( ',' ) )
-            // InternalSephirah.g:3343:1: ( ',' )
+            // InternalSephirah.g:3469:1: ( ( ',' ) )
+            // InternalSephirah.g:3470:1: ( ',' )
             {
-            // InternalSephirah.g:3343:1: ( ',' )
-            // InternalSephirah.g:3344:2: ','
+            // InternalSephirah.g:3470:1: ( ',' )
+            // InternalSephirah.g:3471:2: ','
             {
              before(grammarAccess.getMethodCallAccess().getCommaKeyword_3_1_0()); 
             match(input,30,FOLLOW_2); 
@@ -10210,14 +10598,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group_3_1__1"
-    // InternalSephirah.g:3353:1: rule__MethodCall__Group_3_1__1 : rule__MethodCall__Group_3_1__1__Impl ;
+    // InternalSephirah.g:3480:1: rule__MethodCall__Group_3_1__1 : rule__MethodCall__Group_3_1__1__Impl ;
     public final void rule__MethodCall__Group_3_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3357:1: ( rule__MethodCall__Group_3_1__1__Impl )
-            // InternalSephirah.g:3358:2: rule__MethodCall__Group_3_1__1__Impl
+            // InternalSephirah.g:3484:1: ( rule__MethodCall__Group_3_1__1__Impl )
+            // InternalSephirah.g:3485:2: rule__MethodCall__Group_3_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodCall__Group_3_1__1__Impl();
@@ -10243,21 +10631,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__Group_3_1__1__Impl"
-    // InternalSephirah.g:3364:1: rule__MethodCall__Group_3_1__1__Impl : ( ( rule__MethodCall__ArgsAssignment_3_1_1 ) ) ;
+    // InternalSephirah.g:3491:1: rule__MethodCall__Group_3_1__1__Impl : ( ( rule__MethodCall__ArgsAssignment_3_1_1 ) ) ;
     public final void rule__MethodCall__Group_3_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3368:1: ( ( ( rule__MethodCall__ArgsAssignment_3_1_1 ) ) )
-            // InternalSephirah.g:3369:1: ( ( rule__MethodCall__ArgsAssignment_3_1_1 ) )
+            // InternalSephirah.g:3495:1: ( ( ( rule__MethodCall__ArgsAssignment_3_1_1 ) ) )
+            // InternalSephirah.g:3496:1: ( ( rule__MethodCall__ArgsAssignment_3_1_1 ) )
             {
-            // InternalSephirah.g:3369:1: ( ( rule__MethodCall__ArgsAssignment_3_1_1 ) )
-            // InternalSephirah.g:3370:2: ( rule__MethodCall__ArgsAssignment_3_1_1 )
+            // InternalSephirah.g:3496:1: ( ( rule__MethodCall__ArgsAssignment_3_1_1 ) )
+            // InternalSephirah.g:3497:2: ( rule__MethodCall__ArgsAssignment_3_1_1 )
             {
              before(grammarAccess.getMethodCallAccess().getArgsAssignment_3_1_1()); 
-            // InternalSephirah.g:3371:2: ( rule__MethodCall__ArgsAssignment_3_1_1 )
-            // InternalSephirah.g:3371:3: rule__MethodCall__ArgsAssignment_3_1_1
+            // InternalSephirah.g:3498:2: ( rule__MethodCall__ArgsAssignment_3_1_1 )
+            // InternalSephirah.g:3498:3: rule__MethodCall__ArgsAssignment_3_1_1
             {
             pushFollow(FOLLOW_2);
             rule__MethodCall__ArgsAssignment_3_1_1();
@@ -10290,16 +10678,16 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Constant__Group__0"
-    // InternalSephirah.g:3380:1: rule__Constant__Group__0 : rule__Constant__Group__0__Impl rule__Constant__Group__1 ;
+    // InternalSephirah.g:3507:1: rule__Constant__Group__0 : rule__Constant__Group__0__Impl rule__Constant__Group__1 ;
     public final void rule__Constant__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3384:1: ( rule__Constant__Group__0__Impl rule__Constant__Group__1 )
-            // InternalSephirah.g:3385:2: rule__Constant__Group__0__Impl rule__Constant__Group__1
+            // InternalSephirah.g:3511:1: ( rule__Constant__Group__0__Impl rule__Constant__Group__1 )
+            // InternalSephirah.g:3512:2: rule__Constant__Group__0__Impl rule__Constant__Group__1
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_36);
             rule__Constant__Group__0__Impl();
 
             state._fsp--;
@@ -10328,21 +10716,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Constant__Group__0__Impl"
-    // InternalSephirah.g:3392:1: rule__Constant__Group__0__Impl : ( () ) ;
+    // InternalSephirah.g:3519:1: rule__Constant__Group__0__Impl : ( () ) ;
     public final void rule__Constant__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3396:1: ( ( () ) )
-            // InternalSephirah.g:3397:1: ( () )
+            // InternalSephirah.g:3523:1: ( ( () ) )
+            // InternalSephirah.g:3524:1: ( () )
             {
-            // InternalSephirah.g:3397:1: ( () )
-            // InternalSephirah.g:3398:2: ()
+            // InternalSephirah.g:3524:1: ( () )
+            // InternalSephirah.g:3525:2: ()
             {
              before(grammarAccess.getConstantAccess().getConstantAction_0()); 
-            // InternalSephirah.g:3399:2: ()
-            // InternalSephirah.g:3399:3: 
+            // InternalSephirah.g:3526:2: ()
+            // InternalSephirah.g:3526:3: 
             {
             }
 
@@ -10365,14 +10753,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Constant__Group__1"
-    // InternalSephirah.g:3407:1: rule__Constant__Group__1 : rule__Constant__Group__1__Impl ;
+    // InternalSephirah.g:3534:1: rule__Constant__Group__1 : rule__Constant__Group__1__Impl ;
     public final void rule__Constant__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3411:1: ( rule__Constant__Group__1__Impl )
-            // InternalSephirah.g:3412:2: rule__Constant__Group__1__Impl
+            // InternalSephirah.g:3538:1: ( rule__Constant__Group__1__Impl )
+            // InternalSephirah.g:3539:2: rule__Constant__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Constant__Group__1__Impl();
@@ -10398,21 +10786,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Constant__Group__1__Impl"
-    // InternalSephirah.g:3418:1: rule__Constant__Group__1__Impl : ( ( rule__Constant__ValueAssignment_1 ) ) ;
+    // InternalSephirah.g:3545:1: rule__Constant__Group__1__Impl : ( ( rule__Constant__ValueAssignment_1 ) ) ;
     public final void rule__Constant__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3422:1: ( ( ( rule__Constant__ValueAssignment_1 ) ) )
-            // InternalSephirah.g:3423:1: ( ( rule__Constant__ValueAssignment_1 ) )
+            // InternalSephirah.g:3549:1: ( ( ( rule__Constant__ValueAssignment_1 ) ) )
+            // InternalSephirah.g:3550:1: ( ( rule__Constant__ValueAssignment_1 ) )
             {
-            // InternalSephirah.g:3423:1: ( ( rule__Constant__ValueAssignment_1 ) )
-            // InternalSephirah.g:3424:2: ( rule__Constant__ValueAssignment_1 )
+            // InternalSephirah.g:3550:1: ( ( rule__Constant__ValueAssignment_1 ) )
+            // InternalSephirah.g:3551:2: ( rule__Constant__ValueAssignment_1 )
             {
              before(grammarAccess.getConstantAccess().getValueAssignment_1()); 
-            // InternalSephirah.g:3425:2: ( rule__Constant__ValueAssignment_1 )
-            // InternalSephirah.g:3425:3: rule__Constant__ValueAssignment_1
+            // InternalSephirah.g:3552:2: ( rule__Constant__ValueAssignment_1 )
+            // InternalSephirah.g:3552:3: rule__Constant__ValueAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Constant__ValueAssignment_1();
@@ -10445,16 +10833,16 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__QualifiedName__Group__0"
-    // InternalSephirah.g:3434:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
+    // InternalSephirah.g:3561:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
     public final void rule__QualifiedName__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3438:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
-            // InternalSephirah.g:3439:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
+            // InternalSephirah.g:3565:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
+            // InternalSephirah.g:3566:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_37);
             rule__QualifiedName__Group__0__Impl();
 
             state._fsp--;
@@ -10483,17 +10871,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__QualifiedName__Group__0__Impl"
-    // InternalSephirah.g:3446:1: rule__QualifiedName__Group__0__Impl : ( ruleValidID ) ;
+    // InternalSephirah.g:3573:1: rule__QualifiedName__Group__0__Impl : ( ruleValidID ) ;
     public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3450:1: ( ( ruleValidID ) )
-            // InternalSephirah.g:3451:1: ( ruleValidID )
+            // InternalSephirah.g:3577:1: ( ( ruleValidID ) )
+            // InternalSephirah.g:3578:1: ( ruleValidID )
             {
-            // InternalSephirah.g:3451:1: ( ruleValidID )
-            // InternalSephirah.g:3452:2: ruleValidID
+            // InternalSephirah.g:3578:1: ( ruleValidID )
+            // InternalSephirah.g:3579:2: ruleValidID
             {
              before(grammarAccess.getQualifiedNameAccess().getValidIDParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -10524,14 +10912,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__QualifiedName__Group__1"
-    // InternalSephirah.g:3461:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
+    // InternalSephirah.g:3588:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
     public final void rule__QualifiedName__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3465:1: ( rule__QualifiedName__Group__1__Impl )
-            // InternalSephirah.g:3466:2: rule__QualifiedName__Group__1__Impl
+            // InternalSephirah.g:3592:1: ( rule__QualifiedName__Group__1__Impl )
+            // InternalSephirah.g:3593:2: rule__QualifiedName__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__QualifiedName__Group__1__Impl();
@@ -10557,35 +10945,35 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__QualifiedName__Group__1__Impl"
-    // InternalSephirah.g:3472:1: rule__QualifiedName__Group__1__Impl : ( ( rule__QualifiedName__Group_1__0 )* ) ;
+    // InternalSephirah.g:3599:1: rule__QualifiedName__Group__1__Impl : ( ( rule__QualifiedName__Group_1__0 )* ) ;
     public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3476:1: ( ( ( rule__QualifiedName__Group_1__0 )* ) )
-            // InternalSephirah.g:3477:1: ( ( rule__QualifiedName__Group_1__0 )* )
+            // InternalSephirah.g:3603:1: ( ( ( rule__QualifiedName__Group_1__0 )* ) )
+            // InternalSephirah.g:3604:1: ( ( rule__QualifiedName__Group_1__0 )* )
             {
-            // InternalSephirah.g:3477:1: ( ( rule__QualifiedName__Group_1__0 )* )
-            // InternalSephirah.g:3478:2: ( rule__QualifiedName__Group_1__0 )*
+            // InternalSephirah.g:3604:1: ( ( rule__QualifiedName__Group_1__0 )* )
+            // InternalSephirah.g:3605:2: ( rule__QualifiedName__Group_1__0 )*
             {
              before(grammarAccess.getQualifiedNameAccess().getGroup_1()); 
-            // InternalSephirah.g:3479:2: ( rule__QualifiedName__Group_1__0 )*
-            loop22:
+            // InternalSephirah.g:3606:2: ( rule__QualifiedName__Group_1__0 )*
+            loop23:
             do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
+                int alt23=2;
+                int LA23_0 = input.LA(1);
 
-                if ( (LA22_0==43) ) {
-                    alt22=1;
+                if ( (LA23_0==45) ) {
+                    alt23=1;
                 }
 
 
-                switch (alt22) {
+                switch (alt23) {
             	case 1 :
-            	    // InternalSephirah.g:3479:3: rule__QualifiedName__Group_1__0
+            	    // InternalSephirah.g:3606:3: rule__QualifiedName__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_37);
+            	    pushFollow(FOLLOW_38);
             	    rule__QualifiedName__Group_1__0();
 
             	    state._fsp--;
@@ -10595,7 +10983,7 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             	    break;
 
             	default :
-            	    break loop22;
+            	    break loop23;
                 }
             } while (true);
 
@@ -10622,14 +11010,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__0"
-    // InternalSephirah.g:3488:1: rule__QualifiedName__Group_1__0 : rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 ;
+    // InternalSephirah.g:3615:1: rule__QualifiedName__Group_1__0 : rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 ;
     public final void rule__QualifiedName__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3492:1: ( rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 )
-            // InternalSephirah.g:3493:2: rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1
+            // InternalSephirah.g:3619:1: ( rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 )
+            // InternalSephirah.g:3620:2: rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1
             {
             pushFollow(FOLLOW_6);
             rule__QualifiedName__Group_1__0__Impl();
@@ -10660,20 +11048,20 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__0__Impl"
-    // InternalSephirah.g:3500:1: rule__QualifiedName__Group_1__0__Impl : ( '.' ) ;
+    // InternalSephirah.g:3627:1: rule__QualifiedName__Group_1__0__Impl : ( '.' ) ;
     public final void rule__QualifiedName__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3504:1: ( ( '.' ) )
-            // InternalSephirah.g:3505:1: ( '.' )
+            // InternalSephirah.g:3631:1: ( ( '.' ) )
+            // InternalSephirah.g:3632:1: ( '.' )
             {
-            // InternalSephirah.g:3505:1: ( '.' )
-            // InternalSephirah.g:3506:2: '.'
+            // InternalSephirah.g:3632:1: ( '.' )
+            // InternalSephirah.g:3633:2: '.'
             {
              before(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
-            match(input,43,FOLLOW_2); 
+            match(input,45,FOLLOW_2); 
              after(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
 
             }
@@ -10697,14 +11085,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__1"
-    // InternalSephirah.g:3515:1: rule__QualifiedName__Group_1__1 : rule__QualifiedName__Group_1__1__Impl ;
+    // InternalSephirah.g:3642:1: rule__QualifiedName__Group_1__1 : rule__QualifiedName__Group_1__1__Impl ;
     public final void rule__QualifiedName__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3519:1: ( rule__QualifiedName__Group_1__1__Impl )
-            // InternalSephirah.g:3520:2: rule__QualifiedName__Group_1__1__Impl
+            // InternalSephirah.g:3646:1: ( rule__QualifiedName__Group_1__1__Impl )
+            // InternalSephirah.g:3647:2: rule__QualifiedName__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__QualifiedName__Group_1__1__Impl();
@@ -10730,17 +11118,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__1__Impl"
-    // InternalSephirah.g:3526:1: rule__QualifiedName__Group_1__1__Impl : ( ruleValidID ) ;
+    // InternalSephirah.g:3653:1: rule__QualifiedName__Group_1__1__Impl : ( ruleValidID ) ;
     public final void rule__QualifiedName__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3530:1: ( ( ruleValidID ) )
-            // InternalSephirah.g:3531:1: ( ruleValidID )
+            // InternalSephirah.g:3657:1: ( ( ruleValidID ) )
+            // InternalSephirah.g:3658:1: ( ruleValidID )
             {
-            // InternalSephirah.g:3531:1: ( ruleValidID )
-            // InternalSephirah.g:3532:2: ruleValidID
+            // InternalSephirah.g:3658:1: ( ruleValidID )
+            // InternalSephirah.g:3659:2: ruleValidID
             {
              before(grammarAccess.getQualifiedNameAccess().getValidIDParserRuleCall_1_1()); 
             pushFollow(FOLLOW_2);
@@ -10771,16 +11159,16 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Decimal__Group__0"
-    // InternalSephirah.g:3542:1: rule__Decimal__Group__0 : rule__Decimal__Group__0__Impl rule__Decimal__Group__1 ;
+    // InternalSephirah.g:3669:1: rule__Decimal__Group__0 : rule__Decimal__Group__0__Impl rule__Decimal__Group__1 ;
     public final void rule__Decimal__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3546:1: ( rule__Decimal__Group__0__Impl rule__Decimal__Group__1 )
-            // InternalSephirah.g:3547:2: rule__Decimal__Group__0__Impl rule__Decimal__Group__1
+            // InternalSephirah.g:3673:1: ( rule__Decimal__Group__0__Impl rule__Decimal__Group__1 )
+            // InternalSephirah.g:3674:2: rule__Decimal__Group__0__Impl rule__Decimal__Group__1
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_37);
             rule__Decimal__Group__0__Impl();
 
             state._fsp--;
@@ -10809,17 +11197,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Decimal__Group__0__Impl"
-    // InternalSephirah.g:3554:1: rule__Decimal__Group__0__Impl : ( RULE_INT ) ;
+    // InternalSephirah.g:3681:1: rule__Decimal__Group__0__Impl : ( RULE_INT ) ;
     public final void rule__Decimal__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3558:1: ( ( RULE_INT ) )
-            // InternalSephirah.g:3559:1: ( RULE_INT )
+            // InternalSephirah.g:3685:1: ( ( RULE_INT ) )
+            // InternalSephirah.g:3686:1: ( RULE_INT )
             {
-            // InternalSephirah.g:3559:1: ( RULE_INT )
-            // InternalSephirah.g:3560:2: RULE_INT
+            // InternalSephirah.g:3686:1: ( RULE_INT )
+            // InternalSephirah.g:3687:2: RULE_INT
             {
              before(grammarAccess.getDecimalAccess().getINTTerminalRuleCall_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -10846,14 +11234,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Decimal__Group__1"
-    // InternalSephirah.g:3569:1: rule__Decimal__Group__1 : rule__Decimal__Group__1__Impl ;
+    // InternalSephirah.g:3696:1: rule__Decimal__Group__1 : rule__Decimal__Group__1__Impl ;
     public final void rule__Decimal__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3573:1: ( rule__Decimal__Group__1__Impl )
-            // InternalSephirah.g:3574:2: rule__Decimal__Group__1__Impl
+            // InternalSephirah.g:3700:1: ( rule__Decimal__Group__1__Impl )
+            // InternalSephirah.g:3701:2: rule__Decimal__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Decimal__Group__1__Impl();
@@ -10879,29 +11267,29 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Decimal__Group__1__Impl"
-    // InternalSephirah.g:3580:1: rule__Decimal__Group__1__Impl : ( ( rule__Decimal__Group_1__0 )? ) ;
+    // InternalSephirah.g:3707:1: rule__Decimal__Group__1__Impl : ( ( rule__Decimal__Group_1__0 )? ) ;
     public final void rule__Decimal__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3584:1: ( ( ( rule__Decimal__Group_1__0 )? ) )
-            // InternalSephirah.g:3585:1: ( ( rule__Decimal__Group_1__0 )? )
+            // InternalSephirah.g:3711:1: ( ( ( rule__Decimal__Group_1__0 )? ) )
+            // InternalSephirah.g:3712:1: ( ( rule__Decimal__Group_1__0 )? )
             {
-            // InternalSephirah.g:3585:1: ( ( rule__Decimal__Group_1__0 )? )
-            // InternalSephirah.g:3586:2: ( rule__Decimal__Group_1__0 )?
+            // InternalSephirah.g:3712:1: ( ( rule__Decimal__Group_1__0 )? )
+            // InternalSephirah.g:3713:2: ( rule__Decimal__Group_1__0 )?
             {
              before(grammarAccess.getDecimalAccess().getGroup_1()); 
-            // InternalSephirah.g:3587:2: ( rule__Decimal__Group_1__0 )?
-            int alt23=2;
-            int LA23_0 = input.LA(1);
+            // InternalSephirah.g:3714:2: ( rule__Decimal__Group_1__0 )?
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA23_0==43) ) {
-                alt23=1;
+            if ( (LA24_0==45) ) {
+                alt24=1;
             }
-            switch (alt23) {
+            switch (alt24) {
                 case 1 :
-                    // InternalSephirah.g:3587:3: rule__Decimal__Group_1__0
+                    // InternalSephirah.g:3714:3: rule__Decimal__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__Decimal__Group_1__0();
@@ -10937,14 +11325,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Decimal__Group_1__0"
-    // InternalSephirah.g:3596:1: rule__Decimal__Group_1__0 : rule__Decimal__Group_1__0__Impl rule__Decimal__Group_1__1 ;
+    // InternalSephirah.g:3723:1: rule__Decimal__Group_1__0 : rule__Decimal__Group_1__0__Impl rule__Decimal__Group_1__1 ;
     public final void rule__Decimal__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3600:1: ( rule__Decimal__Group_1__0__Impl rule__Decimal__Group_1__1 )
-            // InternalSephirah.g:3601:2: rule__Decimal__Group_1__0__Impl rule__Decimal__Group_1__1
+            // InternalSephirah.g:3727:1: ( rule__Decimal__Group_1__0__Impl rule__Decimal__Group_1__1 )
+            // InternalSephirah.g:3728:2: rule__Decimal__Group_1__0__Impl rule__Decimal__Group_1__1
             {
             pushFollow(FOLLOW_27);
             rule__Decimal__Group_1__0__Impl();
@@ -10975,20 +11363,20 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Decimal__Group_1__0__Impl"
-    // InternalSephirah.g:3608:1: rule__Decimal__Group_1__0__Impl : ( '.' ) ;
+    // InternalSephirah.g:3735:1: rule__Decimal__Group_1__0__Impl : ( '.' ) ;
     public final void rule__Decimal__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3612:1: ( ( '.' ) )
-            // InternalSephirah.g:3613:1: ( '.' )
+            // InternalSephirah.g:3739:1: ( ( '.' ) )
+            // InternalSephirah.g:3740:1: ( '.' )
             {
-            // InternalSephirah.g:3613:1: ( '.' )
-            // InternalSephirah.g:3614:2: '.'
+            // InternalSephirah.g:3740:1: ( '.' )
+            // InternalSephirah.g:3741:2: '.'
             {
              before(grammarAccess.getDecimalAccess().getFullStopKeyword_1_0()); 
-            match(input,43,FOLLOW_2); 
+            match(input,45,FOLLOW_2); 
              after(grammarAccess.getDecimalAccess().getFullStopKeyword_1_0()); 
 
             }
@@ -11012,14 +11400,14 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Decimal__Group_1__1"
-    // InternalSephirah.g:3623:1: rule__Decimal__Group_1__1 : rule__Decimal__Group_1__1__Impl ;
+    // InternalSephirah.g:3750:1: rule__Decimal__Group_1__1 : rule__Decimal__Group_1__1__Impl ;
     public final void rule__Decimal__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3627:1: ( rule__Decimal__Group_1__1__Impl )
-            // InternalSephirah.g:3628:2: rule__Decimal__Group_1__1__Impl
+            // InternalSephirah.g:3754:1: ( rule__Decimal__Group_1__1__Impl )
+            // InternalSephirah.g:3755:2: rule__Decimal__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Decimal__Group_1__1__Impl();
@@ -11045,17 +11433,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Decimal__Group_1__1__Impl"
-    // InternalSephirah.g:3634:1: rule__Decimal__Group_1__1__Impl : ( RULE_INT ) ;
+    // InternalSephirah.g:3761:1: rule__Decimal__Group_1__1__Impl : ( RULE_INT ) ;
     public final void rule__Decimal__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3638:1: ( ( RULE_INT ) )
-            // InternalSephirah.g:3639:1: ( RULE_INT )
+            // InternalSephirah.g:3765:1: ( ( RULE_INT ) )
+            // InternalSephirah.g:3766:1: ( RULE_INT )
             {
-            // InternalSephirah.g:3639:1: ( RULE_INT )
-            // InternalSephirah.g:3640:2: RULE_INT
+            // InternalSephirah.g:3766:1: ( RULE_INT )
+            // InternalSephirah.g:3767:2: RULE_INT
             {
              before(grammarAccess.getDecimalAccess().getINTTerminalRuleCall_1_1()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -11082,17 +11470,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__FormulaModel__NameAssignment_0"
-    // InternalSephirah.g:3650:1: rule__FormulaModel__NameAssignment_0 : ( ruleDocName ) ;
+    // InternalSephirah.g:3777:1: rule__FormulaModel__NameAssignment_0 : ( ruleDocName ) ;
     public final void rule__FormulaModel__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3654:1: ( ( ruleDocName ) )
-            // InternalSephirah.g:3655:2: ( ruleDocName )
+            // InternalSephirah.g:3781:1: ( ( ruleDocName ) )
+            // InternalSephirah.g:3782:2: ( ruleDocName )
             {
-            // InternalSephirah.g:3655:2: ( ruleDocName )
-            // InternalSephirah.g:3656:3: ruleDocName
+            // InternalSephirah.g:3782:2: ( ruleDocName )
+            // InternalSephirah.g:3783:3: ruleDocName
             {
              before(grammarAccess.getFormulaModelAccess().getNameDocNameParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -11123,17 +11511,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__FormulaModel__ImportsAssignment_1"
-    // InternalSephirah.g:3665:1: rule__FormulaModel__ImportsAssignment_1 : ( ruleImport ) ;
+    // InternalSephirah.g:3792:1: rule__FormulaModel__ImportsAssignment_1 : ( ruleImport ) ;
     public final void rule__FormulaModel__ImportsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3669:1: ( ( ruleImport ) )
-            // InternalSephirah.g:3670:2: ( ruleImport )
+            // InternalSephirah.g:3796:1: ( ( ruleImport ) )
+            // InternalSephirah.g:3797:2: ( ruleImport )
             {
-            // InternalSephirah.g:3670:2: ( ruleImport )
-            // InternalSephirah.g:3671:3: ruleImport
+            // InternalSephirah.g:3797:2: ( ruleImport )
+            // InternalSephirah.g:3798:3: ruleImport
             {
              before(grammarAccess.getFormulaModelAccess().getImportsImportParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -11164,17 +11552,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__FormulaModel__MethodDefsAssignment_2_0"
-    // InternalSephirah.g:3680:1: rule__FormulaModel__MethodDefsAssignment_2_0 : ( ruleDefinition ) ;
+    // InternalSephirah.g:3807:1: rule__FormulaModel__MethodDefsAssignment_2_0 : ( ruleDefinition ) ;
     public final void rule__FormulaModel__MethodDefsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3684:1: ( ( ruleDefinition ) )
-            // InternalSephirah.g:3685:2: ( ruleDefinition )
+            // InternalSephirah.g:3811:1: ( ( ruleDefinition ) )
+            // InternalSephirah.g:3812:2: ( ruleDefinition )
             {
-            // InternalSephirah.g:3685:2: ( ruleDefinition )
-            // InternalSephirah.g:3686:3: ruleDefinition
+            // InternalSephirah.g:3812:2: ( ruleDefinition )
+            // InternalSephirah.g:3813:3: ruleDefinition
             {
              before(grammarAccess.getFormulaModelAccess().getMethodDefsDefinitionParserRuleCall_2_0_0()); 
             pushFollow(FOLLOW_2);
@@ -11205,17 +11593,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__FormulaModel__VariablesAssignment_2_1"
-    // InternalSephirah.g:3695:1: rule__FormulaModel__VariablesAssignment_2_1 : ( ruleVariableAssignment ) ;
+    // InternalSephirah.g:3822:1: rule__FormulaModel__VariablesAssignment_2_1 : ( ruleVariableAssignment ) ;
     public final void rule__FormulaModel__VariablesAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3699:1: ( ( ruleVariableAssignment ) )
-            // InternalSephirah.g:3700:2: ( ruleVariableAssignment )
+            // InternalSephirah.g:3826:1: ( ( ruleVariableAssignment ) )
+            // InternalSephirah.g:3827:2: ( ruleVariableAssignment )
             {
-            // InternalSephirah.g:3700:2: ( ruleVariableAssignment )
-            // InternalSephirah.g:3701:3: ruleVariableAssignment
+            // InternalSephirah.g:3827:2: ( ruleVariableAssignment )
+            // InternalSephirah.g:3828:3: ruleVariableAssignment
             {
              before(grammarAccess.getFormulaModelAccess().getVariablesVariableAssignmentParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -11246,17 +11634,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__FormulaModel__ValuesAssignment_2_2"
-    // InternalSephirah.g:3710:1: rule__FormulaModel__ValuesAssignment_2_2 : ( ruleEvaluation ) ;
+    // InternalSephirah.g:3837:1: rule__FormulaModel__ValuesAssignment_2_2 : ( ruleEvaluation ) ;
     public final void rule__FormulaModel__ValuesAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3714:1: ( ( ruleEvaluation ) )
-            // InternalSephirah.g:3715:2: ( ruleEvaluation )
+            // InternalSephirah.g:3841:1: ( ( ruleEvaluation ) )
+            // InternalSephirah.g:3842:2: ( ruleEvaluation )
             {
-            // InternalSephirah.g:3715:2: ( ruleEvaluation )
-            // InternalSephirah.g:3716:3: ruleEvaluation
+            // InternalSephirah.g:3842:2: ( ruleEvaluation )
+            // InternalSephirah.g:3843:3: ruleEvaluation
             {
              before(grammarAccess.getFormulaModelAccess().getValuesEvaluationParserRuleCall_2_2_0()); 
             pushFollow(FOLLOW_2);
@@ -11287,17 +11675,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__DocName__NameAssignment_1"
-    // InternalSephirah.g:3725:1: rule__DocName__NameAssignment_1 : ( ruleQualifiedName ) ;
+    // InternalSephirah.g:3852:1: rule__DocName__NameAssignment_1 : ( ruleQualifiedName ) ;
     public final void rule__DocName__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3729:1: ( ( ruleQualifiedName ) )
-            // InternalSephirah.g:3730:2: ( ruleQualifiedName )
+            // InternalSephirah.g:3856:1: ( ( ruleQualifiedName ) )
+            // InternalSephirah.g:3857:2: ( ruleQualifiedName )
             {
-            // InternalSephirah.g:3730:2: ( ruleQualifiedName )
-            // InternalSephirah.g:3731:3: ruleQualifiedName
+            // InternalSephirah.g:3857:2: ( ruleQualifiedName )
+            // InternalSephirah.g:3858:3: ruleQualifiedName
             {
              before(grammarAccess.getDocNameAccess().getNameQualifiedNameParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -11328,17 +11716,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Import__NameAssignment_1"
-    // InternalSephirah.g:3740:1: rule__Import__NameAssignment_1 : ( ruleQualifiedName ) ;
+    // InternalSephirah.g:3867:1: rule__Import__NameAssignment_1 : ( ruleQualifiedName ) ;
     public final void rule__Import__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3744:1: ( ( ruleQualifiedName ) )
-            // InternalSephirah.g:3745:2: ( ruleQualifiedName )
+            // InternalSephirah.g:3871:1: ( ( ruleQualifiedName ) )
+            // InternalSephirah.g:3872:2: ( ruleQualifiedName )
             {
-            // InternalSephirah.g:3745:2: ( ruleQualifiedName )
-            // InternalSephirah.g:3746:3: ruleQualifiedName
+            // InternalSephirah.g:3872:2: ( ruleQualifiedName )
+            // InternalSephirah.g:3873:3: ruleQualifiedName
             {
              before(grammarAccess.getImportAccess().getNameQualifiedNameParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -11369,17 +11757,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__NameAssignment_1"
-    // InternalSephirah.g:3755:1: rule__Definition__NameAssignment_1 : ( ruleValidID ) ;
+    // InternalSephirah.g:3882:1: rule__Definition__NameAssignment_1 : ( ruleValidID ) ;
     public final void rule__Definition__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3759:1: ( ( ruleValidID ) )
-            // InternalSephirah.g:3760:2: ( ruleValidID )
+            // InternalSephirah.g:3886:1: ( ( ruleValidID ) )
+            // InternalSephirah.g:3887:2: ( ruleValidID )
             {
-            // InternalSephirah.g:3760:2: ( ruleValidID )
-            // InternalSephirah.g:3761:3: ruleValidID
+            // InternalSephirah.g:3887:2: ( ruleValidID )
+            // InternalSephirah.g:3888:3: ruleValidID
             {
              before(grammarAccess.getDefinitionAccess().getNameValidIDParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -11410,17 +11798,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__ArgsAssignment_3_0"
-    // InternalSephirah.g:3770:1: rule__Definition__ArgsAssignment_3_0 : ( ruleDefinitionVariable ) ;
+    // InternalSephirah.g:3897:1: rule__Definition__ArgsAssignment_3_0 : ( ruleDefinitionVariable ) ;
     public final void rule__Definition__ArgsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3774:1: ( ( ruleDefinitionVariable ) )
-            // InternalSephirah.g:3775:2: ( ruleDefinitionVariable )
+            // InternalSephirah.g:3901:1: ( ( ruleDefinitionVariable ) )
+            // InternalSephirah.g:3902:2: ( ruleDefinitionVariable )
             {
-            // InternalSephirah.g:3775:2: ( ruleDefinitionVariable )
-            // InternalSephirah.g:3776:3: ruleDefinitionVariable
+            // InternalSephirah.g:3902:2: ( ruleDefinitionVariable )
+            // InternalSephirah.g:3903:3: ruleDefinitionVariable
             {
              before(grammarAccess.getDefinitionAccess().getArgsDefinitionVariableParserRuleCall_3_0_0()); 
             pushFollow(FOLLOW_2);
@@ -11451,17 +11839,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__ArgsAssignment_3_1_1"
-    // InternalSephirah.g:3785:1: rule__Definition__ArgsAssignment_3_1_1 : ( ruleDefinitionVariable ) ;
+    // InternalSephirah.g:3912:1: rule__Definition__ArgsAssignment_3_1_1 : ( ruleDefinitionVariable ) ;
     public final void rule__Definition__ArgsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3789:1: ( ( ruleDefinitionVariable ) )
-            // InternalSephirah.g:3790:2: ( ruleDefinitionVariable )
+            // InternalSephirah.g:3916:1: ( ( ruleDefinitionVariable ) )
+            // InternalSephirah.g:3917:2: ( ruleDefinitionVariable )
             {
-            // InternalSephirah.g:3790:2: ( ruleDefinitionVariable )
-            // InternalSephirah.g:3791:3: ruleDefinitionVariable
+            // InternalSephirah.g:3917:2: ( ruleDefinitionVariable )
+            // InternalSephirah.g:3918:3: ruleDefinitionVariable
             {
              before(grammarAccess.getDefinitionAccess().getArgsDefinitionVariableParserRuleCall_3_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -11492,17 +11880,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__ExprAssignment_6"
-    // InternalSephirah.g:3800:1: rule__Definition__ExprAssignment_6 : ( ruleExpression ) ;
+    // InternalSephirah.g:3927:1: rule__Definition__ExprAssignment_6 : ( ruleExpression ) ;
     public final void rule__Definition__ExprAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3804:1: ( ( ruleExpression ) )
-            // InternalSephirah.g:3805:2: ( ruleExpression )
+            // InternalSephirah.g:3931:1: ( ( ruleExpression ) )
+            // InternalSephirah.g:3932:2: ( ruleExpression )
             {
-            // InternalSephirah.g:3805:2: ( ruleExpression )
-            // InternalSephirah.g:3806:3: ruleExpression
+            // InternalSephirah.g:3932:2: ( ruleExpression )
+            // InternalSephirah.g:3933:3: ruleExpression
             {
              before(grammarAccess.getDefinitionAccess().getExprExpressionParserRuleCall_6_0()); 
             pushFollow(FOLLOW_2);
@@ -11533,17 +11921,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__NameAssignment_2"
-    // InternalSephirah.g:3815:1: rule__VariableAssignment__NameAssignment_2 : ( ruleValidID ) ;
+    // InternalSephirah.g:3942:1: rule__VariableAssignment__NameAssignment_2 : ( ruleValidID ) ;
     public final void rule__VariableAssignment__NameAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3819:1: ( ( ruleValidID ) )
-            // InternalSephirah.g:3820:2: ( ruleValidID )
+            // InternalSephirah.g:3946:1: ( ( ruleValidID ) )
+            // InternalSephirah.g:3947:2: ( ruleValidID )
             {
-            // InternalSephirah.g:3820:2: ( ruleValidID )
-            // InternalSephirah.g:3821:3: ruleValidID
+            // InternalSephirah.g:3947:2: ( ruleValidID )
+            // InternalSephirah.g:3948:3: ruleValidID
             {
              before(grammarAccess.getVariableAssignmentAccess().getNameValidIDParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -11574,17 +11962,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VariableAssignment__ValueAssignment_4"
-    // InternalSephirah.g:3830:1: rule__VariableAssignment__ValueAssignment_4 : ( ruleExpression ) ;
+    // InternalSephirah.g:3957:1: rule__VariableAssignment__ValueAssignment_4 : ( ruleExpression ) ;
     public final void rule__VariableAssignment__ValueAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3834:1: ( ( ruleExpression ) )
-            // InternalSephirah.g:3835:2: ( ruleExpression )
+            // InternalSephirah.g:3961:1: ( ( ruleExpression ) )
+            // InternalSephirah.g:3962:2: ( ruleExpression )
             {
-            // InternalSephirah.g:3835:2: ( ruleExpression )
-            // InternalSephirah.g:3836:3: ruleExpression
+            // InternalSephirah.g:3962:2: ( ruleExpression )
+            // InternalSephirah.g:3963:3: ruleExpression
             {
              before(grammarAccess.getVariableAssignmentAccess().getValueExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -11615,17 +12003,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Variable__NameAssignment_1"
-    // InternalSephirah.g:3845:1: rule__Variable__NameAssignment_1 : ( ruleQualifiedName ) ;
+    // InternalSephirah.g:3972:1: rule__Variable__NameAssignment_1 : ( ruleQualifiedName ) ;
     public final void rule__Variable__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3849:1: ( ( ruleQualifiedName ) )
-            // InternalSephirah.g:3850:2: ( ruleQualifiedName )
+            // InternalSephirah.g:3976:1: ( ( ruleQualifiedName ) )
+            // InternalSephirah.g:3977:2: ( ruleQualifiedName )
             {
-            // InternalSephirah.g:3850:2: ( ruleQualifiedName )
-            // InternalSephirah.g:3851:3: ruleQualifiedName
+            // InternalSephirah.g:3977:2: ( ruleQualifiedName )
+            // InternalSephirah.g:3978:3: ruleQualifiedName
             {
              before(grammarAccess.getVariableAccess().getNameQualifiedNameParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -11656,17 +12044,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__DefinitionVariable__NameAssignment_1"
-    // InternalSephirah.g:3860:1: rule__DefinitionVariable__NameAssignment_1 : ( ruleValidID ) ;
+    // InternalSephirah.g:3987:1: rule__DefinitionVariable__NameAssignment_1 : ( ruleValidID ) ;
     public final void rule__DefinitionVariable__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3864:1: ( ( ruleValidID ) )
-            // InternalSephirah.g:3865:2: ( ruleValidID )
+            // InternalSephirah.g:3991:1: ( ( ruleValidID ) )
+            // InternalSephirah.g:3992:2: ( ruleValidID )
             {
-            // InternalSephirah.g:3865:2: ( ruleValidID )
-            // InternalSephirah.g:3866:3: ruleValidID
+            // InternalSephirah.g:3992:2: ( ruleValidID )
+            // InternalSephirah.g:3993:3: ruleValidID
             {
              before(grammarAccess.getDefinitionVariableAccess().getNameValidIDParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -11697,17 +12085,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Evaluation__ExpressionAssignment_0"
-    // InternalSephirah.g:3875:1: rule__Evaluation__ExpressionAssignment_0 : ( ruleExpression ) ;
+    // InternalSephirah.g:4002:1: rule__Evaluation__ExpressionAssignment_0 : ( ruleExpression ) ;
     public final void rule__Evaluation__ExpressionAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3879:1: ( ( ruleExpression ) )
-            // InternalSephirah.g:3880:2: ( ruleExpression )
+            // InternalSephirah.g:4006:1: ( ( ruleExpression ) )
+            // InternalSephirah.g:4007:2: ( ruleExpression )
             {
-            // InternalSephirah.g:3880:2: ( ruleExpression )
-            // InternalSephirah.g:3881:3: ruleExpression
+            // InternalSephirah.g:4007:2: ( ruleExpression )
+            // InternalSephirah.g:4008:3: ruleExpression
             {
              before(grammarAccess.getEvaluationAccess().getExpressionExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -11738,17 +12126,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__ConditionAssignment_0_2"
-    // InternalSephirah.g:3890:1: rule__Conditional__ConditionAssignment_0_2 : ( ruleCondition ) ;
+    // InternalSephirah.g:4017:1: rule__Conditional__ConditionAssignment_0_2 : ( ruleCondition ) ;
     public final void rule__Conditional__ConditionAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3894:1: ( ( ruleCondition ) )
-            // InternalSephirah.g:3895:2: ( ruleCondition )
+            // InternalSephirah.g:4021:1: ( ( ruleCondition ) )
+            // InternalSephirah.g:4022:2: ( ruleCondition )
             {
-            // InternalSephirah.g:3895:2: ( ruleCondition )
-            // InternalSephirah.g:3896:3: ruleCondition
+            // InternalSephirah.g:4022:2: ( ruleCondition )
+            // InternalSephirah.g:4023:3: ruleCondition
             {
              before(grammarAccess.getConditionalAccess().getConditionConditionParserRuleCall_0_2_0()); 
             pushFollow(FOLLOW_2);
@@ -11779,17 +12167,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__ThenBranchAssignment_0_4"
-    // InternalSephirah.g:3905:1: rule__Conditional__ThenBranchAssignment_0_4 : ( ruleExpression ) ;
+    // InternalSephirah.g:4032:1: rule__Conditional__ThenBranchAssignment_0_4 : ( ruleExpression ) ;
     public final void rule__Conditional__ThenBranchAssignment_0_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3909:1: ( ( ruleExpression ) )
-            // InternalSephirah.g:3910:2: ( ruleExpression )
+            // InternalSephirah.g:4036:1: ( ( ruleExpression ) )
+            // InternalSephirah.g:4037:2: ( ruleExpression )
             {
-            // InternalSephirah.g:3910:2: ( ruleExpression )
-            // InternalSephirah.g:3911:3: ruleExpression
+            // InternalSephirah.g:4037:2: ( ruleExpression )
+            // InternalSephirah.g:4038:3: ruleExpression
             {
              before(grammarAccess.getConditionalAccess().getThenBranchExpressionParserRuleCall_0_4_0()); 
             pushFollow(FOLLOW_2);
@@ -11820,17 +12208,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Conditional__ElseBranchAssignment_0_6"
-    // InternalSephirah.g:3920:1: rule__Conditional__ElseBranchAssignment_0_6 : ( ruleExpression ) ;
+    // InternalSephirah.g:4047:1: rule__Conditional__ElseBranchAssignment_0_6 : ( ruleExpression ) ;
     public final void rule__Conditional__ElseBranchAssignment_0_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3924:1: ( ( ruleExpression ) )
-            // InternalSephirah.g:3925:2: ( ruleExpression )
+            // InternalSephirah.g:4051:1: ( ( ruleExpression ) )
+            // InternalSephirah.g:4052:2: ( ruleExpression )
             {
-            // InternalSephirah.g:3925:2: ( ruleExpression )
-            // InternalSephirah.g:3926:3: ruleExpression
+            // InternalSephirah.g:4052:2: ( ruleExpression )
+            // InternalSephirah.g:4053:3: ruleExpression
             {
              before(grammarAccess.getConditionalAccess().getElseBranchExpressionParserRuleCall_0_6_0()); 
             pushFollow(FOLLOW_2);
@@ -11861,17 +12249,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Addition__RightAssignment_1_1"
-    // InternalSephirah.g:3935:1: rule__Addition__RightAssignment_1_1 : ( ruleMultiplication ) ;
+    // InternalSephirah.g:4062:1: rule__Addition__RightAssignment_1_1 : ( ruleMultiplication ) ;
     public final void rule__Addition__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3939:1: ( ( ruleMultiplication ) )
-            // InternalSephirah.g:3940:2: ( ruleMultiplication )
+            // InternalSephirah.g:4066:1: ( ( ruleMultiplication ) )
+            // InternalSephirah.g:4067:2: ( ruleMultiplication )
             {
-            // InternalSephirah.g:3940:2: ( ruleMultiplication )
-            // InternalSephirah.g:3941:3: ruleMultiplication
+            // InternalSephirah.g:4067:2: ( ruleMultiplication )
+            // InternalSephirah.g:4068:3: ruleMultiplication
             {
              before(grammarAccess.getAdditionAccess().getRightMultiplicationParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -11902,17 +12290,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Multiplication__RightAssignment_1_1"
-    // InternalSephirah.g:3950:1: rule__Multiplication__RightAssignment_1_1 : ( ruleExponent ) ;
+    // InternalSephirah.g:4077:1: rule__Multiplication__RightAssignment_1_1 : ( ruleExponent ) ;
     public final void rule__Multiplication__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3954:1: ( ( ruleExponent ) )
-            // InternalSephirah.g:3955:2: ( ruleExponent )
+            // InternalSephirah.g:4081:1: ( ( ruleExponent ) )
+            // InternalSephirah.g:4082:2: ( ruleExponent )
             {
-            // InternalSephirah.g:3955:2: ( ruleExponent )
-            // InternalSephirah.g:3956:3: ruleExponent
+            // InternalSephirah.g:4082:2: ( ruleExponent )
+            // InternalSephirah.g:4083:3: ruleExponent
             {
              before(grammarAccess.getMultiplicationAccess().getRightExponentParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -11943,17 +12331,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Exponent__RightAssignment_1_2"
-    // InternalSephirah.g:3965:1: rule__Exponent__RightAssignment_1_2 : ( ruleExponent ) ;
+    // InternalSephirah.g:4092:1: rule__Exponent__RightAssignment_1_2 : ( ruleExponent ) ;
     public final void rule__Exponent__RightAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3969:1: ( ( ruleExponent ) )
-            // InternalSephirah.g:3970:2: ( ruleExponent )
+            // InternalSephirah.g:4096:1: ( ( ruleExponent ) )
+            // InternalSephirah.g:4097:2: ( ruleExponent )
             {
-            // InternalSephirah.g:3970:2: ( ruleExponent )
-            // InternalSephirah.g:3971:3: ruleExponent
+            // InternalSephirah.g:4097:2: ( ruleExponent )
+            // InternalSephirah.g:4098:3: ruleExponent
             {
              before(grammarAccess.getExponentAccess().getRightExponentParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -11984,17 +12372,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__PrimaryExpression__ValueAssignment_1_1"
-    // InternalSephirah.g:3980:1: rule__PrimaryExpression__ValueAssignment_1_1 : ( ruleDecimal ) ;
+    // InternalSephirah.g:4107:1: rule__PrimaryExpression__ValueAssignment_1_1 : ( ruleDecimal ) ;
     public final void rule__PrimaryExpression__ValueAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3984:1: ( ( ruleDecimal ) )
-            // InternalSephirah.g:3985:2: ( ruleDecimal )
+            // InternalSephirah.g:4111:1: ( ( ruleDecimal ) )
+            // InternalSephirah.g:4112:2: ( ruleDecimal )
             {
-            // InternalSephirah.g:3985:2: ( ruleDecimal )
-            // InternalSephirah.g:3986:3: ruleDecimal
+            // InternalSephirah.g:4112:2: ( ruleDecimal )
+            // InternalSephirah.g:4113:3: ruleDecimal
             {
              before(grammarAccess.getPrimaryExpressionAccess().getValueDecimalParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -12025,17 +12413,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__OrCondition__RightAssignment_1_2"
-    // InternalSephirah.g:3995:1: rule__OrCondition__RightAssignment_1_2 : ( ruleAndCondition ) ;
+    // InternalSephirah.g:4122:1: rule__OrCondition__RightAssignment_1_2 : ( ruleAndCondition ) ;
     public final void rule__OrCondition__RightAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:3999:1: ( ( ruleAndCondition ) )
-            // InternalSephirah.g:4000:2: ( ruleAndCondition )
+            // InternalSephirah.g:4126:1: ( ( ruleAndCondition ) )
+            // InternalSephirah.g:4127:2: ( ruleAndCondition )
             {
-            // InternalSephirah.g:4000:2: ( ruleAndCondition )
-            // InternalSephirah.g:4001:3: ruleAndCondition
+            // InternalSephirah.g:4127:2: ( ruleAndCondition )
+            // InternalSephirah.g:4128:3: ruleAndCondition
             {
              before(grammarAccess.getOrConditionAccess().getRightAndConditionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -12066,17 +12454,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AndCondition__RightAssignment_1_2"
-    // InternalSephirah.g:4010:1: rule__AndCondition__RightAssignment_1_2 : ( ruleNotCondition ) ;
+    // InternalSephirah.g:4137:1: rule__AndCondition__RightAssignment_1_2 : ( ruleNotCondition ) ;
     public final void rule__AndCondition__RightAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:4014:1: ( ( ruleNotCondition ) )
-            // InternalSephirah.g:4015:2: ( ruleNotCondition )
+            // InternalSephirah.g:4141:1: ( ( ruleNotCondition ) )
+            // InternalSephirah.g:4142:2: ( ruleNotCondition )
             {
-            // InternalSephirah.g:4015:2: ( ruleNotCondition )
-            // InternalSephirah.g:4016:3: ruleNotCondition
+            // InternalSephirah.g:4142:2: ( ruleNotCondition )
+            // InternalSephirah.g:4143:3: ruleNotCondition
             {
              before(grammarAccess.getAndConditionAccess().getRightNotConditionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -12107,17 +12495,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__NotCondition__ConditionAssignment_0_2"
-    // InternalSephirah.g:4025:1: rule__NotCondition__ConditionAssignment_0_2 : ( ruleNotCondition ) ;
+    // InternalSephirah.g:4152:1: rule__NotCondition__ConditionAssignment_0_2 : ( ruleNotCondition ) ;
     public final void rule__NotCondition__ConditionAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:4029:1: ( ( ruleNotCondition ) )
-            // InternalSephirah.g:4030:2: ( ruleNotCondition )
+            // InternalSephirah.g:4156:1: ( ( ruleNotCondition ) )
+            // InternalSephirah.g:4157:2: ( ruleNotCondition )
             {
-            // InternalSephirah.g:4030:2: ( ruleNotCondition )
-            // InternalSephirah.g:4031:3: ruleNotCondition
+            // InternalSephirah.g:4157:2: ( ruleNotCondition )
+            // InternalSephirah.g:4158:3: ruleNotCondition
             {
              before(grammarAccess.getNotConditionAccess().getConditionNotConditionParserRuleCall_0_2_0()); 
             pushFollow(FOLLOW_2);
@@ -12148,17 +12536,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ComparisonCondition__LeftAssignment_1"
-    // InternalSephirah.g:4040:1: rule__ComparisonCondition__LeftAssignment_1 : ( ruleAddition ) ;
+    // InternalSephirah.g:4167:1: rule__ComparisonCondition__LeftAssignment_1 : ( ruleAddition ) ;
     public final void rule__ComparisonCondition__LeftAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:4044:1: ( ( ruleAddition ) )
-            // InternalSephirah.g:4045:2: ( ruleAddition )
+            // InternalSephirah.g:4171:1: ( ( ruleAddition ) )
+            // InternalSephirah.g:4172:2: ( ruleAddition )
             {
-            // InternalSephirah.g:4045:2: ( ruleAddition )
-            // InternalSephirah.g:4046:3: ruleAddition
+            // InternalSephirah.g:4172:2: ( ruleAddition )
+            // InternalSephirah.g:4173:3: ruleAddition
             {
              before(grammarAccess.getComparisonConditionAccess().getLeftAdditionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -12189,17 +12577,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ComparisonCondition__OpAssignment_2"
-    // InternalSephirah.g:4055:1: rule__ComparisonCondition__OpAssignment_2 : ( ruleComparisonOperator ) ;
+    // InternalSephirah.g:4182:1: rule__ComparisonCondition__OpAssignment_2 : ( ruleComparisonOperator ) ;
     public final void rule__ComparisonCondition__OpAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:4059:1: ( ( ruleComparisonOperator ) )
-            // InternalSephirah.g:4060:2: ( ruleComparisonOperator )
+            // InternalSephirah.g:4186:1: ( ( ruleComparisonOperator ) )
+            // InternalSephirah.g:4187:2: ( ruleComparisonOperator )
             {
-            // InternalSephirah.g:4060:2: ( ruleComparisonOperator )
-            // InternalSephirah.g:4061:3: ruleComparisonOperator
+            // InternalSephirah.g:4187:2: ( ruleComparisonOperator )
+            // InternalSephirah.g:4188:3: ruleComparisonOperator
             {
              before(grammarAccess.getComparisonConditionAccess().getOpComparisonOperatorEnumRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -12230,17 +12618,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ComparisonCondition__RightAssignment_3"
-    // InternalSephirah.g:4070:1: rule__ComparisonCondition__RightAssignment_3 : ( ruleAddition ) ;
+    // InternalSephirah.g:4197:1: rule__ComparisonCondition__RightAssignment_3 : ( ruleAddition ) ;
     public final void rule__ComparisonCondition__RightAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:4074:1: ( ( ruleAddition ) )
-            // InternalSephirah.g:4075:2: ( ruleAddition )
+            // InternalSephirah.g:4201:1: ( ( ruleAddition ) )
+            // InternalSephirah.g:4202:2: ( ruleAddition )
             {
-            // InternalSephirah.g:4075:2: ( ruleAddition )
-            // InternalSephirah.g:4076:3: ruleAddition
+            // InternalSephirah.g:4202:2: ( ruleAddition )
+            // InternalSephirah.g:4203:3: ruleAddition
             {
              before(grammarAccess.getComparisonConditionAccess().getRightAdditionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -12271,17 +12659,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__NameAssignment_1"
-    // InternalSephirah.g:4085:1: rule__MethodCall__NameAssignment_1 : ( ruleQualifiedName ) ;
+    // InternalSephirah.g:4212:1: rule__MethodCall__NameAssignment_1 : ( ruleQualifiedName ) ;
     public final void rule__MethodCall__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:4089:1: ( ( ruleQualifiedName ) )
-            // InternalSephirah.g:4090:2: ( ruleQualifiedName )
+            // InternalSephirah.g:4216:1: ( ( ruleQualifiedName ) )
+            // InternalSephirah.g:4217:2: ( ruleQualifiedName )
             {
-            // InternalSephirah.g:4090:2: ( ruleQualifiedName )
-            // InternalSephirah.g:4091:3: ruleQualifiedName
+            // InternalSephirah.g:4217:2: ( ruleQualifiedName )
+            // InternalSephirah.g:4218:3: ruleQualifiedName
             {
              before(grammarAccess.getMethodCallAccess().getNameQualifiedNameParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -12312,17 +12700,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__ArgsAssignment_3_0"
-    // InternalSephirah.g:4100:1: rule__MethodCall__ArgsAssignment_3_0 : ( ruleExpression ) ;
+    // InternalSephirah.g:4227:1: rule__MethodCall__ArgsAssignment_3_0 : ( ruleExpression ) ;
     public final void rule__MethodCall__ArgsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:4104:1: ( ( ruleExpression ) )
-            // InternalSephirah.g:4105:2: ( ruleExpression )
+            // InternalSephirah.g:4231:1: ( ( ruleExpression ) )
+            // InternalSephirah.g:4232:2: ( ruleExpression )
             {
-            // InternalSephirah.g:4105:2: ( ruleExpression )
-            // InternalSephirah.g:4106:3: ruleExpression
+            // InternalSephirah.g:4232:2: ( ruleExpression )
+            // InternalSephirah.g:4233:3: ruleExpression
             {
              before(grammarAccess.getMethodCallAccess().getArgsExpressionParserRuleCall_3_0_0()); 
             pushFollow(FOLLOW_2);
@@ -12353,17 +12741,17 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MethodCall__ArgsAssignment_3_1_1"
-    // InternalSephirah.g:4115:1: rule__MethodCall__ArgsAssignment_3_1_1 : ( ruleExpression ) ;
+    // InternalSephirah.g:4242:1: rule__MethodCall__ArgsAssignment_3_1_1 : ( ruleExpression ) ;
     public final void rule__MethodCall__ArgsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:4119:1: ( ( ruleExpression ) )
-            // InternalSephirah.g:4120:2: ( ruleExpression )
+            // InternalSephirah.g:4246:1: ( ( ruleExpression ) )
+            // InternalSephirah.g:4247:2: ( ruleExpression )
             {
-            // InternalSephirah.g:4120:2: ( ruleExpression )
-            // InternalSephirah.g:4121:3: ruleExpression
+            // InternalSephirah.g:4247:2: ( ruleExpression )
+            // InternalSephirah.g:4248:3: ruleExpression
             {
              before(grammarAccess.getMethodCallAccess().getArgsExpressionParserRuleCall_3_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -12394,21 +12782,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Constant__ValueAssignment_1"
-    // InternalSephirah.g:4130:1: rule__Constant__ValueAssignment_1 : ( ( rule__Constant__ValueAlternatives_1_0 ) ) ;
+    // InternalSephirah.g:4257:1: rule__Constant__ValueAssignment_1 : ( ( rule__Constant__ValueAlternatives_1_0 ) ) ;
     public final void rule__Constant__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSephirah.g:4134:1: ( ( ( rule__Constant__ValueAlternatives_1_0 ) ) )
-            // InternalSephirah.g:4135:2: ( ( rule__Constant__ValueAlternatives_1_0 ) )
+            // InternalSephirah.g:4261:1: ( ( ( rule__Constant__ValueAlternatives_1_0 ) ) )
+            // InternalSephirah.g:4262:2: ( ( rule__Constant__ValueAlternatives_1_0 ) )
             {
-            // InternalSephirah.g:4135:2: ( ( rule__Constant__ValueAlternatives_1_0 ) )
-            // InternalSephirah.g:4136:3: ( rule__Constant__ValueAlternatives_1_0 )
+            // InternalSephirah.g:4262:2: ( ( rule__Constant__ValueAlternatives_1_0 ) )
+            // InternalSephirah.g:4263:3: ( rule__Constant__ValueAlternatives_1_0 )
             {
              before(grammarAccess.getConstantAccess().getValueAlternatives_1_0()); 
-            // InternalSephirah.g:4137:3: ( rule__Constant__ValueAlternatives_1_0 )
-            // InternalSephirah.g:4137:4: rule__Constant__ValueAlternatives_1_0
+            // InternalSephirah.g:4264:3: ( rule__Constant__ValueAlternatives_1_0 )
+            // InternalSephirah.g:4264:4: rule__Constant__ValueAlternatives_1_0
             {
             pushFollow(FOLLOW_2);
             rule__Constant__ValueAlternatives_1_0();
@@ -12446,21 +12834,21 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
     static final String dfa_1s = "\13\uffff";
     static final String dfa_2s = "\3\uffff\2\7\4\uffff\2\7";
     static final String dfa_3s = "\1\4\2\uffff\2\21\1\uffff\1\4\2\uffff\2\21";
-    static final String dfa_4s = "\1\33\2\uffff\2\53\1\uffff\1\5\2\uffff\2\53";
+    static final String dfa_4s = "\1\33\2\uffff\2\55\1\uffff\1\5\2\uffff\2\55";
     static final String dfa_5s = "\1\uffff\1\1\1\2\2\uffff\1\4\1\uffff\1\5\1\3\2\uffff";
     static final String dfa_6s = "\13\uffff}>";
     static final String[] dfa_7s = {
             "\1\3\1\4\1\2\5\uffff\5\5\12\uffff\1\1",
             "",
             "",
-            "\6\7\2\uffff\1\7\1\uffff\1\10\1\7\1\uffff\1\7\2\uffff\11\7\1\uffff\1\6",
-            "\6\7\2\uffff\1\7\1\uffff\1\10\1\7\1\uffff\1\7\2\uffff\11\7\1\uffff\1\6",
+            "\6\7\2\uffff\1\7\1\uffff\1\10\1\7\1\uffff\1\7\2\uffff\11\7\2\uffff\1\7\1\6",
+            "\6\7\2\uffff\1\7\1\uffff\1\10\1\7\1\uffff\1\7\2\uffff\11\7\2\uffff\1\7\1\6",
             "",
             "\1\11\1\12",
             "",
             "",
-            "\6\7\2\uffff\1\7\1\uffff\1\10\1\7\1\uffff\1\7\2\uffff\11\7\1\uffff\1\6",
-            "\6\7\2\uffff\1\7\1\uffff\1\10\1\7\1\uffff\1\7\2\uffff\11\7\1\uffff\1\6"
+            "\6\7\2\uffff\1\7\1\uffff\1\10\1\7\1\uffff\1\7\2\uffff\11\7\2\uffff\1\7\1\6",
+            "\6\7\2\uffff\1\7\1\uffff\1\10\1\7\1\uffff\1\7\2\uffff\11\7\2\uffff\1\7\1\6"
     };
 
     static final short[] dfa_1 = DFA.unpackEncodedString(dfa_1s);
@@ -12485,7 +12873,7 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
             this.transition = dfa_7;
         }
         public String getDescription() {
-            return "758:1: rule__PrimaryExpression__Alternatives : ( ( ( rule__PrimaryExpression__Group_0__0 ) ) | ( ( rule__PrimaryExpression__Group_1__0 ) ) | ( ruleMethodCall ) | ( ruleConstant ) | ( ruleVariable ) );";
+            return "783:1: rule__PrimaryExpression__Alternatives : ( ( ( rule__PrimaryExpression__Group_0__0 ) ) | ( ( rule__PrimaryExpression__Group_1__0 ) ) | ( ruleMethodCall ) | ( ruleConstant ) | ( ruleVariable ) );";
         }
     }
  
@@ -12505,7 +12893,7 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000040000002L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000080000000L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x000004018C01F070L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x00000C018C01F070L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000200000000L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000400000000L});
     public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000001800000000L});
@@ -12522,10 +12910,11 @@ public class InternalSephirahParser extends AbstractInternalContentAssistParser 
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000020000000000L});
     public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000020000000002L});
     public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x00000000007E0000L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x000000019C01F070L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x000000000001F000L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000080000000002L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x00000000007E0000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x000000019C01F070L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x000000000001F000L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000200000000002L});
 
 }

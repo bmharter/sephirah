@@ -103,7 +103,12 @@ AndCondition returns Condition:
 
 NotCondition returns Condition:
 	{NotCondition} 'not' condition=NotCondition |
-	ComparisonCondition
+	PrimaryCondition
+;
+
+PrimaryCondition returns Condition:
+	ComparisonCondition |
+	'[' Condition ']'
 ;
 
 ComparisonCondition returns Condition:

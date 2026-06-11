@@ -194,6 +194,8 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     OrCondition.OrCondition_1_0 returns AndCondition
 	 *     AndCondition returns AndCondition
 	 *     AndCondition.AndCondition_1_0 returns AndCondition
+	 *     NotCondition returns AndCondition
+	 *     PrimaryCondition returns AndCondition
 	 *
 	 * Constraint:
 	 *     (left=AndCondition_AndCondition_1_0 right=NotCondition)
@@ -222,6 +224,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     AndCondition returns ComparisonCondition
 	 *     AndCondition.AndCondition_1_0 returns ComparisonCondition
 	 *     NotCondition returns ComparisonCondition
+	 *     PrimaryCondition returns ComparisonCondition
 	 *     ComparisonCondition returns ComparisonCondition
 	 *
 	 * Constraint:
@@ -552,6 +555,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     AndCondition returns NotCondition
 	 *     AndCondition.AndCondition_1_0 returns NotCondition
 	 *     NotCondition returns NotCondition
+	 *     PrimaryCondition returns NotCondition
 	 *
 	 * Constraint:
 	 *     condition=NotCondition
@@ -574,6 +578,10 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Condition returns OrCondition
 	 *     OrCondition returns OrCondition
 	 *     OrCondition.OrCondition_1_0 returns OrCondition
+	 *     AndCondition returns OrCondition
+	 *     AndCondition.AndCondition_1_0 returns OrCondition
+	 *     NotCondition returns OrCondition
+	 *     PrimaryCondition returns OrCondition
 	 *
 	 * Constraint:
 	 *     (left=OrCondition_OrCondition_1_0 right=AndCondition)

@@ -1228,13 +1228,59 @@ ruleNotCondition returns [EObject current=null]
 		)
 		    |
 		{
-			newCompositeNode(grammarAccess.getNotConditionAccess().getComparisonConditionParserRuleCall_1());
+			newCompositeNode(grammarAccess.getNotConditionAccess().getPrimaryConditionParserRuleCall_1());
 		}
-		this_ComparisonCondition_3=ruleComparisonCondition
+		this_PrimaryCondition_3=rulePrimaryCondition
 		{
-			$current = $this_ComparisonCondition_3.current;
+			$current = $this_PrimaryCondition_3.current;
 			afterParserOrEnumRuleCall();
 		}
+	)
+;
+
+// Entry rule entryRulePrimaryCondition
+entryRulePrimaryCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPrimaryConditionRule()); }
+	iv_rulePrimaryCondition=rulePrimaryCondition
+	{ $current=$iv_rulePrimaryCondition.current; }
+	EOF;
+
+// Rule PrimaryCondition
+rulePrimaryCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getPrimaryConditionAccess().getComparisonConditionParserRuleCall_0());
+		}
+		this_ComparisonCondition_0=ruleComparisonCondition
+		{
+			$current = $this_ComparisonCondition_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		(
+			otherlv_1='['
+			{
+				newLeafNode(otherlv_1, grammarAccess.getPrimaryConditionAccess().getLeftSquareBracketKeyword_1_0());
+			}
+			{
+				newCompositeNode(grammarAccess.getPrimaryConditionAccess().getConditionParserRuleCall_1_1());
+			}
+			this_Condition_2=ruleCondition
+			{
+				$current = $this_Condition_2.current;
+				afterParserOrEnumRuleCall();
+			}
+			otherlv_3=']'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getPrimaryConditionAccess().getRightSquareBracketKeyword_1_2());
+			}
+		)
 	)
 ;
 
