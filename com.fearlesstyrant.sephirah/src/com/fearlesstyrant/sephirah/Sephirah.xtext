@@ -90,7 +90,24 @@ PrimaryExpression returns Expression:
 ;
 
 Condition:
-	left=Addition op=ComparisonOperator right=Addition
+	OrCondition
+;
+
+OrCondition returns Condition:
+	AndCondition ({OrCondition.left=current} 'or' right=AndCondition)*
+;
+
+AndCondition returns Condition:
+	NotCondition ({AndCondition.left=current} 'and' right=NotCondition)*
+;
+
+NotCondition returns Condition:
+	{NotCondition} 'not' condition=NotCondition |
+	ComparisonCondition
+;
+
+ComparisonCondition returns Condition:
+	{ComparisonCondition} left=Addition op=ComparisonOperator right=Addition
 ;
 
 MethodCall returns Expression:

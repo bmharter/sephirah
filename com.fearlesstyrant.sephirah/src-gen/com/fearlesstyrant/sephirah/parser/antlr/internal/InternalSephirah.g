@@ -1050,21 +1050,231 @@ ruleCondition returns [EObject current=null]
 @after {
 	leaveRule();
 }:
+	{
+		newCompositeNode(grammarAccess.getConditionAccess().getOrConditionParserRuleCall());
+	}
+	this_OrCondition_0=ruleOrCondition
+	{
+		$current = $this_OrCondition_0.current;
+		afterParserOrEnumRuleCall();
+	}
+;
+
+// Entry rule entryRuleOrCondition
+entryRuleOrCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOrConditionRule()); }
+	iv_ruleOrCondition=ruleOrCondition
+	{ $current=$iv_ruleOrCondition.current; }
+	EOF;
+
+// Rule OrCondition
+ruleOrCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getOrConditionAccess().getAndConditionParserRuleCall_0());
+		}
+		this_AndCondition_0=ruleAndCondition
+		{
+			$current = $this_AndCondition_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				{
+					$current = forceCreateModelElementAndSet(
+						grammarAccess.getOrConditionAccess().getOrConditionLeftAction_1_0(),
+						$current);
+				}
+			)
+			otherlv_2='or'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getOrConditionAccess().getOrKeyword_1_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getOrConditionAccess().getRightAndConditionParserRuleCall_1_2_0());
+					}
+					lv_right_3_0=ruleAndCondition
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getOrConditionRule());
+						}
+						set(
+							$current,
+							"right",
+							lv_right_3_0,
+							"com.fearlesstyrant.sephirah.Sephirah.AndCondition");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+	)
+;
+
+// Entry rule entryRuleAndCondition
+entryRuleAndCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAndConditionRule()); }
+	iv_ruleAndCondition=ruleAndCondition
+	{ $current=$iv_ruleAndCondition.current; }
+	EOF;
+
+// Rule AndCondition
+ruleAndCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getAndConditionAccess().getNotConditionParserRuleCall_0());
+		}
+		this_NotCondition_0=ruleNotCondition
+		{
+			$current = $this_NotCondition_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				{
+					$current = forceCreateModelElementAndSet(
+						grammarAccess.getAndConditionAccess().getAndConditionLeftAction_1_0(),
+						$current);
+				}
+			)
+			otherlv_2='and'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getAndConditionAccess().getAndKeyword_1_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getAndConditionAccess().getRightNotConditionParserRuleCall_1_2_0());
+					}
+					lv_right_3_0=ruleNotCondition
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAndConditionRule());
+						}
+						set(
+							$current,
+							"right",
+							lv_right_3_0,
+							"com.fearlesstyrant.sephirah.Sephirah.NotCondition");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+	)
+;
+
+// Entry rule entryRuleNotCondition
+entryRuleNotCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getNotConditionRule()); }
+	iv_ruleNotCondition=ruleNotCondition
+	{ $current=$iv_ruleNotCondition.current; }
+	EOF;
+
+// Rule NotCondition
+ruleNotCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
 	(
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConditionAccess().getLeftAdditionParserRuleCall_0_0());
+					$current = forceCreateModelElement(
+						grammarAccess.getNotConditionAccess().getNotConditionAction_0_0(),
+						$current);
 				}
-				lv_left_0_0=ruleAddition
+			)
+			otherlv_1='not'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getNotConditionAccess().getNotKeyword_0_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getNotConditionAccess().getConditionNotConditionParserRuleCall_0_2_0());
+					}
+					lv_condition_2_0=ruleNotCondition
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getNotConditionRule());
+						}
+						set(
+							$current,
+							"condition",
+							lv_condition_2_0,
+							"com.fearlesstyrant.sephirah.Sephirah.NotCondition");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+		    |
+		{
+			newCompositeNode(grammarAccess.getNotConditionAccess().getComparisonConditionParserRuleCall_1());
+		}
+		this_ComparisonCondition_3=ruleComparisonCondition
+		{
+			$current = $this_ComparisonCondition_3.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleComparisonCondition
+entryRuleComparisonCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getComparisonConditionRule()); }
+	iv_ruleComparisonCondition=ruleComparisonCondition
+	{ $current=$iv_ruleComparisonCondition.current; }
+	EOF;
+
+// Rule ComparisonCondition
+ruleComparisonCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getComparisonConditionAccess().getComparisonConditionAction_0(),
+					$current);
+			}
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getComparisonConditionAccess().getLeftAdditionParserRuleCall_1_0());
+				}
+				lv_left_1_0=ruleAddition
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getConditionRule());
+						$current = createModelElementForParent(grammarAccess.getComparisonConditionRule());
 					}
 					set(
 						$current,
 						"left",
-						lv_left_0_0,
+						lv_left_1_0,
 						"com.fearlesstyrant.sephirah.Sephirah.Addition");
 					afterParserOrEnumRuleCall();
 				}
@@ -1073,17 +1283,17 @@ ruleCondition returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConditionAccess().getOpComparisonOperatorEnumRuleCall_1_0());
+					newCompositeNode(grammarAccess.getComparisonConditionAccess().getOpComparisonOperatorEnumRuleCall_2_0());
 				}
-				lv_op_1_0=ruleComparisonOperator
+				lv_op_2_0=ruleComparisonOperator
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getConditionRule());
+						$current = createModelElementForParent(grammarAccess.getComparisonConditionRule());
 					}
 					set(
 						$current,
 						"op",
-						lv_op_1_0,
+						lv_op_2_0,
 						"com.fearlesstyrant.sephirah.Sephirah.ComparisonOperator");
 					afterParserOrEnumRuleCall();
 				}
@@ -1092,17 +1302,17 @@ ruleCondition returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConditionAccess().getRightAdditionParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getComparisonConditionAccess().getRightAdditionParserRuleCall_3_0());
 				}
-				lv_right_2_0=ruleAddition
+				lv_right_3_0=ruleAddition
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getConditionRule());
+						$current = createModelElementForParent(grammarAccess.getComparisonConditionRule());
 					}
 					set(
 						$current,
 						"right",
-						lv_right_2_0,
+						lv_right_3_0,
 						"com.fearlesstyrant.sephirah.Sephirah.Addition");
 					afterParserOrEnumRuleCall();
 				}

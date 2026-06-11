@@ -176,6 +176,26 @@ public class SephirahAdapterFactory extends AdapterFactoryImpl
         return createNumberLiteralAdapter();
       }
       @Override
+      public Adapter caseOrCondition(OrCondition object)
+      {
+        return createOrConditionAdapter();
+      }
+      @Override
+      public Adapter caseAndCondition(AndCondition object)
+      {
+        return createAndConditionAdapter();
+      }
+      @Override
+      public Adapter caseNotCondition(NotCondition object)
+      {
+        return createNotConditionAdapter();
+      }
+      @Override
+      public Adapter caseComparisonCondition(ComparisonCondition object)
+      {
+        return createComparisonConditionAdapter();
+      }
+      @Override
       public Adapter caseMethodCall(MethodCall object)
       {
         return createMethodCallAdapter();
@@ -498,6 +518,66 @@ public class SephirahAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createNumberLiteralAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.fearlesstyrant.sephirah.sephirah.OrCondition <em>Or Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.fearlesstyrant.sephirah.sephirah.OrCondition
+   * @generated
+   */
+  public Adapter createOrConditionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.fearlesstyrant.sephirah.sephirah.AndCondition <em>And Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.fearlesstyrant.sephirah.sephirah.AndCondition
+   * @generated
+   */
+  public Adapter createAndConditionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.fearlesstyrant.sephirah.sephirah.NotCondition <em>Not Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.fearlesstyrant.sephirah.sephirah.NotCondition
+   * @generated
+   */
+  public Adapter createNotConditionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.fearlesstyrant.sephirah.sephirah.ComparisonCondition <em>Comparison Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.fearlesstyrant.sephirah.sephirah.ComparisonCondition
+   * @generated
+   */
+  public Adapter createComparisonConditionAdapter()
   {
     return null;
   }

@@ -4,7 +4,9 @@
 package com.fearlesstyrant.sephirah.sephirah.impl;
 
 import com.fearlesstyrant.sephirah.sephirah.Add;
+import com.fearlesstyrant.sephirah.sephirah.AndCondition;
 import com.fearlesstyrant.sephirah.sephirah.Assignment;
+import com.fearlesstyrant.sephirah.sephirah.ComparisonCondition;
 import com.fearlesstyrant.sephirah.sephirah.ComparisonOperator;
 import com.fearlesstyrant.sephirah.sephirah.Condition;
 import com.fearlesstyrant.sephirah.sephirah.Conditional;
@@ -20,7 +22,9 @@ import com.fearlesstyrant.sephirah.sephirah.FormulaModel;
 import com.fearlesstyrant.sephirah.sephirah.Import;
 import com.fearlesstyrant.sephirah.sephirah.MethodCall;
 import com.fearlesstyrant.sephirah.sephirah.Multiply;
+import com.fearlesstyrant.sephirah.sephirah.NotCondition;
 import com.fearlesstyrant.sephirah.sephirah.NumberLiteral;
+import com.fearlesstyrant.sephirah.sephirah.OrCondition;
 import com.fearlesstyrant.sephirah.sephirah.SephirahFactory;
 import com.fearlesstyrant.sephirah.sephirah.SephirahPackage;
 import com.fearlesstyrant.sephirah.sephirah.Statement;
@@ -183,6 +187,34 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
    * @generated
    */
   private EClass numberLiteralEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass orConditionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass andConditionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass notConditionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass comparisonConditionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -519,39 +551,6 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
    * @generated
    */
   @Override
-  public EReference getCondition_Left()
-  {
-    return (EReference)conditionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getCondition_Op()
-  {
-    return (EAttribute)conditionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getCondition_Right()
-  {
-    return (EReference)conditionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getConstant()
   {
     return constantEClass;
@@ -838,6 +837,138 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
    * @generated
    */
   @Override
+  public EClass getOrCondition()
+  {
+    return orConditionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getOrCondition_Left()
+  {
+    return (EReference)orConditionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getOrCondition_Right()
+  {
+    return (EReference)orConditionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAndCondition()
+  {
+    return andConditionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAndCondition_Left()
+  {
+    return (EReference)andConditionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAndCondition_Right()
+  {
+    return (EReference)andConditionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getNotCondition()
+  {
+    return notConditionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getNotCondition_Condition()
+  {
+    return (EReference)notConditionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getComparisonCondition()
+  {
+    return comparisonConditionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getComparisonCondition_Left()
+  {
+    return (EReference)comparisonConditionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getComparisonCondition_Op()
+  {
+    return (EAttribute)comparisonConditionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getComparisonCondition_Right()
+  {
+    return (EReference)comparisonConditionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getMethodCall()
   {
     return methodCallEClass;
@@ -939,9 +1070,6 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
     expressionEClass = createEClass(EXPRESSION);
 
     conditionEClass = createEClass(CONDITION);
-    createEReference(conditionEClass, CONDITION__LEFT);
-    createEAttribute(conditionEClass, CONDITION__OP);
-    createEReference(conditionEClass, CONDITION__RIGHT);
 
     constantEClass = createEClass(CONSTANT);
     createEAttribute(constantEClass, CONSTANT__VALUE);
@@ -978,6 +1106,22 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
 
     numberLiteralEClass = createEClass(NUMBER_LITERAL);
     createEAttribute(numberLiteralEClass, NUMBER_LITERAL__VALUE);
+
+    orConditionEClass = createEClass(OR_CONDITION);
+    createEReference(orConditionEClass, OR_CONDITION__LEFT);
+    createEReference(orConditionEClass, OR_CONDITION__RIGHT);
+
+    andConditionEClass = createEClass(AND_CONDITION);
+    createEReference(andConditionEClass, AND_CONDITION__LEFT);
+    createEReference(andConditionEClass, AND_CONDITION__RIGHT);
+
+    notConditionEClass = createEClass(NOT_CONDITION);
+    createEReference(notConditionEClass, NOT_CONDITION__CONDITION);
+
+    comparisonConditionEClass = createEClass(COMPARISON_CONDITION);
+    createEReference(comparisonConditionEClass, COMPARISON_CONDITION__LEFT);
+    createEAttribute(comparisonConditionEClass, COMPARISON_CONDITION__OP);
+    createEReference(comparisonConditionEClass, COMPARISON_CONDITION__RIGHT);
 
     methodCallEClass = createEClass(METHOD_CALL);
     createEAttribute(methodCallEClass, METHOD_CALL__NAME);
@@ -1029,6 +1173,10 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
     divideEClass.getESuperTypes().add(this.getExpression());
     exponentEClass.getESuperTypes().add(this.getExpression());
     numberLiteralEClass.getESuperTypes().add(this.getExpression());
+    orConditionEClass.getESuperTypes().add(this.getCondition());
+    andConditionEClass.getESuperTypes().add(this.getCondition());
+    notConditionEClass.getESuperTypes().add(this.getCondition());
+    comparisonConditionEClass.getESuperTypes().add(this.getCondition());
     methodCallEClass.getESuperTypes().add(this.getExpression());
 
     // Initialize classes and features; add operations and parameters
@@ -1064,9 +1212,6 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCondition_Left(), this.getExpression(), null, "left", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getCondition_Op(), this.getComparisonOperator(), "op", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCondition_Right(), this.getExpression(), null, "right", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constantEClass, Constant.class, "Constant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getConstant_Value(), ecorePackage.getEString(), "value", null, 0, 1, Constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1103,6 +1248,22 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
 
     initEClass(numberLiteralEClass, NumberLiteral.class, "NumberLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getNumberLiteral_Value(), ecorePackage.getEBigDecimal(), "value", null, 0, 1, NumberLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(orConditionEClass, OrCondition.class, "OrCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getOrCondition_Left(), this.getCondition(), null, "left", null, 0, 1, OrCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getOrCondition_Right(), this.getCondition(), null, "right", null, 0, 1, OrCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(andConditionEClass, AndCondition.class, "AndCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAndCondition_Left(), this.getCondition(), null, "left", null, 0, 1, AndCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAndCondition_Right(), this.getCondition(), null, "right", null, 0, 1, AndCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(notConditionEClass, NotCondition.class, "NotCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNotCondition_Condition(), this.getCondition(), null, "condition", null, 0, 1, NotCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(comparisonConditionEClass, ComparisonCondition.class, "ComparisonCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getComparisonCondition_Left(), this.getExpression(), null, "left", null, 0, 1, ComparisonCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getComparisonCondition_Op(), this.getComparisonOperator(), "op", null, 0, 1, ComparisonCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getComparisonCondition_Right(), this.getExpression(), null, "right", null, 0, 1, ComparisonCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(methodCallEClass, MethodCall.class, "MethodCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMethodCall_Name(), ecorePackage.getEString(), "name", null, 0, 1, MethodCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

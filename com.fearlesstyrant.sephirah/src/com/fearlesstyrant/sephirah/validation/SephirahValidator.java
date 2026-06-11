@@ -591,9 +591,27 @@ public class SephirahValidator extends AbstractSephirahValidator {
 			return false;
 		}
 		
-		return isStaticNumericExpression(condition.getLeft())
-				&& isStaticNumericExpression(condition.getRight())
-				&& condition.getOp() != null;
+		if(condition instanceof ComparisonCondition comparisonCondition) {
+			return isStaticNumericExpression(comparisonCondition.getLeft())
+					&& isStaticNumericExpression(comparisonCondition.getRight())
+					&& comparisonCondition.getOp() != null;
+		}
+		
+		if(condition instanceof AndCondition andCondition) {
+			return isStaticCondition(andCondition.getLeft())
+					&& isStaticCondition(andCondition.getRight());
+		}
+		
+		if(condition instanceof OrCondition orCondition) {
+			return isStaticCondition(orCondition.getLeft())
+					|| isStaticCondition(orCondition.getRight());
+		}
+		
+		if(condition instanceof NotCondition notCondition) {
+			return isStaticCondition(notCondition.getCondition());
+		}
+		
+		return false;
 	}
 	
 	private static boolean isStaticNumericExpression(Expression expression) {

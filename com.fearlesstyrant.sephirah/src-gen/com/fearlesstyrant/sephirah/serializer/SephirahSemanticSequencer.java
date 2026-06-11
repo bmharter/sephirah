@@ -4,7 +4,8 @@
 package com.fearlesstyrant.sephirah.serializer;
 
 import com.fearlesstyrant.sephirah.sephirah.Add;
-import com.fearlesstyrant.sephirah.sephirah.Condition;
+import com.fearlesstyrant.sephirah.sephirah.AndCondition;
+import com.fearlesstyrant.sephirah.sephirah.ComparisonCondition;
 import com.fearlesstyrant.sephirah.sephirah.Conditional;
 import com.fearlesstyrant.sephirah.sephirah.Constant;
 import com.fearlesstyrant.sephirah.sephirah.Definition;
@@ -17,7 +18,9 @@ import com.fearlesstyrant.sephirah.sephirah.FormulaModel;
 import com.fearlesstyrant.sephirah.sephirah.Import;
 import com.fearlesstyrant.sephirah.sephirah.MethodCall;
 import com.fearlesstyrant.sephirah.sephirah.Multiply;
+import com.fearlesstyrant.sephirah.sephirah.NotCondition;
 import com.fearlesstyrant.sephirah.sephirah.NumberLiteral;
+import com.fearlesstyrant.sephirah.sephirah.OrCondition;
 import com.fearlesstyrant.sephirah.sephirah.SephirahPackage;
 import com.fearlesstyrant.sephirah.sephirah.Subtract;
 import com.fearlesstyrant.sephirah.sephirah.Variable;
@@ -52,8 +55,11 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case SephirahPackage.ADD:
 				sequence_Addition(context, (Add) semanticObject); 
 				return; 
-			case SephirahPackage.CONDITION:
-				sequence_Condition(context, (Condition) semanticObject); 
+			case SephirahPackage.AND_CONDITION:
+				sequence_AndCondition(context, (AndCondition) semanticObject); 
+				return; 
+			case SephirahPackage.COMPARISON_CONDITION:
+				sequence_ComparisonCondition(context, (ComparisonCondition) semanticObject); 
 				return; 
 			case SephirahPackage.CONDITIONAL:
 				sequence_Conditional(context, (Conditional) semanticObject); 
@@ -91,8 +97,14 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case SephirahPackage.MULTIPLY:
 				sequence_Multiplication(context, (Multiply) semanticObject); 
 				return; 
+			case SephirahPackage.NOT_CONDITION:
+				sequence_NotCondition(context, (NotCondition) semanticObject); 
+				return; 
 			case SephirahPackage.NUMBER_LITERAL:
 				sequence_PrimaryExpression(context, (NumberLiteral) semanticObject); 
+				return; 
+			case SephirahPackage.OR_CONDITION:
+				sequence_OrCondition(context, (OrCondition) semanticObject); 
 				return; 
 			case SephirahPackage.SUBTRACT:
 				sequence_Addition(context, (Subtract) semanticObject); 
@@ -177,25 +189,58 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Condition returns Condition
+	 *     Condition returns AndCondition
+	 *     OrCondition returns AndCondition
+	 *     OrCondition.OrCondition_1_0 returns AndCondition
+	 *     AndCondition returns AndCondition
+	 *     AndCondition.AndCondition_1_0 returns AndCondition
+	 *
+	 * Constraint:
+	 *     (left=AndCondition_AndCondition_1_0 right=NotCondition)
+	 * </pre>
+	 */
+	protected void sequence_AndCondition(ISerializationContext context, AndCondition semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.AND_CONDITION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.AND_CONDITION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.AND_CONDITION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.AND_CONDITION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAndConditionAccess().getAndConditionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getAndConditionAccess().getRightNotConditionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Condition returns ComparisonCondition
+	 *     OrCondition returns ComparisonCondition
+	 *     OrCondition.OrCondition_1_0 returns ComparisonCondition
+	 *     AndCondition returns ComparisonCondition
+	 *     AndCondition.AndCondition_1_0 returns ComparisonCondition
+	 *     NotCondition returns ComparisonCondition
+	 *     ComparisonCondition returns ComparisonCondition
 	 *
 	 * Constraint:
 	 *     (left=Addition op=ComparisonOperator right=Addition)
 	 * </pre>
 	 */
-	protected void sequence_Condition(ISerializationContext context, Condition semanticObject) {
+	protected void sequence_ComparisonCondition(ISerializationContext context, ComparisonCondition semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.CONDITION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.CONDITION__LEFT));
-			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.CONDITION__OP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.CONDITION__OP));
-			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.CONDITION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.CONDITION__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__OP));
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getConditionAccess().getLeftAdditionParserRuleCall_0_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getConditionAccess().getOpComparisonOperatorEnumRuleCall_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getConditionAccess().getRightAdditionParserRuleCall_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getComparisonConditionAccess().getLeftAdditionParserRuleCall_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getComparisonConditionAccess().getOpComparisonOperatorEnumRuleCall_2_0(), semanticObject.getOp());
+		feeder.accept(grammarAccess.getComparisonConditionAccess().getRightAdditionParserRuleCall_3_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -494,6 +539,56 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getMultiplicationAccess().getMultiplyLeftAction_1_0_0_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getMultiplicationAccess().getRightExponentParserRuleCall_1_1_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Condition returns NotCondition
+	 *     OrCondition returns NotCondition
+	 *     OrCondition.OrCondition_1_0 returns NotCondition
+	 *     AndCondition returns NotCondition
+	 *     AndCondition.AndCondition_1_0 returns NotCondition
+	 *     NotCondition returns NotCondition
+	 *
+	 * Constraint:
+	 *     condition=NotCondition
+	 * </pre>
+	 */
+	protected void sequence_NotCondition(ISerializationContext context, NotCondition semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.NOT_CONDITION__CONDITION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.NOT_CONDITION__CONDITION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNotConditionAccess().getConditionNotConditionParserRuleCall_0_2_0(), semanticObject.getCondition());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Condition returns OrCondition
+	 *     OrCondition returns OrCondition
+	 *     OrCondition.OrCondition_1_0 returns OrCondition
+	 *
+	 * Constraint:
+	 *     (left=OrCondition_OrCondition_1_0 right=AndCondition)
+	 * </pre>
+	 */
+	protected void sequence_OrCondition(ISerializationContext context, OrCondition semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.OR_CONDITION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.OR_CONDITION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.OR_CONDITION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.OR_CONDITION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getOrConditionAccess().getOrConditionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getOrConditionAccess().getRightAndConditionParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	

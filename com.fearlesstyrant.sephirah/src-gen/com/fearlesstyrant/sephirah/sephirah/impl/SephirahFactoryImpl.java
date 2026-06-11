@@ -86,6 +86,10 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
       case SephirahPackage.DIVIDE: return createDivide();
       case SephirahPackage.EXPONENT: return createExponent();
       case SephirahPackage.NUMBER_LITERAL: return createNumberLiteral();
+      case SephirahPackage.OR_CONDITION: return createOrCondition();
+      case SephirahPackage.AND_CONDITION: return createAndCondition();
+      case SephirahPackage.NOT_CONDITION: return createNotCondition();
+      case SephirahPackage.COMPARISON_CONDITION: return createComparisonCondition();
       case SephirahPackage.METHOD_CALL: return createMethodCall();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -364,6 +368,54 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
   {
     NumberLiteralImpl numberLiteral = new NumberLiteralImpl();
     return numberLiteral;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public OrCondition createOrCondition()
+  {
+    OrConditionImpl orCondition = new OrConditionImpl();
+    return orCondition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AndCondition createAndCondition()
+  {
+    AndConditionImpl andCondition = new AndConditionImpl();
+    return andCondition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotCondition createNotCondition()
+  {
+    NotConditionImpl notCondition = new NotConditionImpl();
+    return notCondition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ComparisonCondition createComparisonCondition()
+  {
+    ComparisonConditionImpl comparisonCondition = new ComparisonConditionImpl();
+    return comparisonCondition;
   }
 
   /**

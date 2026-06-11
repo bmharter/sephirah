@@ -204,6 +204,42 @@ public interface SephirahFactory extends EFactory
   NumberLiteral createNumberLiteral();
 
   /**
+   * Returns a new object of class '<em>Or Condition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Or Condition</em>'.
+   * @generated
+   */
+  OrCondition createOrCondition();
+
+  /**
+   * Returns a new object of class '<em>And Condition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>And Condition</em>'.
+   * @generated
+   */
+  AndCondition createAndCondition();
+
+  /**
+   * Returns a new object of class '<em>Not Condition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Not Condition</em>'.
+   * @generated
+   */
+  NotCondition createNotCondition();
+
+  /**
+   * Returns a new object of class '<em>Comparison Condition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Comparison Condition</em>'.
+   * @generated
+   */
+  ComparisonCondition createComparisonCondition();
+
+  /**
    * Returns a new object of class '<em>Method Call</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

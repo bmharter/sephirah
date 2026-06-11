@@ -679,39 +679,165 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	public class ConditionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.Condition");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cLeftAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cLeftAdditionParserRuleCall_0_0 = (RuleCall)cLeftAssignment_0.eContents().get(0);
-		private final Assignment cOpAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOpComparisonOperatorEnumRuleCall_1_0 = (RuleCall)cOpAssignment_1.eContents().get(0);
-		private final Assignment cRightAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cRightAdditionParserRuleCall_2_0 = (RuleCall)cRightAssignment_2.eContents().get(0);
+		private final RuleCall cOrConditionParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//Condition:
-		//    left=Addition op=ComparisonOperator right=Addition
+		//    OrCondition
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//left=Addition op=ComparisonOperator right=Addition
+		//OrCondition
+		public RuleCall getOrConditionParserRuleCall() { return cOrConditionParserRuleCall; }
+	}
+	public class OrConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.OrCondition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cAndConditionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cOrConditionLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cOrKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRightAndConditionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		
+		//OrCondition returns Condition:
+		//    AndCondition ({OrCondition.left=current} 'or' right=AndCondition)*
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//AndCondition ({OrCondition.left=current} 'or' right=AndCondition)*
 		public Group getGroup() { return cGroup; }
 		
+		//AndCondition
+		public RuleCall getAndConditionParserRuleCall_0() { return cAndConditionParserRuleCall_0; }
+		
+		//({OrCondition.left=current} 'or' right=AndCondition)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{OrCondition.left=current}
+		public Action getOrConditionLeftAction_1_0() { return cOrConditionLeftAction_1_0; }
+		
+		//'or'
+		public Keyword getOrKeyword_1_1() { return cOrKeyword_1_1; }
+		
+		//right=AndCondition
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
+		
+		//AndCondition
+		public RuleCall getRightAndConditionParserRuleCall_1_2_0() { return cRightAndConditionParserRuleCall_1_2_0; }
+	}
+	public class AndConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.AndCondition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cNotConditionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cAndConditionLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cAndKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRightNotConditionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		
+		//AndCondition returns Condition:
+		//    NotCondition ({AndCondition.left=current} 'and' right=NotCondition)*
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//NotCondition ({AndCondition.left=current} 'and' right=NotCondition)*
+		public Group getGroup() { return cGroup; }
+		
+		//NotCondition
+		public RuleCall getNotConditionParserRuleCall_0() { return cNotConditionParserRuleCall_0; }
+		
+		//({AndCondition.left=current} 'and' right=NotCondition)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{AndCondition.left=current}
+		public Action getAndConditionLeftAction_1_0() { return cAndConditionLeftAction_1_0; }
+		
+		//'and'
+		public Keyword getAndKeyword_1_1() { return cAndKeyword_1_1; }
+		
+		//right=NotCondition
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
+		
+		//NotCondition
+		public RuleCall getRightNotConditionParserRuleCall_1_2_0() { return cRightNotConditionParserRuleCall_1_2_0; }
+	}
+	public class NotConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.NotCondition");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cNotConditionAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Keyword cNotKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Assignment cConditionAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
+		private final RuleCall cConditionNotConditionParserRuleCall_0_2_0 = (RuleCall)cConditionAssignment_0_2.eContents().get(0);
+		private final RuleCall cComparisonConditionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//NotCondition returns Condition:
+		//    {NotCondition} 'not' condition=NotCondition |
+		//    ComparisonCondition
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{NotCondition} 'not' condition=NotCondition |
+		//ComparisonCondition
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//{NotCondition} 'not' condition=NotCondition
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//{NotCondition}
+		public Action getNotConditionAction_0_0() { return cNotConditionAction_0_0; }
+		
+		//'not'
+		public Keyword getNotKeyword_0_1() { return cNotKeyword_0_1; }
+		
+		//condition=NotCondition
+		public Assignment getConditionAssignment_0_2() { return cConditionAssignment_0_2; }
+		
+		//NotCondition
+		public RuleCall getConditionNotConditionParserRuleCall_0_2_0() { return cConditionNotConditionParserRuleCall_0_2_0; }
+		
+		//ComparisonCondition
+		public RuleCall getComparisonConditionParserRuleCall_1() { return cComparisonConditionParserRuleCall_1; }
+	}
+	public class ComparisonConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.ComparisonCondition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cComparisonConditionAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cLeftAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cLeftAdditionParserRuleCall_1_0 = (RuleCall)cLeftAssignment_1.eContents().get(0);
+		private final Assignment cOpAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOpComparisonOperatorEnumRuleCall_2_0 = (RuleCall)cOpAssignment_2.eContents().get(0);
+		private final Assignment cRightAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cRightAdditionParserRuleCall_3_0 = (RuleCall)cRightAssignment_3.eContents().get(0);
+		
+		//ComparisonCondition returns Condition:
+		//    {ComparisonCondition} left=Addition op=ComparisonOperator right=Addition
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{ComparisonCondition} left=Addition op=ComparisonOperator right=Addition
+		public Group getGroup() { return cGroup; }
+		
+		//{ComparisonCondition}
+		public Action getComparisonConditionAction_0() { return cComparisonConditionAction_0; }
+		
 		//left=Addition
-		public Assignment getLeftAssignment_0() { return cLeftAssignment_0; }
+		public Assignment getLeftAssignment_1() { return cLeftAssignment_1; }
 		
 		//Addition
-		public RuleCall getLeftAdditionParserRuleCall_0_0() { return cLeftAdditionParserRuleCall_0_0; }
+		public RuleCall getLeftAdditionParserRuleCall_1_0() { return cLeftAdditionParserRuleCall_1_0; }
 		
 		//op=ComparisonOperator
-		public Assignment getOpAssignment_1() { return cOpAssignment_1; }
+		public Assignment getOpAssignment_2() { return cOpAssignment_2; }
 		
 		//ComparisonOperator
-		public RuleCall getOpComparisonOperatorEnumRuleCall_1_0() { return cOpComparisonOperatorEnumRuleCall_1_0; }
+		public RuleCall getOpComparisonOperatorEnumRuleCall_2_0() { return cOpComparisonOperatorEnumRuleCall_2_0; }
 		
 		//right=Addition
-		public Assignment getRightAssignment_2() { return cRightAssignment_2; }
+		public Assignment getRightAssignment_3() { return cRightAssignment_3; }
 		
 		//Addition
-		public RuleCall getRightAdditionParserRuleCall_2_0() { return cRightAdditionParserRuleCall_2_0; }
+		public RuleCall getRightAdditionParserRuleCall_3_0() { return cRightAdditionParserRuleCall_3_0; }
 	}
 	public class MethodCallElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.MethodCall");
@@ -977,6 +1103,10 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	private final ExponentElements pExponent;
 	private final PrimaryExpressionElements pPrimaryExpression;
 	private final ConditionElements pCondition;
+	private final OrConditionElements pOrCondition;
+	private final AndConditionElements pAndCondition;
+	private final NotConditionElements pNotCondition;
+	private final ComparisonConditionElements pComparisonCondition;
 	private final MethodCallElements pMethodCall;
 	private final ConstantElements pConstant;
 	private final QualifiedNameElements pQualifiedName;
@@ -1011,6 +1141,10 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.pExponent = new ExponentElements();
 		this.pPrimaryExpression = new PrimaryExpressionElements();
 		this.pCondition = new ConditionElements();
+		this.pOrCondition = new OrConditionElements();
+		this.pAndCondition = new AndConditionElements();
+		this.pNotCondition = new NotConditionElements();
+		this.pComparisonCondition = new ComparisonConditionElements();
 		this.pMethodCall = new MethodCallElements();
 		this.pConstant = new ConstantElements();
 		this.pQualifiedName = new QualifiedNameElements();
@@ -1238,7 +1372,7 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Condition:
-	//    left=Addition op=ComparisonOperator right=Addition
+	//    OrCondition
 	//;
 	public ConditionElements getConditionAccess() {
 		return pCondition;
@@ -1246,6 +1380,51 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	public ParserRule getConditionRule() {
 		return getConditionAccess().getRule();
+	}
+	
+	//OrCondition returns Condition:
+	//    AndCondition ({OrCondition.left=current} 'or' right=AndCondition)*
+	//;
+	public OrConditionElements getOrConditionAccess() {
+		return pOrCondition;
+	}
+	
+	public ParserRule getOrConditionRule() {
+		return getOrConditionAccess().getRule();
+	}
+	
+	//AndCondition returns Condition:
+	//    NotCondition ({AndCondition.left=current} 'and' right=NotCondition)*
+	//;
+	public AndConditionElements getAndConditionAccess() {
+		return pAndCondition;
+	}
+	
+	public ParserRule getAndConditionRule() {
+		return getAndConditionAccess().getRule();
+	}
+	
+	//NotCondition returns Condition:
+	//    {NotCondition} 'not' condition=NotCondition |
+	//    ComparisonCondition
+	//;
+	public NotConditionElements getNotConditionAccess() {
+		return pNotCondition;
+	}
+	
+	public ParserRule getNotConditionRule() {
+		return getNotConditionAccess().getRule();
+	}
+	
+	//ComparisonCondition returns Condition:
+	//    {ComparisonCondition} left=Addition op=ComparisonOperator right=Addition
+	//;
+	public ComparisonConditionElements getComparisonConditionAccess() {
+		return pComparisonCondition;
+	}
+	
+	public ParserRule getComparisonConditionRule() {
+		return getComparisonConditionAccess().getRule();
 	}
 	
 	//MethodCall returns Expression:

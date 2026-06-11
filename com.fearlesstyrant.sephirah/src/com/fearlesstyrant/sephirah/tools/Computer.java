@@ -162,17 +162,7 @@ public final class Computer {
                 + expression.eClass().getName());
     }
     
-    private BigDecimal evaluateConditional(Conditional conditional) {
-    	Objects.requireNonNull(conditional, "conditional must not be null");
-    	
-    	if(evaluateCondition(conditional.getCondition())) {
-    		return evaluate(conditional.getThenBranch());
-    	}
-    	
-    	return evaluate(conditional.getElseBranch());
-    }
-    
-    private boolean evaluateCondition(Condition condition) {
+    private boolean evaluateComparisonCondition(ComparisonCondition condition) {
     	Objects.requireNonNull(condition, "condition must not be null");
     	
     	BigDecimal left = evaluate(condition.getLeft());
@@ -202,6 +192,41 @@ public final class Computer {
             default:
                 throw new IllegalArgumentException("Unhandled comparison operator: " + operator);
         }
+    }
+    
+    private BigDecimal evaluateConditional(Conditional conditional) {
+    	Objects.requireNonNull(conditional, "conditional must not be null");
+    	
+    	if(evaluateCondition(conditional.getCondition())) {
+    		return evaluate(conditional.getThenBranch());
+    	}
+    	
+    	return evaluate(conditional.getElseBranch());
+    }
+    
+    private boolean evaluateCondition(Condition condition) {
+        Objects.requireNonNull(condition, "condition must not be null");
+
+        if (condition instanceof ComparisonCondition comparisonCondition) {
+            return evaluateComparisonCondition(comparisonCondition);
+        }
+
+        if (condition instanceof AndCondition andCondition) {
+            return evaluateCondition(andCondition.getLeft())
+                    && evaluateCondition(andCondition.getRight());
+        }
+
+        if (condition instanceof OrCondition orCondition) {
+            return evaluateCondition(orCondition.getLeft())
+                    || evaluateCondition(orCondition.getRight());
+        }
+
+        if (condition instanceof NotCondition notCondition) {
+            return !evaluateCondition(notCondition.getCondition());
+        }
+
+        throw new IllegalArgumentException(
+                "Unsupported condition type: " + condition.getClass().getSimpleName());
     }
 
     /**
