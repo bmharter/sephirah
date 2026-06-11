@@ -36,6 +36,7 @@ public class SephirahParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConditionalAccess().getAlternatives(), "rule__Conditional__Alternatives");
 			builder.put(grammarAccess.getAdditionAccess().getAlternatives_1_0(), "rule__Addition__Alternatives_1_0");
 			builder.put(grammarAccess.getMultiplicationAccess().getAlternatives_1_0(), "rule__Multiplication__Alternatives_1_0");
+			builder.put(grammarAccess.getUnaryAccess().getAlternatives(), "rule__Unary__Alternatives");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getAlternatives(), "rule__PrimaryExpression__Alternatives");
 			builder.put(grammarAccess.getNotConditionAccess().getAlternatives(), "rule__NotCondition__Alternatives");
 			builder.put(grammarAccess.getPrimaryConditionAccess().getAlternatives(), "rule__PrimaryCondition__Alternatives");
@@ -61,6 +62,7 @@ public class SephirahParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMultiplicationAccess().getGroup_1(), "rule__Multiplication__Group_1__0");
 			builder.put(grammarAccess.getMultiplicationAccess().getGroup_1_0_0(), "rule__Multiplication__Group_1_0_0__0");
 			builder.put(grammarAccess.getMultiplicationAccess().getGroup_1_0_1(), "rule__Multiplication__Group_1_0_1__0");
+			builder.put(grammarAccess.getUnaryAccess().getGroup_0(), "rule__Unary__Group_0__0");
 			builder.put(grammarAccess.getExponentAccess().getGroup(), "rule__Exponent__Group__0");
 			builder.put(grammarAccess.getExponentAccess().getGroup_1(), "rule__Exponent__Group_1__0");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getGroup_0(), "rule__PrimaryExpression__Group_0__0");
@@ -101,6 +103,7 @@ public class SephirahParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConditionalAccess().getElseBranchAssignment_0_6(), "rule__Conditional__ElseBranchAssignment_0_6");
 			builder.put(grammarAccess.getAdditionAccess().getRightAssignment_1_1(), "rule__Addition__RightAssignment_1_1");
 			builder.put(grammarAccess.getMultiplicationAccess().getRightAssignment_1_1(), "rule__Multiplication__RightAssignment_1_1");
+			builder.put(grammarAccess.getUnaryAccess().getValueAssignment_0_2(), "rule__Unary__ValueAssignment_0_2");
 			builder.put(grammarAccess.getExponentAccess().getRightAssignment_1_2(), "rule__Exponent__RightAssignment_1_2");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getValueAssignment_1_1(), "rule__PrimaryExpression__ValueAssignment_1_1");
 			builder.put(grammarAccess.getOrConditionAccess().getRightAssignment_1_2(), "rule__OrCondition__RightAssignment_1_2");

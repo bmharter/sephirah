@@ -84,6 +84,7 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
       case SephirahPackage.SUBTRACT: return createSubtract();
       case SephirahPackage.MULTIPLY: return createMultiply();
       case SephirahPackage.DIVIDE: return createDivide();
+      case SephirahPackage.NEGATE: return createNegate();
       case SephirahPackage.EXPONENT: return createExponent();
       case SephirahPackage.NUMBER_LITERAL: return createNumberLiteral();
       case SephirahPackage.OR_CONDITION: return createOrCondition();
@@ -344,6 +345,18 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
   {
     DivideImpl divide = new DivideImpl();
     return divide;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Negate createNegate()
+  {
+    NegateImpl negate = new NegateImpl();
+    return negate;
   }
 
   /**

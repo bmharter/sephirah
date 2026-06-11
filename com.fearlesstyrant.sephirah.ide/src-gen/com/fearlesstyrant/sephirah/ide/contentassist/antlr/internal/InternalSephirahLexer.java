@@ -771,8 +771,8 @@ public class InternalSephirahLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSephirah.g:4272:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalSephirah.g:4272:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalSephirah.g:4414:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalSephirah.g:4414:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -783,7 +783,7 @@ public class InternalSephirahLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalSephirah.g:4272:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalSephirah.g:4414:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop1:
             do {
                 int alt1=2;
@@ -832,11 +832,11 @@ public class InternalSephirahLexer extends Lexer {
         try {
             int _type = RULE_ESCAPED_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSephirah.g:4274:17: ( '`' (~ ( ( '`' | '\\r' | '\\n' ) ) )+ '`' )
-            // InternalSephirah.g:4274:19: '`' (~ ( ( '`' | '\\r' | '\\n' ) ) )+ '`'
+            // InternalSephirah.g:4416:17: ( '`' (~ ( ( '`' | '\\r' | '\\n' ) ) )+ '`' )
+            // InternalSephirah.g:4416:19: '`' (~ ( ( '`' | '\\r' | '\\n' ) ) )+ '`'
             {
             match('`'); 
-            // InternalSephirah.g:4274:23: (~ ( ( '`' | '\\r' | '\\n' ) ) )+
+            // InternalSephirah.g:4416:23: (~ ( ( '`' | '\\r' | '\\n' ) ) )+
             int cnt2=0;
             loop2:
             do {
@@ -850,7 +850,7 @@ public class InternalSephirahLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // InternalSephirah.g:4274:23: ~ ( ( '`' | '\\r' | '\\n' ) )
+            	    // InternalSephirah.g:4416:23: ~ ( ( '`' | '\\r' | '\\n' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='_')||(input.LA(1)>='a' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -891,10 +891,10 @@ public class InternalSephirahLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSephirah.g:4276:10: ( ( '0' .. '9' )+ )
-            // InternalSephirah.g:4276:12: ( '0' .. '9' )+
+            // InternalSephirah.g:4418:10: ( ( '0' .. '9' )+ )
+            // InternalSephirah.g:4418:12: ( '0' .. '9' )+
             {
-            // InternalSephirah.g:4276:12: ( '0' .. '9' )+
+            // InternalSephirah.g:4418:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -908,7 +908,7 @@ public class InternalSephirahLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // InternalSephirah.g:4276:13: '0' .. '9'
+            	    // InternalSephirah.g:4418:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -940,10 +940,10 @@ public class InternalSephirahLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSephirah.g:4278:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalSephirah.g:4278:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalSephirah.g:4420:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalSephirah.g:4420:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalSephirah.g:4278:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalSephirah.g:4420:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -961,10 +961,10 @@ public class InternalSephirahLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // InternalSephirah.g:4278:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalSephirah.g:4420:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalSephirah.g:4278:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalSephirah.g:4420:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -980,7 +980,7 @@ public class InternalSephirahLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // InternalSephirah.g:4278:21: '\\\\' .
+                    	    // InternalSephirah.g:4420:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -988,7 +988,7 @@ public class InternalSephirahLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalSephirah.g:4278:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalSephirah.g:4420:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1013,10 +1013,10 @@ public class InternalSephirahLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:4278:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalSephirah.g:4420:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalSephirah.g:4278:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalSephirah.g:4420:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -1032,7 +1032,7 @@ public class InternalSephirahLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // InternalSephirah.g:4278:54: '\\\\' .
+                    	    // InternalSephirah.g:4420:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1040,7 +1040,7 @@ public class InternalSephirahLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalSephirah.g:4278:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalSephirah.g:4420:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1083,12 +1083,12 @@ public class InternalSephirahLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSephirah.g:4280:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalSephirah.g:4280:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalSephirah.g:4422:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalSephirah.g:4422:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalSephirah.g:4280:24: ( options {greedy=false; } : . )*
+            // InternalSephirah.g:4422:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -1113,7 +1113,7 @@ public class InternalSephirahLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalSephirah.g:4280:52: .
+            	    // InternalSephirah.g:4422:52: .
             	    {
             	    matchAny(); 
 
@@ -1143,12 +1143,12 @@ public class InternalSephirahLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSephirah.g:4282:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalSephirah.g:4282:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalSephirah.g:4424:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalSephirah.g:4424:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalSephirah.g:4282:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalSephirah.g:4424:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -1161,7 +1161,7 @@ public class InternalSephirahLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // InternalSephirah.g:4282:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalSephirah.g:4424:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1181,7 +1181,7 @@ public class InternalSephirahLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalSephirah.g:4282:40: ( ( '\\r' )? '\\n' )?
+            // InternalSephirah.g:4424:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1190,9 +1190,9 @@ public class InternalSephirahLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // InternalSephirah.g:4282:41: ( '\\r' )? '\\n'
+                    // InternalSephirah.g:4424:41: ( '\\r' )? '\\n'
                     {
-                    // InternalSephirah.g:4282:41: ( '\\r' )?
+                    // InternalSephirah.g:4424:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1201,7 +1201,7 @@ public class InternalSephirahLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // InternalSephirah.g:4282:41: '\\r'
+                            // InternalSephirah.g:4424:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1233,10 +1233,10 @@ public class InternalSephirahLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSephirah.g:4284:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalSephirah.g:4284:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalSephirah.g:4426:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalSephirah.g:4426:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalSephirah.g:4284:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalSephirah.g:4426:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -1290,8 +1290,8 @@ public class InternalSephirahLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSephirah.g:4286:16: ( . )
-            // InternalSephirah.g:4286:18: .
+            // InternalSephirah.g:4428:16: ( . )
+            // InternalSephirah.g:4428:18: .
             {
             matchAny(); 
 

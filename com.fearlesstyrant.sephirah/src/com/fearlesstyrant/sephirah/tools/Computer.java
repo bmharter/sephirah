@@ -158,6 +158,10 @@ public final class Computer {
             return evaluateMethodCall(methodCall);
         }
         
+        if(expression instanceof Negate negate) {
+        	return evaluate(negate.getValue()).negate();
+        }
+        
         throw new IllegalArgumentException("Unhandled expression type: "
                 + expression.eClass().getName());
     }

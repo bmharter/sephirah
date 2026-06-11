@@ -18,6 +18,7 @@ import com.fearlesstyrant.sephirah.sephirah.FormulaModel;
 import com.fearlesstyrant.sephirah.sephirah.Import;
 import com.fearlesstyrant.sephirah.sephirah.MethodCall;
 import com.fearlesstyrant.sephirah.sephirah.Multiply;
+import com.fearlesstyrant.sephirah.sephirah.Negate;
 import com.fearlesstyrant.sephirah.sephirah.NotCondition;
 import com.fearlesstyrant.sephirah.sephirah.NumberLiteral;
 import com.fearlesstyrant.sephirah.sephirah.OrCondition;
@@ -97,6 +98,9 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case SephirahPackage.MULTIPLY:
 				sequence_Multiplication(context, (Multiply) semanticObject); 
 				return; 
+			case SephirahPackage.NEGATE:
+				sequence_Unary(context, (Negate) semanticObject); 
+				return; 
 			case SephirahPackage.NOT_CONDITION:
 				sequence_NotCondition(context, (NotCondition) semanticObject); 
 				return; 
@@ -131,6 +135,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Multiplication returns Add
 	 *     Multiplication.Multiply_1_0_0_0 returns Add
 	 *     Multiplication.Divide_1_0_1_0 returns Add
+	 *     Unary returns Add
 	 *     Exponent returns Add
 	 *     Exponent.Exponent_1_0 returns Add
 	 *     PrimaryExpression returns Add
@@ -164,6 +169,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Multiplication returns Subtract
 	 *     Multiplication.Multiply_1_0_0_0 returns Subtract
 	 *     Multiplication.Divide_1_0_1_0 returns Subtract
+	 *     Unary returns Subtract
 	 *     Exponent returns Subtract
 	 *     Exponent.Exponent_1_0 returns Subtract
 	 *     PrimaryExpression returns Subtract
@@ -259,6 +265,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Multiplication returns Conditional
 	 *     Multiplication.Multiply_1_0_0_0 returns Conditional
 	 *     Multiplication.Divide_1_0_1_0 returns Conditional
+	 *     Unary returns Conditional
 	 *     Exponent returns Conditional
 	 *     Exponent.Exponent_1_0 returns Conditional
 	 *     PrimaryExpression returns Conditional
@@ -295,6 +302,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Multiplication returns Constant
 	 *     Multiplication.Multiply_1_0_0_0 returns Constant
 	 *     Multiplication.Divide_1_0_1_0 returns Constant
+	 *     Unary returns Constant
 	 *     Exponent returns Constant
 	 *     Exponent.Exponent_1_0 returns Constant
 	 *     PrimaryExpression returns Constant
@@ -396,12 +404,13 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Multiplication returns Exponent
 	 *     Multiplication.Multiply_1_0_0_0 returns Exponent
 	 *     Multiplication.Divide_1_0_1_0 returns Exponent
+	 *     Unary returns Exponent
 	 *     Exponent returns Exponent
 	 *     Exponent.Exponent_1_0 returns Exponent
 	 *     PrimaryExpression returns Exponent
 	 *
 	 * Constraint:
-	 *     (left=Exponent_Exponent_1_0 right=Exponent)
+	 *     (left=Exponent_Exponent_1_0 right=Unary)
 	 * </pre>
 	 */
 	protected void sequence_Exponent(ISerializationContext context, Exponent semanticObject) {
@@ -413,7 +422,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getExponentAccess().getExponentLeftAction_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getExponentAccess().getRightExponentParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getExponentAccess().getRightUnaryParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -466,6 +475,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Multiplication returns MethodCall
 	 *     Multiplication.Multiply_1_0_0_0 returns MethodCall
 	 *     Multiplication.Divide_1_0_1_0 returns MethodCall
+	 *     Unary returns MethodCall
 	 *     Exponent returns MethodCall
 	 *     Exponent.Exponent_1_0 returns MethodCall
 	 *     PrimaryExpression returns MethodCall
@@ -491,12 +501,13 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Multiplication returns Divide
 	 *     Multiplication.Multiply_1_0_0_0 returns Divide
 	 *     Multiplication.Divide_1_0_1_0 returns Divide
+	 *     Unary returns Divide
 	 *     Exponent returns Divide
 	 *     Exponent.Exponent_1_0 returns Divide
 	 *     PrimaryExpression returns Divide
 	 *
 	 * Constraint:
-	 *     (left=Multiplication_Divide_1_0_1_0 right=Exponent)
+	 *     (left=Multiplication_Divide_1_0_1_0 right=Unary)
 	 * </pre>
 	 */
 	protected void sequence_Multiplication(ISerializationContext context, Divide semanticObject) {
@@ -508,7 +519,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getMultiplicationAccess().getDivideLeftAction_1_0_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getMultiplicationAccess().getRightExponentParserRuleCall_1_1_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getMultiplicationAccess().getRightUnaryParserRuleCall_1_1_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -524,12 +535,13 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Multiplication returns Multiply
 	 *     Multiplication.Multiply_1_0_0_0 returns Multiply
 	 *     Multiplication.Divide_1_0_1_0 returns Multiply
+	 *     Unary returns Multiply
 	 *     Exponent returns Multiply
 	 *     Exponent.Exponent_1_0 returns Multiply
 	 *     PrimaryExpression returns Multiply
 	 *
 	 * Constraint:
-	 *     (left=Multiplication_Multiply_1_0_0_0 right=Exponent)
+	 *     (left=Multiplication_Multiply_1_0_0_0 right=Unary)
 	 * </pre>
 	 */
 	protected void sequence_Multiplication(ISerializationContext context, Multiply semanticObject) {
@@ -541,7 +553,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getMultiplicationAccess().getMultiplyLeftAction_1_0_0_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getMultiplicationAccess().getRightExponentParserRuleCall_1_1_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getMultiplicationAccess().getRightUnaryParserRuleCall_1_1_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -612,6 +624,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Multiplication returns NumberLiteral
 	 *     Multiplication.Multiply_1_0_0_0 returns NumberLiteral
 	 *     Multiplication.Divide_1_0_1_0 returns NumberLiteral
+	 *     Unary returns NumberLiteral
 	 *     Exponent returns NumberLiteral
 	 *     Exponent.Exponent_1_0 returns NumberLiteral
 	 *     PrimaryExpression returns NumberLiteral
@@ -627,6 +640,37 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPrimaryExpressionAccess().getValueDecimalParserRuleCall_1_1_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Expression returns Negate
+	 *     Conditional returns Negate
+	 *     Addition returns Negate
+	 *     Addition.Add_1_0_0_0 returns Negate
+	 *     Addition.Subtract_1_0_1_0 returns Negate
+	 *     Multiplication returns Negate
+	 *     Multiplication.Multiply_1_0_0_0 returns Negate
+	 *     Multiplication.Divide_1_0_1_0 returns Negate
+	 *     Unary returns Negate
+	 *     Exponent returns Negate
+	 *     Exponent.Exponent_1_0 returns Negate
+	 *     PrimaryExpression returns Negate
+	 *
+	 * Constraint:
+	 *     value=Unary
+	 * </pre>
+	 */
+	protected void sequence_Unary(ISerializationContext context, Negate semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.NEGATE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.NEGATE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getUnaryAccess().getValueUnaryParserRuleCall_0_2_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -666,6 +710,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Multiplication returns Variable
 	 *     Multiplication.Multiply_1_0_0_0 returns Variable
 	 *     Multiplication.Divide_1_0_1_0 returns Variable
+	 *     Unary returns Variable
 	 *     Exponent returns Variable
 	 *     Exponent.Exponent_1_0 returns Variable
 	 *     PrimaryExpression returns Variable

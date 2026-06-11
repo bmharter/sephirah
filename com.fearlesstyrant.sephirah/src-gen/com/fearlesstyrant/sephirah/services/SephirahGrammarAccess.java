@@ -509,7 +509,7 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	public class MultiplicationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.Multiplication");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cExponentParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cUnaryParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
 		private final Group cGroup_1_0_0 = (Group)cAlternatives_1_0.eContents().get(0);
@@ -519,30 +519,30 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Action cDivideLeftAction_1_0_1_0 = (Action)cGroup_1_0_1.eContents().get(0);
 		private final Keyword cSolidusKeyword_1_0_1_1 = (Keyword)cGroup_1_0_1.eContents().get(1);
 		private final Assignment cRightAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cRightExponentParserRuleCall_1_1_0 = (RuleCall)cRightAssignment_1_1.eContents().get(0);
+		private final RuleCall cRightUnaryParserRuleCall_1_1_0 = (RuleCall)cRightAssignment_1_1.eContents().get(0);
 		
 		//Multiplication returns Expression:
-		//    Exponent
+		//    Unary
 		//    (
 		//        ({Multiply.left=current} '*' | {Divide.left=current} '/')
-		//        right=Exponent
+		//        right=Unary
 		//    )*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Exponent
+		//Unary
 		//(
 		//    ({Multiply.left=current} '*' | {Divide.left=current} '/')
-		//    right=Exponent
+		//    right=Unary
 		//)*
 		public Group getGroup() { return cGroup; }
 		
-		//Exponent
-		public RuleCall getExponentParserRuleCall_0() { return cExponentParserRuleCall_0; }
+		//Unary
+		public RuleCall getUnaryParserRuleCall_0() { return cUnaryParserRuleCall_0; }
 		
 		//(
 		//    ({Multiply.left=current} '*' | {Divide.left=current} '/')
-		//    right=Exponent
+		//    right=Unary
 		//)*
 		public Group getGroup_1() { return cGroup_1; }
 		
@@ -567,11 +567,49 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//'/'
 		public Keyword getSolidusKeyword_1_0_1_1() { return cSolidusKeyword_1_0_1_1; }
 		
-		//right=Exponent
+		//right=Unary
 		public Assignment getRightAssignment_1_1() { return cRightAssignment_1_1; }
 		
+		//Unary
+		public RuleCall getRightUnaryParserRuleCall_1_1_0() { return cRightUnaryParserRuleCall_1_1_0; }
+	}
+	public class UnaryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.Unary");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cNegateAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Assignment cValueAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
+		private final RuleCall cValueUnaryParserRuleCall_0_2_0 = (RuleCall)cValueAssignment_0_2.eContents().get(0);
+		private final RuleCall cExponentParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Unary returns Expression:
+		//    {Negate} '-' value=Unary |
+		//    Exponent
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Negate} '-' value=Unary |
 		//Exponent
-		public RuleCall getRightExponentParserRuleCall_1_1_0() { return cRightExponentParserRuleCall_1_1_0; }
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//{Negate} '-' value=Unary
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//{Negate}
+		public Action getNegateAction_0_0() { return cNegateAction_0_0; }
+		
+		//'-'
+		public Keyword getHyphenMinusKeyword_0_1() { return cHyphenMinusKeyword_0_1; }
+		
+		//value=Unary
+		public Assignment getValueAssignment_0_2() { return cValueAssignment_0_2; }
+		
+		//Unary
+		public RuleCall getValueUnaryParserRuleCall_0_2_0() { return cValueUnaryParserRuleCall_0_2_0; }
+		
+		//Exponent
+		public RuleCall getExponentParserRuleCall_1() { return cExponentParserRuleCall_1; }
 	}
 	public class ExponentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.Exponent");
@@ -581,24 +619,24 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Action cExponentLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cCircumflexAccentKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cRightExponentParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		private final RuleCall cRightUnaryParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
 		//// Right-associative exponentiation:
 		//// 2 ^ 3 ^ 2 parses as 2 ^ (3 ^ 2)
 		//Exponent returns Expression:
 		//    PrimaryExpression
-		//    ({Exponent.left=current} '^' right=Exponent)?
+		//    ({Exponent.left=current} '^' right=Unary)?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//PrimaryExpression
-		//({Exponent.left=current} '^' right=Exponent)?
+		//({Exponent.left=current} '^' right=Unary)?
 		public Group getGroup() { return cGroup; }
 		
 		//PrimaryExpression
 		public RuleCall getPrimaryExpressionParserRuleCall_0() { return cPrimaryExpressionParserRuleCall_0; }
 		
-		//({Exponent.left=current} '^' right=Exponent)?
+		//({Exponent.left=current} '^' right=Unary)?
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{Exponent.left=current}
@@ -607,11 +645,11 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//'^'
 		public Keyword getCircumflexAccentKeyword_1_1() { return cCircumflexAccentKeyword_1_1; }
 		
-		//right=Exponent
+		//right=Unary
 		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
 		
-		//Exponent
-		public RuleCall getRightExponentParserRuleCall_1_2_0() { return cRightExponentParserRuleCall_1_2_0; }
+		//Unary
+		public RuleCall getRightUnaryParserRuleCall_1_2_0() { return cRightUnaryParserRuleCall_1_2_0; }
 	}
 	public class PrimaryExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.PrimaryExpression");
@@ -1134,6 +1172,7 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	private final ConditionalElements pConditional;
 	private final AdditionElements pAddition;
 	private final MultiplicationElements pMultiplication;
+	private final UnaryElements pUnary;
 	private final ExponentElements pExponent;
 	private final PrimaryExpressionElements pPrimaryExpression;
 	private final ConditionElements pCondition;
@@ -1173,6 +1212,7 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.pConditional = new ConditionalElements();
 		this.pAddition = new AdditionElements();
 		this.pMultiplication = new MultiplicationElements();
+		this.pUnary = new UnaryElements();
 		this.pExponent = new ExponentElements();
 		this.pPrimaryExpression = new PrimaryExpressionElements();
 		this.pCondition = new ConditionElements();
@@ -1364,10 +1404,10 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Multiplication returns Expression:
-	//    Exponent
+	//    Unary
 	//    (
 	//        ({Multiply.left=current} '*' | {Divide.left=current} '/')
-	//        right=Exponent
+	//        right=Unary
 	//    )*
 	//;
 	public MultiplicationElements getMultiplicationAccess() {
@@ -1378,11 +1418,23 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		return getMultiplicationAccess().getRule();
 	}
 	
+	//Unary returns Expression:
+	//    {Negate} '-' value=Unary |
+	//    Exponent
+	//;
+	public UnaryElements getUnaryAccess() {
+		return pUnary;
+	}
+	
+	public ParserRule getUnaryRule() {
+		return getUnaryAccess().getRule();
+	}
+	
 	//// Right-associative exponentiation:
 	//// 2 ^ 3 ^ 2 parses as 2 ^ (3 ^ 2)
 	//Exponent returns Expression:
 	//    PrimaryExpression
-	//    ({Exponent.left=current} '^' right=Exponent)?
+	//    ({Exponent.left=current} '^' right=Unary)?
 	//;
 	public ExponentElements getExponentAccess() {
 		return pExponent;

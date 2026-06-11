@@ -97,6 +97,7 @@ public class SephirahSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '('*
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '-' value=Unary
 	 *     (rule start) (ambiguity) 'if' condition=Condition
 	 *     (rule start) (ambiguity) name=QualifiedName
 	 *     (rule start) (ambiguity) value='G'
@@ -123,6 +124,7 @@ public class SephirahSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '('+
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '-' value=Unary
 	 *     (rule start) (ambiguity) 'if' condition=Condition
 	 *     (rule start) (ambiguity) {Add.left=}
 	 *     (rule start) (ambiguity) {Divide.left=}

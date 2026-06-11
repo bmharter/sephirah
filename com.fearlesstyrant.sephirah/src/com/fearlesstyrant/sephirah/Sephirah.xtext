@@ -67,18 +67,23 @@ Addition returns Expression:
 ;
 
 Multiplication returns Expression:
-	Exponent
+	Unary
 	(
 		({Multiply.left=current} '*' | {Divide.left=current} '/')
-		right=Exponent
+		right=Unary
 	)*
+;
+
+Unary returns Expression:
+	{Negate} '-' value=Unary |
+	Exponent
 ;
 
 // Right-associative exponentiation:
 // 2 ^ 3 ^ 2 parses as 2 ^ (3 ^ 2)
 Exponent returns Expression:
 	PrimaryExpression
-	({Exponent.left=current} '^' right=Exponent)?
+	({Exponent.left=current} '^' right=Unary)?
 ;
 
 PrimaryExpression returns Expression:

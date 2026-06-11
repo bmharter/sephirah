@@ -364,8 +364,16 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		if (eval != null) {
 			return;
 		}
+		
+		if (hasNormalizableExpressionParent(expr)) {
+		    return;
+		}
 
 		if (!isStaticNumericExpression(expr)) {
+			return;
+		}
+		
+		if(isSimpleNegativeLiteral(expr)) {
 			return;
 		}
 
@@ -376,7 +384,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		}
 
 		if (decimal.toString().length() <= 8) {
-			warning("Expression could be normalized to constant '" + decimal + "'",
+			info("Expression could be normalized to constant '" + decimal + "'",
 					null,
 					ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
 					NORMALIZABLE,
@@ -562,6 +570,21 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		return builder.toString();
 	}
 	
+	private static boolean hasNormalizableExpressionParent(Expression expr) {
+	    EObject container = expr.eContainer();
+
+	    while (container != null) {
+	        if (container instanceof Expression parentExpression) {
+	            return isStaticNumericExpression(parentExpression)
+	                    && !isSimpleNegativeLiteral(parentExpression);
+	        }
+
+	        container = container.eContainer();
+	    }
+
+	    return false;
+	}
+	
 	private static boolean isKnownFunction(MethodCall methodCall, String name) {
 		if(Methods.standardRegistry().contains(name)) {
 			return true;
@@ -584,6 +607,14 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	private static boolean isModuleFunction(FormulaModel model, String name) {
 		return findDefinition(model, name) != null;
+	}
+	
+	private static boolean isSimpleNegativeLiteral(Expression expression) {
+	    if (expression instanceof Negate negate) {
+	        return negate.getValue() instanceof NumberLiteral;
+	    }
+
+	    return false;
 	}
 	
 	private static boolean isStaticCondition(Condition condition) {
@@ -656,6 +687,10 @@ public class SephirahValidator extends AbstractSephirahValidator {
 			return isStaticCondition(conditional.getCondition())
 					&& isStaticNumericExpression(conditional.getThenBranch())
 					&& isStaticNumericExpression(conditional.getElseBranch());
+		}
+		
+		if(expression instanceof Negate negate) {
+			return isStaticNumericExpression(negate.getValue());
 		}
 
 		return false;

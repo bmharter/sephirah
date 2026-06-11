@@ -22,6 +22,7 @@ import com.fearlesstyrant.sephirah.sephirah.FormulaModel;
 import com.fearlesstyrant.sephirah.sephirah.Import;
 import com.fearlesstyrant.sephirah.sephirah.MethodCall;
 import com.fearlesstyrant.sephirah.sephirah.Multiply;
+import com.fearlesstyrant.sephirah.sephirah.Negate;
 import com.fearlesstyrant.sephirah.sephirah.NotCondition;
 import com.fearlesstyrant.sephirah.sephirah.NumberLiteral;
 import com.fearlesstyrant.sephirah.sephirah.OrCondition;
@@ -173,6 +174,13 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
    * @generated
    */
   private EClass divideEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass negateEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -782,6 +790,28 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
    * @generated
    */
   @Override
+  public EClass getNegate()
+  {
+    return negateEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getNegate_Value()
+  {
+    return (EReference)negateEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getExponent()
   {
     return exponentEClass;
@@ -1100,6 +1130,9 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
     createEReference(divideEClass, DIVIDE__LEFT);
     createEReference(divideEClass, DIVIDE__RIGHT);
 
+    negateEClass = createEClass(NEGATE);
+    createEReference(negateEClass, NEGATE__VALUE);
+
     exponentEClass = createEClass(EXPONENT);
     createEReference(exponentEClass, EXPONENT__LEFT);
     createEReference(exponentEClass, EXPONENT__RIGHT);
@@ -1171,6 +1204,7 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
     subtractEClass.getESuperTypes().add(this.getExpression());
     multiplyEClass.getESuperTypes().add(this.getExpression());
     divideEClass.getESuperTypes().add(this.getExpression());
+    negateEClass.getESuperTypes().add(this.getExpression());
     exponentEClass.getESuperTypes().add(this.getExpression());
     numberLiteralEClass.getESuperTypes().add(this.getExpression());
     orConditionEClass.getESuperTypes().add(this.getCondition());
@@ -1241,6 +1275,9 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
     initEClass(divideEClass, Divide.class, "Divide", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDivide_Left(), this.getExpression(), null, "left", null, 0, 1, Divide.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDivide_Right(), this.getExpression(), null, "right", null, 0, 1, Divide.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(negateEClass, Negate.class, "Negate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNegate_Value(), this.getExpression(), null, "value", null, 0, 1, Negate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exponentEClass, Exponent.class, "Exponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExponent_Left(), this.getExpression(), null, "left", null, 0, 1, Exponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

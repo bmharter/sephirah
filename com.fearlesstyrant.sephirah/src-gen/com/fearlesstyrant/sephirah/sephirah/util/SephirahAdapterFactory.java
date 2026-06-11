@@ -166,6 +166,11 @@ public class SephirahAdapterFactory extends AdapterFactoryImpl
         return createDivideAdapter();
       }
       @Override
+      public Adapter caseNegate(Negate object)
+      {
+        return createNegateAdapter();
+      }
+      @Override
       public Adapter caseExponent(Exponent object)
       {
         return createExponentAdapter();
@@ -488,6 +493,21 @@ public class SephirahAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDivideAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.fearlesstyrant.sephirah.sephirah.Negate <em>Negate</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.fearlesstyrant.sephirah.sephirah.Negate
+   * @generated
+   */
+  public Adapter createNegateAdapter()
   {
     return null;
   }

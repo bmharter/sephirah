@@ -653,6 +653,34 @@ public interface SephirahPackage extends EPackage
   int DIVIDE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.NegateImpl <em>Negate</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.NegateImpl
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNegate()
+   * @generated
+   */
+  int NEGATE = 18;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEGATE__VALUE = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Negate</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEGATE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ExponentImpl <em>Exponent</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -660,7 +688,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getExponent()
    * @generated
    */
-  int EXPONENT = 18;
+  int EXPONENT = 19;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -697,7 +725,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNumberLiteral()
    * @generated
    */
-  int NUMBER_LITERAL = 19;
+  int NUMBER_LITERAL = 20;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -725,7 +753,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getOrCondition()
    * @generated
    */
-  int OR_CONDITION = 20;
+  int OR_CONDITION = 21;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -762,7 +790,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getAndCondition()
    * @generated
    */
-  int AND_CONDITION = 21;
+  int AND_CONDITION = 22;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -799,7 +827,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNotCondition()
    * @generated
    */
-  int NOT_CONDITION = 22;
+  int NOT_CONDITION = 23;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -827,7 +855,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getComparisonCondition()
    * @generated
    */
-  int COMPARISON_CONDITION = 23;
+  int COMPARISON_CONDITION = 24;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -873,7 +901,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getMethodCall()
    * @generated
    */
-  int METHOD_CALL = 24;
+  int METHOD_CALL = 25;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -910,7 +938,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getComparisonOperator()
    * @generated
    */
-  int COMPARISON_OPERATOR = 25;
+  int COMPARISON_OPERATOR = 26;
 
 
   /**
@@ -1378,6 +1406,27 @@ public interface SephirahPackage extends EPackage
    * @generated
    */
   EReference getDivide_Right();
+
+  /**
+   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.Negate <em>Negate</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Negate</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.Negate
+   * @generated
+   */
+  EClass getNegate();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.Negate#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.Negate#getValue()
+   * @see #getNegate()
+   * @generated
+   */
+  EReference getNegate_Value();
 
   /**
    * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.Exponent <em>Exponent</em>}'.
@@ -2012,6 +2061,24 @@ public interface SephirahPackage extends EPackage
      * @generated
      */
     EReference DIVIDE__RIGHT = eINSTANCE.getDivide_Right();
+
+    /**
+     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.NegateImpl <em>Negate</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.NegateImpl
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNegate()
+     * @generated
+     */
+    EClass NEGATE = eINSTANCE.getNegate();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NEGATE__VALUE = eINSTANCE.getNegate_Value();
 
     /**
      * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ExponentImpl <em>Exponent</em>}' class.

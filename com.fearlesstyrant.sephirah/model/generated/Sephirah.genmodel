@@ -72,6 +72,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Divide/left"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Divide/right"/>
     </genClasses>
+    <genClasses ecoreClass="Sephirah.ecore#//Negate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Negate/value"/>
+    </genClasses>
     <genClasses ecoreClass="Sephirah.ecore#//Exponent">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Exponent/left"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Exponent/right"/>

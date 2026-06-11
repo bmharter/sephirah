@@ -186,6 +186,15 @@ public interface SephirahFactory extends EFactory
   Divide createDivide();
 
   /**
+   * Returns a new object of class '<em>Negate</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Negate</em>'.
+   * @generated
+   */
+  Negate createNegate();
+
+  /**
    * Returns a new object of class '<em>Exponent</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

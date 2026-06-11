@@ -823,11 +823,11 @@ ruleMultiplication returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getMultiplicationAccess().getExponentParserRuleCall_0());
+			newCompositeNode(grammarAccess.getMultiplicationAccess().getUnaryParserRuleCall_0());
 		}
-		this_Exponent_0=ruleExponent
+		this_Unary_0=ruleUnary
 		{
-			$current = $this_Exponent_0.current;
+			$current = $this_Unary_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		(
@@ -863,9 +863,9 @@ ruleMultiplication returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getMultiplicationAccess().getRightExponentParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getMultiplicationAccess().getRightUnaryParserRuleCall_1_1_0());
 					}
-					lv_right_5_0=ruleExponent
+					lv_right_5_0=ruleUnary
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getMultiplicationRule());
@@ -874,12 +874,72 @@ ruleMultiplication returns [EObject current=null]
 							$current,
 							"right",
 							lv_right_5_0,
-							"com.fearlesstyrant.sephirah.Sephirah.Exponent");
+							"com.fearlesstyrant.sephirah.Sephirah.Unary");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)*
+	)
+;
+
+// Entry rule entryRuleUnary
+entryRuleUnary returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getUnaryRule()); }
+	iv_ruleUnary=ruleUnary
+	{ $current=$iv_ruleUnary.current; }
+	EOF;
+
+// Rule Unary
+ruleUnary returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getUnaryAccess().getNegateAction_0_0(),
+						$current);
+				}
+			)
+			otherlv_1='-'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getUnaryAccess().getHyphenMinusKeyword_0_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getUnaryAccess().getValueUnaryParserRuleCall_0_2_0());
+					}
+					lv_value_2_0=ruleUnary
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getUnaryRule());
+						}
+						set(
+							$current,
+							"value",
+							lv_value_2_0,
+							"com.fearlesstyrant.sephirah.Sephirah.Unary");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+		    |
+		{
+			newCompositeNode(grammarAccess.getUnaryAccess().getExponentParserRuleCall_1());
+		}
+		this_Exponent_3=ruleExponent
+		{
+			$current = $this_Exponent_3.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -922,9 +982,9 @@ ruleExponent returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getExponentAccess().getRightExponentParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getExponentAccess().getRightUnaryParserRuleCall_1_2_0());
 					}
-					lv_right_3_0=ruleExponent
+					lv_right_3_0=ruleUnary
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getExponentRule());
@@ -933,7 +993,7 @@ ruleExponent returns [EObject current=null]
 							$current,
 							"right",
 							lv_right_3_0,
-							"com.fearlesstyrant.sephirah.Sephirah.Exponent");
+							"com.fearlesstyrant.sephirah.Sephirah.Unary");
 						afterParserOrEnumRuleCall();
 					}
 				)
