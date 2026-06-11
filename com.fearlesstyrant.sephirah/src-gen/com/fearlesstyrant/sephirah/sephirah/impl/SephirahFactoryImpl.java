@@ -6,6 +6,7 @@ package com.fearlesstyrant.sephirah.sephirah.impl;
 import com.fearlesstyrant.sephirah.sephirah.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -74,9 +75,11 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
       case SephirahPackage.VARIABLE: return createVariable();
       case SephirahPackage.EVALUATION: return createEvaluation();
       case SephirahPackage.EXPRESSION: return createExpression();
+      case SephirahPackage.CONDITION: return createCondition();
       case SephirahPackage.CONSTANT: return createConstant();
       case SephirahPackage.VARIABLE_ASSIGNMENT: return createVariableAssignment();
       case SephirahPackage.DEFINITION_VARIABLE: return createDefinitionVariable();
+      case SephirahPackage.CONDITIONAL: return createConditional();
       case SephirahPackage.ADD: return createAdd();
       case SephirahPackage.SUBTRACT: return createSubtract();
       case SephirahPackage.MULTIPLY: return createMultiply();
@@ -86,6 +89,40 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
       case SephirahPackage.METHOD_CALL: return createMethodCall();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case SephirahPackage.COMPARISON_OPERATOR:
+        return createComparisonOperatorFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case SephirahPackage.COMPARISON_OPERATOR:
+        return convertComparisonOperatorToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -203,6 +240,18 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
    * @generated
    */
   @Override
+  public Condition createCondition()
+  {
+    ConditionImpl condition = new ConditionImpl();
+    return condition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Constant createConstant()
   {
     ConstantImpl constant = new ConstantImpl();
@@ -231,6 +280,18 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
   {
     DefinitionVariableImpl definitionVariable = new DefinitionVariableImpl();
     return definitionVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Conditional createConditional()
+  {
+    ConditionalImpl conditional = new ConditionalImpl();
+    return conditional;
   }
 
   /**
@@ -315,6 +376,28 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
   {
     MethodCallImpl methodCall = new MethodCallImpl();
     return methodCall;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ComparisonOperator createComparisonOperatorFromString(EDataType eDataType, String initialValue)
+  {
+    ComparisonOperator result = ComparisonOperator.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertComparisonOperatorToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

@@ -50,7 +50,12 @@ Evaluation:
 ;
 
 Expression:
-	Addition
+	Conditional
+;
+
+Conditional returns Expression:
+	{Conditional} 'if' condition=Condition 'then' thenBranch=Expression 'else' elseBranch=Expression
+	| Addition
 ;
 
 Addition returns Expression:
@@ -84,6 +89,10 @@ PrimaryExpression returns Expression:
 	Variable
 ;
 
+Condition:
+	left=Addition op=ComparisonOperator right=Addition
+;
+
 MethodCall returns Expression:
 	{MethodCall} name=QualifiedName
 	'(' (args+=Expression (',' args+=Expression)*)? ')'
@@ -107,6 +116,11 @@ ValidID returns ecore::EString:
 
 Decimal returns ecore::EBigDecimal:
 	INT ('.' INT)?
+;
+
+
+enum ComparisonOperator:
+	LTE="<=" | GTE=">=" | EQ="==" | NEQ="!=" | LT="<" | GT=">"
 ;
 
 @Override

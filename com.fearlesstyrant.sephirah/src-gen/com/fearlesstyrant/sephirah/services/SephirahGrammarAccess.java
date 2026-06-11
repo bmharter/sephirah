@@ -9,6 +9,8 @@ import java.util.List;
 import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.EnumLiteralDeclaration;
+import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
@@ -365,15 +367,77 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.Expression");
-		private final RuleCall cAdditionParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final RuleCall cConditionalParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//Expression:
-		//    Addition
+		//    Conditional
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//Conditional
+		public RuleCall getConditionalParserRuleCall() { return cConditionalParserRuleCall; }
+	}
+	public class ConditionalElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.Conditional");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cConditionalAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Keyword cIfKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Assignment cConditionAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
+		private final RuleCall cConditionConditionParserRuleCall_0_2_0 = (RuleCall)cConditionAssignment_0_2.eContents().get(0);
+		private final Keyword cThenKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
+		private final Assignment cThenBranchAssignment_0_4 = (Assignment)cGroup_0.eContents().get(4);
+		private final RuleCall cThenBranchExpressionParserRuleCall_0_4_0 = (RuleCall)cThenBranchAssignment_0_4.eContents().get(0);
+		private final Keyword cElseKeyword_0_5 = (Keyword)cGroup_0.eContents().get(5);
+		private final Assignment cElseBranchAssignment_0_6 = (Assignment)cGroup_0.eContents().get(6);
+		private final RuleCall cElseBranchExpressionParserRuleCall_0_6_0 = (RuleCall)cElseBranchAssignment_0_6.eContents().get(0);
+		private final RuleCall cAdditionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Conditional returns Expression:
+		//    {Conditional} 'if' condition=Condition 'then' thenBranch=Expression 'else' elseBranch=Expression
+		//    | Addition
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Conditional} 'if' condition=Condition 'then' thenBranch=Expression 'else' elseBranch=Expression
+		//| Addition
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//{Conditional} 'if' condition=Condition 'then' thenBranch=Expression 'else' elseBranch=Expression
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//{Conditional}
+		public Action getConditionalAction_0_0() { return cConditionalAction_0_0; }
+		
+		//'if'
+		public Keyword getIfKeyword_0_1() { return cIfKeyword_0_1; }
+		
+		//condition=Condition
+		public Assignment getConditionAssignment_0_2() { return cConditionAssignment_0_2; }
+		
+		//Condition
+		public RuleCall getConditionConditionParserRuleCall_0_2_0() { return cConditionConditionParserRuleCall_0_2_0; }
+		
+		//'then'
+		public Keyword getThenKeyword_0_3() { return cThenKeyword_0_3; }
+		
+		//thenBranch=Expression
+		public Assignment getThenBranchAssignment_0_4() { return cThenBranchAssignment_0_4; }
+		
+		//Expression
+		public RuleCall getThenBranchExpressionParserRuleCall_0_4_0() { return cThenBranchExpressionParserRuleCall_0_4_0; }
+		
+		//'else'
+		public Keyword getElseKeyword_0_5() { return cElseKeyword_0_5; }
+		
+		//elseBranch=Expression
+		public Assignment getElseBranchAssignment_0_6() { return cElseBranchAssignment_0_6; }
+		
+		//Expression
+		public RuleCall getElseBranchExpressionParserRuleCall_0_6_0() { return cElseBranchExpressionParserRuleCall_0_6_0; }
+		
 		//Addition
-		public RuleCall getAdditionParserRuleCall() { return cAdditionParserRuleCall; }
+		public RuleCall getAdditionParserRuleCall_1() { return cAdditionParserRuleCall_1; }
 	}
 	public class AdditionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.Addition");
@@ -613,6 +677,42 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//Variable
 		public RuleCall getVariableParserRuleCall_4() { return cVariableParserRuleCall_4; }
 	}
+	public class ConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.Condition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cLeftAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cLeftAdditionParserRuleCall_0_0 = (RuleCall)cLeftAssignment_0.eContents().get(0);
+		private final Assignment cOpAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOpComparisonOperatorEnumRuleCall_1_0 = (RuleCall)cOpAssignment_1.eContents().get(0);
+		private final Assignment cRightAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRightAdditionParserRuleCall_2_0 = (RuleCall)cRightAssignment_2.eContents().get(0);
+		
+		//Condition:
+		//    left=Addition op=ComparisonOperator right=Addition
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//left=Addition op=ComparisonOperator right=Addition
+		public Group getGroup() { return cGroup; }
+		
+		//left=Addition
+		public Assignment getLeftAssignment_0() { return cLeftAssignment_0; }
+		
+		//Addition
+		public RuleCall getLeftAdditionParserRuleCall_0_0() { return cLeftAdditionParserRuleCall_0_0; }
+		
+		//op=ComparisonOperator
+		public Assignment getOpAssignment_1() { return cOpAssignment_1; }
+		
+		//ComparisonOperator
+		public RuleCall getOpComparisonOperatorEnumRuleCall_1_0() { return cOpComparisonOperatorEnumRuleCall_1_0; }
+		
+		//right=Addition
+		public Assignment getRightAssignment_2() { return cRightAssignment_2; }
+		
+		//Addition
+		public RuleCall getRightAdditionParserRuleCall_2_0() { return cRightAdditionParserRuleCall_2_0; }
+	}
 	public class MethodCallElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.MethodCall");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -800,6 +900,66 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		public RuleCall getINTTerminalRuleCall_1_1() { return cINTTerminalRuleCall_1_1; }
 	}
 	
+	public class ComparisonOperatorElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.ComparisonOperator");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cLTEEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cLTELessThanSignEqualsSignKeyword_0_0 = (Keyword)cLTEEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cGTEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cGTEGreaterThanSignEqualsSignKeyword_1_0 = (Keyword)cGTEEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cEQEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cEQEqualsSignEqualsSignKeyword_2_0 = (Keyword)cEQEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cNEQEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cNEQExclamationMarkEqualsSignKeyword_3_0 = (Keyword)cNEQEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cLTEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cLTLessThanSignKeyword_4_0 = (Keyword)cLTEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cGTEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cGTGreaterThanSignKeyword_5_0 = (Keyword)cGTEnumLiteralDeclaration_5.eContents().get(0);
+		
+		//enum ComparisonOperator:
+		//    LTE="<=" | GTE=">=" | EQ="==" | NEQ="!=" | LT="<" | GT=">"
+		//;
+		public EnumRule getRule() { return rule; }
+		
+		//LTE="<=" | GTE=">=" | EQ="==" | NEQ="!=" | LT="<" | GT=">"
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//LTE="<="
+		public EnumLiteralDeclaration getLTEEnumLiteralDeclaration_0() { return cLTEEnumLiteralDeclaration_0; }
+		
+		//"<="
+		public Keyword getLTELessThanSignEqualsSignKeyword_0_0() { return cLTELessThanSignEqualsSignKeyword_0_0; }
+		
+		//GTE=">="
+		public EnumLiteralDeclaration getGTEEnumLiteralDeclaration_1() { return cGTEEnumLiteralDeclaration_1; }
+		
+		//">="
+		public Keyword getGTEGreaterThanSignEqualsSignKeyword_1_0() { return cGTEGreaterThanSignEqualsSignKeyword_1_0; }
+		
+		//EQ="=="
+		public EnumLiteralDeclaration getEQEnumLiteralDeclaration_2() { return cEQEnumLiteralDeclaration_2; }
+		
+		//"=="
+		public Keyword getEQEqualsSignEqualsSignKeyword_2_0() { return cEQEqualsSignEqualsSignKeyword_2_0; }
+		
+		//NEQ="!="
+		public EnumLiteralDeclaration getNEQEnumLiteralDeclaration_3() { return cNEQEnumLiteralDeclaration_3; }
+		
+		//"!="
+		public Keyword getNEQExclamationMarkEqualsSignKeyword_3_0() { return cNEQExclamationMarkEqualsSignKeyword_3_0; }
+		
+		//LT="<"
+		public EnumLiteralDeclaration getLTEnumLiteralDeclaration_4() { return cLTEnumLiteralDeclaration_4; }
+		
+		//"<"
+		public Keyword getLTLessThanSignKeyword_4_0() { return cLTLessThanSignKeyword_4_0; }
+		
+		//GT=">"
+		public EnumLiteralDeclaration getGTEnumLiteralDeclaration_5() { return cGTEnumLiteralDeclaration_5; }
+		
+		//">"
+		public Keyword getGTGreaterThanSignKeyword_5_0() { return cGTGreaterThanSignKeyword_5_0; }
+	}
 	
 	private final FormulaModelElements pFormulaModel;
 	private final DocNameElements pDocName;
@@ -811,15 +971,18 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	private final DefinitionVariableElements pDefinitionVariable;
 	private final EvaluationElements pEvaluation;
 	private final ExpressionElements pExpression;
+	private final ConditionalElements pConditional;
 	private final AdditionElements pAddition;
 	private final MultiplicationElements pMultiplication;
 	private final ExponentElements pExponent;
 	private final PrimaryExpressionElements pPrimaryExpression;
+	private final ConditionElements pCondition;
 	private final MethodCallElements pMethodCall;
 	private final ConstantElements pConstant;
 	private final QualifiedNameElements pQualifiedName;
 	private final ValidIDElements pValidID;
 	private final DecimalElements pDecimal;
+	private final ComparisonOperatorElements eComparisonOperator;
 	private final TerminalRule tID;
 	private final TerminalRule tESCAPED_ID;
 	
@@ -842,15 +1005,18 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.pDefinitionVariable = new DefinitionVariableElements();
 		this.pEvaluation = new EvaluationElements();
 		this.pExpression = new ExpressionElements();
+		this.pConditional = new ConditionalElements();
 		this.pAddition = new AdditionElements();
 		this.pMultiplication = new MultiplicationElements();
 		this.pExponent = new ExponentElements();
 		this.pPrimaryExpression = new PrimaryExpressionElements();
+		this.pCondition = new ConditionElements();
 		this.pMethodCall = new MethodCallElements();
 		this.pConstant = new ConstantElements();
 		this.pQualifiedName = new QualifiedNameElements();
 		this.pValidID = new ValidIDElements();
 		this.pDecimal = new DecimalElements();
+		this.eComparisonOperator = new ComparisonOperatorElements();
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.ID");
 		this.tESCAPED_ID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.ESCAPED_ID");
 	}
@@ -990,7 +1156,7 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Expression:
-	//    Addition
+	//    Conditional
 	//;
 	public ExpressionElements getExpressionAccess() {
 		return pExpression;
@@ -998,6 +1164,18 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	public ParserRule getExpressionRule() {
 		return getExpressionAccess().getRule();
+	}
+	
+	//Conditional returns Expression:
+	//    {Conditional} 'if' condition=Condition 'then' thenBranch=Expression 'else' elseBranch=Expression
+	//    | Addition
+	//;
+	public ConditionalElements getConditionalAccess() {
+		return pConditional;
+	}
+	
+	public ParserRule getConditionalRule() {
+		return getConditionalAccess().getRule();
 	}
 	
 	//Addition returns Expression:
@@ -1059,6 +1237,17 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		return getPrimaryExpressionAccess().getRule();
 	}
 	
+	//Condition:
+	//    left=Addition op=ComparisonOperator right=Addition
+	//;
+	public ConditionElements getConditionAccess() {
+		return pCondition;
+	}
+	
+	public ParserRule getConditionRule() {
+		return getConditionAccess().getRule();
+	}
+	
 	//MethodCall returns Expression:
 	//    {MethodCall} name=QualifiedName
 	//    '(' (args+=Expression (',' args+=Expression)*)? ')'
@@ -1117,6 +1306,17 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	public ParserRule getDecimalRule() {
 		return getDecimalAccess().getRule();
+	}
+	
+	//enum ComparisonOperator:
+	//    LTE="<=" | GTE=">=" | EQ="==" | NEQ="!=" | LT="<" | GT=">"
+	//;
+	public ComparisonOperatorElements getComparisonOperatorAccess() {
+		return eComparisonOperator;
+	}
+	
+	public EnumRule getComparisonOperatorRule() {
+		return getComparisonOperatorAccess().getRule();
 	}
 	
 	//@Override

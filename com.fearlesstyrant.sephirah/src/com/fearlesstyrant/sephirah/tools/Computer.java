@@ -10,20 +10,7 @@ import java.util.Objects;
 
 import org.eclipse.emf.common.util.EList;
 
-import com.fearlesstyrant.sephirah.sephirah.Add;
-import com.fearlesstyrant.sephirah.sephirah.Assignment;
-import com.fearlesstyrant.sephirah.sephirah.Constant;
-import com.fearlesstyrant.sephirah.sephirah.Definition;
-import com.fearlesstyrant.sephirah.sephirah.DefinitionVariable;
-import com.fearlesstyrant.sephirah.sephirah.Divide;
-import com.fearlesstyrant.sephirah.sephirah.Evaluation;
-import com.fearlesstyrant.sephirah.sephirah.Exponent;
-import com.fearlesstyrant.sephirah.sephirah.Expression;
-import com.fearlesstyrant.sephirah.sephirah.MethodCall;
-import com.fearlesstyrant.sephirah.sephirah.Multiply;
-import com.fearlesstyrant.sephirah.sephirah.NumberLiteral;
-import com.fearlesstyrant.sephirah.sephirah.Subtract;
-import com.fearlesstyrant.sephirah.sephirah.Variable;
+import com.fearlesstyrant.sephirah.sephirah.*;
 
 /**
  * Evaluates Sephirah expression trees.
@@ -116,41 +103,45 @@ public final class Computer {
     public BigDecimal evaluate(Expression expression) {
         Objects.requireNonNull(expression, "expression must not be null");
 
-        if (expression instanceof NumberLiteral numberLiteral) {
+        if(expression instanceof NumberLiteral numberLiteral) {
             return numberLiteral.getValue();
         }
 
-        if (expression instanceof Constant constant) {
+        if(expression instanceof Constant constant) {
             return Constants.getBDConstant(constant.getValue());
         }
 
-        if (expression instanceof Variable variable) {
+        if(expression instanceof Variable variable) {
             return context.requireValue(variable.getName());
         }
+        
+        if(expression instanceof Conditional conditional) {
+        	return evaluateConditional(conditional);
+        }
 
-        if (expression instanceof Add add) {
+        if(expression instanceof Add add) {
             return evaluate(add.getLeft()).add(evaluate(add.getRight()));
         }
 
-        if (expression instanceof Subtract subtract) {
+        if(expression instanceof Subtract subtract) {
             return evaluate(subtract.getLeft()).subtract(evaluate(subtract.getRight()));
         }
 
-        if (expression instanceof Multiply multiply) {
+        if(expression instanceof Multiply multiply) {
             return evaluate(multiply.getLeft()).multiply(evaluate(multiply.getRight()));
         }
 
-        if (expression instanceof Divide divide) {
+        if(expression instanceof Divide divide) {
             BigDecimal divisor = evaluate(divide.getRight());
 
-            if (BigDecimal.ZERO.compareTo(divisor) == 0) {
+            if(BigDecimal.ZERO.compareTo(divisor) == 0) {
                 throw new ArithmeticException("Cannot divide by zero.");
             }
 
             return evaluate(divide.getLeft()).divide(divisor, DEFAULT_MATH_CONTEXT);
         }
 
-        if (expression instanceof Exponent exponent) {
+        if(expression instanceof Exponent exponent) {
             /*
              * BigDecimal does not support arbitrary decimal exponents directly.
              * This is acceptable as a temporary evaluator bridge, but the final
@@ -163,12 +154,54 @@ public final class Computer {
             return BigDecimal.valueOf(Math.pow(base, power));
         }
 
-        if (expression instanceof MethodCall methodCall) {
+        if(expression instanceof MethodCall methodCall) {
             return evaluateMethodCall(methodCall);
         }
-
+        
         throw new IllegalArgumentException("Unhandled expression type: "
                 + expression.eClass().getName());
+    }
+    
+    private BigDecimal evaluateConditional(Conditional conditional) {
+    	Objects.requireNonNull(conditional, "conditional must not be null");
+    	
+    	if(evaluateCondition(conditional.getCondition())) {
+    		return evaluate(conditional.getThenBranch());
+    	}
+    	
+    	return evaluate(conditional.getElseBranch());
+    }
+    
+    private boolean evaluateCondition(Condition condition) {
+    	Objects.requireNonNull(condition, "condition must not be null");
+    	
+    	BigDecimal left = evaluate(condition.getLeft());
+    	BigDecimal right = evaluate(condition.getRight());
+    	
+    	int comparison = left.compareTo(right);
+    	
+    	ComparisonOperator operator = condition.getOp();
+    	
+    	if (operator == null) {
+            throw new IllegalArgumentException("Condition has no comparison operator.");
+        }
+
+        switch (operator) {
+            case LT:
+                return comparison < 0;
+            case LTE:
+                return comparison <= 0;
+            case GT:
+                return comparison > 0;
+            case GTE:
+                return comparison >= 0;
+            case EQ:
+                return comparison == 0;
+            case NEQ:
+                return comparison != 0;
+            default:
+                throw new IllegalArgumentException("Unhandled comparison operator: " + operator);
+        }
     }
 
     /**

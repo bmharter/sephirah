@@ -4,6 +4,8 @@
 package com.fearlesstyrant.sephirah.serializer;
 
 import com.fearlesstyrant.sephirah.sephirah.Add;
+import com.fearlesstyrant.sephirah.sephirah.Condition;
+import com.fearlesstyrant.sephirah.sephirah.Conditional;
 import com.fearlesstyrant.sephirah.sephirah.Constant;
 import com.fearlesstyrant.sephirah.sephirah.Definition;
 import com.fearlesstyrant.sephirah.sephirah.DefinitionVariable;
@@ -49,6 +51,12 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			switch (semanticObject.eClass().getClassifierID()) {
 			case SephirahPackage.ADD:
 				sequence_Addition(context, (Add) semanticObject); 
+				return; 
+			case SephirahPackage.CONDITION:
+				sequence_Condition(context, (Condition) semanticObject); 
+				return; 
+			case SephirahPackage.CONDITIONAL:
+				sequence_Conditional(context, (Conditional) semanticObject); 
 				return; 
 			case SephirahPackage.CONSTANT:
 				sequence_Constant(context, (Constant) semanticObject); 
@@ -104,6 +112,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns Add
+	 *     Conditional returns Add
 	 *     Addition returns Add
 	 *     Addition.Add_1_0_0_0 returns Add
 	 *     Addition.Subtract_1_0_1_0 returns Add
@@ -136,6 +145,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns Subtract
+	 *     Conditional returns Subtract
 	 *     Addition returns Subtract
 	 *     Addition.Add_1_0_0_0 returns Subtract
 	 *     Addition.Subtract_1_0_1_0 returns Subtract
@@ -167,7 +177,70 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     Condition returns Condition
+	 *
+	 * Constraint:
+	 *     (left=Addition op=ComparisonOperator right=Addition)
+	 * </pre>
+	 */
+	protected void sequence_Condition(ISerializationContext context, Condition semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.CONDITION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.CONDITION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.CONDITION__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.CONDITION__OP));
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.CONDITION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.CONDITION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getConditionAccess().getLeftAdditionParserRuleCall_0_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getConditionAccess().getOpComparisonOperatorEnumRuleCall_1_0(), semanticObject.getOp());
+		feeder.accept(grammarAccess.getConditionAccess().getRightAdditionParserRuleCall_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Expression returns Conditional
+	 *     Conditional returns Conditional
+	 *     Addition returns Conditional
+	 *     Addition.Add_1_0_0_0 returns Conditional
+	 *     Addition.Subtract_1_0_1_0 returns Conditional
+	 *     Multiplication returns Conditional
+	 *     Multiplication.Multiply_1_0_0_0 returns Conditional
+	 *     Multiplication.Divide_1_0_1_0 returns Conditional
+	 *     Exponent returns Conditional
+	 *     Exponent.Exponent_1_0 returns Conditional
+	 *     PrimaryExpression returns Conditional
+	 *
+	 * Constraint:
+	 *     (condition=Condition thenBranch=Expression elseBranch=Expression)
+	 * </pre>
+	 */
+	protected void sequence_Conditional(ISerializationContext context, Conditional semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.CONDITIONAL__CONDITION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.CONDITIONAL__CONDITION));
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.CONDITIONAL__THEN_BRANCH) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.CONDITIONAL__THEN_BRANCH));
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.CONDITIONAL__ELSE_BRANCH) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.CONDITIONAL__ELSE_BRANCH));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getConditionalAccess().getConditionConditionParserRuleCall_0_2_0(), semanticObject.getCondition());
+		feeder.accept(grammarAccess.getConditionalAccess().getThenBranchExpressionParserRuleCall_0_4_0(), semanticObject.getThenBranch());
+		feeder.accept(grammarAccess.getConditionalAccess().getElseBranchExpressionParserRuleCall_0_6_0(), semanticObject.getElseBranch());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     Expression returns Constant
+	 *     Conditional returns Constant
 	 *     Addition returns Constant
 	 *     Addition.Add_1_0_0_0 returns Constant
 	 *     Addition.Subtract_1_0_1_0 returns Constant
@@ -268,6 +341,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns Exponent
+	 *     Conditional returns Exponent
 	 *     Addition returns Exponent
 	 *     Addition.Add_1_0_0_0 returns Exponent
 	 *     Addition.Subtract_1_0_1_0 returns Exponent
@@ -337,6 +411,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns MethodCall
+	 *     Conditional returns MethodCall
 	 *     Addition returns MethodCall
 	 *     Addition.Add_1_0_0_0 returns MethodCall
 	 *     Addition.Subtract_1_0_1_0 returns MethodCall
@@ -361,6 +436,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns Divide
+	 *     Conditional returns Divide
 	 *     Addition returns Divide
 	 *     Addition.Add_1_0_0_0 returns Divide
 	 *     Addition.Subtract_1_0_1_0 returns Divide
@@ -393,6 +469,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns Multiply
+	 *     Conditional returns Multiply
 	 *     Addition returns Multiply
 	 *     Addition.Add_1_0_0_0 returns Multiply
 	 *     Addition.Subtract_1_0_1_0 returns Multiply
@@ -425,6 +502,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns NumberLiteral
+	 *     Conditional returns NumberLiteral
 	 *     Addition returns NumberLiteral
 	 *     Addition.Add_1_0_0_0 returns NumberLiteral
 	 *     Addition.Subtract_1_0_1_0 returns NumberLiteral
@@ -478,6 +556,7 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * Contexts:
 	 *     Variable returns Variable
 	 *     Expression returns Variable
+	 *     Conditional returns Variable
 	 *     Addition returns Variable
 	 *     Addition.Add_1_0_0_0 returns Variable
 	 *     Addition.Subtract_1_0_1_0 returns Variable

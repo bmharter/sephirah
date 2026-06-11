@@ -105,6 +105,15 @@ public interface SephirahFactory extends EFactory
   Expression createExpression();
 
   /**
+   * Returns a new object of class '<em>Condition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Condition</em>'.
+   * @generated
+   */
+  Condition createCondition();
+
+  /**
    * Returns a new object of class '<em>Constant</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -130,6 +139,15 @@ public interface SephirahFactory extends EFactory
    * @generated
    */
   DefinitionVariable createDefinitionVariable();
+
+  /**
+   * Returns a new object of class '<em>Conditional</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Conditional</em>'.
+   * @generated
+   */
+  Conditional createConditional();
 
   /**
    * Returns a new object of class '<em>Add</em>'.

@@ -139,6 +139,13 @@ public class SephirahSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SephirahPackage.CONDITION:
+      {
+        Condition condition = (Condition)theEObject;
+        T result = caseCondition(condition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SephirahPackage.CONSTANT:
       {
         Constant constant = (Constant)theEObject;
@@ -160,6 +167,14 @@ public class SephirahSwitch<T> extends Switch<T>
         DefinitionVariable definitionVariable = (DefinitionVariable)theEObject;
         T result = caseDefinitionVariable(definitionVariable);
         if (result == null) result = caseAssignment(definitionVariable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SephirahPackage.CONDITIONAL:
+      {
+        Conditional conditional = (Conditional)theEObject;
+        T result = caseConditional(conditional);
+        if (result == null) result = caseExpression(conditional);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -368,6 +383,22 @@ public class SephirahSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Condition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Condition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCondition(Condition object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Constant</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -411,6 +442,22 @@ public class SephirahSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDefinitionVariable(DefinitionVariable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Conditional</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Conditional</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConditional(Conditional object)
   {
     return null;
   }

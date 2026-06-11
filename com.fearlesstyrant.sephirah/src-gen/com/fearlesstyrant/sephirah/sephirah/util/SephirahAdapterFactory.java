@@ -121,6 +121,11 @@ public class SephirahAdapterFactory extends AdapterFactoryImpl
         return createExpressionAdapter();
       }
       @Override
+      public Adapter caseCondition(Condition object)
+      {
+        return createConditionAdapter();
+      }
+      @Override
       public Adapter caseConstant(Constant object)
       {
         return createConstantAdapter();
@@ -134,6 +139,11 @@ public class SephirahAdapterFactory extends AdapterFactoryImpl
       public Adapter caseDefinitionVariable(DefinitionVariable object)
       {
         return createDefinitionVariableAdapter();
+      }
+      @Override
+      public Adapter caseConditional(Conditional object)
+      {
+        return createConditionalAdapter();
       }
       @Override
       public Adapter caseAdd(Add object)
@@ -328,6 +338,21 @@ public class SephirahAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link com.fearlesstyrant.sephirah.sephirah.Condition <em>Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.fearlesstyrant.sephirah.sephirah.Condition
+   * @generated
+   */
+  public Adapter createConditionAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link com.fearlesstyrant.sephirah.sephirah.Constant <em>Constant</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -368,6 +393,21 @@ public class SephirahAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDefinitionVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.fearlesstyrant.sephirah.sephirah.Conditional <em>Conditional</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.fearlesstyrant.sephirah.sephirah.Conditional
+   * @generated
+   */
+  public Adapter createConditionalAdapter()
   {
     return null;
   }

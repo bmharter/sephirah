@@ -5,6 +5,7 @@ package com.fearlesstyrant.sephirah.sephirah;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -346,6 +347,52 @@ public interface SephirahPackage extends EPackage
   int EVALUATION_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ConditionImpl <em>Condition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.ConditionImpl
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getCondition()
+   * @generated
+   */
+  int CONDITION = 9;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION__LEFT = 0;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION__OP = 1;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION__RIGHT = 2;
+
+  /**
+   * The number of structural features of the '<em>Condition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_FEATURE_COUNT = 3;
+
+  /**
    * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ConstantImpl <em>Constant</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -353,7 +400,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getConstant()
    * @generated
    */
-  int CONSTANT = 9;
+  int CONSTANT = 10;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -381,7 +428,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getVariableAssignment()
    * @generated
    */
-  int VARIABLE_ASSIGNMENT = 10;
+  int VARIABLE_ASSIGNMENT = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -418,7 +465,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getDefinitionVariable()
    * @generated
    */
-  int DEFINITION_VARIABLE = 11;
+  int DEFINITION_VARIABLE = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -439,6 +486,52 @@ public interface SephirahPackage extends EPackage
   int DEFINITION_VARIABLE_FEATURE_COUNT = ASSIGNMENT_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ConditionalImpl <em>Conditional</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.ConditionalImpl
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getConditional()
+   * @generated
+   */
+  int CONDITIONAL = 13;
+
+  /**
+   * The feature id for the '<em><b>Condition</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITIONAL__CONDITION = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Then Branch</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITIONAL__THEN_BRANCH = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Else Branch</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITIONAL__ELSE_BRANCH = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Conditional</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITIONAL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+
+  /**
    * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.AddImpl <em>Add</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -446,7 +539,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getAdd()
    * @generated
    */
-  int ADD = 12;
+  int ADD = 14;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -483,7 +576,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getSubtract()
    * @generated
    */
-  int SUBTRACT = 13;
+  int SUBTRACT = 15;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -520,7 +613,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getMultiply()
    * @generated
    */
-  int MULTIPLY = 14;
+  int MULTIPLY = 16;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -557,7 +650,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getDivide()
    * @generated
    */
-  int DIVIDE = 15;
+  int DIVIDE = 17;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -594,7 +687,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getExponent()
    * @generated
    */
-  int EXPONENT = 16;
+  int EXPONENT = 18;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -631,7 +724,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNumberLiteral()
    * @generated
    */
-  int NUMBER_LITERAL = 17;
+  int NUMBER_LITERAL = 19;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -659,7 +752,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getMethodCall()
    * @generated
    */
-  int METHOD_CALL = 18;
+  int METHOD_CALL = 20;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -687,6 +780,16 @@ public interface SephirahPackage extends EPackage
    * @ordered
    */
   int METHOD_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.ComparisonOperator <em>Comparison Operator</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.fearlesstyrant.sephirah.sephirah.ComparisonOperator
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getComparisonOperator()
+   * @generated
+   */
+  int COMPARISON_OPERATOR = 21;
 
 
   /**
@@ -923,6 +1026,49 @@ public interface SephirahPackage extends EPackage
   EClass getExpression();
 
   /**
+   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.Condition <em>Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Condition</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.Condition
+   * @generated
+   */
+  EClass getCondition();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.Condition#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.Condition#getLeft()
+   * @see #getCondition()
+   * @generated
+   */
+  EReference getCondition_Left();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.fearlesstyrant.sephirah.sephirah.Condition#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.Condition#getOp()
+   * @see #getCondition()
+   * @generated
+   */
+  EAttribute getCondition_Op();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.Condition#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.Condition#getRight()
+   * @see #getCondition()
+   * @generated
+   */
+  EReference getCondition_Right();
+
+  /**
    * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.Constant <em>Constant</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -973,6 +1119,49 @@ public interface SephirahPackage extends EPackage
    * @generated
    */
   EClass getDefinitionVariable();
+
+  /**
+   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.Conditional <em>Conditional</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Conditional</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.Conditional
+   * @generated
+   */
+  EClass getConditional();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.Conditional#getCondition <em>Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Condition</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.Conditional#getCondition()
+   * @see #getConditional()
+   * @generated
+   */
+  EReference getConditional_Condition();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.Conditional#getThenBranch <em>Then Branch</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Then Branch</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.Conditional#getThenBranch()
+   * @see #getConditional()
+   * @generated
+   */
+  EReference getConditional_ThenBranch();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.Conditional#getElseBranch <em>Else Branch</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Else Branch</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.Conditional#getElseBranch()
+   * @see #getConditional()
+   * @generated
+   */
+  EReference getConditional_ElseBranch();
 
   /**
    * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.Add <em>Add</em>}'.
@@ -1186,6 +1375,16 @@ public interface SephirahPackage extends EPackage
    * @generated
    */
   EReference getMethodCall_Args();
+
+  /**
+   * Returns the meta object for enum '{@link com.fearlesstyrant.sephirah.sephirah.ComparisonOperator <em>Comparison Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Comparison Operator</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.ComparisonOperator
+   * @generated
+   */
+  EEnum getComparisonOperator();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1405,6 +1604,40 @@ public interface SephirahPackage extends EPackage
     EClass EXPRESSION = eINSTANCE.getExpression();
 
     /**
+     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ConditionImpl <em>Condition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.ConditionImpl
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getCondition()
+     * @generated
+     */
+    EClass CONDITION = eINSTANCE.getCondition();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITION__LEFT = eINSTANCE.getCondition_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONDITION__OP = eINSTANCE.getCondition_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITION__RIGHT = eINSTANCE.getCondition_Right();
+
+    /**
      * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ConstantImpl <em>Constant</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1449,6 +1682,40 @@ public interface SephirahPackage extends EPackage
      * @generated
      */
     EClass DEFINITION_VARIABLE = eINSTANCE.getDefinitionVariable();
+
+    /**
+     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ConditionalImpl <em>Conditional</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.ConditionalImpl
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getConditional()
+     * @generated
+     */
+    EClass CONDITIONAL = eINSTANCE.getConditional();
+
+    /**
+     * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITIONAL__CONDITION = eINSTANCE.getConditional_Condition();
+
+    /**
+     * The meta object literal for the '<em><b>Then Branch</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITIONAL__THEN_BRANCH = eINSTANCE.getConditional_ThenBranch();
+
+    /**
+     * The meta object literal for the '<em><b>Else Branch</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITIONAL__ELSE_BRANCH = eINSTANCE.getConditional_ElseBranch();
 
     /**
      * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.AddImpl <em>Add</em>}' class.
@@ -1623,6 +1890,16 @@ public interface SephirahPackage extends EPackage
      * @generated
      */
     EReference METHOD_CALL__ARGS = eINSTANCE.getMethodCall_Args();
+
+    /**
+     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.ComparisonOperator <em>Comparison Operator</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.fearlesstyrant.sephirah.sephirah.ComparisonOperator
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getComparisonOperator()
+     * @generated
+     */
+    EEnum COMPARISON_OPERATOR = eINSTANCE.getComparisonOperator();
 
   }
 

@@ -6,6 +6,14 @@
     complianceLevel="17.0" copyrightFields="false" runtimeVersion="2.36">
   <genPackages prefix="Sephirah" basePackage="com.fearlesstyrant.sephirah" disposableProviderFactory="true"
       fileExtensions="seph" ecorePackage="Sephirah.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Sephirah.ecore#//ComparisonOperator">
+      <genEnumLiterals ecoreEnumLiteral="Sephirah.ecore#//ComparisonOperator/LTE"/>
+      <genEnumLiterals ecoreEnumLiteral="Sephirah.ecore#//ComparisonOperator/GTE"/>
+      <genEnumLiterals ecoreEnumLiteral="Sephirah.ecore#//ComparisonOperator/EQ"/>
+      <genEnumLiterals ecoreEnumLiteral="Sephirah.ecore#//ComparisonOperator/NEQ"/>
+      <genEnumLiterals ecoreEnumLiteral="Sephirah.ecore#//ComparisonOperator/LT"/>
+      <genEnumLiterals ecoreEnumLiteral="Sephirah.ecore#//ComparisonOperator/GT"/>
+    </genEnums>
     <genClasses ecoreClass="Sephirah.ecore#//FormulaModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//FormulaModel/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//FormulaModel/imports"/>
@@ -35,6 +43,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Evaluation/expression"/>
     </genClasses>
     <genClasses ecoreClass="Sephirah.ecore#//Expression"/>
+    <genClasses ecoreClass="Sephirah.ecore#//Condition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Condition/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//Condition/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Condition/right"/>
+    </genClasses>
     <genClasses ecoreClass="Sephirah.ecore#//Constant">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//Constant/value"/>
     </genClasses>
@@ -42,6 +55,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//VariableAssignment/value"/>
     </genClasses>
     <genClasses ecoreClass="Sephirah.ecore#//DefinitionVariable"/>
+    <genClasses ecoreClass="Sephirah.ecore#//Conditional">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Conditional/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Conditional/thenBranch"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Conditional/elseBranch"/>
+    </genClasses>
     <genClasses ecoreClass="Sephirah.ecore#//Add">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Add/left"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Add/right"/>
