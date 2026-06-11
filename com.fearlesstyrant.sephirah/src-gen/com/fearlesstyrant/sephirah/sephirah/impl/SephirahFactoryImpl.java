@@ -69,7 +69,6 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
       case SephirahPackage.FORMULA_MODEL: return createFormulaModel();
       case SephirahPackage.DOC_NAME: return createDocName();
       case SephirahPackage.IMPORT: return createImport();
-      case SephirahPackage.STATEMENT: return createStatement();
       case SephirahPackage.DEFINITION: return createDefinition();
       case SephirahPackage.ASSIGNMENT: return createAssignment();
       case SephirahPackage.VARIABLE: return createVariable();
@@ -165,18 +164,6 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
   {
     ImportImpl import_ = new ImportImpl();
     return import_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Statement createStatement()
-  {
-    StatementImpl statement = new StatementImpl();
-    return statement;
   }
 
   /**

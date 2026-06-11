@@ -32,7 +32,6 @@ public class SephirahParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, SephirahGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getFormulaModelAccess().getAlternatives_2(), "rule__FormulaModel__Alternatives_2");
-			builder.put(grammarAccess.getStatementAccess().getAlternatives(), "rule__Statement__Alternatives");
 			builder.put(grammarAccess.getConditionalAccess().getAlternatives(), "rule__Conditional__Alternatives");
 			builder.put(grammarAccess.getAdditionAccess().getAlternatives_1_0(), "rule__Addition__Alternatives_1_0");
 			builder.put(grammarAccess.getMultiplicationAccess().getAlternatives_1_0(), "rule__Multiplication__Alternatives_1_0");

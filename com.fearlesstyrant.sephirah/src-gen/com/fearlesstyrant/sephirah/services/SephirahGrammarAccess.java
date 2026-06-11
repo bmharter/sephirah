@@ -149,26 +149,6 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//';'
 		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
 	}
-	public class StatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.Statement");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cEvaluationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//Statement:
-		//    Definition | Evaluation
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//Definition | Evaluation
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//Definition
-		public RuleCall getDefinitionParserRuleCall_0() { return cDefinitionParserRuleCall_0; }
-		
-		//Evaluation
-		public RuleCall getEvaluationParserRuleCall_1() { return cEvaluationParserRuleCall_1; }
-	}
 	public class DefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.Definition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1162,7 +1142,6 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	private final FormulaModelElements pFormulaModel;
 	private final DocNameElements pDocName;
 	private final ImportElements pImport;
-	private final StatementElements pStatement;
 	private final DefinitionElements pDefinition;
 	private final VariableAssignmentElements pVariableAssignment;
 	private final VariableElements pVariable;
@@ -1202,7 +1181,6 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.pFormulaModel = new FormulaModelElements();
 		this.pDocName = new DocNameElements();
 		this.pImport = new ImportElements();
-		this.pStatement = new StatementElements();
 		this.pDefinition = new DefinitionElements();
 		this.pVariableAssignment = new VariableAssignmentElements();
 		this.pVariable = new VariableElements();
@@ -1295,17 +1273,6 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	public ParserRule getImportRule() {
 		return getImportAccess().getRule();
-	}
-	
-	//Statement:
-	//    Definition | Evaluation
-	//;
-	public StatementElements getStatementAccess() {
-		return pStatement;
-	}
-	
-	public ParserRule getStatementRule() {
-		return getStatementAccess().getRule();
 	}
 	
 	//Definition:

@@ -23,10 +23,6 @@ Import:
 	'import' name=QualifiedName ';'
 ;
 
-Statement:
-	Definition | Evaluation
-;
-
 Definition:
 	'def' name=ValidID
 	'(' (args+=DefinitionVariable (',' args+=DefinitionVariable)*)? ')'
@@ -111,9 +107,11 @@ NotCondition returns Condition:
 	PrimaryCondition
 ;
 
+// Boolean condition grouping uses square brackets to avoid ambiguity with
+// parenthesized numeric expressions such as (score + bonus) >= 10.
 PrimaryCondition returns Condition:
-	ComparisonCondition |
-	'[' Condition ']'
+	'[' Condition ']' |
+	ComparisonCondition
 ;
 
 ComparisonCondition returns Condition:

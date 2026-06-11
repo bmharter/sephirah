@@ -5,6 +5,8 @@ package com.fearlesstyrant.sephirah.sephirah;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Definition</b></em>'.
@@ -23,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Definition extends Statement
+public interface Definition extends EObject
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

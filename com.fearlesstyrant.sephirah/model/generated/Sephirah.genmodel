@@ -27,7 +27,6 @@
     <genClasses ecoreClass="Sephirah.ecore#//Import">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//Import/name"/>
     </genClasses>
-    <genClasses ecoreClass="Sephirah.ecore#//Statement"/>
     <genClasses ecoreClass="Sephirah.ecore#//Definition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//Definition/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Definition/args"/>

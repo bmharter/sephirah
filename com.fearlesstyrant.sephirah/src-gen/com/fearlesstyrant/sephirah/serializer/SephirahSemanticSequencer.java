@@ -340,7 +340,6 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Statement returns Definition
 	 *     Definition returns Definition
 	 *
 	 * Constraint:
@@ -375,7 +374,6 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Statement returns Evaluation
 	 *     Evaluation returns Evaluation
 	 *
 	 * Constraint:

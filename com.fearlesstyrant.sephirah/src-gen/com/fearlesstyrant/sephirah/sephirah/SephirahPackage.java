@@ -179,25 +179,6 @@ public interface SephirahPackage extends EPackage
   int IMPORT_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.StatementImpl <em>Statement</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see com.fearlesstyrant.sephirah.sephirah.impl.StatementImpl
-   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getStatement()
-   * @generated
-   */
-  int STATEMENT = 3;
-
-  /**
-   * The number of structural features of the '<em>Statement</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATEMENT_FEATURE_COUNT = 0;
-
-  /**
    * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.DefinitionImpl <em>Definition</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -205,7 +186,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getDefinition()
    * @generated
    */
-  int DEFINITION = 4;
+  int DEFINITION = 3;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -214,7 +195,7 @@ public interface SephirahPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEFINITION__NAME = STATEMENT_FEATURE_COUNT + 0;
+  int DEFINITION__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -223,7 +204,7 @@ public interface SephirahPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEFINITION__ARGS = STATEMENT_FEATURE_COUNT + 1;
+  int DEFINITION__ARGS = 1;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -232,7 +213,7 @@ public interface SephirahPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEFINITION__EXPR = STATEMENT_FEATURE_COUNT + 2;
+  int DEFINITION__EXPR = 2;
 
   /**
    * The number of structural features of the '<em>Definition</em>' class.
@@ -241,7 +222,7 @@ public interface SephirahPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEFINITION_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 3;
+  int DEFINITION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.AssignmentImpl <em>Assignment</em>}' class.
@@ -251,7 +232,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getAssignment()
    * @generated
    */
-  int ASSIGNMENT = 5;
+  int ASSIGNMENT = 4;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -279,7 +260,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 8;
+  int EXPRESSION = 7;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -298,7 +279,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getVariable()
    * @generated
    */
-  int VARIABLE = 6;
+  int VARIABLE = 5;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -326,7 +307,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getEvaluation()
    * @generated
    */
-  int EVALUATION = 7;
+  int EVALUATION = 6;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -335,7 +316,7 @@ public interface SephirahPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EVALUATION__EXPRESSION = STATEMENT_FEATURE_COUNT + 0;
+  int EVALUATION__EXPRESSION = 0;
 
   /**
    * The number of structural features of the '<em>Evaluation</em>' class.
@@ -344,7 +325,7 @@ public interface SephirahPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EVALUATION_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+  int EVALUATION_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ConditionImpl <em>Condition</em>}' class.
@@ -354,7 +335,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getCondition()
    * @generated
    */
-  int CONDITION = 9;
+  int CONDITION = 8;
 
   /**
    * The number of structural features of the '<em>Condition</em>' class.
@@ -373,7 +354,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getConstant()
    * @generated
    */
-  int CONSTANT = 10;
+  int CONSTANT = 9;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -401,7 +382,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getVariableAssignment()
    * @generated
    */
-  int VARIABLE_ASSIGNMENT = 11;
+  int VARIABLE_ASSIGNMENT = 10;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -438,7 +419,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getDefinitionVariable()
    * @generated
    */
-  int DEFINITION_VARIABLE = 12;
+  int DEFINITION_VARIABLE = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -466,7 +447,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getConditional()
    * @generated
    */
-  int CONDITIONAL = 13;
+  int CONDITIONAL = 12;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -512,7 +493,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getAdd()
    * @generated
    */
-  int ADD = 14;
+  int ADD = 13;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -549,7 +530,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getSubtract()
    * @generated
    */
-  int SUBTRACT = 15;
+  int SUBTRACT = 14;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -586,7 +567,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getMultiply()
    * @generated
    */
-  int MULTIPLY = 16;
+  int MULTIPLY = 15;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -623,7 +604,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getDivide()
    * @generated
    */
-  int DIVIDE = 17;
+  int DIVIDE = 16;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -660,7 +641,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNegate()
    * @generated
    */
-  int NEGATE = 18;
+  int NEGATE = 17;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -688,7 +669,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getExponent()
    * @generated
    */
-  int EXPONENT = 19;
+  int EXPONENT = 18;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -725,7 +706,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNumberLiteral()
    * @generated
    */
-  int NUMBER_LITERAL = 20;
+  int NUMBER_LITERAL = 19;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -753,7 +734,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getOrCondition()
    * @generated
    */
-  int OR_CONDITION = 21;
+  int OR_CONDITION = 20;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -790,7 +771,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getAndCondition()
    * @generated
    */
-  int AND_CONDITION = 22;
+  int AND_CONDITION = 21;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -827,7 +808,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNotCondition()
    * @generated
    */
-  int NOT_CONDITION = 23;
+  int NOT_CONDITION = 22;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -855,7 +836,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getComparisonCondition()
    * @generated
    */
-  int COMPARISON_CONDITION = 24;
+  int COMPARISON_CONDITION = 23;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -901,7 +882,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getMethodCall()
    * @generated
    */
-  int METHOD_CALL = 25;
+  int METHOD_CALL = 24;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -938,7 +919,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getComparisonOperator()
    * @generated
    */
-  int COMPARISON_OPERATOR = 26;
+  int COMPARISON_OPERATOR = 25;
 
 
   /**
@@ -1047,16 +1028,6 @@ public interface SephirahPackage extends EPackage
    * @generated
    */
   EAttribute getImport_Name();
-
-  /**
-   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.Statement <em>Statement</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Statement</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.Statement
-   * @generated
-   */
-  EClass getStatement();
 
   /**
    * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.Definition <em>Definition</em>}'.
@@ -1759,16 +1730,6 @@ public interface SephirahPackage extends EPackage
      * @generated
      */
     EAttribute IMPORT__NAME = eINSTANCE.getImport_Name();
-
-    /**
-     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.StatementImpl <em>Statement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see com.fearlesstyrant.sephirah.sephirah.impl.StatementImpl
-     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getStatement()
-     * @generated
-     */
-    EClass STATEMENT = eINSTANCE.getStatement();
 
     /**
      * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.DefinitionImpl <em>Definition</em>}' class.

@@ -3,6 +3,7 @@
  */
 package com.fearlesstyrant.sephirah.sephirah;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ package com.fearlesstyrant.sephirah.sephirah;
  * @model
  * @generated
  */
-public interface Evaluation extends Statement
+public interface Evaluation extends EObject
 {
   /**
    * Returns the value of the '<em><b>Expression</b></em>' containment reference.

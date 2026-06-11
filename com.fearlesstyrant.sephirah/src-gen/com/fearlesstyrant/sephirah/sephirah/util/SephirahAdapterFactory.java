@@ -91,11 +91,6 @@ public class SephirahAdapterFactory extends AdapterFactoryImpl
         return createImportAdapter();
       }
       @Override
-      public Adapter caseStatement(Statement object)
-      {
-        return createStatementAdapter();
-      }
-      @Override
       public Adapter caseDefinition(Definition object)
       {
         return createDefinitionAdapter();
@@ -268,21 +263,6 @@ public class SephirahAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createImportAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.fearlesstyrant.sephirah.sephirah.Statement <em>Statement</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.fearlesstyrant.sephirah.sephirah.Statement
-   * @generated
-   */
-  public Adapter createStatementAdapter()
   {
     return null;
   }

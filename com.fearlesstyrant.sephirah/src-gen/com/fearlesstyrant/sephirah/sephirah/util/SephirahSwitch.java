@@ -94,18 +94,10 @@ public class SephirahSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case SephirahPackage.STATEMENT:
-      {
-        Statement statement = (Statement)theEObject;
-        T result = caseStatement(statement);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case SephirahPackage.DEFINITION:
       {
         Definition definition = (Definition)theEObject;
         T result = caseDefinition(definition);
-        if (result == null) result = caseStatement(definition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -128,7 +120,6 @@ public class SephirahSwitch<T> extends Switch<T>
       {
         Evaluation evaluation = (Evaluation)theEObject;
         T result = caseEvaluation(evaluation);
-        if (result == null) result = caseStatement(evaluation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -322,22 +313,6 @@ public class SephirahSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseImport(Import object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Statement</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Statement</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseStatement(Statement object)
   {
     return null;
   }

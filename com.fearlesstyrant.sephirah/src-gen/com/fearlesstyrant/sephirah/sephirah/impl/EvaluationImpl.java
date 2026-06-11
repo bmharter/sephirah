@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class EvaluationImpl extends StatementImpl implements Evaluation
+public class EvaluationImpl extends MinimalEObjectImpl.Container implements Evaluation
 {
   /**
    * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.

@@ -28,7 +28,6 @@ import com.fearlesstyrant.sephirah.sephirah.NumberLiteral;
 import com.fearlesstyrant.sephirah.sephirah.OrCondition;
 import com.fearlesstyrant.sephirah.sephirah.SephirahFactory;
 import com.fearlesstyrant.sephirah.sephirah.SephirahPackage;
-import com.fearlesstyrant.sephirah.sephirah.Statement;
 import com.fearlesstyrant.sephirah.sephirah.Subtract;
 import com.fearlesstyrant.sephirah.sephirah.Variable;
 import com.fearlesstyrant.sephirah.sephirah.VariableAssignment;
@@ -69,13 +68,6 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
    * @generated
    */
   private EClass importEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass statementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -408,17 +400,6 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
   public EAttribute getImport_Name()
   {
     return (EAttribute)importEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getStatement()
-  {
-    return statementEClass;
   }
 
   /**
@@ -1081,8 +1062,6 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
     importEClass = createEClass(IMPORT);
     createEAttribute(importEClass, IMPORT__NAME);
 
-    statementEClass = createEClass(STATEMENT);
-
     definitionEClass = createEClass(DEFINITION);
     createEAttribute(definitionEClass, DEFINITION__NAME);
     createEReference(definitionEClass, DEFINITION__ARGS);
@@ -1193,9 +1172,7 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    definitionEClass.getESuperTypes().add(this.getStatement());
     variableEClass.getESuperTypes().add(this.getExpression());
-    evaluationEClass.getESuperTypes().add(this.getStatement());
     constantEClass.getESuperTypes().add(this.getExpression());
     variableAssignmentEClass.getESuperTypes().add(this.getAssignment());
     definitionVariableEClass.getESuperTypes().add(this.getAssignment());
@@ -1226,8 +1203,6 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
 
     initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getImport_Name(), ecorePackage.getEString(), "name", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(statementEClass, Statement.class, "Statement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(definitionEClass, Definition.class, "Definition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Definition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
