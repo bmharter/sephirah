@@ -118,6 +118,10 @@ public final class Computer {
         if(expression instanceof Constant constant) {
             return SephirahValues.numeric(Constants.getBDConstant(constant.getValue()));
         }
+        
+        if (expression instanceof BooleanLiteral booleanLiteral) {
+            return SephirahValues.bool("true".equals(booleanLiteral.getValue()));
+        }
 
         if(expression instanceof Variable variable) {
             return SephirahValues.numeric(context.requireValue(variable.getName()));

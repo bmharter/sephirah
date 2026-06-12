@@ -20,16 +20,16 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class SephirahSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected SephirahGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_PrimaryCondition_LeftSquareBracketKeyword_1_0_a;
-	protected AbstractElementAlias match_PrimaryCondition_LeftSquareBracketKeyword_1_0_p;
+	protected AbstractElementAlias match_PrimaryCondition_LeftSquareBracketKeyword_0_0_a;
+	protected AbstractElementAlias match_PrimaryCondition_LeftSquareBracketKeyword_0_0_p;
 	protected AbstractElementAlias match_PrimaryExpression_LeftParenthesisKeyword_0_0_a;
 	protected AbstractElementAlias match_PrimaryExpression_LeftParenthesisKeyword_0_0_p;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (SephirahGrammarAccess) access;
-		match_PrimaryCondition_LeftSquareBracketKeyword_1_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryConditionAccess().getLeftSquareBracketKeyword_1_0());
-		match_PrimaryCondition_LeftSquareBracketKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryConditionAccess().getLeftSquareBracketKeyword_1_0());
+		match_PrimaryCondition_LeftSquareBracketKeyword_0_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryConditionAccess().getLeftSquareBracketKeyword_0_0());
+		match_PrimaryCondition_LeftSquareBracketKeyword_0_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryConditionAccess().getLeftSquareBracketKeyword_0_0());
 		match_PrimaryExpression_LeftParenthesisKeyword_0_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_0_0());
 		match_PrimaryExpression_LeftParenthesisKeyword_0_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_0_0());
 	}
@@ -46,10 +46,10 @@ public class SephirahSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_PrimaryCondition_LeftSquareBracketKeyword_1_0_a.equals(syntax))
-				emit_PrimaryCondition_LeftSquareBracketKeyword_1_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PrimaryCondition_LeftSquareBracketKeyword_1_0_p.equals(syntax))
-				emit_PrimaryCondition_LeftSquareBracketKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_PrimaryCondition_LeftSquareBracketKeyword_0_0_a.equals(syntax))
+				emit_PrimaryCondition_LeftSquareBracketKeyword_0_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PrimaryCondition_LeftSquareBracketKeyword_0_0_p.equals(syntax))
+				emit_PrimaryCondition_LeftSquareBracketKeyword_0_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PrimaryExpression_LeftParenthesisKeyword_0_0_a.equals(syntax))
 				emit_PrimaryExpression_LeftParenthesisKeyword_0_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PrimaryExpression_LeftParenthesisKeyword_0_0_p.equals(syntax))
@@ -71,7 +71,7 @@ public class SephirahSyntacticSequencer extends AbstractSyntacticSequencer {
 	 
 	 * </pre>
 	 */
-	protected void emit_PrimaryCondition_LeftSquareBracketKeyword_1_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PrimaryCondition_LeftSquareBracketKeyword_0_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -87,7 +87,7 @@ public class SephirahSyntacticSequencer extends AbstractSyntacticSequencer {
 	 
 	 * </pre>
 	 */
-	protected void emit_PrimaryCondition_LeftSquareBracketKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PrimaryCondition_LeftSquareBracketKeyword_0_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -102,9 +102,11 @@ public class SephirahSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) name=QualifiedName
 	 *     (rule start) (ambiguity) value='G'
 	 *     (rule start) (ambiguity) value='e'
+	 *     (rule start) (ambiguity) value='false'
 	 *     (rule start) (ambiguity) value='gamma'
 	 *     (rule start) (ambiguity) value='phi'
 	 *     (rule start) (ambiguity) value='pi'
+	 *     (rule start) (ambiguity) value='true'
 	 *     (rule start) (ambiguity) value=Decimal
 	 *     (rule start) (ambiguity) {Add.left=}
 	 *     (rule start) (ambiguity) {Divide.left=}

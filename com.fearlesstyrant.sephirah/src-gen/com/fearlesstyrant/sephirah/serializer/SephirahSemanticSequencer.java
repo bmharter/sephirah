@@ -5,6 +5,7 @@ package com.fearlesstyrant.sephirah.serializer;
 
 import com.fearlesstyrant.sephirah.sephirah.Add;
 import com.fearlesstyrant.sephirah.sephirah.AndCondition;
+import com.fearlesstyrant.sephirah.sephirah.BooleanLiteral;
 import com.fearlesstyrant.sephirah.sephirah.ComparisonCondition;
 import com.fearlesstyrant.sephirah.sephirah.Conditional;
 import com.fearlesstyrant.sephirah.sephirah.Constant;
@@ -58,6 +59,9 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				return; 
 			case SephirahPackage.AND_CONDITION:
 				sequence_AndCondition(context, (AndCondition) semanticObject); 
+				return; 
+			case SephirahPackage.BOOLEAN_LITERAL:
+				sequence_BooleanLiteral(context, (BooleanLiteral) semanticObject); 
 				return; 
 			case SephirahPackage.COMPARISON_CONDITION:
 				sequence_ComparisonCondition(context, (ComparisonCondition) semanticObject); 
@@ -218,6 +222,32 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		feeder.accept(grammarAccess.getAndConditionAccess().getAndConditionLeftAction_1_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getAndConditionAccess().getRightNotConditionParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Expression returns BooleanLiteral
+	 *     Conditional returns BooleanLiteral
+	 *     Addition returns BooleanLiteral
+	 *     Addition.Add_1_0_0_0 returns BooleanLiteral
+	 *     Addition.Subtract_1_0_1_0 returns BooleanLiteral
+	 *     Multiplication returns BooleanLiteral
+	 *     Multiplication.Multiply_1_0_0_0 returns BooleanLiteral
+	 *     Multiplication.Divide_1_0_1_0 returns BooleanLiteral
+	 *     Unary returns BooleanLiteral
+	 *     Exponent returns BooleanLiteral
+	 *     Exponent.Exponent_1_0 returns BooleanLiteral
+	 *     PrimaryExpression returns BooleanLiteral
+	 *     BooleanLiteral returns BooleanLiteral
+	 *
+	 * Constraint:
+	 *     (value='true' | value='false')
+	 * </pre>
+	 */
+	protected void sequence_BooleanLiteral(ISerializationContext context, BooleanLiteral semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

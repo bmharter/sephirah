@@ -328,6 +328,34 @@ public interface SephirahPackage extends EPackage
   int EVALUATION_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.BooleanLiteralImpl <em>Boolean Literal</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.BooleanLiteralImpl
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getBooleanLiteral()
+   * @generated
+   */
+  int BOOLEAN_LITERAL = 8;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOLEAN_LITERAL__VALUE = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Boolean Literal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOLEAN_LITERAL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ConditionImpl <em>Condition</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -335,7 +363,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getCondition()
    * @generated
    */
-  int CONDITION = 8;
+  int CONDITION = 9;
 
   /**
    * The number of structural features of the '<em>Condition</em>' class.
@@ -354,7 +382,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getConstant()
    * @generated
    */
-  int CONSTANT = 9;
+  int CONSTANT = 10;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -382,7 +410,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getVariableAssignment()
    * @generated
    */
-  int VARIABLE_ASSIGNMENT = 10;
+  int VARIABLE_ASSIGNMENT = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -419,7 +447,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getDefinitionVariable()
    * @generated
    */
-  int DEFINITION_VARIABLE = 11;
+  int DEFINITION_VARIABLE = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -447,7 +475,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getConditional()
    * @generated
    */
-  int CONDITIONAL = 12;
+  int CONDITIONAL = 13;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -493,7 +521,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getAdd()
    * @generated
    */
-  int ADD = 13;
+  int ADD = 14;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -530,7 +558,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getSubtract()
    * @generated
    */
-  int SUBTRACT = 14;
+  int SUBTRACT = 15;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -567,7 +595,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getMultiply()
    * @generated
    */
-  int MULTIPLY = 15;
+  int MULTIPLY = 16;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -604,7 +632,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getDivide()
    * @generated
    */
-  int DIVIDE = 16;
+  int DIVIDE = 17;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -641,7 +669,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNegate()
    * @generated
    */
-  int NEGATE = 17;
+  int NEGATE = 18;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -669,7 +697,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getExponent()
    * @generated
    */
-  int EXPONENT = 18;
+  int EXPONENT = 19;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -706,7 +734,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNumberLiteral()
    * @generated
    */
-  int NUMBER_LITERAL = 19;
+  int NUMBER_LITERAL = 20;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -734,7 +762,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getOrCondition()
    * @generated
    */
-  int OR_CONDITION = 20;
+  int OR_CONDITION = 21;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -771,7 +799,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getAndCondition()
    * @generated
    */
-  int AND_CONDITION = 21;
+  int AND_CONDITION = 22;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -808,7 +836,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNotCondition()
    * @generated
    */
-  int NOT_CONDITION = 22;
+  int NOT_CONDITION = 23;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -836,7 +864,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getComparisonCondition()
    * @generated
    */
-  int COMPARISON_CONDITION = 23;
+  int COMPARISON_CONDITION = 24;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -882,7 +910,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getMethodCall()
    * @generated
    */
-  int METHOD_CALL = 24;
+  int METHOD_CALL = 25;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -919,7 +947,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getComparisonOperator()
    * @generated
    */
-  int COMPARISON_OPERATOR = 25;
+  int COMPARISON_OPERATOR = 26;
 
 
   /**
@@ -1144,6 +1172,27 @@ public interface SephirahPackage extends EPackage
    * @generated
    */
   EClass getExpression();
+
+  /**
+   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.BooleanLiteral <em>Boolean Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Boolean Literal</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.BooleanLiteral
+   * @generated
+   */
+  EClass getBooleanLiteral();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.fearlesstyrant.sephirah.sephirah.BooleanLiteral#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.BooleanLiteral#getValue()
+   * @see #getBooleanLiteral()
+   * @generated
+   */
+  EAttribute getBooleanLiteral_Value();
 
   /**
    * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.Condition <em>Condition</em>}'.
@@ -1828,6 +1877,24 @@ public interface SephirahPackage extends EPackage
      * @generated
      */
     EClass EXPRESSION = eINSTANCE.getExpression();
+
+    /**
+     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.BooleanLiteralImpl <em>Boolean Literal</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.BooleanLiteralImpl
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getBooleanLiteral()
+     * @generated
+     */
+    EClass BOOLEAN_LITERAL = eINSTANCE.getBooleanLiteral();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BOOLEAN_LITERAL__VALUE = eINSTANCE.getBooleanLiteral_Value();
 
     /**
      * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ConditionImpl <em>Condition</em>}' class.

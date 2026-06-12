@@ -85,9 +85,14 @@ Exponent returns Expression:
 PrimaryExpression returns Expression:
 	'(' Expression ')' |
 	{NumberLiteral} value=Decimal |
+	BooleanLiteral |
 	MethodCall |
 	Constant |
 	Variable
+;
+
+BooleanLiteral:
+	{BooleanLiteral} value=('true' | 'false')
 ;
 
 Condition:

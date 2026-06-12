@@ -17,6 +17,7 @@ import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 
 import com.fearlesstyrant.sephirah.sephirah.*;
 import com.fearlesstyrant.sephirah.tools.*;
+import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 
 /**
  * This class contains custom validation rules. 
@@ -271,7 +272,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		
 		try {
 		ModuleEvaluator evaluator = new ModuleEvaluator(model, Methods.previewRegistry());
-		BigDecimal result = evaluator.evaluate(evaluation);
+		SephirahValue result = evaluator.evaluateValue(evaluation.getExpression());
 		
 		info("Result: " + result,
 				SephirahPackage.Literals.EVALUATION__EXPRESSION,

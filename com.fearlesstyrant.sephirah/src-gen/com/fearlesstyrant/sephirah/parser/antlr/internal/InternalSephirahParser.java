@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalSephirahParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_ESCAPED_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'SephirahDoc'", "'import'", "';'", "'def'", "'('", "','", "')'", "'='", "'var'", "'if'", "'then'", "'else'", "'+'", "'-'", "'*'", "'/'", "'^'", "'or'", "'and'", "'not'", "'['", "']'", "'pi'", "'G'", "'phi'", "'gamma'", "'e'", "'.'", "'<='", "'>='", "'=='", "'!='", "'<'", "'>'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_ESCAPED_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'SephirahDoc'", "'import'", "';'", "'def'", "'('", "','", "')'", "'='", "'var'", "'if'", "'then'", "'else'", "'+'", "'-'", "'*'", "'/'", "'^'", "'true'", "'false'", "'or'", "'and'", "'not'", "'['", "']'", "'pi'", "'G'", "'phi'", "'gamma'", "'e'", "'.'", "'<='", "'>='", "'=='", "'!='", "'<'", "'>'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -62,6 +62,8 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
     public static final int RULE_ANY_OTHER=11;
     public static final int T__44=44;
     public static final int T__45=45;
+    public static final int T__46=46;
+    public static final int T__47=47;
     public static final int RULE_ESCAPED_ID=5;
     public static final int T__40=40;
     public static final int T__41=41;
@@ -281,11 +283,13 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                 case 16:
                 case 21:
                 case 25:
-                case 34:
-                case 35:
+                case 29:
+                case 30:
                 case 36:
                 case 37:
                 case 38:
+                case 39:
+                case 40:
                     {
                     alt3=3;
                     }
@@ -1602,7 +1606,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
             if ( (LA6_0==21) ) {
                 alt6=1;
             }
-            else if ( ((LA6_0>=RULE_ID && LA6_0<=RULE_INT)||LA6_0==16||LA6_0==25||(LA6_0>=34 && LA6_0<=38)) ) {
+            else if ( ((LA6_0>=RULE_ID && LA6_0<=RULE_INT)||LA6_0==16||LA6_0==25||(LA6_0>=29 && LA6_0<=30)||(LA6_0>=36 && LA6_0<=40)) ) {
                 alt6=2;
             }
             else {
@@ -2283,7 +2287,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
             if ( (LA11_0==25) ) {
                 alt11=1;
             }
-            else if ( ((LA11_0>=RULE_ID && LA11_0<=RULE_INT)||LA11_0==16||(LA11_0>=34 && LA11_0<=38)) ) {
+            else if ( ((LA11_0>=RULE_ID && LA11_0<=RULE_INT)||LA11_0==16||(LA11_0>=29 && LA11_0<=30)||(LA11_0>=36 && LA11_0<=40)) ) {
                 alt11=2;
             }
             else {
@@ -2582,7 +2586,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimaryExpression"
-    // InternalSephirah.g:1013:1: rulePrimaryExpression returns [EObject current=null] : ( (otherlv_0= '(' this_Expression_1= ruleExpression otherlv_2= ')' ) | ( () ( (lv_value_4_0= ruleDecimal ) ) ) | this_MethodCall_5= ruleMethodCall | this_Constant_6= ruleConstant | this_Variable_7= ruleVariable ) ;
+    // InternalSephirah.g:1013:1: rulePrimaryExpression returns [EObject current=null] : ( (otherlv_0= '(' this_Expression_1= ruleExpression otherlv_2= ')' ) | ( () ( (lv_value_4_0= ruleDecimal ) ) ) | this_BooleanLiteral_5= ruleBooleanLiteral | this_MethodCall_6= ruleMethodCall | this_Constant_7= ruleConstant | this_Variable_8= ruleVariable ) ;
     public final EObject rulePrimaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2592,22 +2596,24 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
         AntlrDatatypeRuleToken lv_value_4_0 = null;
 
-        EObject this_MethodCall_5 = null;
+        EObject this_BooleanLiteral_5 = null;
 
-        EObject this_Constant_6 = null;
+        EObject this_MethodCall_6 = null;
 
-        EObject this_Variable_7 = null;
+        EObject this_Constant_7 = null;
+
+        EObject this_Variable_8 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSephirah.g:1019:2: ( ( (otherlv_0= '(' this_Expression_1= ruleExpression otherlv_2= ')' ) | ( () ( (lv_value_4_0= ruleDecimal ) ) ) | this_MethodCall_5= ruleMethodCall | this_Constant_6= ruleConstant | this_Variable_7= ruleVariable ) )
-            // InternalSephirah.g:1020:2: ( (otherlv_0= '(' this_Expression_1= ruleExpression otherlv_2= ')' ) | ( () ( (lv_value_4_0= ruleDecimal ) ) ) | this_MethodCall_5= ruleMethodCall | this_Constant_6= ruleConstant | this_Variable_7= ruleVariable )
+            // InternalSephirah.g:1019:2: ( ( (otherlv_0= '(' this_Expression_1= ruleExpression otherlv_2= ')' ) | ( () ( (lv_value_4_0= ruleDecimal ) ) ) | this_BooleanLiteral_5= ruleBooleanLiteral | this_MethodCall_6= ruleMethodCall | this_Constant_7= ruleConstant | this_Variable_8= ruleVariable ) )
+            // InternalSephirah.g:1020:2: ( (otherlv_0= '(' this_Expression_1= ruleExpression otherlv_2= ')' ) | ( () ( (lv_value_4_0= ruleDecimal ) ) ) | this_BooleanLiteral_5= ruleBooleanLiteral | this_MethodCall_6= ruleMethodCall | this_Constant_7= ruleConstant | this_Variable_8= ruleVariable )
             {
-            // InternalSephirah.g:1020:2: ( (otherlv_0= '(' this_Expression_1= ruleExpression otherlv_2= ')' ) | ( () ( (lv_value_4_0= ruleDecimal ) ) ) | this_MethodCall_5= ruleMethodCall | this_Constant_6= ruleConstant | this_Variable_7= ruleVariable )
-            int alt13=5;
+            // InternalSephirah.g:1020:2: ( (otherlv_0= '(' this_Expression_1= ruleExpression otherlv_2= ')' ) | ( () ( (lv_value_4_0= ruleDecimal ) ) ) | this_BooleanLiteral_5= ruleBooleanLiteral | this_MethodCall_6= ruleMethodCall | this_Constant_7= ruleConstant | this_Variable_8= ruleVariable )
+            int alt13=6;
             alt13 = dfa13.predict(input);
             switch (alt13) {
                 case 1 :
@@ -2697,54 +2703,72 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalSephirah.g:1069:3: this_MethodCall_5= ruleMethodCall
+                    // InternalSephirah.g:1069:3: this_BooleanLiteral_5= ruleBooleanLiteral
                     {
 
-                    			newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getMethodCallParserRuleCall_2());
+                    			newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getBooleanLiteralParserRuleCall_2());
                     		
                     pushFollow(FOLLOW_2);
-                    this_MethodCall_5=ruleMethodCall();
+                    this_BooleanLiteral_5=ruleBooleanLiteral();
 
                     state._fsp--;
 
 
-                    			current = this_MethodCall_5;
+                    			current = this_BooleanLiteral_5;
                     			afterParserOrEnumRuleCall();
                     		
 
                     }
                     break;
                 case 4 :
-                    // InternalSephirah.g:1078:3: this_Constant_6= ruleConstant
+                    // InternalSephirah.g:1078:3: this_MethodCall_6= ruleMethodCall
                     {
 
-                    			newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getConstantParserRuleCall_3());
+                    			newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getMethodCallParserRuleCall_3());
                     		
                     pushFollow(FOLLOW_2);
-                    this_Constant_6=ruleConstant();
+                    this_MethodCall_6=ruleMethodCall();
 
                     state._fsp--;
 
 
-                    			current = this_Constant_6;
+                    			current = this_MethodCall_6;
                     			afterParserOrEnumRuleCall();
                     		
 
                     }
                     break;
                 case 5 :
-                    // InternalSephirah.g:1087:3: this_Variable_7= ruleVariable
+                    // InternalSephirah.g:1087:3: this_Constant_7= ruleConstant
                     {
 
-                    			newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getVariableParserRuleCall_4());
+                    			newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getConstantParserRuleCall_4());
                     		
                     pushFollow(FOLLOW_2);
-                    this_Variable_7=ruleVariable();
+                    this_Constant_7=ruleConstant();
 
                     state._fsp--;
 
 
-                    			current = this_Variable_7;
+                    			current = this_Constant_7;
+                    			afterParserOrEnumRuleCall();
+                    		
+
+                    }
+                    break;
+                case 6 :
+                    // InternalSephirah.g:1096:3: this_Variable_8= ruleVariable
+                    {
+
+                    			newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getVariableParserRuleCall_5());
+                    		
+                    pushFollow(FOLLOW_2);
+                    this_Variable_8=ruleVariable();
+
+                    state._fsp--;
+
+
+                    			current = this_Variable_8;
                     			afterParserOrEnumRuleCall();
                     		
 
@@ -2772,8 +2796,159 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
     // $ANTLR end "rulePrimaryExpression"
 
 
+    // $ANTLR start "entryRuleBooleanLiteral"
+    // InternalSephirah.g:1108:1: entryRuleBooleanLiteral returns [EObject current=null] : iv_ruleBooleanLiteral= ruleBooleanLiteral EOF ;
+    public final EObject entryRuleBooleanLiteral() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleBooleanLiteral = null;
+
+
+        try {
+            // InternalSephirah.g:1108:55: (iv_ruleBooleanLiteral= ruleBooleanLiteral EOF )
+            // InternalSephirah.g:1109:2: iv_ruleBooleanLiteral= ruleBooleanLiteral EOF
+            {
+             newCompositeNode(grammarAccess.getBooleanLiteralRule()); 
+            pushFollow(FOLLOW_1);
+            iv_ruleBooleanLiteral=ruleBooleanLiteral();
+
+            state._fsp--;
+
+             current =iv_ruleBooleanLiteral; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleBooleanLiteral"
+
+
+    // $ANTLR start "ruleBooleanLiteral"
+    // InternalSephirah.g:1115:1: ruleBooleanLiteral returns [EObject current=null] : ( () ( ( (lv_value_1_1= 'true' | lv_value_1_2= 'false' ) ) ) ) ;
+    public final EObject ruleBooleanLiteral() throws RecognitionException {
+        EObject current = null;
+
+        Token lv_value_1_1=null;
+        Token lv_value_1_2=null;
+
+
+        	enterRule();
+
+        try {
+            // InternalSephirah.g:1121:2: ( ( () ( ( (lv_value_1_1= 'true' | lv_value_1_2= 'false' ) ) ) ) )
+            // InternalSephirah.g:1122:2: ( () ( ( (lv_value_1_1= 'true' | lv_value_1_2= 'false' ) ) ) )
+            {
+            // InternalSephirah.g:1122:2: ( () ( ( (lv_value_1_1= 'true' | lv_value_1_2= 'false' ) ) ) )
+            // InternalSephirah.g:1123:3: () ( ( (lv_value_1_1= 'true' | lv_value_1_2= 'false' ) ) )
+            {
+            // InternalSephirah.g:1123:3: ()
+            // InternalSephirah.g:1124:4: 
+            {
+
+            				current = forceCreateModelElement(
+            					grammarAccess.getBooleanLiteralAccess().getBooleanLiteralAction_0(),
+            					current);
+            			
+
+            }
+
+            // InternalSephirah.g:1130:3: ( ( (lv_value_1_1= 'true' | lv_value_1_2= 'false' ) ) )
+            // InternalSephirah.g:1131:4: ( (lv_value_1_1= 'true' | lv_value_1_2= 'false' ) )
+            {
+            // InternalSephirah.g:1131:4: ( (lv_value_1_1= 'true' | lv_value_1_2= 'false' ) )
+            // InternalSephirah.g:1132:5: (lv_value_1_1= 'true' | lv_value_1_2= 'false' )
+            {
+            // InternalSephirah.g:1132:5: (lv_value_1_1= 'true' | lv_value_1_2= 'false' )
+            int alt14=2;
+            int LA14_0 = input.LA(1);
+
+            if ( (LA14_0==29) ) {
+                alt14=1;
+            }
+            else if ( (LA14_0==30) ) {
+                alt14=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 14, 0, input);
+
+                throw nvae;
+            }
+            switch (alt14) {
+                case 1 :
+                    // InternalSephirah.g:1133:6: lv_value_1_1= 'true'
+                    {
+                    lv_value_1_1=(Token)match(input,29,FOLLOW_2); 
+
+                    						newLeafNode(lv_value_1_1, grammarAccess.getBooleanLiteralAccess().getValueTrueKeyword_1_0_0());
+                    					
+
+                    						if (current==null) {
+                    							current = createModelElement(grammarAccess.getBooleanLiteralRule());
+                    						}
+                    						setWithLastConsumed(current, "value", lv_value_1_1, null);
+                    					
+
+                    }
+                    break;
+                case 2 :
+                    // InternalSephirah.g:1144:6: lv_value_1_2= 'false'
+                    {
+                    lv_value_1_2=(Token)match(input,30,FOLLOW_2); 
+
+                    						newLeafNode(lv_value_1_2, grammarAccess.getBooleanLiteralAccess().getValueFalseKeyword_1_0_1());
+                    					
+
+                    						if (current==null) {
+                    							current = createModelElement(grammarAccess.getBooleanLiteralRule());
+                    						}
+                    						setWithLastConsumed(current, "value", lv_value_1_2, null);
+                    					
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+
+            }
+
+
+            }
+
+
+            }
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleBooleanLiteral"
+
+
     // $ANTLR start "entryRuleCondition"
-    // InternalSephirah.g:1099:1: entryRuleCondition returns [EObject current=null] : iv_ruleCondition= ruleCondition EOF ;
+    // InternalSephirah.g:1161:1: entryRuleCondition returns [EObject current=null] : iv_ruleCondition= ruleCondition EOF ;
     public final EObject entryRuleCondition() throws RecognitionException {
         EObject current = null;
 
@@ -2781,8 +2956,8 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSephirah.g:1099:50: (iv_ruleCondition= ruleCondition EOF )
-            // InternalSephirah.g:1100:2: iv_ruleCondition= ruleCondition EOF
+            // InternalSephirah.g:1161:50: (iv_ruleCondition= ruleCondition EOF )
+            // InternalSephirah.g:1162:2: iv_ruleCondition= ruleCondition EOF
             {
              newCompositeNode(grammarAccess.getConditionRule()); 
             pushFollow(FOLLOW_1);
@@ -2809,7 +2984,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCondition"
-    // InternalSephirah.g:1106:1: ruleCondition returns [EObject current=null] : this_OrCondition_0= ruleOrCondition ;
+    // InternalSephirah.g:1168:1: ruleCondition returns [EObject current=null] : this_OrCondition_0= ruleOrCondition ;
     public final EObject ruleCondition() throws RecognitionException {
         EObject current = null;
 
@@ -2820,8 +2995,8 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSephirah.g:1112:2: (this_OrCondition_0= ruleOrCondition )
-            // InternalSephirah.g:1113:2: this_OrCondition_0= ruleOrCondition
+            // InternalSephirah.g:1174:2: (this_OrCondition_0= ruleOrCondition )
+            // InternalSephirah.g:1175:2: this_OrCondition_0= ruleOrCondition
             {
 
             		newCompositeNode(grammarAccess.getConditionAccess().getOrConditionParserRuleCall());
@@ -2855,7 +3030,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleOrCondition"
-    // InternalSephirah.g:1124:1: entryRuleOrCondition returns [EObject current=null] : iv_ruleOrCondition= ruleOrCondition EOF ;
+    // InternalSephirah.g:1186:1: entryRuleOrCondition returns [EObject current=null] : iv_ruleOrCondition= ruleOrCondition EOF ;
     public final EObject entryRuleOrCondition() throws RecognitionException {
         EObject current = null;
 
@@ -2863,8 +3038,8 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSephirah.g:1124:52: (iv_ruleOrCondition= ruleOrCondition EOF )
-            // InternalSephirah.g:1125:2: iv_ruleOrCondition= ruleOrCondition EOF
+            // InternalSephirah.g:1186:52: (iv_ruleOrCondition= ruleOrCondition EOF )
+            // InternalSephirah.g:1187:2: iv_ruleOrCondition= ruleOrCondition EOF
             {
              newCompositeNode(grammarAccess.getOrConditionRule()); 
             pushFollow(FOLLOW_1);
@@ -2891,7 +3066,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleOrCondition"
-    // InternalSephirah.g:1131:1: ruleOrCondition returns [EObject current=null] : (this_AndCondition_0= ruleAndCondition ( () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) ) )* ) ;
+    // InternalSephirah.g:1193:1: ruleOrCondition returns [EObject current=null] : (this_AndCondition_0= ruleAndCondition ( () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) ) )* ) ;
     public final EObject ruleOrCondition() throws RecognitionException {
         EObject current = null;
 
@@ -2905,11 +3080,11 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSephirah.g:1137:2: ( (this_AndCondition_0= ruleAndCondition ( () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) ) )* ) )
-            // InternalSephirah.g:1138:2: (this_AndCondition_0= ruleAndCondition ( () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) ) )* )
+            // InternalSephirah.g:1199:2: ( (this_AndCondition_0= ruleAndCondition ( () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) ) )* ) )
+            // InternalSephirah.g:1200:2: (this_AndCondition_0= ruleAndCondition ( () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) ) )* )
             {
-            // InternalSephirah.g:1138:2: (this_AndCondition_0= ruleAndCondition ( () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) ) )* )
-            // InternalSephirah.g:1139:3: this_AndCondition_0= ruleAndCondition ( () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) ) )*
+            // InternalSephirah.g:1200:2: (this_AndCondition_0= ruleAndCondition ( () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) ) )* )
+            // InternalSephirah.g:1201:3: this_AndCondition_0= ruleAndCondition ( () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) ) )*
             {
 
             			newCompositeNode(grammarAccess.getOrConditionAccess().getAndConditionParserRuleCall_0());
@@ -2923,23 +3098,23 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
             			current = this_AndCondition_0;
             			afterParserOrEnumRuleCall();
             		
-            // InternalSephirah.g:1147:3: ( () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) ) )*
-            loop14:
+            // InternalSephirah.g:1209:3: ( () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) ) )*
+            loop15:
             do {
-                int alt14=2;
-                int LA14_0 = input.LA(1);
+                int alt15=2;
+                int LA15_0 = input.LA(1);
 
-                if ( (LA14_0==29) ) {
-                    alt14=1;
+                if ( (LA15_0==31) ) {
+                    alt15=1;
                 }
 
 
-                switch (alt14) {
+                switch (alt15) {
             	case 1 :
-            	    // InternalSephirah.g:1148:4: () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) )
+            	    // InternalSephirah.g:1210:4: () otherlv_2= 'or' ( (lv_right_3_0= ruleAndCondition ) )
             	    {
-            	    // InternalSephirah.g:1148:4: ()
-            	    // InternalSephirah.g:1149:5: 
+            	    // InternalSephirah.g:1210:4: ()
+            	    // InternalSephirah.g:1211:5: 
             	    {
 
             	    					current = forceCreateModelElementAndSet(
@@ -2949,15 +3124,15 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    otherlv_2=(Token)match(input,29,FOLLOW_12); 
+            	    otherlv_2=(Token)match(input,31,FOLLOW_12); 
 
             	    				newLeafNode(otherlv_2, grammarAccess.getOrConditionAccess().getOrKeyword_1_1());
             	    			
-            	    // InternalSephirah.g:1159:4: ( (lv_right_3_0= ruleAndCondition ) )
-            	    // InternalSephirah.g:1160:5: (lv_right_3_0= ruleAndCondition )
+            	    // InternalSephirah.g:1221:4: ( (lv_right_3_0= ruleAndCondition ) )
+            	    // InternalSephirah.g:1222:5: (lv_right_3_0= ruleAndCondition )
             	    {
-            	    // InternalSephirah.g:1160:5: (lv_right_3_0= ruleAndCondition )
-            	    // InternalSephirah.g:1161:6: lv_right_3_0= ruleAndCondition
+            	    // InternalSephirah.g:1222:5: (lv_right_3_0= ruleAndCondition )
+            	    // InternalSephirah.g:1223:6: lv_right_3_0= ruleAndCondition
             	    {
 
             	    						newCompositeNode(grammarAccess.getOrConditionAccess().getRightAndConditionParserRuleCall_1_2_0());
@@ -2976,167 +3151,6 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
             	    							"right",
             	    							lv_right_3_0,
             	    							"com.fearlesstyrant.sephirah.Sephirah.AndCondition");
-            	    						afterParserOrEnumRuleCall();
-            	    					
-
-            	    }
-
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop14;
-                }
-            } while (true);
-
-
-            }
-
-
-            }
-
-
-            	leaveRule();
-
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleOrCondition"
-
-
-    // $ANTLR start "entryRuleAndCondition"
-    // InternalSephirah.g:1183:1: entryRuleAndCondition returns [EObject current=null] : iv_ruleAndCondition= ruleAndCondition EOF ;
-    public final EObject entryRuleAndCondition() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleAndCondition = null;
-
-
-        try {
-            // InternalSephirah.g:1183:53: (iv_ruleAndCondition= ruleAndCondition EOF )
-            // InternalSephirah.g:1184:2: iv_ruleAndCondition= ruleAndCondition EOF
-            {
-             newCompositeNode(grammarAccess.getAndConditionRule()); 
-            pushFollow(FOLLOW_1);
-            iv_ruleAndCondition=ruleAndCondition();
-
-            state._fsp--;
-
-             current =iv_ruleAndCondition; 
-            match(input,EOF,FOLLOW_2); 
-
-            }
-
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleAndCondition"
-
-
-    // $ANTLR start "ruleAndCondition"
-    // InternalSephirah.g:1190:1: ruleAndCondition returns [EObject current=null] : (this_NotCondition_0= ruleNotCondition ( () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) ) )* ) ;
-    public final EObject ruleAndCondition() throws RecognitionException {
-        EObject current = null;
-
-        Token otherlv_2=null;
-        EObject this_NotCondition_0 = null;
-
-        EObject lv_right_3_0 = null;
-
-
-
-        	enterRule();
-
-        try {
-            // InternalSephirah.g:1196:2: ( (this_NotCondition_0= ruleNotCondition ( () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) ) )* ) )
-            // InternalSephirah.g:1197:2: (this_NotCondition_0= ruleNotCondition ( () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) ) )* )
-            {
-            // InternalSephirah.g:1197:2: (this_NotCondition_0= ruleNotCondition ( () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) ) )* )
-            // InternalSephirah.g:1198:3: this_NotCondition_0= ruleNotCondition ( () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) ) )*
-            {
-
-            			newCompositeNode(grammarAccess.getAndConditionAccess().getNotConditionParserRuleCall_0());
-            		
-            pushFollow(FOLLOW_20);
-            this_NotCondition_0=ruleNotCondition();
-
-            state._fsp--;
-
-
-            			current = this_NotCondition_0;
-            			afterParserOrEnumRuleCall();
-            		
-            // InternalSephirah.g:1206:3: ( () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) ) )*
-            loop15:
-            do {
-                int alt15=2;
-                int LA15_0 = input.LA(1);
-
-                if ( (LA15_0==30) ) {
-                    alt15=1;
-                }
-
-
-                switch (alt15) {
-            	case 1 :
-            	    // InternalSephirah.g:1207:4: () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) )
-            	    {
-            	    // InternalSephirah.g:1207:4: ()
-            	    // InternalSephirah.g:1208:5: 
-            	    {
-
-            	    					current = forceCreateModelElementAndSet(
-            	    						grammarAccess.getAndConditionAccess().getAndConditionLeftAction_1_0(),
-            	    						current);
-            	    				
-
-            	    }
-
-            	    otherlv_2=(Token)match(input,30,FOLLOW_12); 
-
-            	    				newLeafNode(otherlv_2, grammarAccess.getAndConditionAccess().getAndKeyword_1_1());
-            	    			
-            	    // InternalSephirah.g:1218:4: ( (lv_right_3_0= ruleNotCondition ) )
-            	    // InternalSephirah.g:1219:5: (lv_right_3_0= ruleNotCondition )
-            	    {
-            	    // InternalSephirah.g:1219:5: (lv_right_3_0= ruleNotCondition )
-            	    // InternalSephirah.g:1220:6: lv_right_3_0= ruleNotCondition
-            	    {
-
-            	    						newCompositeNode(grammarAccess.getAndConditionAccess().getRightNotConditionParserRuleCall_1_2_0());
-            	    					
-            	    pushFollow(FOLLOW_20);
-            	    lv_right_3_0=ruleNotCondition();
-
-            	    state._fsp--;
-
-
-            	    						if (current==null) {
-            	    							current = createModelElementForParent(grammarAccess.getAndConditionRule());
-            	    						}
-            	    						set(
-            	    							current,
-            	    							"right",
-            	    							lv_right_3_0,
-            	    							"com.fearlesstyrant.sephirah.Sephirah.NotCondition");
             	    						afterParserOrEnumRuleCall();
             	    					
 
@@ -3173,11 +3187,172 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
+    // $ANTLR end "ruleOrCondition"
+
+
+    // $ANTLR start "entryRuleAndCondition"
+    // InternalSephirah.g:1245:1: entryRuleAndCondition returns [EObject current=null] : iv_ruleAndCondition= ruleAndCondition EOF ;
+    public final EObject entryRuleAndCondition() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleAndCondition = null;
+
+
+        try {
+            // InternalSephirah.g:1245:53: (iv_ruleAndCondition= ruleAndCondition EOF )
+            // InternalSephirah.g:1246:2: iv_ruleAndCondition= ruleAndCondition EOF
+            {
+             newCompositeNode(grammarAccess.getAndConditionRule()); 
+            pushFollow(FOLLOW_1);
+            iv_ruleAndCondition=ruleAndCondition();
+
+            state._fsp--;
+
+             current =iv_ruleAndCondition; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleAndCondition"
+
+
+    // $ANTLR start "ruleAndCondition"
+    // InternalSephirah.g:1252:1: ruleAndCondition returns [EObject current=null] : (this_NotCondition_0= ruleNotCondition ( () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) ) )* ) ;
+    public final EObject ruleAndCondition() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_2=null;
+        EObject this_NotCondition_0 = null;
+
+        EObject lv_right_3_0 = null;
+
+
+
+        	enterRule();
+
+        try {
+            // InternalSephirah.g:1258:2: ( (this_NotCondition_0= ruleNotCondition ( () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) ) )* ) )
+            // InternalSephirah.g:1259:2: (this_NotCondition_0= ruleNotCondition ( () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) ) )* )
+            {
+            // InternalSephirah.g:1259:2: (this_NotCondition_0= ruleNotCondition ( () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) ) )* )
+            // InternalSephirah.g:1260:3: this_NotCondition_0= ruleNotCondition ( () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) ) )*
+            {
+
+            			newCompositeNode(grammarAccess.getAndConditionAccess().getNotConditionParserRuleCall_0());
+            		
+            pushFollow(FOLLOW_20);
+            this_NotCondition_0=ruleNotCondition();
+
+            state._fsp--;
+
+
+            			current = this_NotCondition_0;
+            			afterParserOrEnumRuleCall();
+            		
+            // InternalSephirah.g:1268:3: ( () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) ) )*
+            loop16:
+            do {
+                int alt16=2;
+                int LA16_0 = input.LA(1);
+
+                if ( (LA16_0==32) ) {
+                    alt16=1;
+                }
+
+
+                switch (alt16) {
+            	case 1 :
+            	    // InternalSephirah.g:1269:4: () otherlv_2= 'and' ( (lv_right_3_0= ruleNotCondition ) )
+            	    {
+            	    // InternalSephirah.g:1269:4: ()
+            	    // InternalSephirah.g:1270:5: 
+            	    {
+
+            	    					current = forceCreateModelElementAndSet(
+            	    						grammarAccess.getAndConditionAccess().getAndConditionLeftAction_1_0(),
+            	    						current);
+            	    				
+
+            	    }
+
+            	    otherlv_2=(Token)match(input,32,FOLLOW_12); 
+
+            	    				newLeafNode(otherlv_2, grammarAccess.getAndConditionAccess().getAndKeyword_1_1());
+            	    			
+            	    // InternalSephirah.g:1280:4: ( (lv_right_3_0= ruleNotCondition ) )
+            	    // InternalSephirah.g:1281:5: (lv_right_3_0= ruleNotCondition )
+            	    {
+            	    // InternalSephirah.g:1281:5: (lv_right_3_0= ruleNotCondition )
+            	    // InternalSephirah.g:1282:6: lv_right_3_0= ruleNotCondition
+            	    {
+
+            	    						newCompositeNode(grammarAccess.getAndConditionAccess().getRightNotConditionParserRuleCall_1_2_0());
+            	    					
+            	    pushFollow(FOLLOW_20);
+            	    lv_right_3_0=ruleNotCondition();
+
+            	    state._fsp--;
+
+
+            	    						if (current==null) {
+            	    							current = createModelElementForParent(grammarAccess.getAndConditionRule());
+            	    						}
+            	    						set(
+            	    							current,
+            	    							"right",
+            	    							lv_right_3_0,
+            	    							"com.fearlesstyrant.sephirah.Sephirah.NotCondition");
+            	    						afterParserOrEnumRuleCall();
+            	    					
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop16;
+                }
+            } while (true);
+
+
+            }
+
+
+            }
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
     // $ANTLR end "ruleAndCondition"
 
 
     // $ANTLR start "entryRuleNotCondition"
-    // InternalSephirah.g:1242:1: entryRuleNotCondition returns [EObject current=null] : iv_ruleNotCondition= ruleNotCondition EOF ;
+    // InternalSephirah.g:1304:1: entryRuleNotCondition returns [EObject current=null] : iv_ruleNotCondition= ruleNotCondition EOF ;
     public final EObject entryRuleNotCondition() throws RecognitionException {
         EObject current = null;
 
@@ -3185,8 +3360,8 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSephirah.g:1242:53: (iv_ruleNotCondition= ruleNotCondition EOF )
-            // InternalSephirah.g:1243:2: iv_ruleNotCondition= ruleNotCondition EOF
+            // InternalSephirah.g:1304:53: (iv_ruleNotCondition= ruleNotCondition EOF )
+            // InternalSephirah.g:1305:2: iv_ruleNotCondition= ruleNotCondition EOF
             {
              newCompositeNode(grammarAccess.getNotConditionRule()); 
             pushFollow(FOLLOW_1);
@@ -3213,7 +3388,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNotCondition"
-    // InternalSephirah.g:1249:1: ruleNotCondition returns [EObject current=null] : ( ( () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) ) ) | this_PrimaryCondition_3= rulePrimaryCondition ) ;
+    // InternalSephirah.g:1311:1: ruleNotCondition returns [EObject current=null] : ( ( () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) ) ) | this_PrimaryCondition_3= rulePrimaryCondition ) ;
     public final EObject ruleNotCondition() throws RecognitionException {
         EObject current = null;
 
@@ -3227,34 +3402,34 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSephirah.g:1255:2: ( ( ( () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) ) ) | this_PrimaryCondition_3= rulePrimaryCondition ) )
-            // InternalSephirah.g:1256:2: ( ( () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) ) ) | this_PrimaryCondition_3= rulePrimaryCondition )
+            // InternalSephirah.g:1317:2: ( ( ( () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) ) ) | this_PrimaryCondition_3= rulePrimaryCondition ) )
+            // InternalSephirah.g:1318:2: ( ( () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) ) ) | this_PrimaryCondition_3= rulePrimaryCondition )
             {
-            // InternalSephirah.g:1256:2: ( ( () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) ) ) | this_PrimaryCondition_3= rulePrimaryCondition )
-            int alt16=2;
-            int LA16_0 = input.LA(1);
+            // InternalSephirah.g:1318:2: ( ( () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) ) ) | this_PrimaryCondition_3= rulePrimaryCondition )
+            int alt17=2;
+            int LA17_0 = input.LA(1);
 
-            if ( (LA16_0==31) ) {
-                alt16=1;
+            if ( (LA17_0==33) ) {
+                alt17=1;
             }
-            else if ( ((LA16_0>=RULE_ID && LA16_0<=RULE_INT)||LA16_0==16||LA16_0==25||LA16_0==32||(LA16_0>=34 && LA16_0<=38)) ) {
-                alt16=2;
+            else if ( ((LA17_0>=RULE_ID && LA17_0<=RULE_INT)||LA17_0==16||LA17_0==25||(LA17_0>=29 && LA17_0<=30)||LA17_0==34||(LA17_0>=36 && LA17_0<=40)) ) {
+                alt17=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 16, 0, input);
+                    new NoViableAltException("", 17, 0, input);
 
                 throw nvae;
             }
-            switch (alt16) {
+            switch (alt17) {
                 case 1 :
-                    // InternalSephirah.g:1257:3: ( () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) ) )
+                    // InternalSephirah.g:1319:3: ( () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) ) )
                     {
-                    // InternalSephirah.g:1257:3: ( () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) ) )
-                    // InternalSephirah.g:1258:4: () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) )
+                    // InternalSephirah.g:1319:3: ( () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) ) )
+                    // InternalSephirah.g:1320:4: () otherlv_1= 'not' ( (lv_condition_2_0= ruleNotCondition ) )
                     {
-                    // InternalSephirah.g:1258:4: ()
-                    // InternalSephirah.g:1259:5: 
+                    // InternalSephirah.g:1320:4: ()
+                    // InternalSephirah.g:1321:5: 
                     {
 
                     					current = forceCreateModelElement(
@@ -3264,15 +3439,15 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_1=(Token)match(input,31,FOLLOW_12); 
+                    otherlv_1=(Token)match(input,33,FOLLOW_12); 
 
                     				newLeafNode(otherlv_1, grammarAccess.getNotConditionAccess().getNotKeyword_0_1());
                     			
-                    // InternalSephirah.g:1269:4: ( (lv_condition_2_0= ruleNotCondition ) )
-                    // InternalSephirah.g:1270:5: (lv_condition_2_0= ruleNotCondition )
+                    // InternalSephirah.g:1331:4: ( (lv_condition_2_0= ruleNotCondition ) )
+                    // InternalSephirah.g:1332:5: (lv_condition_2_0= ruleNotCondition )
                     {
-                    // InternalSephirah.g:1270:5: (lv_condition_2_0= ruleNotCondition )
-                    // InternalSephirah.g:1271:6: lv_condition_2_0= ruleNotCondition
+                    // InternalSephirah.g:1332:5: (lv_condition_2_0= ruleNotCondition )
+                    // InternalSephirah.g:1333:6: lv_condition_2_0= ruleNotCondition
                     {
 
                     						newCompositeNode(grammarAccess.getNotConditionAccess().getConditionNotConditionParserRuleCall_0_2_0());
@@ -3306,7 +3481,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:1290:3: this_PrimaryCondition_3= rulePrimaryCondition
+                    // InternalSephirah.g:1352:3: this_PrimaryCondition_3= rulePrimaryCondition
                     {
 
                     			newCompositeNode(grammarAccess.getNotConditionAccess().getPrimaryConditionParserRuleCall_1());
@@ -3346,7 +3521,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrimaryCondition"
-    // InternalSephirah.g:1302:1: entryRulePrimaryCondition returns [EObject current=null] : iv_rulePrimaryCondition= rulePrimaryCondition EOF ;
+    // InternalSephirah.g:1364:1: entryRulePrimaryCondition returns [EObject current=null] : iv_rulePrimaryCondition= rulePrimaryCondition EOF ;
     public final EObject entryRulePrimaryCondition() throws RecognitionException {
         EObject current = null;
 
@@ -3354,8 +3529,8 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSephirah.g:1302:57: (iv_rulePrimaryCondition= rulePrimaryCondition EOF )
-            // InternalSephirah.g:1303:2: iv_rulePrimaryCondition= rulePrimaryCondition EOF
+            // InternalSephirah.g:1364:57: (iv_rulePrimaryCondition= rulePrimaryCondition EOF )
+            // InternalSephirah.g:1365:2: iv_rulePrimaryCondition= rulePrimaryCondition EOF
             {
              newCompositeNode(grammarAccess.getPrimaryConditionRule()); 
             pushFollow(FOLLOW_1);
@@ -3382,88 +3557,88 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimaryCondition"
-    // InternalSephirah.g:1309:1: rulePrimaryCondition returns [EObject current=null] : (this_ComparisonCondition_0= ruleComparisonCondition | (otherlv_1= '[' this_Condition_2= ruleCondition otherlv_3= ']' ) ) ;
+    // InternalSephirah.g:1371:1: rulePrimaryCondition returns [EObject current=null] : ( (otherlv_0= '[' this_Condition_1= ruleCondition otherlv_2= ']' ) | this_ComparisonCondition_3= ruleComparisonCondition ) ;
     public final EObject rulePrimaryCondition() throws RecognitionException {
         EObject current = null;
 
-        Token otherlv_1=null;
-        Token otherlv_3=null;
-        EObject this_ComparisonCondition_0 = null;
+        Token otherlv_0=null;
+        Token otherlv_2=null;
+        EObject this_Condition_1 = null;
 
-        EObject this_Condition_2 = null;
+        EObject this_ComparisonCondition_3 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSephirah.g:1315:2: ( (this_ComparisonCondition_0= ruleComparisonCondition | (otherlv_1= '[' this_Condition_2= ruleCondition otherlv_3= ']' ) ) )
-            // InternalSephirah.g:1316:2: (this_ComparisonCondition_0= ruleComparisonCondition | (otherlv_1= '[' this_Condition_2= ruleCondition otherlv_3= ']' ) )
+            // InternalSephirah.g:1377:2: ( ( (otherlv_0= '[' this_Condition_1= ruleCondition otherlv_2= ']' ) | this_ComparisonCondition_3= ruleComparisonCondition ) )
+            // InternalSephirah.g:1378:2: ( (otherlv_0= '[' this_Condition_1= ruleCondition otherlv_2= ']' ) | this_ComparisonCondition_3= ruleComparisonCondition )
             {
-            // InternalSephirah.g:1316:2: (this_ComparisonCondition_0= ruleComparisonCondition | (otherlv_1= '[' this_Condition_2= ruleCondition otherlv_3= ']' ) )
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            // InternalSephirah.g:1378:2: ( (otherlv_0= '[' this_Condition_1= ruleCondition otherlv_2= ']' ) | this_ComparisonCondition_3= ruleComparisonCondition )
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( ((LA17_0>=RULE_ID && LA17_0<=RULE_INT)||LA17_0==16||LA17_0==25||(LA17_0>=34 && LA17_0<=38)) ) {
-                alt17=1;
+            if ( (LA18_0==34) ) {
+                alt18=1;
             }
-            else if ( (LA17_0==32) ) {
-                alt17=2;
+            else if ( ((LA18_0>=RULE_ID && LA18_0<=RULE_INT)||LA18_0==16||LA18_0==25||(LA18_0>=29 && LA18_0<=30)||(LA18_0>=36 && LA18_0<=40)) ) {
+                alt18=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 17, 0, input);
+                    new NoViableAltException("", 18, 0, input);
 
                 throw nvae;
             }
-            switch (alt17) {
+            switch (alt18) {
                 case 1 :
-                    // InternalSephirah.g:1317:3: this_ComparisonCondition_0= ruleComparisonCondition
+                    // InternalSephirah.g:1379:3: (otherlv_0= '[' this_Condition_1= ruleCondition otherlv_2= ']' )
                     {
+                    // InternalSephirah.g:1379:3: (otherlv_0= '[' this_Condition_1= ruleCondition otherlv_2= ']' )
+                    // InternalSephirah.g:1380:4: otherlv_0= '[' this_Condition_1= ruleCondition otherlv_2= ']'
+                    {
+                    otherlv_0=(Token)match(input,34,FOLLOW_12); 
 
-                    			newCompositeNode(grammarAccess.getPrimaryConditionAccess().getComparisonConditionParserRuleCall_0());
-                    		
-                    pushFollow(FOLLOW_2);
-                    this_ComparisonCondition_0=ruleComparisonCondition();
+                    				newLeafNode(otherlv_0, grammarAccess.getPrimaryConditionAccess().getLeftSquareBracketKeyword_0_0());
+                    			
+
+                    				newCompositeNode(grammarAccess.getPrimaryConditionAccess().getConditionParserRuleCall_0_1());
+                    			
+                    pushFollow(FOLLOW_21);
+                    this_Condition_1=ruleCondition();
 
                     state._fsp--;
 
 
-                    			current = this_ComparisonCondition_0;
-                    			afterParserOrEnumRuleCall();
-                    		
+                    				current = this_Condition_1;
+                    				afterParserOrEnumRuleCall();
+                    			
+                    otherlv_2=(Token)match(input,35,FOLLOW_2); 
+
+                    				newLeafNode(otherlv_2, grammarAccess.getPrimaryConditionAccess().getRightSquareBracketKeyword_0_2());
+                    			
+
+                    }
+
 
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:1326:3: (otherlv_1= '[' this_Condition_2= ruleCondition otherlv_3= ']' )
+                    // InternalSephirah.g:1398:3: this_ComparisonCondition_3= ruleComparisonCondition
                     {
-                    // InternalSephirah.g:1326:3: (otherlv_1= '[' this_Condition_2= ruleCondition otherlv_3= ']' )
-                    // InternalSephirah.g:1327:4: otherlv_1= '[' this_Condition_2= ruleCondition otherlv_3= ']'
-                    {
-                    otherlv_1=(Token)match(input,32,FOLLOW_12); 
 
-                    				newLeafNode(otherlv_1, grammarAccess.getPrimaryConditionAccess().getLeftSquareBracketKeyword_1_0());
-                    			
-
-                    				newCompositeNode(grammarAccess.getPrimaryConditionAccess().getConditionParserRuleCall_1_1());
-                    			
-                    pushFollow(FOLLOW_21);
-                    this_Condition_2=ruleCondition();
+                    			newCompositeNode(grammarAccess.getPrimaryConditionAccess().getComparisonConditionParserRuleCall_1());
+                    		
+                    pushFollow(FOLLOW_2);
+                    this_ComparisonCondition_3=ruleComparisonCondition();
 
                     state._fsp--;
 
 
-                    				current = this_Condition_2;
-                    				afterParserOrEnumRuleCall();
-                    			
-                    otherlv_3=(Token)match(input,33,FOLLOW_2); 
-
-                    				newLeafNode(otherlv_3, grammarAccess.getPrimaryConditionAccess().getRightSquareBracketKeyword_1_2());
-                    			
-
-                    }
-
+                    			current = this_ComparisonCondition_3;
+                    			afterParserOrEnumRuleCall();
+                    		
 
                     }
                     break;
@@ -3490,7 +3665,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleComparisonCondition"
-    // InternalSephirah.g:1348:1: entryRuleComparisonCondition returns [EObject current=null] : iv_ruleComparisonCondition= ruleComparisonCondition EOF ;
+    // InternalSephirah.g:1410:1: entryRuleComparisonCondition returns [EObject current=null] : iv_ruleComparisonCondition= ruleComparisonCondition EOF ;
     public final EObject entryRuleComparisonCondition() throws RecognitionException {
         EObject current = null;
 
@@ -3498,8 +3673,8 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSephirah.g:1348:60: (iv_ruleComparisonCondition= ruleComparisonCondition EOF )
-            // InternalSephirah.g:1349:2: iv_ruleComparisonCondition= ruleComparisonCondition EOF
+            // InternalSephirah.g:1410:60: (iv_ruleComparisonCondition= ruleComparisonCondition EOF )
+            // InternalSephirah.g:1411:2: iv_ruleComparisonCondition= ruleComparisonCondition EOF
             {
              newCompositeNode(grammarAccess.getComparisonConditionRule()); 
             pushFollow(FOLLOW_1);
@@ -3526,7 +3701,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleComparisonCondition"
-    // InternalSephirah.g:1355:1: ruleComparisonCondition returns [EObject current=null] : ( () ( (lv_left_1_0= ruleAddition ) ) ( (lv_op_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= ruleAddition ) ) ) ;
+    // InternalSephirah.g:1417:1: ruleComparisonCondition returns [EObject current=null] : ( () ( (lv_left_1_0= ruleAddition ) ) ( (lv_op_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= ruleAddition ) ) ) ;
     public final EObject ruleComparisonCondition() throws RecognitionException {
         EObject current = null;
 
@@ -3541,14 +3716,14 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSephirah.g:1361:2: ( ( () ( (lv_left_1_0= ruleAddition ) ) ( (lv_op_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= ruleAddition ) ) ) )
-            // InternalSephirah.g:1362:2: ( () ( (lv_left_1_0= ruleAddition ) ) ( (lv_op_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= ruleAddition ) ) )
+            // InternalSephirah.g:1423:2: ( ( () ( (lv_left_1_0= ruleAddition ) ) ( (lv_op_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= ruleAddition ) ) ) )
+            // InternalSephirah.g:1424:2: ( () ( (lv_left_1_0= ruleAddition ) ) ( (lv_op_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= ruleAddition ) ) )
             {
-            // InternalSephirah.g:1362:2: ( () ( (lv_left_1_0= ruleAddition ) ) ( (lv_op_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= ruleAddition ) ) )
-            // InternalSephirah.g:1363:3: () ( (lv_left_1_0= ruleAddition ) ) ( (lv_op_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= ruleAddition ) )
+            // InternalSephirah.g:1424:2: ( () ( (lv_left_1_0= ruleAddition ) ) ( (lv_op_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= ruleAddition ) ) )
+            // InternalSephirah.g:1425:3: () ( (lv_left_1_0= ruleAddition ) ) ( (lv_op_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= ruleAddition ) )
             {
-            // InternalSephirah.g:1363:3: ()
-            // InternalSephirah.g:1364:4: 
+            // InternalSephirah.g:1425:3: ()
+            // InternalSephirah.g:1426:4: 
             {
 
             				current = forceCreateModelElement(
@@ -3558,11 +3733,11 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSephirah.g:1370:3: ( (lv_left_1_0= ruleAddition ) )
-            // InternalSephirah.g:1371:4: (lv_left_1_0= ruleAddition )
+            // InternalSephirah.g:1432:3: ( (lv_left_1_0= ruleAddition ) )
+            // InternalSephirah.g:1433:4: (lv_left_1_0= ruleAddition )
             {
-            // InternalSephirah.g:1371:4: (lv_left_1_0= ruleAddition )
-            // InternalSephirah.g:1372:5: lv_left_1_0= ruleAddition
+            // InternalSephirah.g:1433:4: (lv_left_1_0= ruleAddition )
+            // InternalSephirah.g:1434:5: lv_left_1_0= ruleAddition
             {
 
             					newCompositeNode(grammarAccess.getComparisonConditionAccess().getLeftAdditionParserRuleCall_1_0());
@@ -3589,11 +3764,11 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSephirah.g:1389:3: ( (lv_op_2_0= ruleComparisonOperator ) )
-            // InternalSephirah.g:1390:4: (lv_op_2_0= ruleComparisonOperator )
+            // InternalSephirah.g:1451:3: ( (lv_op_2_0= ruleComparisonOperator ) )
+            // InternalSephirah.g:1452:4: (lv_op_2_0= ruleComparisonOperator )
             {
-            // InternalSephirah.g:1390:4: (lv_op_2_0= ruleComparisonOperator )
-            // InternalSephirah.g:1391:5: lv_op_2_0= ruleComparisonOperator
+            // InternalSephirah.g:1452:4: (lv_op_2_0= ruleComparisonOperator )
+            // InternalSephirah.g:1453:5: lv_op_2_0= ruleComparisonOperator
             {
 
             					newCompositeNode(grammarAccess.getComparisonConditionAccess().getOpComparisonOperatorEnumRuleCall_2_0());
@@ -3620,11 +3795,11 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSephirah.g:1408:3: ( (lv_right_3_0= ruleAddition ) )
-            // InternalSephirah.g:1409:4: (lv_right_3_0= ruleAddition )
+            // InternalSephirah.g:1470:3: ( (lv_right_3_0= ruleAddition ) )
+            // InternalSephirah.g:1471:4: (lv_right_3_0= ruleAddition )
             {
-            // InternalSephirah.g:1409:4: (lv_right_3_0= ruleAddition )
-            // InternalSephirah.g:1410:5: lv_right_3_0= ruleAddition
+            // InternalSephirah.g:1471:4: (lv_right_3_0= ruleAddition )
+            // InternalSephirah.g:1472:5: lv_right_3_0= ruleAddition
             {
 
             					newCompositeNode(grammarAccess.getComparisonConditionAccess().getRightAdditionParserRuleCall_3_0());
@@ -3674,7 +3849,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMethodCall"
-    // InternalSephirah.g:1431:1: entryRuleMethodCall returns [EObject current=null] : iv_ruleMethodCall= ruleMethodCall EOF ;
+    // InternalSephirah.g:1493:1: entryRuleMethodCall returns [EObject current=null] : iv_ruleMethodCall= ruleMethodCall EOF ;
     public final EObject entryRuleMethodCall() throws RecognitionException {
         EObject current = null;
 
@@ -3682,8 +3857,8 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSephirah.g:1431:51: (iv_ruleMethodCall= ruleMethodCall EOF )
-            // InternalSephirah.g:1432:2: iv_ruleMethodCall= ruleMethodCall EOF
+            // InternalSephirah.g:1493:51: (iv_ruleMethodCall= ruleMethodCall EOF )
+            // InternalSephirah.g:1494:2: iv_ruleMethodCall= ruleMethodCall EOF
             {
              newCompositeNode(grammarAccess.getMethodCallRule()); 
             pushFollow(FOLLOW_1);
@@ -3710,7 +3885,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMethodCall"
-    // InternalSephirah.g:1438:1: ruleMethodCall returns [EObject current=null] : ( () ( (lv_name_1_0= ruleQualifiedName ) ) otherlv_2= '(' ( ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )* )? otherlv_6= ')' ) ;
+    // InternalSephirah.g:1500:1: ruleMethodCall returns [EObject current=null] : ( () ( (lv_name_1_0= ruleQualifiedName ) ) otherlv_2= '(' ( ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )* )? otherlv_6= ')' ) ;
     public final EObject ruleMethodCall() throws RecognitionException {
         EObject current = null;
 
@@ -3728,14 +3903,14 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSephirah.g:1444:2: ( ( () ( (lv_name_1_0= ruleQualifiedName ) ) otherlv_2= '(' ( ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )* )? otherlv_6= ')' ) )
-            // InternalSephirah.g:1445:2: ( () ( (lv_name_1_0= ruleQualifiedName ) ) otherlv_2= '(' ( ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )* )? otherlv_6= ')' )
+            // InternalSephirah.g:1506:2: ( ( () ( (lv_name_1_0= ruleQualifiedName ) ) otherlv_2= '(' ( ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )* )? otherlv_6= ')' ) )
+            // InternalSephirah.g:1507:2: ( () ( (lv_name_1_0= ruleQualifiedName ) ) otherlv_2= '(' ( ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )* )? otherlv_6= ')' )
             {
-            // InternalSephirah.g:1445:2: ( () ( (lv_name_1_0= ruleQualifiedName ) ) otherlv_2= '(' ( ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )* )? otherlv_6= ')' )
-            // InternalSephirah.g:1446:3: () ( (lv_name_1_0= ruleQualifiedName ) ) otherlv_2= '(' ( ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )* )? otherlv_6= ')'
+            // InternalSephirah.g:1507:2: ( () ( (lv_name_1_0= ruleQualifiedName ) ) otherlv_2= '(' ( ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )* )? otherlv_6= ')' )
+            // InternalSephirah.g:1508:3: () ( (lv_name_1_0= ruleQualifiedName ) ) otherlv_2= '(' ( ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )* )? otherlv_6= ')'
             {
-            // InternalSephirah.g:1446:3: ()
-            // InternalSephirah.g:1447:4: 
+            // InternalSephirah.g:1508:3: ()
+            // InternalSephirah.g:1509:4: 
             {
 
             				current = forceCreateModelElement(
@@ -3745,11 +3920,11 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSephirah.g:1453:3: ( (lv_name_1_0= ruleQualifiedName ) )
-            // InternalSephirah.g:1454:4: (lv_name_1_0= ruleQualifiedName )
+            // InternalSephirah.g:1515:3: ( (lv_name_1_0= ruleQualifiedName ) )
+            // InternalSephirah.g:1516:4: (lv_name_1_0= ruleQualifiedName )
             {
-            // InternalSephirah.g:1454:4: (lv_name_1_0= ruleQualifiedName )
-            // InternalSephirah.g:1455:5: lv_name_1_0= ruleQualifiedName
+            // InternalSephirah.g:1516:4: (lv_name_1_0= ruleQualifiedName )
+            // InternalSephirah.g:1517:5: lv_name_1_0= ruleQualifiedName
             {
 
             					newCompositeNode(grammarAccess.getMethodCallAccess().getNameQualifiedNameParserRuleCall_1_0());
@@ -3780,22 +3955,22 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getMethodCallAccess().getLeftParenthesisKeyword_2());
             		
-            // InternalSephirah.g:1476:3: ( ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )* )?
-            int alt19=2;
-            int LA19_0 = input.LA(1);
+            // InternalSephirah.g:1538:3: ( ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )* )?
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            if ( ((LA19_0>=RULE_ID && LA19_0<=RULE_INT)||LA19_0==16||LA19_0==21||LA19_0==25||(LA19_0>=34 && LA19_0<=38)) ) {
-                alt19=1;
+            if ( ((LA20_0>=RULE_ID && LA20_0<=RULE_INT)||LA20_0==16||LA20_0==21||LA20_0==25||(LA20_0>=29 && LA20_0<=30)||(LA20_0>=36 && LA20_0<=40)) ) {
+                alt20=1;
             }
-            switch (alt19) {
+            switch (alt20) {
                 case 1 :
-                    // InternalSephirah.g:1477:4: ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )*
+                    // InternalSephirah.g:1539:4: ( (lv_args_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )*
                     {
-                    // InternalSephirah.g:1477:4: ( (lv_args_3_0= ruleExpression ) )
-                    // InternalSephirah.g:1478:5: (lv_args_3_0= ruleExpression )
+                    // InternalSephirah.g:1539:4: ( (lv_args_3_0= ruleExpression ) )
+                    // InternalSephirah.g:1540:5: (lv_args_3_0= ruleExpression )
                     {
-                    // InternalSephirah.g:1478:5: (lv_args_3_0= ruleExpression )
-                    // InternalSephirah.g:1479:6: lv_args_3_0= ruleExpression
+                    // InternalSephirah.g:1540:5: (lv_args_3_0= ruleExpression )
+                    // InternalSephirah.g:1541:6: lv_args_3_0= ruleExpression
                     {
 
                     						newCompositeNode(grammarAccess.getMethodCallAccess().getArgsExpressionParserRuleCall_3_0_0());
@@ -3822,30 +3997,30 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalSephirah.g:1496:4: (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )*
-                    loop18:
+                    // InternalSephirah.g:1558:4: (otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) ) )*
+                    loop19:
                     do {
-                        int alt18=2;
-                        int LA18_0 = input.LA(1);
+                        int alt19=2;
+                        int LA19_0 = input.LA(1);
 
-                        if ( (LA18_0==17) ) {
-                            alt18=1;
+                        if ( (LA19_0==17) ) {
+                            alt19=1;
                         }
 
 
-                        switch (alt18) {
+                        switch (alt19) {
                     	case 1 :
-                    	    // InternalSephirah.g:1497:5: otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) )
+                    	    // InternalSephirah.g:1559:5: otherlv_4= ',' ( (lv_args_5_0= ruleExpression ) )
                     	    {
                     	    otherlv_4=(Token)match(input,17,FOLLOW_11); 
 
                     	    					newLeafNode(otherlv_4, grammarAccess.getMethodCallAccess().getCommaKeyword_3_1_0());
                     	    				
-                    	    // InternalSephirah.g:1501:5: ( (lv_args_5_0= ruleExpression ) )
-                    	    // InternalSephirah.g:1502:6: (lv_args_5_0= ruleExpression )
+                    	    // InternalSephirah.g:1563:5: ( (lv_args_5_0= ruleExpression ) )
+                    	    // InternalSephirah.g:1564:6: (lv_args_5_0= ruleExpression )
                     	    {
-                    	    // InternalSephirah.g:1502:6: (lv_args_5_0= ruleExpression )
-                    	    // InternalSephirah.g:1503:7: lv_args_5_0= ruleExpression
+                    	    // InternalSephirah.g:1564:6: (lv_args_5_0= ruleExpression )
+                    	    // InternalSephirah.g:1565:7: lv_args_5_0= ruleExpression
                     	    {
 
                     	    							newCompositeNode(grammarAccess.getMethodCallAccess().getArgsExpressionParserRuleCall_3_1_1_0());
@@ -3877,7 +4052,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop18;
+                    	    break loop19;
                         }
                     } while (true);
 
@@ -3914,7 +4089,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleConstant"
-    // InternalSephirah.g:1530:1: entryRuleConstant returns [EObject current=null] : iv_ruleConstant= ruleConstant EOF ;
+    // InternalSephirah.g:1592:1: entryRuleConstant returns [EObject current=null] : iv_ruleConstant= ruleConstant EOF ;
     public final EObject entryRuleConstant() throws RecognitionException {
         EObject current = null;
 
@@ -3922,8 +4097,8 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSephirah.g:1530:49: (iv_ruleConstant= ruleConstant EOF )
-            // InternalSephirah.g:1531:2: iv_ruleConstant= ruleConstant EOF
+            // InternalSephirah.g:1592:49: (iv_ruleConstant= ruleConstant EOF )
+            // InternalSephirah.g:1593:2: iv_ruleConstant= ruleConstant EOF
             {
              newCompositeNode(grammarAccess.getConstantRule()); 
             pushFollow(FOLLOW_1);
@@ -3950,7 +4125,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleConstant"
-    // InternalSephirah.g:1537:1: ruleConstant returns [EObject current=null] : ( () ( ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) ) ) ) ;
+    // InternalSephirah.g:1599:1: ruleConstant returns [EObject current=null] : ( () ( ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) ) ) ) ;
     public final EObject ruleConstant() throws RecognitionException {
         EObject current = null;
 
@@ -3964,14 +4139,14 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSephirah.g:1543:2: ( ( () ( ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) ) ) ) )
-            // InternalSephirah.g:1544:2: ( () ( ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) ) ) )
+            // InternalSephirah.g:1605:2: ( ( () ( ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) ) ) ) )
+            // InternalSephirah.g:1606:2: ( () ( ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) ) ) )
             {
-            // InternalSephirah.g:1544:2: ( () ( ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) ) ) )
-            // InternalSephirah.g:1545:3: () ( ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) ) )
+            // InternalSephirah.g:1606:2: ( () ( ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) ) ) )
+            // InternalSephirah.g:1607:3: () ( ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) ) )
             {
-            // InternalSephirah.g:1545:3: ()
-            // InternalSephirah.g:1546:4: 
+            // InternalSephirah.g:1607:3: ()
+            // InternalSephirah.g:1608:4: 
             {
 
             				current = forceCreateModelElement(
@@ -3981,52 +4156,52 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSephirah.g:1552:3: ( ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) ) )
-            // InternalSephirah.g:1553:4: ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) )
+            // InternalSephirah.g:1614:3: ( ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) ) )
+            // InternalSephirah.g:1615:4: ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) )
             {
-            // InternalSephirah.g:1553:4: ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) )
-            // InternalSephirah.g:1554:5: (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' )
+            // InternalSephirah.g:1615:4: ( (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' ) )
+            // InternalSephirah.g:1616:5: (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' )
             {
-            // InternalSephirah.g:1554:5: (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' )
-            int alt20=5;
+            // InternalSephirah.g:1616:5: (lv_value_1_1= 'pi' | lv_value_1_2= 'G' | lv_value_1_3= 'phi' | lv_value_1_4= 'gamma' | lv_value_1_5= 'e' )
+            int alt21=5;
             switch ( input.LA(1) ) {
-            case 34:
-                {
-                alt20=1;
-                }
-                break;
-            case 35:
-                {
-                alt20=2;
-                }
-                break;
             case 36:
                 {
-                alt20=3;
+                alt21=1;
                 }
                 break;
             case 37:
                 {
-                alt20=4;
+                alt21=2;
                 }
                 break;
             case 38:
                 {
-                alt20=5;
+                alt21=3;
+                }
+                break;
+            case 39:
+                {
+                alt21=4;
+                }
+                break;
+            case 40:
+                {
+                alt21=5;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 20, 0, input);
+                    new NoViableAltException("", 21, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt20) {
+            switch (alt21) {
                 case 1 :
-                    // InternalSephirah.g:1555:6: lv_value_1_1= 'pi'
+                    // InternalSephirah.g:1617:6: lv_value_1_1= 'pi'
                     {
-                    lv_value_1_1=(Token)match(input,34,FOLLOW_2); 
+                    lv_value_1_1=(Token)match(input,36,FOLLOW_2); 
 
                     						newLeafNode(lv_value_1_1, grammarAccess.getConstantAccess().getValuePiKeyword_1_0_0());
                     					
@@ -4040,9 +4215,9 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:1566:6: lv_value_1_2= 'G'
+                    // InternalSephirah.g:1628:6: lv_value_1_2= 'G'
                     {
-                    lv_value_1_2=(Token)match(input,35,FOLLOW_2); 
+                    lv_value_1_2=(Token)match(input,37,FOLLOW_2); 
 
                     						newLeafNode(lv_value_1_2, grammarAccess.getConstantAccess().getValueGKeyword_1_0_1());
                     					
@@ -4056,9 +4231,9 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalSephirah.g:1577:6: lv_value_1_3= 'phi'
+                    // InternalSephirah.g:1639:6: lv_value_1_3= 'phi'
                     {
-                    lv_value_1_3=(Token)match(input,36,FOLLOW_2); 
+                    lv_value_1_3=(Token)match(input,38,FOLLOW_2); 
 
                     						newLeafNode(lv_value_1_3, grammarAccess.getConstantAccess().getValuePhiKeyword_1_0_2());
                     					
@@ -4072,9 +4247,9 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalSephirah.g:1588:6: lv_value_1_4= 'gamma'
+                    // InternalSephirah.g:1650:6: lv_value_1_4= 'gamma'
                     {
-                    lv_value_1_4=(Token)match(input,37,FOLLOW_2); 
+                    lv_value_1_4=(Token)match(input,39,FOLLOW_2); 
 
                     						newLeafNode(lv_value_1_4, grammarAccess.getConstantAccess().getValueGammaKeyword_1_0_3());
                     					
@@ -4088,9 +4263,9 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalSephirah.g:1599:6: lv_value_1_5= 'e'
+                    // InternalSephirah.g:1661:6: lv_value_1_5= 'e'
                     {
-                    lv_value_1_5=(Token)match(input,38,FOLLOW_2); 
+                    lv_value_1_5=(Token)match(input,40,FOLLOW_2); 
 
                     						newLeafNode(lv_value_1_5, grammarAccess.getConstantAccess().getValueEKeyword_1_0_4());
                     					
@@ -4135,7 +4310,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleQualifiedName"
-    // InternalSephirah.g:1616:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
+    // InternalSephirah.g:1678:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
     public final String entryRuleQualifiedName() throws RecognitionException {
         String current = null;
 
@@ -4143,8 +4318,8 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSephirah.g:1616:53: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // InternalSephirah.g:1617:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // InternalSephirah.g:1678:53: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+            // InternalSephirah.g:1679:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
              newCompositeNode(grammarAccess.getQualifiedNameRule()); 
             pushFollow(FOLLOW_1);
@@ -4171,7 +4346,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQualifiedName"
-    // InternalSephirah.g:1623:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ValidID_0= ruleValidID (kw= '.' this_ValidID_2= ruleValidID )* ) ;
+    // InternalSephirah.g:1685:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ValidID_0= ruleValidID (kw= '.' this_ValidID_2= ruleValidID )* ) ;
     public final AntlrDatatypeRuleToken ruleQualifiedName() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -4185,11 +4360,11 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSephirah.g:1629:2: ( (this_ValidID_0= ruleValidID (kw= '.' this_ValidID_2= ruleValidID )* ) )
-            // InternalSephirah.g:1630:2: (this_ValidID_0= ruleValidID (kw= '.' this_ValidID_2= ruleValidID )* )
+            // InternalSephirah.g:1691:2: ( (this_ValidID_0= ruleValidID (kw= '.' this_ValidID_2= ruleValidID )* ) )
+            // InternalSephirah.g:1692:2: (this_ValidID_0= ruleValidID (kw= '.' this_ValidID_2= ruleValidID )* )
             {
-            // InternalSephirah.g:1630:2: (this_ValidID_0= ruleValidID (kw= '.' this_ValidID_2= ruleValidID )* )
-            // InternalSephirah.g:1631:3: this_ValidID_0= ruleValidID (kw= '.' this_ValidID_2= ruleValidID )*
+            // InternalSephirah.g:1692:2: (this_ValidID_0= ruleValidID (kw= '.' this_ValidID_2= ruleValidID )* )
+            // InternalSephirah.g:1693:3: this_ValidID_0= ruleValidID (kw= '.' this_ValidID_2= ruleValidID )*
             {
 
             			newCompositeNode(grammarAccess.getQualifiedNameAccess().getValidIDParserRuleCall_0());
@@ -4205,22 +4380,22 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
             			afterParserOrEnumRuleCall();
             		
-            // InternalSephirah.g:1641:3: (kw= '.' this_ValidID_2= ruleValidID )*
-            loop21:
+            // InternalSephirah.g:1703:3: (kw= '.' this_ValidID_2= ruleValidID )*
+            loop22:
             do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+                int alt22=2;
+                int LA22_0 = input.LA(1);
 
-                if ( (LA21_0==39) ) {
-                    alt21=1;
+                if ( (LA22_0==41) ) {
+                    alt22=1;
                 }
 
 
-                switch (alt21) {
+                switch (alt22) {
             	case 1 :
-            	    // InternalSephirah.g:1642:4: kw= '.' this_ValidID_2= ruleValidID
+            	    // InternalSephirah.g:1704:4: kw= '.' this_ValidID_2= ruleValidID
             	    {
-            	    kw=(Token)match(input,39,FOLLOW_5); 
+            	    kw=(Token)match(input,41,FOLLOW_5); 
 
             	    				current.merge(kw);
             	    				newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0());
@@ -4244,7 +4419,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop22;
                 }
             } while (true);
 
@@ -4271,7 +4446,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleValidID"
-    // InternalSephirah.g:1662:1: entryRuleValidID returns [String current=null] : iv_ruleValidID= ruleValidID EOF ;
+    // InternalSephirah.g:1724:1: entryRuleValidID returns [String current=null] : iv_ruleValidID= ruleValidID EOF ;
     public final String entryRuleValidID() throws RecognitionException {
         String current = null;
 
@@ -4279,8 +4454,8 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSephirah.g:1662:47: (iv_ruleValidID= ruleValidID EOF )
-            // InternalSephirah.g:1663:2: iv_ruleValidID= ruleValidID EOF
+            // InternalSephirah.g:1724:47: (iv_ruleValidID= ruleValidID EOF )
+            // InternalSephirah.g:1725:2: iv_ruleValidID= ruleValidID EOF
             {
              newCompositeNode(grammarAccess.getValidIDRule()); 
             pushFollow(FOLLOW_1);
@@ -4307,7 +4482,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleValidID"
-    // InternalSephirah.g:1669:1: ruleValidID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID ) ;
+    // InternalSephirah.g:1731:1: ruleValidID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID ) ;
     public final AntlrDatatypeRuleToken ruleValidID() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -4318,28 +4493,28 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSephirah.g:1675:2: ( (this_ID_0= RULE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID ) )
-            // InternalSephirah.g:1676:2: (this_ID_0= RULE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID )
+            // InternalSephirah.g:1737:2: ( (this_ID_0= RULE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID ) )
+            // InternalSephirah.g:1738:2: (this_ID_0= RULE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID )
             {
-            // InternalSephirah.g:1676:2: (this_ID_0= RULE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID )
-            int alt22=2;
-            int LA22_0 = input.LA(1);
+            // InternalSephirah.g:1738:2: (this_ID_0= RULE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID )
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            if ( (LA22_0==RULE_ID) ) {
-                alt22=1;
+            if ( (LA23_0==RULE_ID) ) {
+                alt23=1;
             }
-            else if ( (LA22_0==RULE_ESCAPED_ID) ) {
-                alt22=2;
+            else if ( (LA23_0==RULE_ESCAPED_ID) ) {
+                alt23=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 22, 0, input);
+                    new NoViableAltException("", 23, 0, input);
 
                 throw nvae;
             }
-            switch (alt22) {
+            switch (alt23) {
                 case 1 :
-                    // InternalSephirah.g:1677:3: this_ID_0= RULE_ID
+                    // InternalSephirah.g:1739:3: this_ID_0= RULE_ID
                     {
                     this_ID_0=(Token)match(input,RULE_ID,FOLLOW_2); 
 
@@ -4352,7 +4527,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:1685:3: this_ESCAPED_ID_1= RULE_ESCAPED_ID
+                    // InternalSephirah.g:1747:3: this_ESCAPED_ID_1= RULE_ESCAPED_ID
                     {
                     this_ESCAPED_ID_1=(Token)match(input,RULE_ESCAPED_ID,FOLLOW_2); 
 
@@ -4387,7 +4562,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDecimal"
-    // InternalSephirah.g:1696:1: entryRuleDecimal returns [String current=null] : iv_ruleDecimal= ruleDecimal EOF ;
+    // InternalSephirah.g:1758:1: entryRuleDecimal returns [String current=null] : iv_ruleDecimal= ruleDecimal EOF ;
     public final String entryRuleDecimal() throws RecognitionException {
         String current = null;
 
@@ -4395,8 +4570,8 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSephirah.g:1696:47: (iv_ruleDecimal= ruleDecimal EOF )
-            // InternalSephirah.g:1697:2: iv_ruleDecimal= ruleDecimal EOF
+            // InternalSephirah.g:1758:47: (iv_ruleDecimal= ruleDecimal EOF )
+            // InternalSephirah.g:1759:2: iv_ruleDecimal= ruleDecimal EOF
             {
              newCompositeNode(grammarAccess.getDecimalRule()); 
             pushFollow(FOLLOW_1);
@@ -4423,7 +4598,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDecimal"
-    // InternalSephirah.g:1703:1: ruleDecimal returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? ) ;
+    // InternalSephirah.g:1765:1: ruleDecimal returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? ) ;
     public final AntlrDatatypeRuleToken ruleDecimal() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -4435,11 +4610,11 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSephirah.g:1709:2: ( (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? ) )
-            // InternalSephirah.g:1710:2: (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? )
+            // InternalSephirah.g:1771:2: ( (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? ) )
+            // InternalSephirah.g:1772:2: (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? )
             {
-            // InternalSephirah.g:1710:2: (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? )
-            // InternalSephirah.g:1711:3: this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )?
+            // InternalSephirah.g:1772:2: (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? )
+            // InternalSephirah.g:1773:3: this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )?
             {
             this_INT_0=(Token)match(input,RULE_INT,FOLLOW_24); 
 
@@ -4448,18 +4623,18 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(this_INT_0, grammarAccess.getDecimalAccess().getINTTerminalRuleCall_0());
             		
-            // InternalSephirah.g:1718:3: (kw= '.' this_INT_2= RULE_INT )?
-            int alt23=2;
-            int LA23_0 = input.LA(1);
+            // InternalSephirah.g:1780:3: (kw= '.' this_INT_2= RULE_INT )?
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA23_0==39) ) {
-                alt23=1;
+            if ( (LA24_0==41) ) {
+                alt24=1;
             }
-            switch (alt23) {
+            switch (alt24) {
                 case 1 :
-                    // InternalSephirah.g:1719:4: kw= '.' this_INT_2= RULE_INT
+                    // InternalSephirah.g:1781:4: kw= '.' this_INT_2= RULE_INT
                     {
-                    kw=(Token)match(input,39,FOLLOW_25); 
+                    kw=(Token)match(input,41,FOLLOW_25); 
 
                     				current.merge(kw);
                     				newLeafNode(kw, grammarAccess.getDecimalAccess().getFullStopKeyword_1_0());
@@ -4500,7 +4675,7 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleComparisonOperator"
-    // InternalSephirah.g:1736:1: ruleComparisonOperator returns [Enumerator current=null] : ( (enumLiteral_0= '<=' ) | (enumLiteral_1= '>=' ) | (enumLiteral_2= '==' ) | (enumLiteral_3= '!=' ) | (enumLiteral_4= '<' ) | (enumLiteral_5= '>' ) ) ;
+    // InternalSephirah.g:1798:1: ruleComparisonOperator returns [Enumerator current=null] : ( (enumLiteral_0= '<=' ) | (enumLiteral_1= '>=' ) | (enumLiteral_2= '==' ) | (enumLiteral_3= '!=' ) | (enumLiteral_4= '<' ) | (enumLiteral_5= '>' ) ) ;
     public final Enumerator ruleComparisonOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -4515,57 +4690,57 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSephirah.g:1742:2: ( ( (enumLiteral_0= '<=' ) | (enumLiteral_1= '>=' ) | (enumLiteral_2= '==' ) | (enumLiteral_3= '!=' ) | (enumLiteral_4= '<' ) | (enumLiteral_5= '>' ) ) )
-            // InternalSephirah.g:1743:2: ( (enumLiteral_0= '<=' ) | (enumLiteral_1= '>=' ) | (enumLiteral_2= '==' ) | (enumLiteral_3= '!=' ) | (enumLiteral_4= '<' ) | (enumLiteral_5= '>' ) )
+            // InternalSephirah.g:1804:2: ( ( (enumLiteral_0= '<=' ) | (enumLiteral_1= '>=' ) | (enumLiteral_2= '==' ) | (enumLiteral_3= '!=' ) | (enumLiteral_4= '<' ) | (enumLiteral_5= '>' ) ) )
+            // InternalSephirah.g:1805:2: ( (enumLiteral_0= '<=' ) | (enumLiteral_1= '>=' ) | (enumLiteral_2= '==' ) | (enumLiteral_3= '!=' ) | (enumLiteral_4= '<' ) | (enumLiteral_5= '>' ) )
             {
-            // InternalSephirah.g:1743:2: ( (enumLiteral_0= '<=' ) | (enumLiteral_1= '>=' ) | (enumLiteral_2= '==' ) | (enumLiteral_3= '!=' ) | (enumLiteral_4= '<' ) | (enumLiteral_5= '>' ) )
-            int alt24=6;
+            // InternalSephirah.g:1805:2: ( (enumLiteral_0= '<=' ) | (enumLiteral_1= '>=' ) | (enumLiteral_2= '==' ) | (enumLiteral_3= '!=' ) | (enumLiteral_4= '<' ) | (enumLiteral_5= '>' ) )
+            int alt25=6;
             switch ( input.LA(1) ) {
-            case 40:
-                {
-                alt24=1;
-                }
-                break;
-            case 41:
-                {
-                alt24=2;
-                }
-                break;
             case 42:
                 {
-                alt24=3;
+                alt25=1;
                 }
                 break;
             case 43:
                 {
-                alt24=4;
+                alt25=2;
                 }
                 break;
             case 44:
                 {
-                alt24=5;
+                alt25=3;
                 }
                 break;
             case 45:
                 {
-                alt24=6;
+                alt25=4;
+                }
+                break;
+            case 46:
+                {
+                alt25=5;
+                }
+                break;
+            case 47:
+                {
+                alt25=6;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 24, 0, input);
+                    new NoViableAltException("", 25, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt24) {
+            switch (alt25) {
                 case 1 :
-                    // InternalSephirah.g:1744:3: (enumLiteral_0= '<=' )
+                    // InternalSephirah.g:1806:3: (enumLiteral_0= '<=' )
                     {
-                    // InternalSephirah.g:1744:3: (enumLiteral_0= '<=' )
-                    // InternalSephirah.g:1745:4: enumLiteral_0= '<='
+                    // InternalSephirah.g:1806:3: (enumLiteral_0= '<=' )
+                    // InternalSephirah.g:1807:4: enumLiteral_0= '<='
                     {
-                    enumLiteral_0=(Token)match(input,40,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,42,FOLLOW_2); 
 
                     				current = grammarAccess.getComparisonOperatorAccess().getLTEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getComparisonOperatorAccess().getLTEEnumLiteralDeclaration_0());
@@ -4577,12 +4752,12 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSephirah.g:1752:3: (enumLiteral_1= '>=' )
+                    // InternalSephirah.g:1814:3: (enumLiteral_1= '>=' )
                     {
-                    // InternalSephirah.g:1752:3: (enumLiteral_1= '>=' )
-                    // InternalSephirah.g:1753:4: enumLiteral_1= '>='
+                    // InternalSephirah.g:1814:3: (enumLiteral_1= '>=' )
+                    // InternalSephirah.g:1815:4: enumLiteral_1= '>='
                     {
-                    enumLiteral_1=(Token)match(input,41,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,43,FOLLOW_2); 
 
                     				current = grammarAccess.getComparisonOperatorAccess().getGTEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getComparisonOperatorAccess().getGTEEnumLiteralDeclaration_1());
@@ -4594,12 +4769,12 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalSephirah.g:1760:3: (enumLiteral_2= '==' )
+                    // InternalSephirah.g:1822:3: (enumLiteral_2= '==' )
                     {
-                    // InternalSephirah.g:1760:3: (enumLiteral_2= '==' )
-                    // InternalSephirah.g:1761:4: enumLiteral_2= '=='
+                    // InternalSephirah.g:1822:3: (enumLiteral_2= '==' )
+                    // InternalSephirah.g:1823:4: enumLiteral_2= '=='
                     {
-                    enumLiteral_2=(Token)match(input,42,FOLLOW_2); 
+                    enumLiteral_2=(Token)match(input,44,FOLLOW_2); 
 
                     				current = grammarAccess.getComparisonOperatorAccess().getEQEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_2, grammarAccess.getComparisonOperatorAccess().getEQEnumLiteralDeclaration_2());
@@ -4611,12 +4786,12 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalSephirah.g:1768:3: (enumLiteral_3= '!=' )
+                    // InternalSephirah.g:1830:3: (enumLiteral_3= '!=' )
                     {
-                    // InternalSephirah.g:1768:3: (enumLiteral_3= '!=' )
-                    // InternalSephirah.g:1769:4: enumLiteral_3= '!='
+                    // InternalSephirah.g:1830:3: (enumLiteral_3= '!=' )
+                    // InternalSephirah.g:1831:4: enumLiteral_3= '!='
                     {
-                    enumLiteral_3=(Token)match(input,43,FOLLOW_2); 
+                    enumLiteral_3=(Token)match(input,45,FOLLOW_2); 
 
                     				current = grammarAccess.getComparisonOperatorAccess().getNEQEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_3, grammarAccess.getComparisonOperatorAccess().getNEQEnumLiteralDeclaration_3());
@@ -4628,12 +4803,12 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalSephirah.g:1776:3: (enumLiteral_4= '<' )
+                    // InternalSephirah.g:1838:3: (enumLiteral_4= '<' )
                     {
-                    // InternalSephirah.g:1776:3: (enumLiteral_4= '<' )
-                    // InternalSephirah.g:1777:4: enumLiteral_4= '<'
+                    // InternalSephirah.g:1838:3: (enumLiteral_4= '<' )
+                    // InternalSephirah.g:1839:4: enumLiteral_4= '<'
                     {
-                    enumLiteral_4=(Token)match(input,44,FOLLOW_2); 
+                    enumLiteral_4=(Token)match(input,46,FOLLOW_2); 
 
                     				current = grammarAccess.getComparisonOperatorAccess().getLTEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_4, grammarAccess.getComparisonOperatorAccess().getLTEnumLiteralDeclaration_4());
@@ -4645,12 +4820,12 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalSephirah.g:1784:3: (enumLiteral_5= '>' )
+                    // InternalSephirah.g:1846:3: (enumLiteral_5= '>' )
                     {
-                    // InternalSephirah.g:1784:3: (enumLiteral_5= '>' )
-                    // InternalSephirah.g:1785:4: enumLiteral_5= '>'
+                    // InternalSephirah.g:1846:3: (enumLiteral_5= '>' )
+                    // InternalSephirah.g:1847:4: enumLiteral_5= '>'
                     {
-                    enumLiteral_5=(Token)match(input,45,FOLLOW_2); 
+                    enumLiteral_5=(Token)match(input,47,FOLLOW_2); 
 
                     				current = grammarAccess.getComparisonOperatorAccess().getGTEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_5, grammarAccess.getComparisonOperatorAccess().getGTEnumLiteralDeclaration_5());
@@ -4686,24 +4861,25 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
 
 
     protected DFA13 dfa13 = new DFA13(this);
-    static final String dfa_1s = "\13\uffff";
-    static final String dfa_2s = "\3\uffff\2\10\4\uffff\2\10";
-    static final String dfa_3s = "\1\4\2\uffff\2\16\1\uffff\1\4\2\uffff\2\16";
-    static final String dfa_4s = "\1\46\2\uffff\2\55\1\uffff\1\5\2\uffff\2\55";
-    static final String dfa_5s = "\1\uffff\1\1\1\2\2\uffff\1\4\1\uffff\1\3\1\5\2\uffff";
-    static final String dfa_6s = "\13\uffff}>";
+    static final String dfa_1s = "\14\uffff";
+    static final String dfa_2s = "\4\uffff\2\11\4\uffff\2\11";
+    static final String dfa_3s = "\1\4\3\uffff\2\16\1\uffff\1\4\2\uffff\2\16";
+    static final String dfa_4s = "\1\50\3\uffff\2\57\1\uffff\1\5\2\uffff\2\57";
+    static final String dfa_5s = "\1\uffff\1\1\1\2\1\3\2\uffff\1\5\1\uffff\1\4\1\6\2\uffff";
+    static final String dfa_6s = "\14\uffff}>";
     static final String[] dfa_7s = {
-            "\1\3\1\4\1\2\11\uffff\1\1\21\uffff\5\5",
+            "\1\4\1\5\1\2\11\uffff\1\1\14\uffff\2\3\5\uffff\5\6",
             "",
             "",
-            "\1\10\1\uffff\1\7\2\10\3\uffff\11\10\2\uffff\1\10\5\uffff\1\6\6\10",
-            "\1\10\1\uffff\1\7\2\10\3\uffff\11\10\2\uffff\1\10\5\uffff\1\6\6\10",
             "",
-            "\1\11\1\12",
+            "\1\11\1\uffff\1\10\2\11\3\uffff\7\11\2\uffff\2\11\2\uffff\1\11\5\uffff\1\7\6\11",
+            "\1\11\1\uffff\1\10\2\11\3\uffff\7\11\2\uffff\2\11\2\uffff\1\11\5\uffff\1\7\6\11",
+            "",
+            "\1\12\1\13",
             "",
             "",
-            "\1\10\1\uffff\1\7\2\10\3\uffff\11\10\2\uffff\1\10\5\uffff\1\6\6\10",
-            "\1\10\1\uffff\1\7\2\10\3\uffff\11\10\2\uffff\1\10\5\uffff\1\6\6\10"
+            "\1\11\1\uffff\1\10\2\11\3\uffff\7\11\2\uffff\2\11\2\uffff\1\11\5\uffff\1\7\6\11",
+            "\1\11\1\uffff\1\10\2\11\3\uffff\7\11\2\uffff\2\11\2\uffff\1\11\5\uffff\1\7\6\11"
     };
 
     static final short[] dfa_1 = DFA.unpackEncodedString(dfa_1s);
@@ -4728,35 +4904,35 @@ public class InternalSephirahParser extends AbstractInternalAntlrParser {
             this.transition = dfa_7;
         }
         public String getDescription() {
-            return "1020:2: ( (otherlv_0= '(' this_Expression_1= ruleExpression otherlv_2= ')' ) | ( () ( (lv_value_4_0= ruleDecimal ) ) ) | this_MethodCall_5= ruleMethodCall | this_Constant_6= ruleConstant | this_Variable_7= ruleVariable )";
+            return "1020:2: ( (otherlv_0= '(' this_Expression_1= ruleExpression otherlv_2= ')' ) | ( () ( (lv_value_4_0= ruleDecimal ) ) ) | this_BooleanLiteral_5= ruleBooleanLiteral | this_MethodCall_6= ruleMethodCall | this_Constant_7= ruleConstant | this_Variable_8= ruleVariable )";
         }
     }
  
 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000007C0231A072L});
-    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000007C02318072L});
+    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x000001F06231A072L});
+    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x000001F062318072L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000000030L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000040030L});
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000060000L});
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000007C02318070L});
-    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000007D82318070L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x000001F062318070L});
+    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x000001F662318070L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000003000002L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x000000000C000002L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000010000002L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000040000002L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x00003F0000000000L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000007C02358070L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000008000000002L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000080000002L});
+    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000FC0000000000L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x000001F062358070L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000020000000002L});
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000000000040L});
 
 }

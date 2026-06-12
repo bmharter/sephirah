@@ -6,6 +6,7 @@ package com.fearlesstyrant.sephirah.sephirah.impl;
 import com.fearlesstyrant.sephirah.sephirah.Add;
 import com.fearlesstyrant.sephirah.sephirah.AndCondition;
 import com.fearlesstyrant.sephirah.sephirah.Assignment;
+import com.fearlesstyrant.sephirah.sephirah.BooleanLiteral;
 import com.fearlesstyrant.sephirah.sephirah.ComparisonCondition;
 import com.fearlesstyrant.sephirah.sephirah.ComparisonOperator;
 import com.fearlesstyrant.sephirah.sephirah.Condition;
@@ -103,6 +104,13 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
    * @generated
    */
   private EClass expressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass booleanLiteralEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -521,6 +529,28 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
   public EClass getExpression()
   {
     return expressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getBooleanLiteral()
+  {
+    return booleanLiteralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getBooleanLiteral_Value()
+  {
+    return (EAttribute)booleanLiteralEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1078,6 +1108,9 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
 
     expressionEClass = createEClass(EXPRESSION);
 
+    booleanLiteralEClass = createEClass(BOOLEAN_LITERAL);
+    createEAttribute(booleanLiteralEClass, BOOLEAN_LITERAL__VALUE);
+
     conditionEClass = createEClass(CONDITION);
 
     constantEClass = createEClass(CONSTANT);
@@ -1173,6 +1206,7 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
 
     // Add supertypes to classes
     variableEClass.getESuperTypes().add(this.getExpression());
+    booleanLiteralEClass.getESuperTypes().add(this.getExpression());
     constantEClass.getESuperTypes().add(this.getExpression());
     variableAssignmentEClass.getESuperTypes().add(this.getAssignment());
     definitionVariableEClass.getESuperTypes().add(this.getAssignment());
@@ -1219,6 +1253,9 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
     initEReference(getEvaluation_Expression(), this.getExpression(), null, "expression", null, 0, 1, Evaluation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(booleanLiteralEClass, BooleanLiteral.class, "BooleanLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBooleanLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1, BooleanLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

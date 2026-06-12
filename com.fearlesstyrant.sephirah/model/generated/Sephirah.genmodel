@@ -42,6 +42,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Evaluation/expression"/>
     </genClasses>
     <genClasses ecoreClass="Sephirah.ecore#//Expression"/>
+    <genClasses ecoreClass="Sephirah.ecore#//BooleanLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//BooleanLiteral/value"/>
+    </genClasses>
     <genClasses ecoreClass="Sephirah.ecore#//Condition"/>
     <genClasses ecoreClass="Sephirah.ecore#//Constant">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//Constant/value"/>

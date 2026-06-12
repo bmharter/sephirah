@@ -74,6 +74,7 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
       case SephirahPackage.VARIABLE: return createVariable();
       case SephirahPackage.EVALUATION: return createEvaluation();
       case SephirahPackage.EXPRESSION: return createExpression();
+      case SephirahPackage.BOOLEAN_LITERAL: return createBooleanLiteral();
       case SephirahPackage.CONDITION: return createCondition();
       case SephirahPackage.CONSTANT: return createConstant();
       case SephirahPackage.VARIABLE_ASSIGNMENT: return createVariableAssignment();
@@ -224,6 +225,18 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
   {
     ExpressionImpl expression = new ExpressionImpl();
     return expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public BooleanLiteral createBooleanLiteral()
+  {
+    BooleanLiteralImpl booleanLiteral = new BooleanLiteralImpl();
+    return booleanLiteral;
   }
 
   /**

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 import com.fearlesstyrant.sephirah.sephirah.*;
+import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 
 public final class ModuleEvaluator {
 
@@ -71,6 +72,10 @@ public final class ModuleEvaluator {
     	Objects.requireNonNull(evaluation, "evaluation must not be null");
     	
     	return evaluate(evaluation.getExpression());
+    }
+    
+    public SephirahValue evaluateValue(Expression expression) {
+        return computer.evaluateValue(expression);
     }
     
     /**

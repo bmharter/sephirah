@@ -642,13 +642,15 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Action cNumberLiteralAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Assignment cValueAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cValueDecimalParserRuleCall_1_1_0 = (RuleCall)cValueAssignment_1_1.eContents().get(0);
-		private final RuleCall cMethodCallParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cConstantParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cVariableParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cBooleanLiteralParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cMethodCallParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cConstantParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cVariableParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
 		//PrimaryExpression returns Expression:
 		//    '(' Expression ')' |
 		//    {NumberLiteral} value=Decimal |
+		//    BooleanLiteral |
 		//    MethodCall |
 		//    Constant |
 		//    Variable
@@ -657,6 +659,7 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		
 		//'(' Expression ')' |
 		//{NumberLiteral} value=Decimal |
+		//BooleanLiteral |
 		//MethodCall |
 		//Constant |
 		//Variable
@@ -686,14 +689,49 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//Decimal
 		public RuleCall getValueDecimalParserRuleCall_1_1_0() { return cValueDecimalParserRuleCall_1_1_0; }
 		
+		//BooleanLiteral
+		public RuleCall getBooleanLiteralParserRuleCall_2() { return cBooleanLiteralParserRuleCall_2; }
+		
 		//MethodCall
-		public RuleCall getMethodCallParserRuleCall_2() { return cMethodCallParserRuleCall_2; }
+		public RuleCall getMethodCallParserRuleCall_3() { return cMethodCallParserRuleCall_3; }
 		
 		//Constant
-		public RuleCall getConstantParserRuleCall_3() { return cConstantParserRuleCall_3; }
+		public RuleCall getConstantParserRuleCall_4() { return cConstantParserRuleCall_4; }
 		
 		//Variable
-		public RuleCall getVariableParserRuleCall_4() { return cVariableParserRuleCall_4; }
+		public RuleCall getVariableParserRuleCall_5() { return cVariableParserRuleCall_5; }
+	}
+	public class BooleanLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.BooleanLiteral");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cBooleanLiteralAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Alternatives cValueAlternatives_1_0 = (Alternatives)cValueAssignment_1.eContents().get(0);
+		private final Keyword cValueTrueKeyword_1_0_0 = (Keyword)cValueAlternatives_1_0.eContents().get(0);
+		private final Keyword cValueFalseKeyword_1_0_1 = (Keyword)cValueAlternatives_1_0.eContents().get(1);
+		
+		//BooleanLiteral:
+		//    {BooleanLiteral} value=('true' | 'false')
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{BooleanLiteral} value=('true' | 'false')
+		public Group getGroup() { return cGroup; }
+		
+		//{BooleanLiteral}
+		public Action getBooleanLiteralAction_0() { return cBooleanLiteralAction_0; }
+		
+		//value=('true' | 'false')
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		
+		//('true' | 'false')
+		public Alternatives getValueAlternatives_1_0() { return cValueAlternatives_1_0; }
+		
+		//'true'
+		public Keyword getValueTrueKeyword_1_0_0() { return cValueTrueKeyword_1_0_0; }
+		
+		//'false'
+		public Keyword getValueFalseKeyword_1_0_1() { return cValueFalseKeyword_1_0_1; }
 	}
 	public class ConditionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.Condition");
@@ -820,36 +858,38 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	public class PrimaryConditionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.PrimaryCondition");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cComparisonConditionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final RuleCall cConditionParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		private final Keyword cRightSquareBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final RuleCall cConditionParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final Keyword cRightSquareBracketKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final RuleCall cComparisonConditionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
+		//// Boolean condition grouping uses square brackets to avoid ambiguity with
+		//// parenthesized numeric expressions such as (score + bonus) >= 10.
 		//PrimaryCondition returns Condition:
-		//    ComparisonCondition |
-		//    '[' Condition ']'
+		//    '[' Condition ']' |
+		//    ComparisonCondition
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ComparisonCondition |
-		//'[' Condition ']'
+		//'[' Condition ']' |
+		//ComparisonCondition
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//ComparisonCondition
-		public RuleCall getComparisonConditionParserRuleCall_0() { return cComparisonConditionParserRuleCall_0; }
-		
 		//'[' Condition ']'
-		public Group getGroup_1() { return cGroup_1; }
+		public Group getGroup_0() { return cGroup_0; }
 		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_1_0() { return cLeftSquareBracketKeyword_1_0; }
+		public Keyword getLeftSquareBracketKeyword_0_0() { return cLeftSquareBracketKeyword_0_0; }
 		
 		//Condition
-		public RuleCall getConditionParserRuleCall_1_1() { return cConditionParserRuleCall_1_1; }
+		public RuleCall getConditionParserRuleCall_0_1() { return cConditionParserRuleCall_0_1; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_1_2() { return cRightSquareBracketKeyword_1_2; }
+		public Keyword getRightSquareBracketKeyword_0_2() { return cRightSquareBracketKeyword_0_2; }
+		
+		//ComparisonCondition
+		public RuleCall getComparisonConditionParserRuleCall_1() { return cComparisonConditionParserRuleCall_1; }
 	}
 	public class ComparisonConditionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.ComparisonCondition");
@@ -1154,6 +1194,7 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	private final UnaryElements pUnary;
 	private final ExponentElements pExponent;
 	private final PrimaryExpressionElements pPrimaryExpression;
+	private final BooleanLiteralElements pBooleanLiteral;
 	private final ConditionElements pCondition;
 	private final OrConditionElements pOrCondition;
 	private final AndConditionElements pAndCondition;
@@ -1193,6 +1234,7 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.pUnary = new UnaryElements();
 		this.pExponent = new ExponentElements();
 		this.pPrimaryExpression = new PrimaryExpressionElements();
+		this.pBooleanLiteral = new BooleanLiteralElements();
 		this.pCondition = new ConditionElements();
 		this.pOrCondition = new OrConditionElements();
 		this.pAndCondition = new AndConditionElements();
@@ -1414,6 +1456,7 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	//PrimaryExpression returns Expression:
 	//    '(' Expression ')' |
 	//    {NumberLiteral} value=Decimal |
+	//    BooleanLiteral |
 	//    MethodCall |
 	//    Constant |
 	//    Variable
@@ -1424,6 +1467,17 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	public ParserRule getPrimaryExpressionRule() {
 		return getPrimaryExpressionAccess().getRule();
+	}
+	
+	//BooleanLiteral:
+	//    {BooleanLiteral} value=('true' | 'false')
+	//;
+	public BooleanLiteralElements getBooleanLiteralAccess() {
+		return pBooleanLiteral;
+	}
+	
+	public ParserRule getBooleanLiteralRule() {
+		return getBooleanLiteralAccess().getRule();
 	}
 	
 	//Condition:
@@ -1471,9 +1525,11 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		return getNotConditionAccess().getRule();
 	}
 	
+	//// Boolean condition grouping uses square brackets to avoid ambiguity with
+	//// parenthesized numeric expressions such as (score + bonus) >= 10.
 	//PrimaryCondition returns Condition:
-	//    ComparisonCondition |
-	//    '[' Condition ']'
+	//    '[' Condition ']' |
+	//    ComparisonCondition
 	//;
 	public PrimaryConditionElements getPrimaryConditionAccess() {
 		return pPrimaryCondition;
