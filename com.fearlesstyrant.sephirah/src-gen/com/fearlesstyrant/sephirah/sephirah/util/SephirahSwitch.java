@@ -138,13 +138,6 @@ public class SephirahSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case SephirahPackage.CONDITION:
-      {
-        Condition condition = (Condition)theEObject;
-        T result = caseCondition(condition);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case SephirahPackage.CONSTANT:
       {
         Constant constant = (Constant)theEObject;
@@ -174,6 +167,38 @@ public class SephirahSwitch<T> extends Switch<T>
         Conditional conditional = (Conditional)theEObject;
         T result = caseConditional(conditional);
         if (result == null) result = caseExpression(conditional);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SephirahPackage.OR_CONDITION:
+      {
+        OrCondition orCondition = (OrCondition)theEObject;
+        T result = caseOrCondition(orCondition);
+        if (result == null) result = caseExpression(orCondition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SephirahPackage.AND_CONDITION:
+      {
+        AndCondition andCondition = (AndCondition)theEObject;
+        T result = caseAndCondition(andCondition);
+        if (result == null) result = caseExpression(andCondition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SephirahPackage.NOT_CONDITION:
+      {
+        NotCondition notCondition = (NotCondition)theEObject;
+        T result = caseNotCondition(notCondition);
+        if (result == null) result = caseExpression(notCondition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SephirahPackage.COMPARISON_CONDITION:
+      {
+        ComparisonCondition comparisonCondition = (ComparisonCondition)theEObject;
+        T result = caseComparisonCondition(comparisonCondition);
+        if (result == null) result = caseExpression(comparisonCondition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -230,38 +255,6 @@ public class SephirahSwitch<T> extends Switch<T>
         NumberLiteral numberLiteral = (NumberLiteral)theEObject;
         T result = caseNumberLiteral(numberLiteral);
         if (result == null) result = caseExpression(numberLiteral);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case SephirahPackage.OR_CONDITION:
-      {
-        OrCondition orCondition = (OrCondition)theEObject;
-        T result = caseOrCondition(orCondition);
-        if (result == null) result = caseCondition(orCondition);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case SephirahPackage.AND_CONDITION:
-      {
-        AndCondition andCondition = (AndCondition)theEObject;
-        T result = caseAndCondition(andCondition);
-        if (result == null) result = caseCondition(andCondition);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case SephirahPackage.NOT_CONDITION:
-      {
-        NotCondition notCondition = (NotCondition)theEObject;
-        T result = caseNotCondition(notCondition);
-        if (result == null) result = caseCondition(notCondition);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case SephirahPackage.COMPARISON_CONDITION:
-      {
-        ComparisonCondition comparisonCondition = (ComparisonCondition)theEObject;
-        T result = caseComparisonCondition(comparisonCondition);
-        if (result == null) result = caseCondition(comparisonCondition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -422,22 +415,6 @@ public class SephirahSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Condition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Condition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseCondition(Condition object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Constant</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -497,6 +474,70 @@ public class SephirahSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseConditional(Conditional object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Or Condition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Or Condition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOrCondition(OrCondition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>And Condition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>And Condition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAndCondition(AndCondition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Not Condition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Not Condition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNotCondition(NotCondition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Comparison Condition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Comparison Condition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseComparisonCondition(ComparisonCondition object)
   {
     return null;
   }
@@ -609,70 +650,6 @@ public class SephirahSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseNumberLiteral(NumberLiteral object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Or Condition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Or Condition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseOrCondition(OrCondition object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>And Condition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>And Condition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAndCondition(AndCondition object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Not Condition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Not Condition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNotCondition(NotCondition object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Comparison Condition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Comparison Condition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseComparisonCondition(ComparisonCondition object)
   {
     return null;
   }

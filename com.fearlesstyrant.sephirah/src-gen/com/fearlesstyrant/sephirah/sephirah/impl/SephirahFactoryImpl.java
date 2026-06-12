@@ -75,11 +75,14 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
       case SephirahPackage.EVALUATION: return createEvaluation();
       case SephirahPackage.EXPRESSION: return createExpression();
       case SephirahPackage.BOOLEAN_LITERAL: return createBooleanLiteral();
-      case SephirahPackage.CONDITION: return createCondition();
       case SephirahPackage.CONSTANT: return createConstant();
       case SephirahPackage.VARIABLE_ASSIGNMENT: return createVariableAssignment();
       case SephirahPackage.DEFINITION_VARIABLE: return createDefinitionVariable();
       case SephirahPackage.CONDITIONAL: return createConditional();
+      case SephirahPackage.OR_CONDITION: return createOrCondition();
+      case SephirahPackage.AND_CONDITION: return createAndCondition();
+      case SephirahPackage.NOT_CONDITION: return createNotCondition();
+      case SephirahPackage.COMPARISON_CONDITION: return createComparisonCondition();
       case SephirahPackage.ADD: return createAdd();
       case SephirahPackage.SUBTRACT: return createSubtract();
       case SephirahPackage.MULTIPLY: return createMultiply();
@@ -87,10 +90,6 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
       case SephirahPackage.NEGATE: return createNegate();
       case SephirahPackage.EXPONENT: return createExponent();
       case SephirahPackage.NUMBER_LITERAL: return createNumberLiteral();
-      case SephirahPackage.OR_CONDITION: return createOrCondition();
-      case SephirahPackage.AND_CONDITION: return createAndCondition();
-      case SephirahPackage.NOT_CONDITION: return createNotCondition();
-      case SephirahPackage.COMPARISON_CONDITION: return createComparisonCondition();
       case SephirahPackage.METHOD_CALL: return createMethodCall();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -245,18 +244,6 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
    * @generated
    */
   @Override
-  public Condition createCondition()
-  {
-    ConditionImpl condition = new ConditionImpl();
-    return condition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Constant createConstant()
   {
     ConstantImpl constant = new ConstantImpl();
@@ -297,6 +284,54 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
   {
     ConditionalImpl conditional = new ConditionalImpl();
     return conditional;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public OrCondition createOrCondition()
+  {
+    OrConditionImpl orCondition = new OrConditionImpl();
+    return orCondition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AndCondition createAndCondition()
+  {
+    AndConditionImpl andCondition = new AndConditionImpl();
+    return andCondition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotCondition createNotCondition()
+  {
+    NotConditionImpl notCondition = new NotConditionImpl();
+    return notCondition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ComparisonCondition createComparisonCondition()
+  {
+    ComparisonConditionImpl comparisonCondition = new ComparisonConditionImpl();
+    return comparisonCondition;
   }
 
   /**
@@ -381,54 +416,6 @@ public class SephirahFactoryImpl extends EFactoryImpl implements SephirahFactory
   {
     NumberLiteralImpl numberLiteral = new NumberLiteralImpl();
     return numberLiteral;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public OrCondition createOrCondition()
-  {
-    OrConditionImpl orCondition = new OrConditionImpl();
-    return orCondition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public AndCondition createAndCondition()
-  {
-    AndConditionImpl andCondition = new AndConditionImpl();
-    return andCondition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotCondition createNotCondition()
-  {
-    NotConditionImpl notCondition = new NotConditionImpl();
-    return notCondition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ComparisonCondition createComparisonCondition()
-  {
-    ComparisonConditionImpl comparisonCondition = new ComparisonConditionImpl();
-    return comparisonCondition;
   }
 
   /**

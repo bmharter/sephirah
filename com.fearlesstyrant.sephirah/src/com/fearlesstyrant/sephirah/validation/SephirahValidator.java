@@ -645,29 +645,36 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	    return false;
 	}
 	
-	private static boolean isStaticCondition(Condition condition) {
-		if(condition == null) {
+	private static boolean isStaticBooleanExpression(Expression expression) {
+		
+		if(expression == null) {
 			return false;
 		}
 		
-		if(condition instanceof ComparisonCondition comparisonCondition) {
+		if(expression instanceof ComparisonCondition comparisonCondition) {
 			return isStaticNumericExpression(comparisonCondition.getLeft())
 					&& isStaticNumericExpression(comparisonCondition.getRight())
 					&& comparisonCondition.getOp() != null;
 		}
 		
-		if(condition instanceof AndCondition andCondition) {
-			return isStaticCondition(andCondition.getLeft())
-					&& isStaticCondition(andCondition.getRight());
+		if(expression instanceof AndCondition andCondition) {
+			return isStaticBooleanExpression(andCondition.getLeft())
+					&& isStaticBooleanExpression(andCondition.getRight());
 		}
 		
-		if(condition instanceof OrCondition orCondition) {
-			return isStaticCondition(orCondition.getLeft())
-					|| isStaticCondition(orCondition.getRight());
+		if(expression instanceof OrCondition orCondition) {
+			return isStaticBooleanExpression(orCondition.getLeft())
+					&& isStaticBooleanExpression(orCondition.getRight());
 		}
 		
-		if(condition instanceof NotCondition notCondition) {
-			return isStaticCondition(notCondition.getCondition());
+		if(expression instanceof NotCondition notCondition) {
+			return isStaticBooleanExpression(notCondition.getCondition());
+		}
+		
+		if(expression instanceof Conditional conditional) {
+			return isStaticBooleanExpression(conditional.getCondition())
+					&& isStaticBooleanExpression(conditional.getThenBranch())
+					&& isStaticBooleanExpression(conditional.getElseBranch());
 		}
 		
 		return false;
@@ -712,7 +719,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		}
 		
 		if(expression instanceof Conditional conditional) {
-			return isStaticCondition(conditional.getCondition())
+			return isStaticBooleanExpression(conditional.getCondition())
 					&& isStaticNumericExpression(conditional.getThenBranch())
 					&& isStaticNumericExpression(conditional.getElseBranch());
 		}

@@ -4,7 +4,7 @@
 package com.fearlesstyrant.sephirah.sephirah.impl;
 
 import com.fearlesstyrant.sephirah.sephirah.AndCondition;
-import com.fearlesstyrant.sephirah.sephirah.Condition;
+import com.fearlesstyrant.sephirah.sephirah.Expression;
 import com.fearlesstyrant.sephirah.sephirah.SephirahPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class AndConditionImpl extends ConditionImpl implements AndCondition
+public class AndConditionImpl extends ExpressionImpl implements AndCondition
 {
   /**
    * The cached value of the '{@link #getLeft() <em>Left</em>}' containment reference.
@@ -39,7 +39,7 @@ public class AndConditionImpl extends ConditionImpl implements AndCondition
    * @generated
    * @ordered
    */
-  protected Condition left;
+  protected Expression left;
 
   /**
    * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
@@ -49,7 +49,7 @@ public class AndConditionImpl extends ConditionImpl implements AndCondition
    * @generated
    * @ordered
    */
-  protected Condition right;
+  protected Expression right;
 
   /**
    * <!-- begin-user-doc -->
@@ -78,7 +78,7 @@ public class AndConditionImpl extends ConditionImpl implements AndCondition
    * @generated
    */
   @Override
-  public Condition getLeft()
+  public Expression getLeft()
   {
     return left;
   }
@@ -88,9 +88,9 @@ public class AndConditionImpl extends ConditionImpl implements AndCondition
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetLeft(Condition newLeft, NotificationChain msgs)
+  public NotificationChain basicSetLeft(Expression newLeft, NotificationChain msgs)
   {
-    Condition oldLeft = left;
+    Expression oldLeft = left;
     left = newLeft;
     if (eNotificationRequired())
     {
@@ -106,7 +106,7 @@ public class AndConditionImpl extends ConditionImpl implements AndCondition
    * @generated
    */
   @Override
-  public void setLeft(Condition newLeft)
+  public void setLeft(Expression newLeft)
   {
     if (newLeft != left)
     {
@@ -128,7 +128,7 @@ public class AndConditionImpl extends ConditionImpl implements AndCondition
    * @generated
    */
   @Override
-  public Condition getRight()
+  public Expression getRight()
   {
     return right;
   }
@@ -138,9 +138,9 @@ public class AndConditionImpl extends ConditionImpl implements AndCondition
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRight(Condition newRight, NotificationChain msgs)
+  public NotificationChain basicSetRight(Expression newRight, NotificationChain msgs)
   {
-    Condition oldRight = right;
+    Expression oldRight = right;
     right = newRight;
     if (eNotificationRequired())
     {
@@ -156,7 +156,7 @@ public class AndConditionImpl extends ConditionImpl implements AndCondition
    * @generated
    */
   @Override
-  public void setRight(Condition newRight)
+  public void setRight(Expression newRight)
   {
     if (newRight != right)
     {
@@ -219,10 +219,10 @@ public class AndConditionImpl extends ConditionImpl implements AndCondition
     switch (featureID)
     {
       case SephirahPackage.AND_CONDITION__LEFT:
-        setLeft((Condition)newValue);
+        setLeft((Expression)newValue);
         return;
       case SephirahPackage.AND_CONDITION__RIGHT:
-        setRight((Condition)newValue);
+        setRight((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -239,10 +239,10 @@ public class AndConditionImpl extends ConditionImpl implements AndCondition
     switch (featureID)
     {
       case SephirahPackage.AND_CONDITION__LEFT:
-        setLeft((Condition)null);
+        setLeft((Expression)null);
         return;
       case SephirahPackage.AND_CONDITION__RIGHT:
-        setRight((Condition)null);
+        setRight((Expression)null);
         return;
     }
     super.eUnset(featureID);

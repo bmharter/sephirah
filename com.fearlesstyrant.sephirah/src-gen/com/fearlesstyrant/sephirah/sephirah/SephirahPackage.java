@@ -356,25 +356,6 @@ public interface SephirahPackage extends EPackage
   int BOOLEAN_LITERAL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ConditionImpl <em>Condition</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see com.fearlesstyrant.sephirah.sephirah.impl.ConditionImpl
-   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getCondition()
-   * @generated
-   */
-  int CONDITION = 9;
-
-  /**
-   * The number of structural features of the '<em>Condition</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONDITION_FEATURE_COUNT = 0;
-
-  /**
    * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ConstantImpl <em>Constant</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -382,7 +363,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getConstant()
    * @generated
    */
-  int CONSTANT = 10;
+  int CONSTANT = 9;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -410,7 +391,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getVariableAssignment()
    * @generated
    */
-  int VARIABLE_ASSIGNMENT = 11;
+  int VARIABLE_ASSIGNMENT = 10;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -447,7 +428,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getDefinitionVariable()
    * @generated
    */
-  int DEFINITION_VARIABLE = 12;
+  int DEFINITION_VARIABLE = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -475,7 +456,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getConditional()
    * @generated
    */
-  int CONDITIONAL = 13;
+  int CONDITIONAL = 12;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -514,6 +495,154 @@ public interface SephirahPackage extends EPackage
   int CONDITIONAL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.OrConditionImpl <em>Or Condition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.OrConditionImpl
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getOrCondition()
+   * @generated
+   */
+  int OR_CONDITION = 13;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_CONDITION__LEFT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_CONDITION__RIGHT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Or Condition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_CONDITION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.AndConditionImpl <em>And Condition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.AndConditionImpl
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getAndCondition()
+   * @generated
+   */
+  int AND_CONDITION = 14;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_CONDITION__LEFT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_CONDITION__RIGHT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>And Condition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_CONDITION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.NotConditionImpl <em>Not Condition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.NotConditionImpl
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNotCondition()
+   * @generated
+   */
+  int NOT_CONDITION = 15;
+
+  /**
+   * The feature id for the '<em><b>Condition</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NOT_CONDITION__CONDITION = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Not Condition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NOT_CONDITION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ComparisonConditionImpl <em>Comparison Condition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.ComparisonConditionImpl
+   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getComparisonCondition()
+   * @generated
+   */
+  int COMPARISON_CONDITION = 16;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPARISON_CONDITION__LEFT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPARISON_CONDITION__OP = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPARISON_CONDITION__RIGHT = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Comparison Condition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPARISON_CONDITION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+
+  /**
    * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.AddImpl <em>Add</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -521,7 +650,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getAdd()
    * @generated
    */
-  int ADD = 14;
+  int ADD = 17;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -558,7 +687,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getSubtract()
    * @generated
    */
-  int SUBTRACT = 15;
+  int SUBTRACT = 18;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -595,7 +724,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getMultiply()
    * @generated
    */
-  int MULTIPLY = 16;
+  int MULTIPLY = 19;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -632,7 +761,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getDivide()
    * @generated
    */
-  int DIVIDE = 17;
+  int DIVIDE = 20;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -669,7 +798,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNegate()
    * @generated
    */
-  int NEGATE = 18;
+  int NEGATE = 21;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -697,7 +826,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getExponent()
    * @generated
    */
-  int EXPONENT = 19;
+  int EXPONENT = 22;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -734,7 +863,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNumberLiteral()
    * @generated
    */
-  int NUMBER_LITERAL = 20;
+  int NUMBER_LITERAL = 23;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -755,154 +884,6 @@ public interface SephirahPackage extends EPackage
   int NUMBER_LITERAL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.OrConditionImpl <em>Or Condition</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see com.fearlesstyrant.sephirah.sephirah.impl.OrConditionImpl
-   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getOrCondition()
-   * @generated
-   */
-  int OR_CONDITION = 21;
-
-  /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OR_CONDITION__LEFT = CONDITION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OR_CONDITION__RIGHT = CONDITION_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Or Condition</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OR_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.AndConditionImpl <em>And Condition</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see com.fearlesstyrant.sephirah.sephirah.impl.AndConditionImpl
-   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getAndCondition()
-   * @generated
-   */
-  int AND_CONDITION = 22;
-
-  /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AND_CONDITION__LEFT = CONDITION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AND_CONDITION__RIGHT = CONDITION_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>And Condition</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AND_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.NotConditionImpl <em>Not Condition</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see com.fearlesstyrant.sephirah.sephirah.impl.NotConditionImpl
-   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNotCondition()
-   * @generated
-   */
-  int NOT_CONDITION = 23;
-
-  /**
-   * The feature id for the '<em><b>Condition</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NOT_CONDITION__CONDITION = CONDITION_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Not Condition</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NOT_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ComparisonConditionImpl <em>Comparison Condition</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see com.fearlesstyrant.sephirah.sephirah.impl.ComparisonConditionImpl
-   * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getComparisonCondition()
-   * @generated
-   */
-  int COMPARISON_CONDITION = 24;
-
-  /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPARISON_CONDITION__LEFT = CONDITION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPARISON_CONDITION__OP = CONDITION_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPARISON_CONDITION__RIGHT = CONDITION_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Comparison Condition</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPARISON_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 3;
-
-  /**
    * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.MethodCallImpl <em>Method Call</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -910,7 +891,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getMethodCall()
    * @generated
    */
-  int METHOD_CALL = 25;
+  int METHOD_CALL = 24;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -947,7 +928,7 @@ public interface SephirahPackage extends EPackage
    * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getComparisonOperator()
    * @generated
    */
-  int COMPARISON_OPERATOR = 26;
+  int COMPARISON_OPERATOR = 25;
 
 
   /**
@@ -1195,16 +1176,6 @@ public interface SephirahPackage extends EPackage
   EAttribute getBooleanLiteral_Value();
 
   /**
-   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.Condition <em>Condition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Condition</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.Condition
-   * @generated
-   */
-  EClass getCondition();
-
-  /**
    * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.Constant <em>Constant</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1298,6 +1269,134 @@ public interface SephirahPackage extends EPackage
    * @generated
    */
   EReference getConditional_ElseBranch();
+
+  /**
+   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.OrCondition <em>Or Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Or Condition</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.OrCondition
+   * @generated
+   */
+  EClass getOrCondition();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.OrCondition#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.OrCondition#getLeft()
+   * @see #getOrCondition()
+   * @generated
+   */
+  EReference getOrCondition_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.OrCondition#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.OrCondition#getRight()
+   * @see #getOrCondition()
+   * @generated
+   */
+  EReference getOrCondition_Right();
+
+  /**
+   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.AndCondition <em>And Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>And Condition</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.AndCondition
+   * @generated
+   */
+  EClass getAndCondition();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.AndCondition#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.AndCondition#getLeft()
+   * @see #getAndCondition()
+   * @generated
+   */
+  EReference getAndCondition_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.AndCondition#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.AndCondition#getRight()
+   * @see #getAndCondition()
+   * @generated
+   */
+  EReference getAndCondition_Right();
+
+  /**
+   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.NotCondition <em>Not Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Not Condition</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.NotCondition
+   * @generated
+   */
+  EClass getNotCondition();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.NotCondition#getCondition <em>Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Condition</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.NotCondition#getCondition()
+   * @see #getNotCondition()
+   * @generated
+   */
+  EReference getNotCondition_Condition();
+
+  /**
+   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.ComparisonCondition <em>Comparison Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Comparison Condition</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.ComparisonCondition
+   * @generated
+   */
+  EClass getComparisonCondition();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.ComparisonCondition#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.ComparisonCondition#getLeft()
+   * @see #getComparisonCondition()
+   * @generated
+   */
+  EReference getComparisonCondition_Left();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.fearlesstyrant.sephirah.sephirah.ComparisonCondition#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.ComparisonCondition#getOp()
+   * @see #getComparisonCondition()
+   * @generated
+   */
+  EAttribute getComparisonCondition_Op();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.ComparisonCondition#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.ComparisonCondition#getRight()
+   * @see #getComparisonCondition()
+   * @generated
+   */
+  EReference getComparisonCondition_Right();
 
   /**
    * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.Add <em>Add</em>}'.
@@ -1500,134 +1599,6 @@ public interface SephirahPackage extends EPackage
    * @generated
    */
   EAttribute getNumberLiteral_Value();
-
-  /**
-   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.OrCondition <em>Or Condition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Or Condition</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.OrCondition
-   * @generated
-   */
-  EClass getOrCondition();
-
-  /**
-   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.OrCondition#getLeft <em>Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.OrCondition#getLeft()
-   * @see #getOrCondition()
-   * @generated
-   */
-  EReference getOrCondition_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.OrCondition#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.OrCondition#getRight()
-   * @see #getOrCondition()
-   * @generated
-   */
-  EReference getOrCondition_Right();
-
-  /**
-   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.AndCondition <em>And Condition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>And Condition</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.AndCondition
-   * @generated
-   */
-  EClass getAndCondition();
-
-  /**
-   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.AndCondition#getLeft <em>Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.AndCondition#getLeft()
-   * @see #getAndCondition()
-   * @generated
-   */
-  EReference getAndCondition_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.AndCondition#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.AndCondition#getRight()
-   * @see #getAndCondition()
-   * @generated
-   */
-  EReference getAndCondition_Right();
-
-  /**
-   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.NotCondition <em>Not Condition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Not Condition</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.NotCondition
-   * @generated
-   */
-  EClass getNotCondition();
-
-  /**
-   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.NotCondition#getCondition <em>Condition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Condition</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.NotCondition#getCondition()
-   * @see #getNotCondition()
-   * @generated
-   */
-  EReference getNotCondition_Condition();
-
-  /**
-   * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.ComparisonCondition <em>Comparison Condition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Comparison Condition</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.ComparisonCondition
-   * @generated
-   */
-  EClass getComparisonCondition();
-
-  /**
-   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.ComparisonCondition#getLeft <em>Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.ComparisonCondition#getLeft()
-   * @see #getComparisonCondition()
-   * @generated
-   */
-  EReference getComparisonCondition_Left();
-
-  /**
-   * Returns the meta object for the attribute '{@link com.fearlesstyrant.sephirah.sephirah.ComparisonCondition#getOp <em>Op</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Op</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.ComparisonCondition#getOp()
-   * @see #getComparisonCondition()
-   * @generated
-   */
-  EAttribute getComparisonCondition_Op();
-
-  /**
-   * Returns the meta object for the containment reference '{@link com.fearlesstyrant.sephirah.sephirah.ComparisonCondition#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.ComparisonCondition#getRight()
-   * @see #getComparisonCondition()
-   * @generated
-   */
-  EReference getComparisonCondition_Right();
 
   /**
    * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.MethodCall <em>Method Call</em>}'.
@@ -1897,16 +1868,6 @@ public interface SephirahPackage extends EPackage
     EAttribute BOOLEAN_LITERAL__VALUE = eINSTANCE.getBooleanLiteral_Value();
 
     /**
-     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ConditionImpl <em>Condition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see com.fearlesstyrant.sephirah.sephirah.impl.ConditionImpl
-     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getCondition()
-     * @generated
-     */
-    EClass CONDITION = eINSTANCE.getCondition();
-
-    /**
      * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ConstantImpl <em>Constant</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1985,6 +1946,110 @@ public interface SephirahPackage extends EPackage
      * @generated
      */
     EReference CONDITIONAL__ELSE_BRANCH = eINSTANCE.getConditional_ElseBranch();
+
+    /**
+     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.OrConditionImpl <em>Or Condition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.OrConditionImpl
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getOrCondition()
+     * @generated
+     */
+    EClass OR_CONDITION = eINSTANCE.getOrCondition();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference OR_CONDITION__LEFT = eINSTANCE.getOrCondition_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference OR_CONDITION__RIGHT = eINSTANCE.getOrCondition_Right();
+
+    /**
+     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.AndConditionImpl <em>And Condition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.AndConditionImpl
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getAndCondition()
+     * @generated
+     */
+    EClass AND_CONDITION = eINSTANCE.getAndCondition();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference AND_CONDITION__LEFT = eINSTANCE.getAndCondition_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference AND_CONDITION__RIGHT = eINSTANCE.getAndCondition_Right();
+
+    /**
+     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.NotConditionImpl <em>Not Condition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.NotConditionImpl
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNotCondition()
+     * @generated
+     */
+    EClass NOT_CONDITION = eINSTANCE.getNotCondition();
+
+    /**
+     * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NOT_CONDITION__CONDITION = eINSTANCE.getNotCondition_Condition();
+
+    /**
+     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ComparisonConditionImpl <em>Comparison Condition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.ComparisonConditionImpl
+     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getComparisonCondition()
+     * @generated
+     */
+    EClass COMPARISON_CONDITION = eINSTANCE.getComparisonCondition();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMPARISON_CONDITION__LEFT = eINSTANCE.getComparisonCondition_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COMPARISON_CONDITION__OP = eINSTANCE.getComparisonCondition_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMPARISON_CONDITION__RIGHT = eINSTANCE.getComparisonCondition_Right();
 
     /**
      * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.AddImpl <em>Add</em>}' class.
@@ -2151,110 +2216,6 @@ public interface SephirahPackage extends EPackage
      * @generated
      */
     EAttribute NUMBER_LITERAL__VALUE = eINSTANCE.getNumberLiteral_Value();
-
-    /**
-     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.OrConditionImpl <em>Or Condition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see com.fearlesstyrant.sephirah.sephirah.impl.OrConditionImpl
-     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getOrCondition()
-     * @generated
-     */
-    EClass OR_CONDITION = eINSTANCE.getOrCondition();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference OR_CONDITION__LEFT = eINSTANCE.getOrCondition_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference OR_CONDITION__RIGHT = eINSTANCE.getOrCondition_Right();
-
-    /**
-     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.AndConditionImpl <em>And Condition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see com.fearlesstyrant.sephirah.sephirah.impl.AndConditionImpl
-     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getAndCondition()
-     * @generated
-     */
-    EClass AND_CONDITION = eINSTANCE.getAndCondition();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AND_CONDITION__LEFT = eINSTANCE.getAndCondition_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AND_CONDITION__RIGHT = eINSTANCE.getAndCondition_Right();
-
-    /**
-     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.NotConditionImpl <em>Not Condition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see com.fearlesstyrant.sephirah.sephirah.impl.NotConditionImpl
-     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getNotCondition()
-     * @generated
-     */
-    EClass NOT_CONDITION = eINSTANCE.getNotCondition();
-
-    /**
-     * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference NOT_CONDITION__CONDITION = eINSTANCE.getNotCondition_Condition();
-
-    /**
-     * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.ComparisonConditionImpl <em>Comparison Condition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see com.fearlesstyrant.sephirah.sephirah.impl.ComparisonConditionImpl
-     * @see com.fearlesstyrant.sephirah.sephirah.impl.SephirahPackageImpl#getComparisonCondition()
-     * @generated
-     */
-    EClass COMPARISON_CONDITION = eINSTANCE.getComparisonCondition();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference COMPARISON_CONDITION__LEFT = eINSTANCE.getComparisonCondition_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute COMPARISON_CONDITION__OP = eINSTANCE.getComparisonCondition_Op();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference COMPARISON_CONDITION__RIGHT = eINSTANCE.getComparisonCondition_Right();
 
     /**
      * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.MethodCallImpl <em>Method Call</em>}' class.

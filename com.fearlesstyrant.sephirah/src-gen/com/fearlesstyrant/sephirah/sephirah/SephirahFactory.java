@@ -105,15 +105,6 @@ public interface SephirahFactory extends EFactory
   BooleanLiteral createBooleanLiteral();
 
   /**
-   * Returns a new object of class '<em>Condition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Condition</em>'.
-   * @generated
-   */
-  Condition createCondition();
-
-  /**
    * Returns a new object of class '<em>Constant</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -148,6 +139,42 @@ public interface SephirahFactory extends EFactory
    * @generated
    */
   Conditional createConditional();
+
+  /**
+   * Returns a new object of class '<em>Or Condition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Or Condition</em>'.
+   * @generated
+   */
+  OrCondition createOrCondition();
+
+  /**
+   * Returns a new object of class '<em>And Condition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>And Condition</em>'.
+   * @generated
+   */
+  AndCondition createAndCondition();
+
+  /**
+   * Returns a new object of class '<em>Not Condition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Not Condition</em>'.
+   * @generated
+   */
+  NotCondition createNotCondition();
+
+  /**
+   * Returns a new object of class '<em>Comparison Condition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Comparison Condition</em>'.
+   * @generated
+   */
+  ComparisonCondition createComparisonCondition();
 
   /**
    * Returns a new object of class '<em>Add</em>'.
@@ -211,42 +238,6 @@ public interface SephirahFactory extends EFactory
    * @generated
    */
   NumberLiteral createNumberLiteral();
-
-  /**
-   * Returns a new object of class '<em>Or Condition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Or Condition</em>'.
-   * @generated
-   */
-  OrCondition createOrCondition();
-
-  /**
-   * Returns a new object of class '<em>And Condition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>And Condition</em>'.
-   * @generated
-   */
-  AndCondition createAndCondition();
-
-  /**
-   * Returns a new object of class '<em>Not Condition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Not Condition</em>'.
-   * @generated
-   */
-  NotCondition createNotCondition();
-
-  /**
-   * Returns a new object of class '<em>Comparison Condition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Comparison Condition</em>'.
-   * @generated
-   */
-  ComparisonCondition createComparisonCondition();
 
   /**
    * Returns a new object of class '<em>Method Call</em>'.

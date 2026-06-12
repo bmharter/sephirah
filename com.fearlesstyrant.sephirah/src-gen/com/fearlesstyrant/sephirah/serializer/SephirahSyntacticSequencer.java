@@ -11,6 +11,8 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -20,18 +22,22 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class SephirahSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected SephirahGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_PrimaryCondition_LeftSquareBracketKeyword_0_0_a;
-	protected AbstractElementAlias match_PrimaryCondition_LeftSquareBracketKeyword_0_0_p;
-	protected AbstractElementAlias match_PrimaryExpression_LeftParenthesisKeyword_0_0_a;
-	protected AbstractElementAlias match_PrimaryExpression_LeftParenthesisKeyword_0_0_p;
+	protected AbstractElementAlias match_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_LeftSquareBracketKeyword_0_0_a__a;
+	protected AbstractElementAlias match_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_LeftSquareBracketKeyword_0_0_a__p;
+	protected AbstractElementAlias match_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_or_LeftSquareBracketKeyword_0_0__a;
+	protected AbstractElementAlias match_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_or_LeftSquareBracketKeyword_0_0__p;
+	protected AbstractElementAlias match_PrimaryBooleanExpression_PrimaryExpression___LeftSquareBracketKeyword_0_0_a_LeftParenthesisKeyword_0_0__a;
+	protected AbstractElementAlias match_PrimaryBooleanExpression_PrimaryExpression___LeftSquareBracketKeyword_0_0_a_LeftParenthesisKeyword_0_0__p;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (SephirahGrammarAccess) access;
-		match_PrimaryCondition_LeftSquareBracketKeyword_0_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryConditionAccess().getLeftSquareBracketKeyword_0_0());
-		match_PrimaryCondition_LeftSquareBracketKeyword_0_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryConditionAccess().getLeftSquareBracketKeyword_0_0());
-		match_PrimaryExpression_LeftParenthesisKeyword_0_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_0_0());
-		match_PrimaryExpression_LeftParenthesisKeyword_0_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_0_0());
+		match_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_LeftSquareBracketKeyword_0_0_a__a = new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_0_0()), new TokenAlias(true, true, grammarAccess.getPrimaryBooleanExpressionAccess().getLeftSquareBracketKeyword_0_0()));
+		match_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_LeftSquareBracketKeyword_0_0_a__p = new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_0_0()), new TokenAlias(true, true, grammarAccess.getPrimaryBooleanExpressionAccess().getLeftSquareBracketKeyword_0_0()));
+		match_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_or_LeftSquareBracketKeyword_0_0__a = new AlternativeAlias(true, true, new TokenAlias(false, false, grammarAccess.getPrimaryBooleanExpressionAccess().getLeftSquareBracketKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_0_0()));
+		match_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_or_LeftSquareBracketKeyword_0_0__p = new AlternativeAlias(true, false, new TokenAlias(false, false, grammarAccess.getPrimaryBooleanExpressionAccess().getLeftSquareBracketKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_0_0()));
+		match_PrimaryBooleanExpression_PrimaryExpression___LeftSquareBracketKeyword_0_0_a_LeftParenthesisKeyword_0_0__a = new GroupAlias(true, true, new TokenAlias(true, true, grammarAccess.getPrimaryBooleanExpressionAccess().getLeftSquareBracketKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_0_0()));
+		match_PrimaryBooleanExpression_PrimaryExpression___LeftSquareBracketKeyword_0_0_a_LeftParenthesisKeyword_0_0__p = new GroupAlias(true, false, new TokenAlias(true, true, grammarAccess.getPrimaryBooleanExpressionAccess().getLeftSquareBracketKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_0_0()));
 	}
 	
 	@Override
@@ -46,14 +52,18 @@ public class SephirahSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_PrimaryCondition_LeftSquareBracketKeyword_0_0_a.equals(syntax))
-				emit_PrimaryCondition_LeftSquareBracketKeyword_0_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PrimaryCondition_LeftSquareBracketKeyword_0_0_p.equals(syntax))
-				emit_PrimaryCondition_LeftSquareBracketKeyword_0_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PrimaryExpression_LeftParenthesisKeyword_0_0_a.equals(syntax))
-				emit_PrimaryExpression_LeftParenthesisKeyword_0_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PrimaryExpression_LeftParenthesisKeyword_0_0_p.equals(syntax))
-				emit_PrimaryExpression_LeftParenthesisKeyword_0_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_LeftSquareBracketKeyword_0_0_a__a.equals(syntax))
+				emit_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_LeftSquareBracketKeyword_0_0_a__a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_LeftSquareBracketKeyword_0_0_a__p.equals(syntax))
+				emit_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_LeftSquareBracketKeyword_0_0_a__p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_or_LeftSquareBracketKeyword_0_0__a.equals(syntax))
+				emit_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_or_LeftSquareBracketKeyword_0_0__a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_or_LeftSquareBracketKeyword_0_0__p.equals(syntax))
+				emit_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_or_LeftSquareBracketKeyword_0_0__p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PrimaryBooleanExpression_PrimaryExpression___LeftSquareBracketKeyword_0_0_a_LeftParenthesisKeyword_0_0__a.equals(syntax))
+				emit_PrimaryBooleanExpression_PrimaryExpression___LeftSquareBracketKeyword_0_0_a_LeftParenthesisKeyword_0_0__a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PrimaryBooleanExpression_PrimaryExpression___LeftSquareBracketKeyword_0_0_a_LeftParenthesisKeyword_0_0__p.equals(syntax))
+				emit_PrimaryBooleanExpression_PrimaryExpression___LeftSquareBracketKeyword_0_0_a_LeftParenthesisKeyword_0_0__p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -61,44 +71,10 @@ public class SephirahSyntacticSequencer extends AbstractSyntacticSequencer {
 	/**
 	 * <pre>
 	 * Ambiguous syntax:
-	 *     '['*
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'not' condition=NotCondition
-	 *     (rule start) (ambiguity) left=Addition
-	 *     (rule start) (ambiguity) {AndCondition.left=}
-	 *     (rule start) (ambiguity) {OrCondition.left=}
-	 
-	 * </pre>
-	 */
-	protected void emit_PrimaryCondition_LeftSquareBracketKeyword_0_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     '['+
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'not' condition=NotCondition
-	 *     (rule start) (ambiguity) {AndCondition.left=}
-	 *     (rule start) (ambiguity) {OrCondition.left=}
-	 
-	 * </pre>
-	 */
-	protected void emit_PrimaryCondition_LeftSquareBracketKeyword_0_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     '('*
+	 *     ('(' '['*)*
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '-' value=Unary
-	 *     (rule start) (ambiguity) 'if' condition=Condition
 	 *     (rule start) (ambiguity) name=QualifiedName
 	 *     (rule start) (ambiguity) value='G'
 	 *     (rule start) (ambiguity) value='e'
@@ -116,27 +92,107 @@ public class SephirahSyntacticSequencer extends AbstractSyntacticSequencer {
 	 
 	 * </pre>
 	 */
-	protected void emit_PrimaryExpression_LeftParenthesisKeyword_0_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_LeftSquareBracketKeyword_0_0_a__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
 	 * <pre>
 	 * Ambiguous syntax:
-	 *     '('+
+	 *     ('(' '['*)+
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '-' value=Unary
-	 *     (rule start) (ambiguity) 'if' condition=Condition
+	 *     (rule start) (ambiguity) 'not' condition=NotBooleanExpression
 	 *     (rule start) (ambiguity) {Add.left=}
+	 *     (rule start) (ambiguity) {AndCondition.left=}
+	 *     (rule start) (ambiguity) {ComparisonCondition.left=}
 	 *     (rule start) (ambiguity) {Divide.left=}
 	 *     (rule start) (ambiguity) {Exponent.left=}
 	 *     (rule start) (ambiguity) {Multiply.left=}
+	 *     (rule start) (ambiguity) {OrCondition.left=}
 	 *     (rule start) (ambiguity) {Subtract.left=}
 	 
 	 * </pre>
 	 */
-	protected void emit_PrimaryExpression_LeftParenthesisKeyword_0_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_LeftSquareBracketKeyword_0_0_a__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     ('[' | '(')*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '-' value=Unary
+	 *     (rule start) (ambiguity) 'not' condition=NotBooleanExpression
+	 *     (rule start) (ambiguity) name=QualifiedName
+	 *     (rule start) (ambiguity) value='G'
+	 *     (rule start) (ambiguity) value='e'
+	 *     (rule start) (ambiguity) value='false'
+	 *     (rule start) (ambiguity) value='gamma'
+	 *     (rule start) (ambiguity) value='phi'
+	 *     (rule start) (ambiguity) value='pi'
+	 *     (rule start) (ambiguity) value='true'
+	 *     (rule start) (ambiguity) value=Decimal
+	 *     (rule start) (ambiguity) {Add.left=}
+	 *     (rule start) (ambiguity) {AndCondition.left=}
+	 *     (rule start) (ambiguity) {ComparisonCondition.left=}
+	 *     (rule start) (ambiguity) {Divide.left=}
+	 *     (rule start) (ambiguity) {Exponent.left=}
+	 *     (rule start) (ambiguity) {Multiply.left=}
+	 *     (rule start) (ambiguity) {OrCondition.left=}
+	 *     (rule start) (ambiguity) {Subtract.left=}
+	 
+	 * </pre>
+	 */
+	protected void emit_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_or_LeftSquareBracketKeyword_0_0__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     ('[' | '(')+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'not' condition=NotBooleanExpression
+	 *     (rule start) (ambiguity) {AndCondition.left=}
+	 *     (rule start) (ambiguity) {OrCondition.left=}
+	 
+	 * </pre>
+	 */
+	protected void emit_PrimaryBooleanExpression_PrimaryExpression___LeftParenthesisKeyword_0_0_or_LeftSquareBracketKeyword_0_0__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     ('['* '(')*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) '(' (ambiguity) 'if' condition=BooleanExpression
+	 *     (rule start) (ambiguity) 'if' condition=BooleanExpression
+	 
+	 * </pre>
+	 */
+	protected void emit_PrimaryBooleanExpression_PrimaryExpression___LeftSquareBracketKeyword_0_0_a_LeftParenthesisKeyword_0_0__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     ('['* '(')+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'if' condition=BooleanExpression
+	 
+	 * </pre>
+	 */
+	protected void emit_PrimaryBooleanExpression_PrimaryExpression___LeftSquareBracketKeyword_0_0_a_LeftParenthesisKeyword_0_0__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

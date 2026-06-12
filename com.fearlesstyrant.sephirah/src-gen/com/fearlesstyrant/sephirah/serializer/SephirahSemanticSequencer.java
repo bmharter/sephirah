@@ -58,16 +58,16 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				sequence_Addition(context, (Add) semanticObject); 
 				return; 
 			case SephirahPackage.AND_CONDITION:
-				sequence_AndCondition(context, (AndCondition) semanticObject); 
+				sequence_AndBooleanExpression(context, (AndCondition) semanticObject); 
 				return; 
 			case SephirahPackage.BOOLEAN_LITERAL:
 				sequence_BooleanLiteral(context, (BooleanLiteral) semanticObject); 
 				return; 
 			case SephirahPackage.COMPARISON_CONDITION:
-				sequence_ComparisonCondition(context, (ComparisonCondition) semanticObject); 
+				sequence_PrimaryBooleanExpression(context, (ComparisonCondition) semanticObject); 
 				return; 
 			case SephirahPackage.CONDITIONAL:
-				sequence_Conditional(context, (Conditional) semanticObject); 
+				sequence_ConditionalExpression(context, (Conditional) semanticObject); 
 				return; 
 			case SephirahPackage.CONSTANT:
 				sequence_Constant(context, (Constant) semanticObject); 
@@ -106,13 +106,13 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				sequence_Unary(context, (Negate) semanticObject); 
 				return; 
 			case SephirahPackage.NOT_CONDITION:
-				sequence_NotCondition(context, (NotCondition) semanticObject); 
+				sequence_NotBooleanExpression(context, (NotCondition) semanticObject); 
 				return; 
 			case SephirahPackage.NUMBER_LITERAL:
 				sequence_PrimaryExpression(context, (NumberLiteral) semanticObject); 
 				return; 
 			case SephirahPackage.OR_CONDITION:
-				sequence_OrCondition(context, (OrCondition) semanticObject); 
+				sequence_OrBooleanExpression(context, (OrCondition) semanticObject); 
 				return; 
 			case SephirahPackage.SUBTRACT:
 				sequence_Addition(context, (Subtract) semanticObject); 
@@ -132,7 +132,15 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns Add
-	 *     Conditional returns Add
+	 *     ConditionalExpression returns Add
+	 *     BooleanExpression returns Add
+	 *     OrBooleanExpression returns Add
+	 *     OrBooleanExpression.OrCondition_1_0 returns Add
+	 *     AndBooleanExpression returns Add
+	 *     AndBooleanExpression.AndCondition_1_0 returns Add
+	 *     NotBooleanExpression returns Add
+	 *     PrimaryBooleanExpression returns Add
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns Add
 	 *     Addition returns Add
 	 *     Addition.Add_1_0_0_0 returns Add
 	 *     Addition.Subtract_1_0_1_0 returns Add
@@ -166,7 +174,15 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns Subtract
-	 *     Conditional returns Subtract
+	 *     ConditionalExpression returns Subtract
+	 *     BooleanExpression returns Subtract
+	 *     OrBooleanExpression returns Subtract
+	 *     OrBooleanExpression.OrCondition_1_0 returns Subtract
+	 *     AndBooleanExpression returns Subtract
+	 *     AndBooleanExpression.AndCondition_1_0 returns Subtract
+	 *     NotBooleanExpression returns Subtract
+	 *     PrimaryBooleanExpression returns Subtract
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns Subtract
 	 *     Addition returns Subtract
 	 *     Addition.Add_1_0_0_0 returns Subtract
 	 *     Addition.Subtract_1_0_1_0 returns Subtract
@@ -199,19 +215,32 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Condition returns AndCondition
-	 *     OrCondition returns AndCondition
-	 *     OrCondition.OrCondition_1_0 returns AndCondition
-	 *     AndCondition returns AndCondition
-	 *     AndCondition.AndCondition_1_0 returns AndCondition
-	 *     NotCondition returns AndCondition
-	 *     PrimaryCondition returns AndCondition
+	 *     Expression returns AndCondition
+	 *     ConditionalExpression returns AndCondition
+	 *     BooleanExpression returns AndCondition
+	 *     OrBooleanExpression returns AndCondition
+	 *     OrBooleanExpression.OrCondition_1_0 returns AndCondition
+	 *     AndBooleanExpression returns AndCondition
+	 *     AndBooleanExpression.AndCondition_1_0 returns AndCondition
+	 *     NotBooleanExpression returns AndCondition
+	 *     PrimaryBooleanExpression returns AndCondition
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns AndCondition
+	 *     Addition returns AndCondition
+	 *     Addition.Add_1_0_0_0 returns AndCondition
+	 *     Addition.Subtract_1_0_1_0 returns AndCondition
+	 *     Multiplication returns AndCondition
+	 *     Multiplication.Multiply_1_0_0_0 returns AndCondition
+	 *     Multiplication.Divide_1_0_1_0 returns AndCondition
+	 *     Unary returns AndCondition
+	 *     Exponent returns AndCondition
+	 *     Exponent.Exponent_1_0 returns AndCondition
+	 *     PrimaryExpression returns AndCondition
 	 *
 	 * Constraint:
-	 *     (left=AndCondition_AndCondition_1_0 right=NotCondition)
+	 *     (left=AndBooleanExpression_AndCondition_1_0 right=NotBooleanExpression)
 	 * </pre>
 	 */
-	protected void sequence_AndCondition(ISerializationContext context, AndCondition semanticObject) {
+	protected void sequence_AndBooleanExpression(ISerializationContext context, AndCondition semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.AND_CONDITION__LEFT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.AND_CONDITION__LEFT));
@@ -219,8 +248,8 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.AND_CONDITION__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAndConditionAccess().getAndConditionLeftAction_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getAndConditionAccess().getRightNotConditionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getAndBooleanExpressionAccess().getAndConditionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getAndBooleanExpressionAccess().getRightNotBooleanExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -229,7 +258,15 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns BooleanLiteral
-	 *     Conditional returns BooleanLiteral
+	 *     ConditionalExpression returns BooleanLiteral
+	 *     BooleanExpression returns BooleanLiteral
+	 *     OrBooleanExpression returns BooleanLiteral
+	 *     OrBooleanExpression.OrCondition_1_0 returns BooleanLiteral
+	 *     AndBooleanExpression returns BooleanLiteral
+	 *     AndBooleanExpression.AndCondition_1_0 returns BooleanLiteral
+	 *     NotBooleanExpression returns BooleanLiteral
+	 *     PrimaryBooleanExpression returns BooleanLiteral
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns BooleanLiteral
 	 *     Addition returns BooleanLiteral
 	 *     Addition.Add_1_0_0_0 returns BooleanLiteral
 	 *     Addition.Subtract_1_0_1_0 returns BooleanLiteral
@@ -254,41 +291,16 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Condition returns ComparisonCondition
-	 *     OrCondition returns ComparisonCondition
-	 *     OrCondition.OrCondition_1_0 returns ComparisonCondition
-	 *     AndCondition returns ComparisonCondition
-	 *     AndCondition.AndCondition_1_0 returns ComparisonCondition
-	 *     NotCondition returns ComparisonCondition
-	 *     PrimaryCondition returns ComparisonCondition
-	 *     ComparisonCondition returns ComparisonCondition
-	 *
-	 * Constraint:
-	 *     (left=Addition op=ComparisonOperator right=Addition)
-	 * </pre>
-	 */
-	protected void sequence_ComparisonCondition(ISerializationContext context, ComparisonCondition semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__LEFT));
-			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__OP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__OP));
-			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__RIGHT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getComparisonConditionAccess().getLeftAdditionParserRuleCall_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getComparisonConditionAccess().getOpComparisonOperatorEnumRuleCall_2_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getComparisonConditionAccess().getRightAdditionParserRuleCall_3_0(), semanticObject.getRight());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
 	 *     Expression returns Conditional
-	 *     Conditional returns Conditional
+	 *     ConditionalExpression returns Conditional
+	 *     BooleanExpression returns Conditional
+	 *     OrBooleanExpression returns Conditional
+	 *     OrBooleanExpression.OrCondition_1_0 returns Conditional
+	 *     AndBooleanExpression returns Conditional
+	 *     AndBooleanExpression.AndCondition_1_0 returns Conditional
+	 *     NotBooleanExpression returns Conditional
+	 *     PrimaryBooleanExpression returns Conditional
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns Conditional
 	 *     Addition returns Conditional
 	 *     Addition.Add_1_0_0_0 returns Conditional
 	 *     Addition.Subtract_1_0_1_0 returns Conditional
@@ -301,10 +313,10 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     PrimaryExpression returns Conditional
 	 *
 	 * Constraint:
-	 *     (condition=Condition thenBranch=Expression elseBranch=Expression)
+	 *     (condition=BooleanExpression thenBranch=Expression elseBranch=Expression)
 	 * </pre>
 	 */
-	protected void sequence_Conditional(ISerializationContext context, Conditional semanticObject) {
+	protected void sequence_ConditionalExpression(ISerializationContext context, Conditional semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.CONDITIONAL__CONDITION) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.CONDITIONAL__CONDITION));
@@ -314,9 +326,9 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.CONDITIONAL__ELSE_BRANCH));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getConditionalAccess().getConditionConditionParserRuleCall_0_2_0(), semanticObject.getCondition());
-		feeder.accept(grammarAccess.getConditionalAccess().getThenBranchExpressionParserRuleCall_0_4_0(), semanticObject.getThenBranch());
-		feeder.accept(grammarAccess.getConditionalAccess().getElseBranchExpressionParserRuleCall_0_6_0(), semanticObject.getElseBranch());
+		feeder.accept(grammarAccess.getConditionalExpressionAccess().getConditionBooleanExpressionParserRuleCall_0_2_0(), semanticObject.getCondition());
+		feeder.accept(grammarAccess.getConditionalExpressionAccess().getThenBranchExpressionParserRuleCall_0_4_0(), semanticObject.getThenBranch());
+		feeder.accept(grammarAccess.getConditionalExpressionAccess().getElseBranchExpressionParserRuleCall_0_6_0(), semanticObject.getElseBranch());
 		feeder.finish();
 	}
 	
@@ -325,7 +337,15 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns Constant
-	 *     Conditional returns Constant
+	 *     ConditionalExpression returns Constant
+	 *     BooleanExpression returns Constant
+	 *     OrBooleanExpression returns Constant
+	 *     OrBooleanExpression.OrCondition_1_0 returns Constant
+	 *     AndBooleanExpression returns Constant
+	 *     AndBooleanExpression.AndCondition_1_0 returns Constant
+	 *     NotBooleanExpression returns Constant
+	 *     PrimaryBooleanExpression returns Constant
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns Constant
 	 *     Addition returns Constant
 	 *     Addition.Add_1_0_0_0 returns Constant
 	 *     Addition.Subtract_1_0_1_0 returns Constant
@@ -425,7 +445,15 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns Exponent
-	 *     Conditional returns Exponent
+	 *     ConditionalExpression returns Exponent
+	 *     BooleanExpression returns Exponent
+	 *     OrBooleanExpression returns Exponent
+	 *     OrBooleanExpression.OrCondition_1_0 returns Exponent
+	 *     AndBooleanExpression returns Exponent
+	 *     AndBooleanExpression.AndCondition_1_0 returns Exponent
+	 *     NotBooleanExpression returns Exponent
+	 *     PrimaryBooleanExpression returns Exponent
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns Exponent
 	 *     Addition returns Exponent
 	 *     Addition.Add_1_0_0_0 returns Exponent
 	 *     Addition.Subtract_1_0_1_0 returns Exponent
@@ -496,7 +524,15 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns MethodCall
-	 *     Conditional returns MethodCall
+	 *     ConditionalExpression returns MethodCall
+	 *     BooleanExpression returns MethodCall
+	 *     OrBooleanExpression returns MethodCall
+	 *     OrBooleanExpression.OrCondition_1_0 returns MethodCall
+	 *     AndBooleanExpression returns MethodCall
+	 *     AndBooleanExpression.AndCondition_1_0 returns MethodCall
+	 *     NotBooleanExpression returns MethodCall
+	 *     PrimaryBooleanExpression returns MethodCall
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns MethodCall
 	 *     Addition returns MethodCall
 	 *     Addition.Add_1_0_0_0 returns MethodCall
 	 *     Addition.Subtract_1_0_1_0 returns MethodCall
@@ -522,7 +558,15 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns Divide
-	 *     Conditional returns Divide
+	 *     ConditionalExpression returns Divide
+	 *     BooleanExpression returns Divide
+	 *     OrBooleanExpression returns Divide
+	 *     OrBooleanExpression.OrCondition_1_0 returns Divide
+	 *     AndBooleanExpression returns Divide
+	 *     AndBooleanExpression.AndCondition_1_0 returns Divide
+	 *     NotBooleanExpression returns Divide
+	 *     PrimaryBooleanExpression returns Divide
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns Divide
 	 *     Addition returns Divide
 	 *     Addition.Add_1_0_0_0 returns Divide
 	 *     Addition.Subtract_1_0_1_0 returns Divide
@@ -556,7 +600,15 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns Multiply
-	 *     Conditional returns Multiply
+	 *     ConditionalExpression returns Multiply
+	 *     BooleanExpression returns Multiply
+	 *     OrBooleanExpression returns Multiply
+	 *     OrBooleanExpression.OrCondition_1_0 returns Multiply
+	 *     AndBooleanExpression returns Multiply
+	 *     AndBooleanExpression.AndCondition_1_0 returns Multiply
+	 *     NotBooleanExpression returns Multiply
+	 *     PrimaryBooleanExpression returns Multiply
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns Multiply
 	 *     Addition returns Multiply
 	 *     Addition.Add_1_0_0_0 returns Multiply
 	 *     Addition.Subtract_1_0_1_0 returns Multiply
@@ -589,25 +641,38 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Condition returns NotCondition
-	 *     OrCondition returns NotCondition
-	 *     OrCondition.OrCondition_1_0 returns NotCondition
-	 *     AndCondition returns NotCondition
-	 *     AndCondition.AndCondition_1_0 returns NotCondition
-	 *     NotCondition returns NotCondition
-	 *     PrimaryCondition returns NotCondition
+	 *     Expression returns NotCondition
+	 *     ConditionalExpression returns NotCondition
+	 *     BooleanExpression returns NotCondition
+	 *     OrBooleanExpression returns NotCondition
+	 *     OrBooleanExpression.OrCondition_1_0 returns NotCondition
+	 *     AndBooleanExpression returns NotCondition
+	 *     AndBooleanExpression.AndCondition_1_0 returns NotCondition
+	 *     NotBooleanExpression returns NotCondition
+	 *     PrimaryBooleanExpression returns NotCondition
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns NotCondition
+	 *     Addition returns NotCondition
+	 *     Addition.Add_1_0_0_0 returns NotCondition
+	 *     Addition.Subtract_1_0_1_0 returns NotCondition
+	 *     Multiplication returns NotCondition
+	 *     Multiplication.Multiply_1_0_0_0 returns NotCondition
+	 *     Multiplication.Divide_1_0_1_0 returns NotCondition
+	 *     Unary returns NotCondition
+	 *     Exponent returns NotCondition
+	 *     Exponent.Exponent_1_0 returns NotCondition
+	 *     PrimaryExpression returns NotCondition
 	 *
 	 * Constraint:
-	 *     condition=NotCondition
+	 *     condition=NotBooleanExpression
 	 * </pre>
 	 */
-	protected void sequence_NotCondition(ISerializationContext context, NotCondition semanticObject) {
+	protected void sequence_NotBooleanExpression(ISerializationContext context, NotCondition semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.NOT_CONDITION__CONDITION) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.NOT_CONDITION__CONDITION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNotConditionAccess().getConditionNotConditionParserRuleCall_0_2_0(), semanticObject.getCondition());
+		feeder.accept(grammarAccess.getNotBooleanExpressionAccess().getConditionNotBooleanExpressionParserRuleCall_0_2_0(), semanticObject.getCondition());
 		feeder.finish();
 	}
 	
@@ -615,19 +680,32 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Condition returns OrCondition
-	 *     OrCondition returns OrCondition
-	 *     OrCondition.OrCondition_1_0 returns OrCondition
-	 *     AndCondition returns OrCondition
-	 *     AndCondition.AndCondition_1_0 returns OrCondition
-	 *     NotCondition returns OrCondition
-	 *     PrimaryCondition returns OrCondition
+	 *     Expression returns OrCondition
+	 *     ConditionalExpression returns OrCondition
+	 *     BooleanExpression returns OrCondition
+	 *     OrBooleanExpression returns OrCondition
+	 *     OrBooleanExpression.OrCondition_1_0 returns OrCondition
+	 *     AndBooleanExpression returns OrCondition
+	 *     AndBooleanExpression.AndCondition_1_0 returns OrCondition
+	 *     NotBooleanExpression returns OrCondition
+	 *     PrimaryBooleanExpression returns OrCondition
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns OrCondition
+	 *     Addition returns OrCondition
+	 *     Addition.Add_1_0_0_0 returns OrCondition
+	 *     Addition.Subtract_1_0_1_0 returns OrCondition
+	 *     Multiplication returns OrCondition
+	 *     Multiplication.Multiply_1_0_0_0 returns OrCondition
+	 *     Multiplication.Divide_1_0_1_0 returns OrCondition
+	 *     Unary returns OrCondition
+	 *     Exponent returns OrCondition
+	 *     Exponent.Exponent_1_0 returns OrCondition
+	 *     PrimaryExpression returns OrCondition
 	 *
 	 * Constraint:
-	 *     (left=OrCondition_OrCondition_1_0 right=AndCondition)
+	 *     (left=OrBooleanExpression_OrCondition_1_0 right=AndBooleanExpression)
 	 * </pre>
 	 */
-	protected void sequence_OrCondition(ISerializationContext context, OrCondition semanticObject) {
+	protected void sequence_OrBooleanExpression(ISerializationContext context, OrCondition semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.OR_CONDITION__LEFT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.OR_CONDITION__LEFT));
@@ -635,8 +713,53 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.OR_CONDITION__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getOrConditionAccess().getOrConditionLeftAction_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getOrConditionAccess().getRightAndConditionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getOrBooleanExpressionAccess().getOrConditionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getOrBooleanExpressionAccess().getRightAndBooleanExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Expression returns ComparisonCondition
+	 *     ConditionalExpression returns ComparisonCondition
+	 *     BooleanExpression returns ComparisonCondition
+	 *     OrBooleanExpression returns ComparisonCondition
+	 *     OrBooleanExpression.OrCondition_1_0 returns ComparisonCondition
+	 *     AndBooleanExpression returns ComparisonCondition
+	 *     AndBooleanExpression.AndCondition_1_0 returns ComparisonCondition
+	 *     NotBooleanExpression returns ComparisonCondition
+	 *     PrimaryBooleanExpression returns ComparisonCondition
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns ComparisonCondition
+	 *     Addition returns ComparisonCondition
+	 *     Addition.Add_1_0_0_0 returns ComparisonCondition
+	 *     Addition.Subtract_1_0_1_0 returns ComparisonCondition
+	 *     Multiplication returns ComparisonCondition
+	 *     Multiplication.Multiply_1_0_0_0 returns ComparisonCondition
+	 *     Multiplication.Divide_1_0_1_0 returns ComparisonCondition
+	 *     Unary returns ComparisonCondition
+	 *     Exponent returns ComparisonCondition
+	 *     Exponent.Exponent_1_0 returns ComparisonCondition
+	 *     PrimaryExpression returns ComparisonCondition
+	 *
+	 * Constraint:
+	 *     (left=PrimaryBooleanExpression_ComparisonCondition_1_1_0 op=ComparisonOperator right=Addition)
+	 * </pre>
+	 */
+	protected void sequence_PrimaryBooleanExpression(ISerializationContext context, ComparisonCondition semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__OP));
+			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.COMPARISON_CONDITION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrimaryBooleanExpressionAccess().getComparisonConditionLeftAction_1_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getPrimaryBooleanExpressionAccess().getOpComparisonOperatorEnumRuleCall_1_1_1_0(), semanticObject.getOp());
+		feeder.accept(grammarAccess.getPrimaryBooleanExpressionAccess().getRightAdditionParserRuleCall_1_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -645,7 +768,15 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns NumberLiteral
-	 *     Conditional returns NumberLiteral
+	 *     ConditionalExpression returns NumberLiteral
+	 *     BooleanExpression returns NumberLiteral
+	 *     OrBooleanExpression returns NumberLiteral
+	 *     OrBooleanExpression.OrCondition_1_0 returns NumberLiteral
+	 *     AndBooleanExpression returns NumberLiteral
+	 *     AndBooleanExpression.AndCondition_1_0 returns NumberLiteral
+	 *     NotBooleanExpression returns NumberLiteral
+	 *     PrimaryBooleanExpression returns NumberLiteral
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns NumberLiteral
 	 *     Addition returns NumberLiteral
 	 *     Addition.Add_1_0_0_0 returns NumberLiteral
 	 *     Addition.Subtract_1_0_1_0 returns NumberLiteral
@@ -676,7 +807,15 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * <pre>
 	 * Contexts:
 	 *     Expression returns Negate
-	 *     Conditional returns Negate
+	 *     ConditionalExpression returns Negate
+	 *     BooleanExpression returns Negate
+	 *     OrBooleanExpression returns Negate
+	 *     OrBooleanExpression.OrCondition_1_0 returns Negate
+	 *     AndBooleanExpression returns Negate
+	 *     AndBooleanExpression.AndCondition_1_0 returns Negate
+	 *     NotBooleanExpression returns Negate
+	 *     PrimaryBooleanExpression returns Negate
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns Negate
 	 *     Addition returns Negate
 	 *     Addition.Add_1_0_0_0 returns Negate
 	 *     Addition.Subtract_1_0_1_0 returns Negate
@@ -731,7 +870,15 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * Contexts:
 	 *     Variable returns Variable
 	 *     Expression returns Variable
-	 *     Conditional returns Variable
+	 *     ConditionalExpression returns Variable
+	 *     BooleanExpression returns Variable
+	 *     OrBooleanExpression returns Variable
+	 *     OrBooleanExpression.OrCondition_1_0 returns Variable
+	 *     AndBooleanExpression returns Variable
+	 *     AndBooleanExpression.AndCondition_1_0 returns Variable
+	 *     NotBooleanExpression returns Variable
+	 *     PrimaryBooleanExpression returns Variable
+	 *     PrimaryBooleanExpression.ComparisonCondition_1_1_0 returns Variable
 	 *     Addition returns Variable
 	 *     Addition.Add_1_0_0_0 returns Variable
 	 *     Addition.Subtract_1_0_1_0 returns Variable

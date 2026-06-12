@@ -45,7 +45,6 @@
     <genClasses ecoreClass="Sephirah.ecore#//BooleanLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//BooleanLiteral/value"/>
     </genClasses>
-    <genClasses ecoreClass="Sephirah.ecore#//Condition"/>
     <genClasses ecoreClass="Sephirah.ecore#//Constant">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//Constant/value"/>
     </genClasses>
@@ -57,6 +56,22 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Conditional/condition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Conditional/thenBranch"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Conditional/elseBranch"/>
+    </genClasses>
+    <genClasses ecoreClass="Sephirah.ecore#//OrCondition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//OrCondition/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//OrCondition/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Sephirah.ecore#//AndCondition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//AndCondition/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//AndCondition/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Sephirah.ecore#//NotCondition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//NotCondition/condition"/>
+    </genClasses>
+    <genClasses ecoreClass="Sephirah.ecore#//ComparisonCondition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//ComparisonCondition/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//ComparisonCondition/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//ComparisonCondition/right"/>
     </genClasses>
     <genClasses ecoreClass="Sephirah.ecore#//Add">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//Add/left"/>
@@ -83,22 +98,6 @@
     </genClasses>
     <genClasses ecoreClass="Sephirah.ecore#//NumberLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//NumberLiteral/value"/>
-    </genClasses>
-    <genClasses ecoreClass="Sephirah.ecore#//OrCondition">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//OrCondition/left"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//OrCondition/right"/>
-    </genClasses>
-    <genClasses ecoreClass="Sephirah.ecore#//AndCondition">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//AndCondition/left"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//AndCondition/right"/>
-    </genClasses>
-    <genClasses ecoreClass="Sephirah.ecore#//NotCondition">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//NotCondition/condition"/>
-    </genClasses>
-    <genClasses ecoreClass="Sephirah.ecore#//ComparisonCondition">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//ComparisonCondition/left"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//ComparisonCondition/op"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sephirah.ecore#//ComparisonCondition/right"/>
     </genClasses>
     <genClasses ecoreClass="Sephirah.ecore#//MethodCall">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//MethodCall/name"/>

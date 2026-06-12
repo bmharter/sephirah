@@ -29,12 +29,12 @@ public interface Conditional extends Expression
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Condition</em>' containment reference.
-   * @see #setCondition(Condition)
+   * @see #setCondition(Expression)
    * @see com.fearlesstyrant.sephirah.sephirah.SephirahPackage#getConditional_Condition()
    * @model containment="true"
    * @generated
    */
-  Condition getCondition();
+  Expression getCondition();
 
   /**
    * Sets the value of the '{@link com.fearlesstyrant.sephirah.sephirah.Conditional#getCondition <em>Condition</em>}' containment reference.
@@ -44,7 +44,7 @@ public interface Conditional extends Expression
    * @see #getCondition()
    * @generated
    */
-  void setCondition(Condition value);
+  void setCondition(Expression value);
 
   /**
    * Returns the value of the '<em><b>Then Branch</b></em>' containment reference.

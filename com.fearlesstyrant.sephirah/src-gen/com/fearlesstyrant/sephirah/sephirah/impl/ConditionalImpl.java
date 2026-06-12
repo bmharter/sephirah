@@ -3,7 +3,6 @@
  */
 package com.fearlesstyrant.sephirah.sephirah.impl;
 
-import com.fearlesstyrant.sephirah.sephirah.Condition;
 import com.fearlesstyrant.sephirah.sephirah.Conditional;
 import com.fearlesstyrant.sephirah.sephirah.Expression;
 import com.fearlesstyrant.sephirah.sephirah.SephirahPackage;
@@ -41,7 +40,7 @@ public class ConditionalImpl extends ExpressionImpl implements Conditional
    * @generated
    * @ordered
    */
-  protected Condition condition;
+  protected Expression condition;
 
   /**
    * The cached value of the '{@link #getThenBranch() <em>Then Branch</em>}' containment reference.
@@ -90,7 +89,7 @@ public class ConditionalImpl extends ExpressionImpl implements Conditional
    * @generated
    */
   @Override
-  public Condition getCondition()
+  public Expression getCondition()
   {
     return condition;
   }
@@ -100,9 +99,9 @@ public class ConditionalImpl extends ExpressionImpl implements Conditional
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetCondition(Condition newCondition, NotificationChain msgs)
+  public NotificationChain basicSetCondition(Expression newCondition, NotificationChain msgs)
   {
-    Condition oldCondition = condition;
+    Expression oldCondition = condition;
     condition = newCondition;
     if (eNotificationRequired())
     {
@@ -118,7 +117,7 @@ public class ConditionalImpl extends ExpressionImpl implements Conditional
    * @generated
    */
   @Override
-  public void setCondition(Condition newCondition)
+  public void setCondition(Expression newCondition)
   {
     if (newCondition != condition)
     {
@@ -285,7 +284,7 @@ public class ConditionalImpl extends ExpressionImpl implements Conditional
     switch (featureID)
     {
       case SephirahPackage.CONDITIONAL__CONDITION:
-        setCondition((Condition)newValue);
+        setCondition((Expression)newValue);
         return;
       case SephirahPackage.CONDITIONAL__THEN_BRANCH:
         setThenBranch((Expression)newValue);
@@ -308,7 +307,7 @@ public class ConditionalImpl extends ExpressionImpl implements Conditional
     switch (featureID)
     {
       case SephirahPackage.CONDITIONAL__CONDITION:
-        setCondition((Condition)null);
+        setCondition((Expression)null);
         return;
       case SephirahPackage.CONDITIONAL__THEN_BRANCH:
         setThenBranch((Expression)null);

@@ -20,19 +20,19 @@ package com.fearlesstyrant.sephirah.sephirah;
  * @model
  * @generated
  */
-public interface NotCondition extends Condition
+public interface NotCondition extends Expression
 {
   /**
    * Returns the value of the '<em><b>Condition</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Condition</em>' containment reference.
-   * @see #setCondition(Condition)
+   * @see #setCondition(Expression)
    * @see com.fearlesstyrant.sephirah.sephirah.SephirahPackage#getNotCondition_Condition()
    * @model containment="true"
    * @generated
    */
-  Condition getCondition();
+  Expression getCondition();
 
   /**
    * Sets the value of the '{@link com.fearlesstyrant.sephirah.sephirah.NotCondition#getCondition <em>Condition</em>}' containment reference.
@@ -42,6 +42,6 @@ public interface NotCondition extends Condition
    * @see #getCondition()
    * @generated
    */
-  void setCondition(Condition value);
+  void setCondition(Expression value);
 
 } // NotCondition

@@ -128,7 +128,28 @@ public final class Computer {
         }
         
         if(expression instanceof Conditional conditional) {
-        	return SephirahValues.numeric(evaluateConditional(conditional));
+        	return evaluateConditional(conditional);
+        }
+        
+        if (expression instanceof ComparisonCondition comparisonCondition) {
+            return SephirahValues.bool(evaluateComparisonCondition(comparisonCondition));
+        }
+
+        if (expression instanceof AndCondition andCondition) {
+            return SephirahValues.bool(
+                    SephirahValues.requireBoolean(evaluateValue(andCondition.getLeft()))
+                            && SephirahValues.requireBoolean(evaluateValue(andCondition.getRight())));
+        }
+
+        if (expression instanceof OrCondition orCondition) {
+            return SephirahValues.bool(
+                    SephirahValues.requireBoolean(evaluateValue(orCondition.getLeft()))
+                            || SephirahValues.requireBoolean(evaluateValue(orCondition.getRight())));
+        }
+
+        if (expression instanceof NotCondition notCondition) {
+            return SephirahValues.bool(
+                    !SephirahValues.requireBoolean(evaluateValue(notCondition.getCondition())));
         }
 
         if(expression instanceof Add add) {
@@ -221,41 +242,19 @@ public final class Computer {
         }
     }
     
-    private BigDecimal evaluateConditional(Conditional conditional) {
+    private SephirahValue evaluateConditional(Conditional conditional) {
     	Objects.requireNonNull(conditional, "conditional must not be null");
     	
-    	if(evaluateCondition(conditional.getCondition())) {
-    		return evaluate(conditional.getThenBranch());
+    	boolean condition = SephirahValues.requireBoolean(
+                evaluateValue(conditional.getCondition()));
+    	
+    	if(condition) {
+    		return evaluateValue(conditional.getThenBranch());
     	}
     	
-    	return evaluate(conditional.getElseBranch());
+    	return evaluateValue(conditional.getElseBranch());
     }
     
-    private boolean evaluateCondition(Condition condition) {
-        Objects.requireNonNull(condition, "condition must not be null");
-
-        if (condition instanceof ComparisonCondition comparisonCondition) {
-            return evaluateComparisonCondition(comparisonCondition);
-        }
-
-        if (condition instanceof AndCondition andCondition) {
-            return evaluateCondition(andCondition.getLeft())
-                    && evaluateCondition(andCondition.getRight());
-        }
-
-        if (condition instanceof OrCondition orCondition) {
-            return evaluateCondition(orCondition.getLeft())
-                    || evaluateCondition(orCondition.getRight());
-        }
-
-        if (condition instanceof NotCondition notCondition) {
-            return !evaluateCondition(notCondition.getCondition());
-        }
-
-        throw new IllegalArgumentException(
-                "Unsupported condition type: " + condition.getClass().getSimpleName());
-    }
-
     /**
      * Evaluates a function call expression.
      *

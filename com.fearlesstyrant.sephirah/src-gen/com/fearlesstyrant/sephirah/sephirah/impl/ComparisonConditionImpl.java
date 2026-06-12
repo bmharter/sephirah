@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ComparisonConditionImpl extends ConditionImpl implements ComparisonCondition
+public class ComparisonConditionImpl extends ExpressionImpl implements ComparisonCondition
 {
   /**
    * The cached value of the '{@link #getLeft() <em>Left</em>}' containment reference.

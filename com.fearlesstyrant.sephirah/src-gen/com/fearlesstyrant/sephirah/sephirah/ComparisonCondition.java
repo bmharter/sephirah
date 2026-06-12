@@ -22,7 +22,7 @@ package com.fearlesstyrant.sephirah.sephirah;
  * @model
  * @generated
  */
-public interface ComparisonCondition extends Condition
+public interface ComparisonCondition extends Expression
 {
   /**
    * Returns the value of the '<em><b>Left</b></em>' containment reference.

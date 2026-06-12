@@ -3,7 +3,7 @@
  */
 package com.fearlesstyrant.sephirah.sephirah.impl;
 
-import com.fearlesstyrant.sephirah.sephirah.Condition;
+import com.fearlesstyrant.sephirah.sephirah.Expression;
 import com.fearlesstyrant.sephirah.sephirah.NotCondition;
 import com.fearlesstyrant.sephirah.sephirah.SephirahPackage;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class NotConditionImpl extends ConditionImpl implements NotCondition
+public class NotConditionImpl extends ExpressionImpl implements NotCondition
 {
   /**
    * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
@@ -38,7 +38,7 @@ public class NotConditionImpl extends ConditionImpl implements NotCondition
    * @generated
    * @ordered
    */
-  protected Condition condition;
+  protected Expression condition;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class NotConditionImpl extends ConditionImpl implements NotCondition
    * @generated
    */
   @Override
-  public Condition getCondition()
+  public Expression getCondition()
   {
     return condition;
   }
@@ -77,9 +77,9 @@ public class NotConditionImpl extends ConditionImpl implements NotCondition
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetCondition(Condition newCondition, NotificationChain msgs)
+  public NotificationChain basicSetCondition(Expression newCondition, NotificationChain msgs)
   {
-    Condition oldCondition = condition;
+    Expression oldCondition = condition;
     condition = newCondition;
     if (eNotificationRequired())
     {
@@ -95,7 +95,7 @@ public class NotConditionImpl extends ConditionImpl implements NotCondition
    * @generated
    */
   @Override
-  public void setCondition(Condition newCondition)
+  public void setCondition(Expression newCondition)
   {
     if (newCondition != condition)
     {
@@ -154,7 +154,7 @@ public class NotConditionImpl extends ConditionImpl implements NotCondition
     switch (featureID)
     {
       case SephirahPackage.NOT_CONDITION__CONDITION:
-        setCondition((Condition)newValue);
+        setCondition((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -171,7 +171,7 @@ public class NotConditionImpl extends ConditionImpl implements NotCondition
     switch (featureID)
     {
       case SephirahPackage.NOT_CONDITION__CONDITION:
-        setCondition((Condition)null);
+        setCondition((Expression)null);
         return;
     }
     super.eUnset(featureID);

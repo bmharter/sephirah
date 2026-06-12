@@ -21,19 +21,19 @@ package com.fearlesstyrant.sephirah.sephirah;
  * @model
  * @generated
  */
-public interface AndCondition extends Condition
+public interface AndCondition extends Expression
 {
   /**
    * Returns the value of the '<em><b>Left</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Left</em>' containment reference.
-   * @see #setLeft(Condition)
+   * @see #setLeft(Expression)
    * @see com.fearlesstyrant.sephirah.sephirah.SephirahPackage#getAndCondition_Left()
    * @model containment="true"
    * @generated
    */
-  Condition getLeft();
+  Expression getLeft();
 
   /**
    * Sets the value of the '{@link com.fearlesstyrant.sephirah.sephirah.AndCondition#getLeft <em>Left</em>}' containment reference.
@@ -43,19 +43,19 @@ public interface AndCondition extends Condition
    * @see #getLeft()
    * @generated
    */
-  void setLeft(Condition value);
+  void setLeft(Expression value);
 
   /**
    * Returns the value of the '<em><b>Right</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Right</em>' containment reference.
-   * @see #setRight(Condition)
+   * @see #setRight(Expression)
    * @see com.fearlesstyrant.sephirah.sephirah.SephirahPackage#getAndCondition_Right()
    * @model containment="true"
    * @generated
    */
-  Condition getRight();
+  Expression getRight();
 
   /**
    * Sets the value of the '{@link com.fearlesstyrant.sephirah.sephirah.AndCondition#getRight <em>Right</em>}' containment reference.
@@ -65,6 +65,6 @@ public interface AndCondition extends Condition
    * @see #getRight()
    * @generated
    */
-  void setRight(Condition value);
+  void setRight(Expression value);
 
 } // AndCondition

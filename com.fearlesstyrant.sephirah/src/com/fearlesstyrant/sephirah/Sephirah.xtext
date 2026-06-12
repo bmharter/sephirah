@@ -46,12 +46,47 @@ Evaluation:
 ;
 
 Expression:
-	Conditional
+	ConditionalExpression
 ;
 
-Conditional returns Expression:
-	{Conditional} 'if' condition=Condition 'then' thenBranch=Expression 'else' elseBranch=Expression
+ConditionalExpression returns Expression:
+	{Conditional} 'if' condition=BooleanExpression 'then' thenBranch=Expression 'else' elseBranch=Expression
+	| BooleanExpression
+;
+
+BooleanExpression returns Expression:
+	OrBooleanExpression
+;
+
+OrBooleanExpression returns Expression:
+	AndBooleanExpression
+	(
+		{OrCondition.left=current} 'or' right=AndBooleanExpression
+	)*
+;
+	
+AndBooleanExpression returns Expression:
+	NotBooleanExpression
+	(
+		{AndCondition.left=current} 'and' right=NotBooleanExpression
+	)*
+;
+
+NotBooleanExpression returns Expression:
+	{NotCondition} 'not' condition=NotBooleanExpression
+	| PrimaryBooleanExpression
+;
+
+PrimaryBooleanExpression returns Expression:
+	// Boolean grouping uses square brackets to avoid ambiguity with
+	// parenthesized numeric expressions such as (score + bonus) >= 10.
+	'[' BooleanExpression ']'
 	| Addition
+		(
+			{ComparisonCondition.left=current}
+			op=ComparisonOperator
+			right=Addition
+		)?
 ;
 
 Addition returns Expression:
@@ -93,34 +128,6 @@ PrimaryExpression returns Expression:
 
 BooleanLiteral:
 	{BooleanLiteral} value=('true' | 'false')
-;
-
-Condition:
-	OrCondition
-;
-
-OrCondition returns Condition:
-	AndCondition ({OrCondition.left=current} 'or' right=AndCondition)*
-;
-
-AndCondition returns Condition:
-	NotCondition ({AndCondition.left=current} 'and' right=NotCondition)*
-;
-
-NotCondition returns Condition:
-	{NotCondition} 'not' condition=NotCondition |
-	PrimaryCondition
-;
-
-// Boolean condition grouping uses square brackets to avoid ambiguity with
-// parenthesized numeric expressions such as (score + bonus) >= 10.
-PrimaryCondition returns Condition:
-	'[' Condition ']' |
-	ComparisonCondition
-;
-
-ComparisonCondition returns Condition:
-	{ComparisonCondition} left=Addition op=ComparisonOperator right=Addition
 ;
 
 MethodCall returns Expression:

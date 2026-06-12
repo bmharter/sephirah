@@ -614,24 +614,24 @@ ruleExpression returns [EObject current=null]
 	leaveRule();
 }:
 	{
-		newCompositeNode(grammarAccess.getExpressionAccess().getConditionalParserRuleCall());
+		newCompositeNode(grammarAccess.getExpressionAccess().getConditionalExpressionParserRuleCall());
 	}
-	this_Conditional_0=ruleConditional
+	this_ConditionalExpression_0=ruleConditionalExpression
 	{
-		$current = $this_Conditional_0.current;
+		$current = $this_ConditionalExpression_0.current;
 		afterParserOrEnumRuleCall();
 	}
 ;
 
-// Entry rule entryRuleConditional
-entryRuleConditional returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getConditionalRule()); }
-	iv_ruleConditional=ruleConditional
-	{ $current=$iv_ruleConditional.current; }
+// Entry rule entryRuleConditionalExpression
+entryRuleConditionalExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getConditionalExpressionRule()); }
+	iv_ruleConditionalExpression=ruleConditionalExpression
+	{ $current=$iv_ruleConditionalExpression.current; }
 	EOF;
 
-// Rule Conditional
-ruleConditional returns [EObject current=null]
+// Rule ConditionalExpression
+ruleConditionalExpression returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -643,46 +643,46 @@ ruleConditional returns [EObject current=null]
 			(
 				{
 					$current = forceCreateModelElement(
-						grammarAccess.getConditionalAccess().getConditionalAction_0_0(),
+						grammarAccess.getConditionalExpressionAccess().getConditionalAction_0_0(),
 						$current);
 				}
 			)
 			otherlv_1='if'
 			{
-				newLeafNode(otherlv_1, grammarAccess.getConditionalAccess().getIfKeyword_0_1());
+				newLeafNode(otherlv_1, grammarAccess.getConditionalExpressionAccess().getIfKeyword_0_1());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConditionalAccess().getConditionConditionParserRuleCall_0_2_0());
+						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getConditionBooleanExpressionParserRuleCall_0_2_0());
 					}
-					lv_condition_2_0=ruleCondition
+					lv_condition_2_0=ruleBooleanExpression
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConditionalRule());
+							$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
 						}
 						set(
 							$current,
 							"condition",
 							lv_condition_2_0,
-							"com.fearlesstyrant.sephirah.Sephirah.Condition");
+							"com.fearlesstyrant.sephirah.Sephirah.BooleanExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 			otherlv_3='then'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getConditionalAccess().getThenKeyword_0_3());
+				newLeafNode(otherlv_3, grammarAccess.getConditionalExpressionAccess().getThenKeyword_0_3());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConditionalAccess().getThenBranchExpressionParserRuleCall_0_4_0());
+						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getThenBranchExpressionParserRuleCall_0_4_0());
 					}
 					lv_thenBranch_4_0=ruleExpression
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConditionalRule());
+							$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
 						}
 						set(
 							$current,
@@ -695,17 +695,17 @@ ruleConditional returns [EObject current=null]
 			)
 			otherlv_5='else'
 			{
-				newLeafNode(otherlv_5, grammarAccess.getConditionalAccess().getElseKeyword_0_5());
+				newLeafNode(otherlv_5, grammarAccess.getConditionalExpressionAccess().getElseKeyword_0_5());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConditionalAccess().getElseBranchExpressionParserRuleCall_0_6_0());
+						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getElseBranchExpressionParserRuleCall_0_6_0());
 					}
 					lv_elseBranch_6_0=ruleExpression
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConditionalRule());
+							$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
 						}
 						set(
 							$current,
@@ -719,13 +719,311 @@ ruleConditional returns [EObject current=null]
 		)
 		    |
 		{
-			newCompositeNode(grammarAccess.getConditionalAccess().getAdditionParserRuleCall_1());
+			newCompositeNode(grammarAccess.getConditionalExpressionAccess().getBooleanExpressionParserRuleCall_1());
 		}
-		this_Addition_7=ruleAddition
+		this_BooleanExpression_7=ruleBooleanExpression
 		{
-			$current = $this_Addition_7.current;
+			$current = $this_BooleanExpression_7.current;
 			afterParserOrEnumRuleCall();
 		}
+	)
+;
+
+// Entry rule entryRuleBooleanExpression
+entryRuleBooleanExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getBooleanExpressionRule()); }
+	iv_ruleBooleanExpression=ruleBooleanExpression
+	{ $current=$iv_ruleBooleanExpression.current; }
+	EOF;
+
+// Rule BooleanExpression
+ruleBooleanExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	{
+		newCompositeNode(grammarAccess.getBooleanExpressionAccess().getOrBooleanExpressionParserRuleCall());
+	}
+	this_OrBooleanExpression_0=ruleOrBooleanExpression
+	{
+		$current = $this_OrBooleanExpression_0.current;
+		afterParserOrEnumRuleCall();
+	}
+;
+
+// Entry rule entryRuleOrBooleanExpression
+entryRuleOrBooleanExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOrBooleanExpressionRule()); }
+	iv_ruleOrBooleanExpression=ruleOrBooleanExpression
+	{ $current=$iv_ruleOrBooleanExpression.current; }
+	EOF;
+
+// Rule OrBooleanExpression
+ruleOrBooleanExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getOrBooleanExpressionAccess().getAndBooleanExpressionParserRuleCall_0());
+		}
+		this_AndBooleanExpression_0=ruleAndBooleanExpression
+		{
+			$current = $this_AndBooleanExpression_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				{
+					$current = forceCreateModelElementAndSet(
+						grammarAccess.getOrBooleanExpressionAccess().getOrConditionLeftAction_1_0(),
+						$current);
+				}
+			)
+			otherlv_2='or'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getOrBooleanExpressionAccess().getOrKeyword_1_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getOrBooleanExpressionAccess().getRightAndBooleanExpressionParserRuleCall_1_2_0());
+					}
+					lv_right_3_0=ruleAndBooleanExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getOrBooleanExpressionRule());
+						}
+						set(
+							$current,
+							"right",
+							lv_right_3_0,
+							"com.fearlesstyrant.sephirah.Sephirah.AndBooleanExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+	)
+;
+
+// Entry rule entryRuleAndBooleanExpression
+entryRuleAndBooleanExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAndBooleanExpressionRule()); }
+	iv_ruleAndBooleanExpression=ruleAndBooleanExpression
+	{ $current=$iv_ruleAndBooleanExpression.current; }
+	EOF;
+
+// Rule AndBooleanExpression
+ruleAndBooleanExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getAndBooleanExpressionAccess().getNotBooleanExpressionParserRuleCall_0());
+		}
+		this_NotBooleanExpression_0=ruleNotBooleanExpression
+		{
+			$current = $this_NotBooleanExpression_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				{
+					$current = forceCreateModelElementAndSet(
+						grammarAccess.getAndBooleanExpressionAccess().getAndConditionLeftAction_1_0(),
+						$current);
+				}
+			)
+			otherlv_2='and'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getAndBooleanExpressionAccess().getAndKeyword_1_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getAndBooleanExpressionAccess().getRightNotBooleanExpressionParserRuleCall_1_2_0());
+					}
+					lv_right_3_0=ruleNotBooleanExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAndBooleanExpressionRule());
+						}
+						set(
+							$current,
+							"right",
+							lv_right_3_0,
+							"com.fearlesstyrant.sephirah.Sephirah.NotBooleanExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+	)
+;
+
+// Entry rule entryRuleNotBooleanExpression
+entryRuleNotBooleanExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getNotBooleanExpressionRule()); }
+	iv_ruleNotBooleanExpression=ruleNotBooleanExpression
+	{ $current=$iv_ruleNotBooleanExpression.current; }
+	EOF;
+
+// Rule NotBooleanExpression
+ruleNotBooleanExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getNotBooleanExpressionAccess().getNotConditionAction_0_0(),
+						$current);
+				}
+			)
+			otherlv_1='not'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getNotBooleanExpressionAccess().getNotKeyword_0_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getNotBooleanExpressionAccess().getConditionNotBooleanExpressionParserRuleCall_0_2_0());
+					}
+					lv_condition_2_0=ruleNotBooleanExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getNotBooleanExpressionRule());
+						}
+						set(
+							$current,
+							"condition",
+							lv_condition_2_0,
+							"com.fearlesstyrant.sephirah.Sephirah.NotBooleanExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+		    |
+		{
+			newCompositeNode(grammarAccess.getNotBooleanExpressionAccess().getPrimaryBooleanExpressionParserRuleCall_1());
+		}
+		this_PrimaryBooleanExpression_3=rulePrimaryBooleanExpression
+		{
+			$current = $this_PrimaryBooleanExpression_3.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRulePrimaryBooleanExpression
+entryRulePrimaryBooleanExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPrimaryBooleanExpressionRule()); }
+	iv_rulePrimaryBooleanExpression=rulePrimaryBooleanExpression
+	{ $current=$iv_rulePrimaryBooleanExpression.current; }
+	EOF;
+
+// Rule PrimaryBooleanExpression
+rulePrimaryBooleanExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			otherlv_0='['
+			{
+				newLeafNode(otherlv_0, grammarAccess.getPrimaryBooleanExpressionAccess().getLeftSquareBracketKeyword_0_0());
+			}
+			{
+				newCompositeNode(grammarAccess.getPrimaryBooleanExpressionAccess().getBooleanExpressionParserRuleCall_0_1());
+			}
+			this_BooleanExpression_1=ruleBooleanExpression
+			{
+				$current = $this_BooleanExpression_1.current;
+				afterParserOrEnumRuleCall();
+			}
+			otherlv_2=']'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getPrimaryBooleanExpressionAccess().getRightSquareBracketKeyword_0_2());
+			}
+		)
+		    |
+		(
+			{
+				newCompositeNode(grammarAccess.getPrimaryBooleanExpressionAccess().getAdditionParserRuleCall_1_0());
+			}
+			this_Addition_3=ruleAddition
+			{
+				$current = $this_Addition_3.current;
+				afterParserOrEnumRuleCall();
+			}
+			(
+				(
+					{
+						$current = forceCreateModelElementAndSet(
+							grammarAccess.getPrimaryBooleanExpressionAccess().getComparisonConditionLeftAction_1_1_0(),
+							$current);
+					}
+				)
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getPrimaryBooleanExpressionAccess().getOpComparisonOperatorEnumRuleCall_1_1_1_0());
+						}
+						lv_op_5_0=ruleComparisonOperator
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getPrimaryBooleanExpressionRule());
+							}
+							set(
+								$current,
+								"op",
+								lv_op_5_0,
+								"com.fearlesstyrant.sephirah.Sephirah.ComparisonOperator");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getPrimaryBooleanExpressionAccess().getRightAdditionParserRuleCall_1_1_2_0());
+						}
+						lv_right_6_0=ruleAddition
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getPrimaryBooleanExpressionRule());
+							}
+							set(
+								$current,
+								"right",
+								lv_right_6_0,
+								"com.fearlesstyrant.sephirah.Sephirah.Addition");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)?
+		)
 	)
 ;
 
@@ -1152,338 +1450,6 @@ ruleBooleanLiteral returns [EObject current=null]
 						setWithLastConsumed($current, "value", lv_value_1_2, null);
 					}
 				)
-			)
-		)
-	)
-;
-
-// Entry rule entryRuleCondition
-entryRuleCondition returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getConditionRule()); }
-	iv_ruleCondition=ruleCondition
-	{ $current=$iv_ruleCondition.current; }
-	EOF;
-
-// Rule Condition
-ruleCondition returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	{
-		newCompositeNode(grammarAccess.getConditionAccess().getOrConditionParserRuleCall());
-	}
-	this_OrCondition_0=ruleOrCondition
-	{
-		$current = $this_OrCondition_0.current;
-		afterParserOrEnumRuleCall();
-	}
-;
-
-// Entry rule entryRuleOrCondition
-entryRuleOrCondition returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getOrConditionRule()); }
-	iv_ruleOrCondition=ruleOrCondition
-	{ $current=$iv_ruleOrCondition.current; }
-	EOF;
-
-// Rule OrCondition
-ruleOrCondition returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			newCompositeNode(grammarAccess.getOrConditionAccess().getAndConditionParserRuleCall_0());
-		}
-		this_AndCondition_0=ruleAndCondition
-		{
-			$current = $this_AndCondition_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		(
-			(
-				{
-					$current = forceCreateModelElementAndSet(
-						grammarAccess.getOrConditionAccess().getOrConditionLeftAction_1_0(),
-						$current);
-				}
-			)
-			otherlv_2='or'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getOrConditionAccess().getOrKeyword_1_1());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getOrConditionAccess().getRightAndConditionParserRuleCall_1_2_0());
-					}
-					lv_right_3_0=ruleAndCondition
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getOrConditionRule());
-						}
-						set(
-							$current,
-							"right",
-							lv_right_3_0,
-							"com.fearlesstyrant.sephirah.Sephirah.AndCondition");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)*
-	)
-;
-
-// Entry rule entryRuleAndCondition
-entryRuleAndCondition returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getAndConditionRule()); }
-	iv_ruleAndCondition=ruleAndCondition
-	{ $current=$iv_ruleAndCondition.current; }
-	EOF;
-
-// Rule AndCondition
-ruleAndCondition returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			newCompositeNode(grammarAccess.getAndConditionAccess().getNotConditionParserRuleCall_0());
-		}
-		this_NotCondition_0=ruleNotCondition
-		{
-			$current = $this_NotCondition_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		(
-			(
-				{
-					$current = forceCreateModelElementAndSet(
-						grammarAccess.getAndConditionAccess().getAndConditionLeftAction_1_0(),
-						$current);
-				}
-			)
-			otherlv_2='and'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getAndConditionAccess().getAndKeyword_1_1());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getAndConditionAccess().getRightNotConditionParserRuleCall_1_2_0());
-					}
-					lv_right_3_0=ruleNotCondition
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getAndConditionRule());
-						}
-						set(
-							$current,
-							"right",
-							lv_right_3_0,
-							"com.fearlesstyrant.sephirah.Sephirah.NotCondition");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)*
-	)
-;
-
-// Entry rule entryRuleNotCondition
-entryRuleNotCondition returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getNotConditionRule()); }
-	iv_ruleNotCondition=ruleNotCondition
-	{ $current=$iv_ruleNotCondition.current; }
-	EOF;
-
-// Rule NotCondition
-ruleNotCondition returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				{
-					$current = forceCreateModelElement(
-						grammarAccess.getNotConditionAccess().getNotConditionAction_0_0(),
-						$current);
-				}
-			)
-			otherlv_1='not'
-			{
-				newLeafNode(otherlv_1, grammarAccess.getNotConditionAccess().getNotKeyword_0_1());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getNotConditionAccess().getConditionNotConditionParserRuleCall_0_2_0());
-					}
-					lv_condition_2_0=ruleNotCondition
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getNotConditionRule());
-						}
-						set(
-							$current,
-							"condition",
-							lv_condition_2_0,
-							"com.fearlesstyrant.sephirah.Sephirah.NotCondition");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)
-		    |
-		{
-			newCompositeNode(grammarAccess.getNotConditionAccess().getPrimaryConditionParserRuleCall_1());
-		}
-		this_PrimaryCondition_3=rulePrimaryCondition
-		{
-			$current = $this_PrimaryCondition_3.current;
-			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
-// Entry rule entryRulePrimaryCondition
-entryRulePrimaryCondition returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPrimaryConditionRule()); }
-	iv_rulePrimaryCondition=rulePrimaryCondition
-	{ $current=$iv_rulePrimaryCondition.current; }
-	EOF;
-
-// Rule PrimaryCondition
-rulePrimaryCondition returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			otherlv_0='['
-			{
-				newLeafNode(otherlv_0, grammarAccess.getPrimaryConditionAccess().getLeftSquareBracketKeyword_0_0());
-			}
-			{
-				newCompositeNode(grammarAccess.getPrimaryConditionAccess().getConditionParserRuleCall_0_1());
-			}
-			this_Condition_1=ruleCondition
-			{
-				$current = $this_Condition_1.current;
-				afterParserOrEnumRuleCall();
-			}
-			otherlv_2=']'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getPrimaryConditionAccess().getRightSquareBracketKeyword_0_2());
-			}
-		)
-		    |
-		{
-			newCompositeNode(grammarAccess.getPrimaryConditionAccess().getComparisonConditionParserRuleCall_1());
-		}
-		this_ComparisonCondition_3=ruleComparisonCondition
-		{
-			$current = $this_ComparisonCondition_3.current;
-			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
-// Entry rule entryRuleComparisonCondition
-entryRuleComparisonCondition returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getComparisonConditionRule()); }
-	iv_ruleComparisonCondition=ruleComparisonCondition
-	{ $current=$iv_ruleComparisonCondition.current; }
-	EOF;
-
-// Rule ComparisonCondition
-ruleComparisonCondition returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getComparisonConditionAccess().getComparisonConditionAction_0(),
-					$current);
-			}
-		)
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getComparisonConditionAccess().getLeftAdditionParserRuleCall_1_0());
-				}
-				lv_left_1_0=ruleAddition
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getComparisonConditionRule());
-					}
-					set(
-						$current,
-						"left",
-						lv_left_1_0,
-						"com.fearlesstyrant.sephirah.Sephirah.Addition");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getComparisonConditionAccess().getOpComparisonOperatorEnumRuleCall_2_0());
-				}
-				lv_op_2_0=ruleComparisonOperator
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getComparisonConditionRule());
-					}
-					set(
-						$current,
-						"op",
-						lv_op_2_0,
-						"com.fearlesstyrant.sephirah.Sephirah.ComparisonOperator");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getComparisonConditionAccess().getRightAdditionParserRuleCall_3_0());
-				}
-				lv_right_3_0=ruleAddition
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getComparisonConditionRule());
-					}
-					set(
-						$current,
-						"right",
-						lv_right_3_0,
-						"com.fearlesstyrant.sephirah.Sephirah.Addition");
-					afterParserOrEnumRuleCall();
-				}
 			)
 		)
 	)
