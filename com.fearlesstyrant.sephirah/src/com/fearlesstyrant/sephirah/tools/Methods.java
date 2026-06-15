@@ -3,7 +3,11 @@ package com.fearlesstyrant.sephirah.tools;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
+import com.fearlesstyrant.sephirah.tools.value.SephirahValues;
 
 /**
  * Provides Sephirah's standard numeric function library.
@@ -57,57 +61,90 @@ public final class Methods {
                 .build();
     }
 
-    private static BigDecimal abs(List<BigDecimal> args, EvaluationContext context) {
+    private static SephirahValue abs(List<SephirahValue> args, EvaluationContext context) {
         requireArity("abs", args, 1);
-        return args.get(0).abs();
+        
+        BigDecimal value = SephirahValues.requireNumeric(args.get(0));
+        
+        return SephirahValues.numeric(value.abs());
     }
 
-    private static BigDecimal ceil(List<BigDecimal> args, EvaluationContext context) {
+    private static SephirahValue ceil(List<SephirahValue> args, EvaluationContext context) {
         requireArity("ceil", args, 1);
-        return roundToInteger(args.get(0), RoundingMode.CEILING);
+        
+        BigDecimal value = roundToInteger(SephirahValues.requireNumeric(args.get(0)),
+        		RoundingMode.CEILING);
+        
+        return SephirahValues.numeric(value);
     }
 
-    private static BigDecimal floor(List<BigDecimal> args, EvaluationContext context) {
+    private static SephirahValue floor(List<SephirahValue> args, EvaluationContext context) {
         requireArity("floor", args, 1);
-        return roundToInteger(args.get(0), RoundingMode.FLOOR);
+        
+        BigDecimal value = roundToInteger(SephirahValues.requireNumeric(args.get(0)),
+        		RoundingMode.FLOOR);
+        
+        return SephirahValues.numeric(value);
     }
 
-    private static BigDecimal min(List<BigDecimal> args, EvaluationContext context) {
+    private static SephirahValue min(List<SephirahValue> args, EvaluationContext context) {
         requireAtLeast("min", args, 1);
-
-        BigDecimal result = args.get(0);
-        for (int i = 1; i < args.size(); i++) {
-            result = result.min(args.get(i));
+        
+        BigDecimal result = SephirahValues.requireNumeric(args.get(0));
+        
+        List<BigDecimal> results = new ArrayList<>();
+        
+        for(SephirahValue value : args) {
+        	results.add(SephirahValues.requireNumeric(value));
+        }
+        
+        for (int i = 1; i < results.size(); i++) {
+            result = result.min(results.get(i));
         }
 
-        return result;
+        return SephirahValues.numeric(result);
     }
 
-    private static BigDecimal max(List<BigDecimal> args, EvaluationContext context) {
+    private static SephirahValue max(List<SephirahValue> args, EvaluationContext context) {
         requireAtLeast("max", args, 1);
 
-        BigDecimal result = args.get(0);
+        BigDecimal result = SephirahValues.requireNumeric(args.get(0));
+        
+        List<BigDecimal> results = new ArrayList<>();
+        
+        for(SephirahValue value : args) {
+        	results.add(SephirahValues.requireNumeric(value));
+        }
+        
         for (int i = 1; i < args.size(); i++) {
-            result = result.max(args.get(i));
+            result = result.max(results.get(i));
         }
 
-        return result;
+        return SephirahValues.numeric(result);
     }
 
-    private static BigDecimal roundHalfUp(List<BigDecimal> args, EvaluationContext context) {
+    private static SephirahValue roundHalfUp(List<SephirahValue> args, EvaluationContext context) {
         requireArity("roundHalfUp", args, 1);
-        return roundToInteger(args.get(0), RoundingMode.HALF_UP);
+        
+        BigDecimal value = roundToInteger(SephirahValues.requireNumeric(args.get(0)),
+        		RoundingMode.HALF_UP);
+        
+        return SephirahValues.numeric(value);
     }
 
-    private static BigDecimal roundHalfDown(List<BigDecimal> args, EvaluationContext context) {
+    private static SephirahValue roundHalfDown(List<SephirahValue> args, EvaluationContext context) {
         requireArity("roundHalfDown", args, 1);
-        return roundToInteger(args.get(0), RoundingMode.HALF_DOWN);
+        
+        BigDecimal value = roundToInteger(SephirahValues.requireNumeric(args.get(0)),
+        		RoundingMode.HALF_DOWN);
+        
+        return SephirahValues.numeric(value);
     }
 
-    private static BigDecimal sqrt(List<BigDecimal> args, EvaluationContext context) {
+    private static SephirahValue sqrt(List<SephirahValue> args, EvaluationContext context) {
         requireArity("sqrt", args, 1);
 
-        BigDecimal value = args.get(0);
+        BigDecimal value = SephirahValues.requireNumeric(args.get(0));
 
         if (value.signum() < 0) {
             throw new ArithmeticException("sqrt cannot accept a negative value: " + value);
@@ -117,34 +154,34 @@ public final class Methods {
          * DECIMAL128 is a reasonable default for now. Later, precision should
          * come from an EvaluationSettings object.
          */
-        return value.sqrt(MathContext.DECIMAL128);
+        return SephirahValues.numeric(value.sqrt(MathContext.DECIMAL128));
     }
 
-    private static BigDecimal roll(List<BigDecimal> args, EvaluationContext context) {
+    private static SephirahValue roll(List<SephirahValue> args, EvaluationContext context) {
         requireArity("roll", args, 2);
 
-        int quantity = requireWholeInt("roll quantity", args.get(0));
-        int sides = requireWholeInt("roll sides", args.get(1));
+        int quantity = requireWholeInt("roll quantity", SephirahValues.requireNumeric(args.get(0)));
+        int sides = requireWholeInt("roll sides", SephirahValues.requireNumeric(args.get(1)));
 
         if (quantity <= 0 || sides <= 0) {
             throw new IllegalArgumentException("Dice quantity and sides must be positive.");
         }
 
-        return BigDecimal.valueOf(Dice.roll(quantity, sides));
+        return SephirahValues.numeric(BigDecimal.valueOf(Dice.roll(quantity, sides)));
     }
 
     private static BigDecimal roundToInteger(BigDecimal value, RoundingMode roundingMode) {
         return value.setScale(0, roundingMode);
     }
 
-    private static void requireArity(String functionName, List<BigDecimal> args, int expected) {
+    private static void requireArity(String functionName, List<SephirahValue> args, int expected) {
         if (args.size() != expected) {
             throw new IllegalArgumentException(functionName + " expects " + expected
                     + " argument(s), but received " + args.size() + ".");
         }
     }
 
-    private static void requireAtLeast(String functionName, List<BigDecimal> args, int minimum) {
+    private static void requireAtLeast(String functionName, List<SephirahValue> args, int minimum) {
         if (args.size() < minimum) {
             throw new IllegalArgumentException(functionName + " expects at least " + minimum
                     + " argument(s), but received " + args.size() + ".");

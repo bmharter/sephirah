@@ -4,9 +4,8 @@ import java.util.*;
 
 import org.eclipse.emf.common.util.EList;
 
-import java.math.BigDecimal;
-
 import com.fearlesstyrant.sephirah.sephirah.*;
+import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 
 /**
  * Compiles module-level Sephirah definitions into callable runtime functions.
@@ -69,7 +68,7 @@ public final class ModuleFunctionCompiler {
 			MutableFunctionRegistryReference registryReference,
 			ThreadLocal<Deque<String>> callStack) {
 		
-		return (List<BigDecimal> arguments, EvaluationContext callerContext) -> {
+		return (List<SephirahValue> arguments, EvaluationContext callerContext) -> {
 			String functionName = definition.getName();
 			
 			if (functionName == null || functionName.isBlank()) {
@@ -94,7 +93,7 @@ public final class ModuleFunctionCompiler {
 	                + " argument(s), but received " + arguments.size() + ".");
 				}
 				
-				Map<String, BigDecimal> localValues = new HashMap<>();
+				Map<String, SephirahValue> localValues = new HashMap<>();
 				
 				for(int i = 0; i < parameters.size(); i++) {
 					Assignment parameter = parameters.get(i);
@@ -112,7 +111,7 @@ public final class ModuleFunctionCompiler {
 				EvaluationContext localContext = new EvaluationContext(localValues, moduleResolver);
 				
 				return new Computer(localContext, registryReference.get())
-						.evaluate(definition.getExpr());
+						.evaluateValue(definition.getExpr());
 			} finally {
 				stack.pop();
 				

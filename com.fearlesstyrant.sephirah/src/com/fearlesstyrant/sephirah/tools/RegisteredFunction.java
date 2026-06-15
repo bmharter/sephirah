@@ -1,7 +1,8 @@
 package com.fearlesstyrant.sephirah.tools;
 
 import java.util.*;
-import java.math.BigDecimal;
+
+import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 
 /**
  * A callable function with its validation metadata.
@@ -21,7 +22,7 @@ public final class RegisteredFunction {
 		this.function = Objects.requireNonNull(function, "function must not be null");
 	}
 	
-	public BigDecimal invoke(List<BigDecimal> arguments, EvaluationContext context) {
+	public SephirahValue invoke(List<SephirahValue> arguments, EvaluationContext context) {
         Objects.requireNonNull(arguments, "arguments must not be null");
         Objects.requireNonNull(context, "context must not be null");
 

@@ -1,12 +1,12 @@
 package com.fearlesstyrant.sephirah.tools;
 
-import java.math.BigDecimal;
 import java.util.*;
 import java.util.function.Supplier;
 
 import com.fearlesstyrant.sephirah.sephirah.Assignment;
 import com.fearlesstyrant.sephirah.sephirah.FormulaModel;
 import com.fearlesstyrant.sephirah.sephirah.VariableAssignment;
+import com.fearlesstyrant.sephirah.tools.value.*;
 
 /**
  * Resolves module-level Sephirah variable declarations.
@@ -22,7 +22,7 @@ import com.fearlesstyrant.sephirah.sephirah.VariableAssignment;
 public final class ModuleValueResolver implements ValueResolver {
 
 	private final Map<String, VariableAssignment> declarations;
-	private final Map<String, BigDecimal> cache;
+	private final Map<String, SephirahValue> cache;
 	private final Deque<String> resolutionStack;
 	private final Supplier<FunctionRegistry> functions;
 	    
@@ -56,7 +56,7 @@ public final class ModuleValueResolver implements ValueResolver {
 	}
 	
 	@Override
-	public Optional<BigDecimal> resolveValue(String name) {
+	public Optional<SephirahValue> resolveValue(String name) {
 		Objects.requireNonNull(name, "name must not be null");
 		
 		if(cache.containsKey(name)) {
@@ -79,8 +79,8 @@ public final class ModuleValueResolver implements ValueResolver {
 		try {
 			EvaluationContext context = new EvaluationContext(Collections.emptyMap(), this);
 			
-			BigDecimal value = new Computer(context, functions.get())
-					.evaluate(declaration.getValue());
+			SephirahValue value = new Computer(context, functions.get()).evaluateValue(
+					declaration.getValue());
 			
 			cache.put(name, value);
 			

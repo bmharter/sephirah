@@ -1,7 +1,6 @@
 package com.fearlesstyrant.sephirah.tools;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,8 +26,6 @@ import com.fearlesstyrant.sephirah.tools.value.SephirahValues;
  * {@link FunctionRegistry}.</p>
  */
 public final class Computer {
-
-    private static final MathContext DEFAULT_MATH_CONTEXT = MathContext.DECIMAL128;
 
     private final EvaluationContext context;
     private final FunctionRegistry functions;
@@ -73,7 +70,7 @@ public final class Computer {
      * @param values runtime variable bindings
      * @return evaluated numeric result
      */
-    public static BigDecimal compute(Expression expression, Map<String, BigDecimal> values) {
+    public static BigDecimal compute(Expression expression, Map<String, SephirahValue> values) {
         return standard(EvaluationContext.of(values)).evaluate(expression);
     }
 
@@ -124,7 +121,7 @@ public final class Computer {
         }
 
         if(expression instanceof Variable variable) {
-            return SephirahValues.numeric(context.requireValue(variable.getName()));
+            return context.requireValue(variable.getName());
         }
         
         if(expression instanceof Conditional conditional) {
@@ -199,7 +196,7 @@ public final class Computer {
         }
 
         if(expression instanceof MethodCall methodCall) {
-            return SephirahValues.numeric(evaluateMethodCall(methodCall));
+            return evaluateMethodCall(methodCall);
         }
         
         if(expression instanceof Negate negate) {
@@ -261,12 +258,12 @@ public final class Computer {
      * @param methodCall generated function-call expression
      * @return evaluated numeric result
      */
-    private BigDecimal evaluateMethodCall(MethodCall methodCall) {
+    private SephirahValue evaluateMethodCall(MethodCall methodCall) {
         String functionName = methodCall.getName();
-        List<BigDecimal> arguments = new ArrayList<>();
+        List<SephirahValue> arguments = new ArrayList<>();
 
         for (Expression argument : methodCall.getArgs()) {
-            arguments.add(evaluate(argument));
+            arguments.add(evaluateValue(argument));
         }
 
         return functions.invoke(functionName, arguments, context);
@@ -296,11 +293,11 @@ public final class Computer {
                     + parameters.size() + ".");
         }
 
-        Map<String, BigDecimal> localValues = new HashMap<>();
+        Map<String, SephirahValue> localValues = new HashMap<>();
 
         for (int i = 0; i < variables.size(); i++) {
             Assignment variable = variables.get(i);
-            BigDecimal value = compute(parameters.get(i));
+            SephirahValue value = SephirahValues.numeric(compute(parameters.get(i)));
 
             localValues.put(variable.getName(), value);
         }

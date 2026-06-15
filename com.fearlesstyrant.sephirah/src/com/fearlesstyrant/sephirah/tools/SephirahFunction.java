@@ -1,7 +1,8 @@
 package com.fearlesstyrant.sephirah.tools;
 
-import java.math.BigDecimal;
 import java.util.List;
+
+import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 
 /**
  * Represents a callable Sephirah runtime function.
@@ -21,5 +22,5 @@ public interface SephirahFunction {
      * @param context active evaluation context
      * @return numeric result of the function call
      */
-    BigDecimal apply(List<BigDecimal> arguments, EvaluationContext context);
+    SephirahValue apply(List<SephirahValue> arguments, EvaluationContext context);
 }

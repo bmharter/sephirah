@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
+import com.fearlesstyrant.sephirah.tools.value.SephirahValues;
+
 /**
  * Provides runtime bindings for Sephirah expression evaluation.
  *
@@ -26,7 +29,7 @@ public final class EvaluationContext {
      */
     public static final EvaluationContext EMPTY = new EvaluationContext(Collections.emptyMap(), null);
 
-    private final Map<String, BigDecimal> values;
+    private final Map<String, SephirahValue> values;
     private final ValueResolver resolver;
 
     /**
@@ -34,11 +37,11 @@ public final class EvaluationContext {
      *
      * @param values variable names mapped to numeric values
      */
-    public EvaluationContext(Map<String, BigDecimal> values) {
+    public EvaluationContext(Map<String, SephirahValue> values) {
         this(values, null);
     }
     
-    public EvaluationContext(Map<String, BigDecimal> values, ValueResolver resolver) {
+    public EvaluationContext(Map<String, SephirahValue> values, ValueResolver resolver) {
         Objects.requireNonNull(values, "values must not be null");
 
         this.values = Collections.unmodifiableMap(new HashMap<>(values));
@@ -60,12 +63,12 @@ public final class EvaluationContext {
      * @param values variable names mapped to numeric values
      * @return a new evaluation context
      */
-    public static EvaluationContext of(Map<String, BigDecimal> values) {
+    public static EvaluationContext of(Map<String, SephirahValue> values) {
     	Objects.requireNonNull(values, "values must not be null");
         return new EvaluationContext(values);
     }
     
-    public static EvaluationContext of(Map<String, BigDecimal> values, ValueResolver resolver) {
+    public static EvaluationContext of(Map<String, SephirahValue> values, ValueResolver resolver) {
     	Objects.requireNonNull(values, "values must not be null");
     	Objects.requireNonNull(resolver, "resolver must not be null");
     	return new EvaluationContext(values, resolver);
@@ -82,8 +85,8 @@ public final class EvaluationContext {
         Objects.requireNonNull(name, "name must not be null");
         Objects.requireNonNull(value, "value must not be null");
 
-        Map<String, BigDecimal> updatedValues = new HashMap<>(values);
-        updatedValues.put(name, value);
+        Map<String, SephirahValue> updatedValues = new HashMap<>(values);
+        updatedValues.put(name, SephirahValues.numeric(value));
 
         return new EvaluationContext(updatedValues, resolver);
     }
@@ -100,10 +103,10 @@ public final class EvaluationContext {
      * @param name variable name or qualified path
      * @return the resolved value, if bound
      */
-    public Optional<BigDecimal> resolveValue(String name) {
+    public Optional<SephirahValue> resolveValue(String name) {
     	Objects.requireNonNull(name, "name must not be null");
 
-        BigDecimal directValue = values.get(name);
+        SephirahValue directValue = values.get(name);
 
         if (directValue != null) {
             return Optional.of(directValue);
@@ -122,9 +125,13 @@ public final class EvaluationContext {
      * @param name variable name or qualified path
      * @return the resolved numeric value
      */
-    public BigDecimal requireValue(String name) {
-        return resolveValue(name)
+    public SephirahValue requireValue(String name) {
+        return  resolveValue(name)
                 .orElseThrow(() -> new IllegalArgumentException("Unbound variable: " + name));
+    }
+    
+    public BigDecimal requireNumericValue(String name) {
+        return SephirahValues.requireNumeric(requireValue(name));
     }
 
 	public ValueResolver getResolver() {

@@ -1,7 +1,8 @@
 package com.fearlesstyrant.sephirah.tools;
 
-import java.math.BigDecimal;
 import java.util.Optional;
+
+import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 
 /**
  * Resolves named Sephirah values that are not directly bound in an
@@ -16,5 +17,5 @@ public interface ValueResolver {
      * @param name variable name or qualified path
      * @return the resolved numeric value, if available
      */
-    Optional<BigDecimal> resolveValue(String name);
+    Optional<SephirahValue> resolveValue(String name);
 }

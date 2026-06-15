@@ -1,11 +1,12 @@
 package com.fearlesstyrant.sephirah.tools;
 
-import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 
 /**
  * Stores the callable functions available to a Sephirah evaluation.
@@ -70,7 +71,7 @@ public final class FunctionRegistry {
      * @param context active evaluation context
      * @return function result
      */
-    public BigDecimal invoke(String name, List<BigDecimal> arguments, EvaluationContext context) {
+    public SephirahValue invoke(String name, List<SephirahValue> arguments, EvaluationContext context) {
         Objects.requireNonNull(name, "name must not be null");
         Objects.requireNonNull(arguments, "arguments must not be null");
         Objects.requireNonNull(context, "context must not be null");
