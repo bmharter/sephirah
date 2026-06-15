@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -18,6 +19,7 @@ import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import com.fearlesstyrant.sephirah.sephirah.*;
 import com.fearlesstyrant.sephirah.tools.*;
 import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
+import com.fearlesstyrant.sephirah.tools.value.SephirahValues;
 
 /**
  * This class contains custom validation rules. 
@@ -40,6 +42,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	public static final String UNKNOWN_FUNCTION = CODE_PREFIX + "unknown_function";
 	public static final String FUNCTION_ARITY = CODE_PREFIX + "function_arity";
 	public static final String DUPLICATE_PARAMETER = CODE_PREFIX + "duplicate_parameter";
+	public static final String TYPE_MISMATCH = CODE_PREFIX + "type_mismatch";
 	
 	@Check
 	public void checkBuiltinFunctionConflict(Definition definition) {
@@ -427,7 +430,124 @@ public class SephirahValidator extends AbstractSephirahValidator {
 				UNUSED_VARIABLE,
 				name);
 	}
+	
+	@Check
+	public void checkAndOperandTypes(AndCondition condition) {
+		checkBooleanOperand(condition.getLeft(),
+				SephirahPackage.Literals.AND_CONDITION__LEFT,
+				"Operator 'and' requires boolean operands");
+		checkBooleanOperand(condition.getRight(),
+				SephirahPackage.Literals.AND_CONDITION__RIGHT,
+				"Operator 'and' requires boolean operands");
+	}
+	
+	@Check
+	public void checkOrOperandTypes(OrCondition condition) {
+		checkBooleanOperand(condition.getLeft(),
+				SephirahPackage.Literals.OR_CONDITION__LEFT,
+				"Operator 'or' requires boolean operands");
+		checkBooleanOperand(condition.getRight(),
+				SephirahPackage.Literals.OR_CONDITION__RIGHT,
+				"Operator 'or' requires boolean operands");
+	}
+	
+	@Check
+	public void checkNotOperandType(NotCondition condition) {
+		checkBooleanOperand(condition.getCondition(),
+				SephirahPackage.Literals.NOT_CONDITION__CONDITION,
+				"Operator 'not' requires a boolean operand");
+	}
+	
+	@Check
+	public void checkConditionalBranchTypes(Conditional conditional) {
+	    SephirahType thenType = inferType(conditional.getThenBranch());
+	    SephirahType elseType = inferType(conditional.getElseBranch());
 
+	    if (thenType == SephirahType.UNKNOWN || elseType == SephirahType.UNKNOWN) {
+	        return;
+	    }
+
+	    if (thenType != elseType) {
+	        error("If expression branches must return compatible types.",
+	                SephirahPackage.Literals.CONDITIONAL__ELSE_BRANCH,
+	                TYPE_MISMATCH);
+	    }
+	}
+	
+	@Check 
+	public void checkConditionType(Conditional conditional) {
+		checkBooleanOperand(conditional.getCondition(),
+				SephirahPackage.Literals.CONDITIONAL__CONDITION,
+				"If expressions require a boolean condition");
+	}
+	
+	@Check
+	public void checkComparisonOperandTypes(ComparisonCondition comparison) {
+	    checkNumericOperand(comparison.getLeft(),
+	            SephirahPackage.Literals.COMPARISON_CONDITION__LEFT,
+	            "Comparison operators require numeric operands.");
+	    checkNumericOperand(comparison.getRight(),
+	            SephirahPackage.Literals.COMPARISON_CONDITION__RIGHT,
+	            "Comparison operators require numeric operands.");
+	}
+
+	@Check
+	public void checkAddOperandTypes(Add add) {
+		checkNumericOperand(add.getLeft(),
+				SephirahPackage.Literals.ADD__LEFT, "Operator + requires numeric operands.");
+		checkNumericOperand(add.getRight(),
+				SephirahPackage.Literals.ADD__RIGHT, "Operator + requires numeric operands.");
+	}
+	
+	@Check
+	public void checkSubtractOperandTypes(Subtract subtract) {
+		checkNumericOperand(subtract.getLeft(),
+				SephirahPackage.Literals.SUBTRACT__LEFT, "Operator - requires numeric operands.");
+		checkNumericOperand(subtract.getRight(),
+				SephirahPackage.Literals.SUBTRACT__RIGHT, "Operator - requires numeric operands.");
+	}
+	
+	@Check
+	public void checkMultiplyOperandTypes(Multiply multiply) {
+		checkNumericOperand(multiply.getLeft(),
+				SephirahPackage.Literals.MULTIPLY__LEFT, "Operator * requires numeric operands.");
+		checkNumericOperand(multiply.getRight(),
+				SephirahPackage.Literals.MULTIPLY__RIGHT, "Operator * requires numeric operands.");
+	}
+	
+	@Check
+	public void checkDivideOperandTypes(Divide divide) {
+		checkNumericOperand(divide.getLeft(),
+				SephirahPackage.Literals.DIVIDE__LEFT, "Operator / requires numeric operands.");
+		checkNumericOperand(divide.getRight(),
+				SephirahPackage.Literals.DIVIDE__RIGHT, "Operator / requires numeric operands.");
+	}
+	
+	@Check
+	public void checkExponentOperandTypes(Exponent exponent) {
+		checkNumericOperand(exponent.getLeft(),
+				SephirahPackage.Literals.EXPONENT__LEFT, "Operator ^ requires numeric operands.");
+		checkNumericOperand(exponent.getRight(),
+				SephirahPackage.Literals.EXPONENT__RIGHT, "Operator ^ requires numeric operands.");
+	}
+	
+	@Check
+	public void checkNegateOperandType(Negate negate) {
+		checkNumericOperand(negate.getValue(),
+				SephirahPackage.Literals.NEGATE__VALUE, "Operator -x requires a numeric operand.");
+	}
+	
+
+	private void checkBooleanOperand(Expression expression,
+			EStructuralFeature feature,
+			String message) {
+		SephirahType type = inferType(expression);
+		
+		if(type == SephirahType.NUMBER) {
+			error(message, feature, TYPE_MISMATCH);
+		}
+	}
+	
 	private static void checkFunctionCycle(
 			FormulaModel model,
 			String functionName,
@@ -454,6 +574,16 @@ public class SephirahValidator extends AbstractSephirahValidator {
 			}
 		} finally {
 			stack.pop();
+		}
+	}
+	
+	private void checkNumericOperand(Expression expression,
+			EStructuralFeature feature,
+			String message) {
+		SephirahType type = inferType(expression);
+		
+		if(type == SephirahType.BOOLEAN) {
+			error(message, feature, TYPE_MISMATCH);
 		}
 	}
 
@@ -611,6 +741,53 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	    }
 
 	    return false;
+	}
+	
+	private static SephirahType inferType(Expression expression) {
+		if(expression == null) {
+			return SephirahType.UNKNOWN;
+		}
+		
+		if(expression instanceof NumberLiteral || expression instanceof Constant) {
+			return SephirahType.NUMBER;
+		}
+		
+		if(expression instanceof BooleanLiteral) {
+			return SephirahType.BOOLEAN;
+		}
+		
+		if(expression instanceof Add
+				|| expression instanceof Subtract
+				|| expression instanceof Multiply
+				|| expression instanceof Divide
+				|| expression instanceof Exponent
+				|| expression instanceof Negate) {
+			return SephirahType.NUMBER;
+		}
+		
+		if(expression instanceof ComparisonCondition
+				|| expression instanceof AndCondition
+				|| expression instanceof OrCondition
+				|| expression instanceof NotCondition) {
+			return SephirahType.BOOLEAN;
+		}
+		
+		if(expression instanceof Conditional conditional) {
+			SephirahType thenType = inferType(conditional.getThenBranch());
+			SephirahType elseType = inferType(conditional.getElseBranch());
+			
+			if(thenType == elseType) {
+				return thenType;
+			}
+			
+			return SephirahType.UNKNOWN;
+		}
+		
+		if (expression instanceof Variable || expression instanceof MethodCall) {
+	        return SephirahType.UNKNOWN;
+	    }
+
+	    return SephirahType.UNKNOWN;
 	}
 	
 	private static boolean isKnownFunction(MethodCall methodCall, String name) {
@@ -815,5 +992,11 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		} catch (RuntimeException exception) {
 			return null;
 		}
+	}
+	
+	private enum SephirahType {
+		NUMBER,
+		BOOLEAN,
+		UNKNOWN
 	}
 }

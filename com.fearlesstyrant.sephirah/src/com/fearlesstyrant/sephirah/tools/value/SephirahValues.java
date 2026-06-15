@@ -26,7 +26,7 @@ public final class SephirahValues {
         throw new IllegalArgumentException("Expected numeric value, but received " + value + ".");
     }
 
-    public static boolean requireBoolean(SephirahValue value) {
+    public static Boolean requireBoolean(SephirahValue value) {
         Objects.requireNonNull(value, "value must not be null");
 
         if (value instanceof BooleanValue booleanValue) {
