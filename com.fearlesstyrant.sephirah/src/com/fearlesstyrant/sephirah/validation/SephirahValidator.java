@@ -345,6 +345,56 @@ public class SephirahValidator extends AbstractSephirahValidator {
         name,
         String.valueOf(actual));
 	}
+	
+	@Check
+	public void checkFunctionCallBodyTypes(MethodCall methodCall) {
+	    String name = methodCall.getName();
+
+	    if (name == null || name.isBlank()) {
+	        return;
+	    }
+
+	    FormulaModel model = EcoreUtil2.getContainerOfType(methodCall, FormulaModel.class);
+
+	    if (model == null) {
+	        return;
+	    }
+
+	    Definition definition = findDefinition(model, name);
+
+	    if (definition == null || definition.getExpr() == null) {
+	        return;
+	    }
+
+	    if (definition.getArgs().size() != methodCall.getArgs().size()) {
+	        return;
+	    }
+
+	    TypeInferenceContext context = new TypeInferenceContext();
+
+	    Map<String, SephirahType> parameterTypes = new HashMap<>();
+
+	    for (int i = 0; i < definition.getArgs().size(); i++) {
+	        Assignment parameter = definition.getArgs().get(i);
+	        Expression argument = methodCall.getArgs().get(i);
+
+	        String parameterName = parameter.getName();
+
+	        if (parameterName == null || parameterName.isBlank()) {
+	            continue;
+	        }
+
+	        parameterTypes.put(parameterName, inferType(argument, context));
+	    }
+
+	    context.localVariableTypes.push(parameterTypes);
+
+	    try {
+	        checkExpressionTypesInContext(definition.getExpr(), context);
+	    } finally {
+	        context.localVariableTypes.pop();
+	    }
+	}
 
 	@Check
 	public void checkKnownFunction(MethodCall methodCall) {
@@ -547,6 +597,198 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		}
 	}
 	
+	private void checkBooleanOperand(
+			EObject source,
+	        Expression expression,
+	        EStructuralFeature feature,
+	        String message,
+	        TypeInferenceContext context) {
+
+	    SephirahType type = inferType(expression, context);
+
+	    if (type == SephirahType.NUMBER) {
+	        error(message, source, feature, TYPE_MISMATCH);
+	    }
+	}
+	
+	private void checkExpressionTypesInContext(
+	        Expression expression,
+	        TypeInferenceContext context) {
+
+	    if (expression == null) {
+	        return;
+	    }
+
+	    if (expression instanceof Add add) {
+	        checkNumericOperand(
+	        		add,
+	        		add.getLeft(),
+	                SephirahPackage.Literals.ADD__LEFT,
+	                "Operator + requires numeric operands.",
+	                context);
+	        checkNumericOperand(
+	        		add,
+	        		add.getRight(),
+	                SephirahPackage.Literals.ADD__RIGHT,
+	                "Operator + requires numeric operands.",
+	                context);
+	    }
+
+	    if (expression instanceof Subtract subtract) {
+	        checkNumericOperand(
+	        		subtract,
+	        		subtract.getLeft(),
+	                SephirahPackage.Literals.SUBTRACT__LEFT,
+	                "Operator - requires numeric operands.",
+	                context);
+	        checkNumericOperand(
+	        		subtract,
+	        		subtract.getRight(),
+	                SephirahPackage.Literals.SUBTRACT__RIGHT,
+	                "Operator - requires numeric operands.",
+	                context);
+	    }
+
+	    if (expression instanceof Multiply multiply) {
+	        checkNumericOperand(
+	        		multiply,
+	        		multiply.getLeft(),
+	                SephirahPackage.Literals.MULTIPLY__LEFT,
+	                "Operator * requires numeric operands.",
+	                context);
+	        checkNumericOperand(
+	        		multiply,
+	        		multiply.getRight(),
+	                SephirahPackage.Literals.MULTIPLY__RIGHT,
+	                "Operator * requires numeric operands.",
+	                context);
+	    }
+
+	    if (expression instanceof Divide divide) {
+	        checkNumericOperand(
+	        		divide,
+	        		divide.getLeft(),
+	                SephirahPackage.Literals.DIVIDE__LEFT,
+	                "Operator / requires numeric operands.",
+	                context);
+	        checkNumericOperand(
+	        		divide,
+	        		divide.getRight(),
+	                SephirahPackage.Literals.DIVIDE__RIGHT,
+	                "Operator / requires numeric operands.",
+	                context);
+	    }
+
+	    if (expression instanceof Exponent exponent) {
+	        checkNumericOperand(
+	        		exponent,
+	        		exponent.getLeft(),
+	                SephirahPackage.Literals.EXPONENT__LEFT,
+	                "Operator ^ requires numeric operands.",
+	                context);
+	        checkNumericOperand(
+	        		exponent,
+	        		exponent.getRight(),
+	                SephirahPackage.Literals.EXPONENT__RIGHT,
+	                "Operator ^ requires numeric operands.",
+	                context);
+	    }
+
+	    if (expression instanceof Negate negate) {
+	        checkNumericOperand(
+	        		negate,
+	        		negate.getValue(),
+	                SephirahPackage.Literals.NEGATE__VALUE,
+	                "Operator -x requires a numeric operand.",
+	                context);
+	    }
+
+	    if (expression instanceof ComparisonCondition comparison) {
+	        checkNumericOperand(
+	        		comparison,
+	        		comparison.getLeft(),
+	                SephirahPackage.Literals.COMPARISON_CONDITION__LEFT,
+	                "Comparison operators require numeric operands.",
+	                context);
+	        checkNumericOperand(
+	        		comparison,
+	        		comparison.getRight(),
+	                SephirahPackage.Literals.COMPARISON_CONDITION__RIGHT,
+	                "Comparison operators require numeric operands.",
+	                context);
+	    }
+
+	    if (expression instanceof AndCondition andCondition) {
+	        checkBooleanOperand(
+	        		andCondition,
+	        		andCondition.getLeft(),
+	                SephirahPackage.Literals.AND_CONDITION__LEFT,
+	                "Operator 'and' requires boolean operands.",
+	                context);
+	        checkBooleanOperand(
+	        		andCondition,
+	        		andCondition.getRight(),
+	                SephirahPackage.Literals.AND_CONDITION__RIGHT,
+	                "Operator 'and' requires boolean operands.",
+	                context);
+	    }
+
+	    if (expression instanceof OrCondition orCondition) {
+	        checkBooleanOperand(
+	        		orCondition,
+	        		orCondition.getLeft(),
+	                SephirahPackage.Literals.OR_CONDITION__LEFT,
+	                "Operator 'or' requires boolean operands.",
+	                context);
+	        checkBooleanOperand(
+	        		orCondition,
+	        		orCondition.getRight(),
+	                SephirahPackage.Literals.OR_CONDITION__RIGHT,
+	                "Operator 'or' requires boolean operands.",
+	                context);
+	    }
+
+	    if (expression instanceof NotCondition notCondition) {
+	        checkBooleanOperand(
+	        		notCondition,
+	        		notCondition.getCondition(),
+	                SephirahPackage.Literals.NOT_CONDITION__CONDITION,
+	                "Operator 'not' requires a boolean operand.",
+	                context);
+	    }
+
+	    if (expression instanceof Conditional conditional) {
+	        checkBooleanOperand(
+	        		conditional,
+	        		conditional.getCondition(),
+	                SephirahPackage.Literals.CONDITIONAL__CONDITION,
+	                "If expressions require a boolean condition.",
+	                context);
+
+	        SephirahType thenType = inferType(conditional.getThenBranch(), context);
+	        SephirahType elseType = inferType(conditional.getElseBranch(), context);
+
+	        if (thenType != SephirahType.UNKNOWN
+	                && elseType != SephirahType.UNKNOWN
+	                && thenType != elseType) {
+	            error("If expression branches must return compatible types.",
+	            		conditional,
+	                    SephirahPackage.Literals.CONDITIONAL__ELSE_BRANCH,
+	                    TYPE_MISMATCH);
+	        }
+	    }
+
+	    TreeIterator<EObject> contents = expression.eAllContents();
+
+	    while (contents.hasNext()) {
+	        EObject object = contents.next();
+
+	        if (object instanceof Expression childExpression) {
+	            checkExpressionTypesInContext(childExpression, context);
+	        }
+	    }
+	}
+	
 	private static void checkFunctionCycle(
 			FormulaModel model,
 			String functionName,
@@ -576,7 +818,8 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		}
 	}
 	
-	private void checkNumericOperand(Expression expression,
+	private void checkNumericOperand(
+			Expression expression,
 			EStructuralFeature feature,
 			String message) {
 		SephirahType type = inferType(expression);
@@ -584,6 +827,20 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		if(type == SephirahType.BOOLEAN) {
 			error(message, feature, TYPE_MISMATCH);
 		}
+	}
+	
+	private void checkNumericOperand(
+			EObject source,
+	        Expression expression,
+	        EStructuralFeature feature,
+	        String message,
+	        TypeInferenceContext context) {
+
+	    SephirahType type = inferType(expression, context);
+
+	    if (type == SephirahType.BOOLEAN) {
+	        error(message, source, feature, TYPE_MISMATCH);
+	    }
 	}
 
 	private static boolean expressionContainsVariableName(Expression expression, String name) {
