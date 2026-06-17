@@ -1,100 +1,106 @@
 package com.fearlesstyrant.sephirah.tools;
 
-import java.util.Objects;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
-/**
- * Describes the argument-count rules for a Sephirah function.
- */
+import com.fearlesstyrant.sephirah.tools.value.SephirahType;
+
 public final class FunctionSignature {
 
-	private final Integer minimumArity;
-	private final Integer maximumArity;
-	
-	private FunctionSignature(Integer minimumArity, Integer maximumArity) {
-		this.minimumArity = minimumArity;
-		this.maximumArity = maximumArity;
-	}
-	
-	/**
-     * Creates a fixed-arity signature.
-     *
-     * @param arity exact number of arguments required
-     * @return function signature
-     */
-    public static FunctionSignature exactly(int arity) {
-        if (arity < 0) {
-            throw new IllegalArgumentException("arity must not be negative");
-        }
+    private final int minArgs;
+    private final int maxArgs;
+    private final List<SephirahType> parameterTypes;
+    private final SephirahType returnType;
 
-        return new FunctionSignature(arity, arity);
+    private FunctionSignature(
+            int minArgs,
+            int maxArgs,
+            List<SephirahType> parameterTypes,
+            SephirahType returnType) {
+        this.minArgs = minArgs;
+        this.maxArgs = maxArgs;
+        this.parameterTypes = parameterTypes;
+        this.returnType = returnType;
     }
     
-    /**
-     * Creates a signature accepting at least the supplied number of arguments.
-     *
-     * @param minimumArity minimum number of arguments required
-     * @return function signature
-     */
-    public static FunctionSignature atLeast(int minimumArity) {
-        if (minimumArity < 0) {
-            throw new IllegalArgumentException("minimumArity must not be negative");
-        }
-
-        return new FunctionSignature(minimumArity, null);
-    }
-    
-    /**
-     * Checks whether an argument count is accepted by this signature.
-     *
-     * @param actualArity actual number of supplied arguments
-     * @return true when valid
-     */
-    public boolean accepts(int actualArity) {
-        if (actualArity < 0) {
-            return false;
-        }
-
-        if (minimumArity != null && actualArity < minimumArity) {
-            return false;
-        }
-
-        if (maximumArity != null && actualArity > maximumArity) {
-            return false;
-        }
-
-        return true;
-    }
-    
-    /**
-     * Builds a user-facing error message.
-     *
-     * @param functionName function name
-     * @param actualArity actual supplied argument count
-     * @return error message
-     */
-    public String describeMismatch(String functionName, int actualArity) {
-        Objects.requireNonNull(functionName, "functionName must not be null");
-
-        if (minimumArity != null && maximumArity != null
-                && minimumArity.equals(maximumArity)) {
-            return "Function " + functionName + " expects " + minimumArity
-                    + " argument(s), but received " + actualArity + ".";
-        }
-
-        if (minimumArity != null && maximumArity == null) {
-            return "Function " + functionName + " expects at least " + minimumArity
-                    + " argument(s), but received " + actualArity + ".";
-        }
-
-        return "Function " + functionName + " received invalid argument count: "
-                + actualArity + ".";
+    public static FunctionSignature atLeast(int minArgs) {
+        return new FunctionSignature(
+                minArgs,
+                Integer.MAX_VALUE,
+                Collections.emptyList(),
+                SephirahType.UNKNOWN);
     }
 
-    public Integer getMinimumArity() {
-        return minimumArity;
+    public static FunctionSignature atLeast(
+            int minArgs,
+            SephirahType returnType,
+            SephirahType... parameterTypes) {
+        return new FunctionSignature(
+                minArgs,
+                Integer.MAX_VALUE,
+                Arrays.asList(parameterTypes),
+                returnType);
     }
 
-    public Integer getMaximumArity() {
-        return maximumArity;
+    public static FunctionSignature exactly(int count) {
+        return new FunctionSignature(
+                count,
+                count,
+                Collections.emptyList(),
+                SephirahType.UNKNOWN);
+    }
+
+    public static FunctionSignature exactly(
+            int count,
+            SephirahType returnType,
+            SephirahType... parameterTypes) {
+        return new FunctionSignature(
+                count,
+                count,
+                Arrays.asList(parameterTypes),
+                returnType);
+    }
+
+    public boolean accepts(int actual) {
+        return actual >= minArgs && actual <= maxArgs;
+    }
+
+    public Optional<SephirahType> getReturnType() {
+        if (returnType == SephirahType.UNKNOWN) {
+            return Optional.empty();
+        }
+
+        return Optional.of(returnType);
+    }
+
+    public Optional<SephirahType> getParameterType(int index) {
+        if (index < 0 || index >= parameterTypes.size()) {
+            return Optional.empty();
+        }
+
+        SephirahType type = parameterTypes.get(index);
+
+        if (type == SephirahType.UNKNOWN) {
+            return Optional.empty();
+        }
+
+        return Optional.of(type);
+    }
+
+    public String describeMismatch(String name, int actual) {
+    	if (maxArgs == Integer.MAX_VALUE) {
+            return "Function " + name + " expects at least " + minArgs
+                    + " argument(s), but got " + actual + ".";
+        }
+    	
+        if (minArgs == maxArgs) {
+            return "Function " + name + " expects " + minArgs
+                    + " argument(s), but got " + actual + ".";
+        }
+
+        return "Function " + name + " expects between " + minArgs
+                + " and " + maxArgs + " arguments, but got " + actual + ".";
     }
 }

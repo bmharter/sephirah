@@ -18,6 +18,7 @@ import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 
 import com.fearlesstyrant.sephirah.sephirah.*;
 import com.fearlesstyrant.sephirah.tools.*;
+import com.fearlesstyrant.sephirah.tools.value.SephirahType;
 import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 
 /**
@@ -42,6 +43,48 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	public static final String FUNCTION_ARITY = CODE_PREFIX + "function_arity";
 	public static final String DUPLICATE_PARAMETER = CODE_PREFIX + "duplicate_parameter";
 	public static final String TYPE_MISMATCH = CODE_PREFIX + "type_mismatch";
+	
+	@Check
+	public void checkBuiltinFunctionArgumentTypes(MethodCall methodCall) {
+	    String name = methodCall.getName();
+
+	    if (name == null || name.isBlank()) {
+	        return;
+	    }
+
+	    FunctionSignature signature =
+	            Methods.standardRegistry().getSignature(name);
+
+	    if (signature == null) {
+	        return;
+	    }
+
+	    TypeInferenceContext context = freshTypeContext();
+
+	    for (int i = 0; i < methodCall.getArgs().size(); i++) {
+	        Optional<SephirahType> expectedType = signature.getParameterType(i);
+
+	        if (expectedType.isEmpty()) {
+	            continue;
+	        }
+
+	        SephirahType actualType = inferType(methodCall.getArgs().get(i), context);
+
+	        if (actualType == SephirahType.UNKNOWN) {
+	            continue;
+	        }
+
+	        if (actualType != expectedType.get()) {
+	            error("Function " + name + " argument " + (i + 1)
+	                    + " expects " + displayType(expectedType.get())
+	                    + ", but got " + displayType(actualType) + ".",
+	                    methodCall,
+	                    SephirahPackage.Literals.METHOD_CALL__ARGS,
+	                    i,
+	                    TYPE_MISMATCH);
+	        }
+	    }
+	}
 	
 	@Check
 	public void checkBuiltinFunctionConflict(Definition definition) {
@@ -859,6 +902,14 @@ public class SephirahValidator extends AbstractSephirahValidator {
 
 	    error(message, source, feature, TYPE_MISMATCH);
 	}
+	
+	private static String displayType(SephirahType type) {
+	    return switch (type) {
+	        case NUMBER -> "number";
+	        case BOOLEAN -> "boolean";
+	        case UNKNOWN -> "unknown";
+	    };
+	}
 
 	private static boolean expressionContainsVariableName(Expression expression, String name) {
 		if (expression == null) {
@@ -1072,45 +1123,59 @@ public class SephirahValidator extends AbstractSephirahValidator {
 			return SephirahType.UNKNOWN;
 		}
 		
-		FormulaModel model = EcoreUtil2.getContainerOfType(methodCall, FormulaModel.class);
+		FunctionSignature builtInSignature = Methods.standardRegistry().getSignature(name);
 		
-		if(model == null) {
-			return SephirahType.UNKNOWN;
-		}
+		if (builtInSignature != null) {
+	        return builtInSignature.getReturnType()
+	                .orElse(SephirahType.UNKNOWN);
+	    }
+
+	    if (!context.resolvingFunctions.add(name)) {
+	        return SephirahType.UNKNOWN;
+	    }
 		
-		Definition definition = findDefinition(model, name);
-		
-		if(definition == null || definition.getExpr() == null) {
-			return SephirahType.UNKNOWN;
-		}
-		
-		if(definition.getArgs().size() != methodCall.getArgs().size()) {
-			return SephirahType.UNKNOWN;
-		}
-		
-		Map<String, SephirahType> parameterTypes = new HashMap<>();
-		
-		for(int i = 0; i < methodCall.getArgs().size(); i++) {
-			Assignment parameter = definition.getArgs().get(i);
-			Expression argument = methodCall.getArgs().get(i);
+	    try {
+	    	FormulaModel model = EcoreUtil2.getContainerOfType(methodCall, FormulaModel.class);
 			
-			String parameterName = parameter.getName();
-			
-			if(parameterName == null || parameterName.isBlank()) {
-				continue;
+			if(model == null) {
+				return SephirahType.UNKNOWN;
 			}
 			
-			parameterTypes.put(parameterName, inferType(argument, context));
-		}
-		
-		context.localVariableTypes.push(parameterTypes);
-		
-		try {
-			return inferType(definition.getExpr(), context);
-		} finally {
-			context.localVariableTypes.pop();
-			context.resolvingFunctions.remove(name);
-		}
+			Definition definition = findDefinition(model, name);
+			
+			if(definition == null || definition.getExpr() == null) {
+				return SephirahType.UNKNOWN;
+			}
+			
+			if(definition.getArgs().size() != methodCall.getArgs().size()) {
+				return SephirahType.UNKNOWN;
+			}
+			
+			Map<String, SephirahType> parameterTypes = new HashMap<>();
+			
+			for(int i = 0; i < methodCall.getArgs().size(); i++) {
+				Assignment parameter = definition.getArgs().get(i);
+				Expression argument = methodCall.getArgs().get(i);
+				
+				String parameterName = parameter.getName();
+				
+				if(parameterName == null || parameterName.isBlank()) {
+					continue;
+				}
+				
+				parameterTypes.put(parameterName, inferType(argument, context));
+			}
+			
+			context.localVariableTypes.push(parameterTypes);
+			
+			try {
+				return inferType(definition.getExpr(), context);
+			} finally {
+				context.localVariableTypes.pop();
+			}
+	    } finally {
+	    	context.resolvingFunctions.remove(name);
+	    }
 	}
 	
 	private static SephirahType inferType(Expression expression,
@@ -1508,11 +1573,5 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	        this.argumentIndex = argumentIndex;
 	        this.parameterName = parameterName;
 	    }
-	}
-	
-	private enum SephirahType {
-		NUMBER,
-		BOOLEAN,
-		UNKNOWN
 	}
 }
