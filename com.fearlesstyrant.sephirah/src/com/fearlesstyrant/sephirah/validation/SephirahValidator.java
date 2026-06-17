@@ -373,6 +373,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	    TypeInferenceContext context = new TypeInferenceContext();
 
 	    Map<String, SephirahType> parameterTypes = new HashMap<>();
+	    Map<String, ParameterBinding> parameterBindings = new HashMap<>();
 
 	    for (int i = 0; i < definition.getArgs().size(); i++) {
 	        Assignment parameter = definition.getArgs().get(i);
@@ -384,15 +385,21 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	            continue;
 	        }
 
-	        parameterTypes.put(parameterName, inferType(argument, context));
+	        SephirahType argumentType = inferType(argument, context);
+	        
+	        parameterTypes.put(parameterName, argumentType);
+	        parameterBindings.put(parameterName,
+	        		new ParameterBinding(methodCall, i, parameterName, argumentType));
 	    }
 
 	    context.localVariableTypes.push(parameterTypes);
+	    context.localParameterBindings.push(parameterBindings);
 
 	    try {
 	        checkExpressionTypesInContext(definition.getExpr(), context);
 	    } finally {
 	        context.localVariableTypes.pop();
+	        context.localParameterBindings.pop();
 	    }
 	}
 
@@ -482,35 +489,68 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	@Check
 	public void checkAndOperandTypes(AndCondition condition) {
-		checkBooleanOperand(condition.getLeft(),
+		checkAndOperandTypes(condition, freshTypeContext());
+	}
+	
+	private void checkAndOperandTypes(AndCondition condition, TypeInferenceContext context) {
+		checkBooleanOperand(
+				condition,
+				condition.getLeft(),
 				SephirahPackage.Literals.AND_CONDITION__LEFT,
-				"Operator 'and' requires boolean operands.");
-		checkBooleanOperand(condition.getRight(),
+				"Operator 'and' requires boolean operands.",
+				context);
+		checkBooleanOperand(
+				condition,
+				condition.getRight(),
 				SephirahPackage.Literals.AND_CONDITION__RIGHT,
-				"Operator 'and' requires boolean operands.");
+				"Operator 'and' requires boolean operands.",
+				context);
 	}
 	
 	@Check
 	public void checkOrOperandTypes(OrCondition condition) {
-		checkBooleanOperand(condition.getLeft(),
+			checkOrOperandTypes(condition, freshTypeContext());
+	}
+	
+	private void checkOrOperandTypes(OrCondition condition, TypeInferenceContext context) {
+		checkBooleanOperand(
+				condition,
+				condition.getLeft(),
 				SephirahPackage.Literals.OR_CONDITION__LEFT,
-				"Operator 'or' requires boolean operands.");
-		checkBooleanOperand(condition.getRight(),
+				"Operator 'or' requires boolean operands.",
+				context);
+		checkBooleanOperand(
+				condition,
+				condition.getRight(),
 				SephirahPackage.Literals.OR_CONDITION__RIGHT,
-				"Operator 'or' requires boolean operands.");
+				"Operator 'or' requires boolean operands.",
+				context);
 	}
 	
 	@Check
 	public void checkNotOperandType(NotCondition condition) {
-		checkBooleanOperand(condition.getCondition(),
+		checkNotOperandType(condition, freshTypeContext());
+	}
+	
+	private void checkNotOperandType(NotCondition condition, TypeInferenceContext context) {
+		checkBooleanOperand(
+				condition,
+				condition.getCondition(),
 				SephirahPackage.Literals.NOT_CONDITION__CONDITION,
-				"Operator 'not' requires a boolean operand.");
+				"Operator 'not' requires a boolean operand.",
+				context);
 	}
 	
 	@Check
 	public void checkConditionalBranchTypes(Conditional conditional) {
-	    SephirahType thenType = inferType(conditional.getThenBranch());
-	    SephirahType elseType = inferType(conditional.getElseBranch());
+	    checkConditionalBranchTypes(conditional, freshTypeContext());
+	}
+	
+	private void checkConditionalBranchTypes(
+			Conditional conditional,
+			TypeInferenceContext context) {
+		SephirahType thenType = inferType(conditional.getThenBranch(), context);
+	    SephirahType elseType = inferType(conditional.getElseBranch(), context);
 
 	    if (thenType == SephirahType.UNKNOWN || elseType == SephirahType.UNKNOWN) {
 	        return;
@@ -518,6 +558,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 
 	    if (thenType != elseType) {
 	        error("If expression branches must return compatible types.",
+	        		conditional,
 	                SephirahPackage.Literals.CONDITIONAL__ELSE_BRANCH,
 	                TYPE_MISMATCH);
 	    }
@@ -525,80 +566,145 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	@Check 
 	public void checkConditionType(Conditional conditional) {
-		checkBooleanOperand(conditional.getCondition(),
+		checkConditionType(conditional, freshTypeContext());
+	}
+	
+	private void checkConditionType(Conditional conditional, TypeInferenceContext context) {
+		checkBooleanOperand(
+				conditional,
+				conditional.getCondition(),
 				SephirahPackage.Literals.CONDITIONAL__CONDITION,
-				"If expressions require a boolean condition.");
+				"If expressions require a boolean condition.",
+				context);
 	}
 	
 	@Check
 	public void checkComparisonOperandTypes(ComparisonCondition comparison) {
-	    checkNumericOperand(comparison.getLeft(),
+	    checkComparisonOperandTypes(comparison, freshTypeContext());
+	}
+	
+	private void checkComparisonOperandTypes(
+			ComparisonCondition comparison,
+			TypeInferenceContext context) {
+		checkNumericOperand(
+	    		comparison,
+	    		comparison.getLeft(),
 	            SephirahPackage.Literals.COMPARISON_CONDITION__LEFT,
-	            "Comparison operators require numeric operands.");
-	    checkNumericOperand(comparison.getRight(),
+	            "Comparison operators require numeric operands.",
+	            context);
+	    checkNumericOperand(
+	    		comparison,
+	    		comparison.getRight(),
 	            SephirahPackage.Literals.COMPARISON_CONDITION__RIGHT,
-	            "Comparison operators require numeric operands.");
+	            "Comparison operators require numeric operands.",
+	            context);
 	}
 
 	@Check
 	public void checkAddOperandTypes(Add add) {
-		checkNumericOperand(add.getLeft(),
-				SephirahPackage.Literals.ADD__LEFT, "Operator + requires numeric operands.");
-		checkNumericOperand(add.getRight(),
-				SephirahPackage.Literals.ADD__RIGHT, "Operator + requires numeric operands.");
+		checkAddOperandTypes(add, freshTypeContext());
+	}
+	
+	private void checkAddOperandTypes(Add add, TypeInferenceContext context) {
+		checkNumericOperand(
+				add,
+				add.getLeft(),
+				SephirahPackage.Literals.ADD__LEFT, "Operator + requires numeric operands.",
+				context);
+		checkNumericOperand(
+				add,
+				add.getRight(),
+				SephirahPackage.Literals.ADD__RIGHT, "Operator + requires numeric operands.",
+				context);
 	}
 	
 	@Check
 	public void checkSubtractOperandTypes(Subtract subtract) {
-		checkNumericOperand(subtract.getLeft(),
-				SephirahPackage.Literals.SUBTRACT__LEFT, "Operator - requires numeric operands.");
-		checkNumericOperand(subtract.getRight(),
-				SephirahPackage.Literals.SUBTRACT__RIGHT, "Operator - requires numeric operands.");
+		checkSubtractOperandTypes(subtract, freshTypeContext());
+	}
+	
+	private void checkSubtractOperandTypes(Subtract subtract, TypeInferenceContext context) {
+		checkNumericOperand(
+				subtract,
+				subtract.getLeft(),
+				SephirahPackage.Literals.SUBTRACT__LEFT, "Operator - requires numeric operands.",
+				context);
+		checkNumericOperand(
+				subtract,
+				subtract.getRight(),
+				SephirahPackage.Literals.SUBTRACT__RIGHT, "Operator - requires numeric operands.",
+				context);
 	}
 	
 	@Check
 	public void checkMultiplyOperandTypes(Multiply multiply) {
-		checkNumericOperand(multiply.getLeft(),
-				SephirahPackage.Literals.MULTIPLY__LEFT, "Operator * requires numeric operands.");
-		checkNumericOperand(multiply.getRight(),
-				SephirahPackage.Literals.MULTIPLY__RIGHT, "Operator * requires numeric operands.");
+		checkMultiplyOperandTypes(multiply, freshTypeContext());
+	}
+	
+	private void checkMultiplyOperandTypes(Multiply multiply, TypeInferenceContext context) {
+		checkNumericOperand(
+				multiply,
+				multiply.getLeft(),
+				SephirahPackage.Literals.MULTIPLY__LEFT, "Operator * requires numeric operands.",
+				context);
+		checkNumericOperand(
+				multiply,
+				multiply.getRight(),
+				SephirahPackage.Literals.MULTIPLY__RIGHT, "Operator * requires numeric operands.",
+				context);
 	}
 	
 	@Check
 	public void checkDivideOperandTypes(Divide divide) {
-		checkNumericOperand(divide.getLeft(),
-				SephirahPackage.Literals.DIVIDE__LEFT, "Operator / requires numeric operands.");
-		checkNumericOperand(divide.getRight(),
-				SephirahPackage.Literals.DIVIDE__RIGHT, "Operator / requires numeric operands.");
+		checkDivideOperandTypes(divide, freshTypeContext());
+	}
+	
+	private void checkDivideOperandTypes(Divide divide, TypeInferenceContext context) {
+		checkNumericOperand(
+				divide,
+				divide.getLeft(),
+				SephirahPackage.Literals.DIVIDE__LEFT, "Operator / requires numeric operands.",
+				context);
+		checkNumericOperand(
+				divide,
+				divide.getRight(),
+				SephirahPackage.Literals.DIVIDE__RIGHT, "Operator / requires numeric operands.",
+				context);
 	}
 	
 	@Check
 	public void checkExponentOperandTypes(Exponent exponent) {
-		checkNumericOperand(exponent.getLeft(),
-				SephirahPackage.Literals.EXPONENT__LEFT, "Operator ^ requires numeric operands.");
-		checkNumericOperand(exponent.getRight(),
-				SephirahPackage.Literals.EXPONENT__RIGHT, "Operator ^ requires numeric operands.");
+		checkExponentOperandTypes(exponent, freshTypeContext());
+	}
+	
+	private void checkExponentOperandTypes(Exponent exponent, TypeInferenceContext context) {
+		checkNumericOperand(
+				exponent,
+				exponent.getLeft(),
+				SephirahPackage.Literals.EXPONENT__LEFT, "Operator ^ requires numeric operands.",
+				context);
+		checkNumericOperand(
+				exponent,
+				exponent.getRight(),
+				SephirahPackage.Literals.EXPONENT__RIGHT, "Operator ^ requires numeric operands.",
+				context);
 	}
 	
 	@Check
 	public void checkNegateOperandType(Negate negate) {
-		checkNumericOperand(negate.getValue(),
-				SephirahPackage.Literals.NEGATE__VALUE, "Operator -x requires a numeric operand.");
+		checkNegateOperandType(negate, freshTypeContext());
 	}
 	
-
-	private void checkBooleanOperand(Expression expression,
-			EStructuralFeature feature,
-			String message) {
-		SephirahType type = inferType(expression);
-		
-		if(type == SephirahType.NUMBER) {
-			error(message, feature, TYPE_MISMATCH);
-		}
+	private void checkNegateOperandType(Negate negate, TypeInferenceContext context) {
+		checkNumericOperand(
+				negate,
+				negate.getValue(),
+				SephirahPackage.Literals.NEGATE__VALUE, "Operator -x requires a numeric operand.",
+				context);
 	}
 	
 	private void checkBooleanOperand(
-			EObject source,
+	        EObject source,
 	        Expression expression,
 	        EStructuralFeature feature,
 	        String message,
@@ -606,9 +712,27 @@ public class SephirahValidator extends AbstractSephirahValidator {
 
 	    SephirahType type = inferType(expression, context);
 
-	    if (type == SephirahType.NUMBER) {
-	        error(message, source, feature, TYPE_MISMATCH);
+	    if (type != SephirahType.NUMBER) {
+	        return;
 	    }
+
+	    Optional<ParameterBinding> binding =
+	            findParameterBindingForExpression(expression, context);
+
+	    if (binding.isPresent()) {
+	        ParameterBinding parameter = binding.get();
+
+	        error("Argument " + (parameter.argumentIndex + 1)
+	                + " gives parameter '" + parameter.parameterName
+	                + "' type number, but this call uses it where a boolean is required.",
+	                parameter.call,
+	                SephirahPackage.Literals.METHOD_CALL__ARGS,
+	                parameter.argumentIndex,
+	                TYPE_MISMATCH);
+	        return;
+	    }
+
+	    error(message, source, feature, TYPE_MISMATCH);
 	}
 	
 	private void checkExpressionTypesInContext(
@@ -620,162 +744,48 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	    }
 
 	    if (expression instanceof Add add) {
-	        checkNumericOperand(
-	        		add,
-	        		add.getLeft(),
-	                SephirahPackage.Literals.ADD__LEFT,
-	                "Operator + requires numeric operands.",
-	                context);
-	        checkNumericOperand(
-	        		add,
-	        		add.getRight(),
-	                SephirahPackage.Literals.ADD__RIGHT,
-	                "Operator + requires numeric operands.",
-	                context);
+	        checkAddOperandTypes(add, context);
 	    }
 
 	    if (expression instanceof Subtract subtract) {
-	        checkNumericOperand(
-	        		subtract,
-	        		subtract.getLeft(),
-	                SephirahPackage.Literals.SUBTRACT__LEFT,
-	                "Operator - requires numeric operands.",
-	                context);
-	        checkNumericOperand(
-	        		subtract,
-	        		subtract.getRight(),
-	                SephirahPackage.Literals.SUBTRACT__RIGHT,
-	                "Operator - requires numeric operands.",
-	                context);
+	        checkSubtractOperandTypes(subtract, context);
 	    }
 
 	    if (expression instanceof Multiply multiply) {
-	        checkNumericOperand(
-	        		multiply,
-	        		multiply.getLeft(),
-	                SephirahPackage.Literals.MULTIPLY__LEFT,
-	                "Operator * requires numeric operands.",
-	                context);
-	        checkNumericOperand(
-	        		multiply,
-	        		multiply.getRight(),
-	                SephirahPackage.Literals.MULTIPLY__RIGHT,
-	                "Operator * requires numeric operands.",
-	                context);
+	        checkMultiplyOperandTypes(multiply, context);
 	    }
 
 	    if (expression instanceof Divide divide) {
-	        checkNumericOperand(
-	        		divide,
-	        		divide.getLeft(),
-	                SephirahPackage.Literals.DIVIDE__LEFT,
-	                "Operator / requires numeric operands.",
-	                context);
-	        checkNumericOperand(
-	        		divide,
-	        		divide.getRight(),
-	                SephirahPackage.Literals.DIVIDE__RIGHT,
-	                "Operator / requires numeric operands.",
-	                context);
+	        checkDivideOperandTypes(divide, context);
 	    }
 
 	    if (expression instanceof Exponent exponent) {
-	        checkNumericOperand(
-	        		exponent,
-	        		exponent.getLeft(),
-	                SephirahPackage.Literals.EXPONENT__LEFT,
-	                "Operator ^ requires numeric operands.",
-	                context);
-	        checkNumericOperand(
-	        		exponent,
-	        		exponent.getRight(),
-	                SephirahPackage.Literals.EXPONENT__RIGHT,
-	                "Operator ^ requires numeric operands.",
-	                context);
+	        checkExponentOperandTypes(exponent, context);
 	    }
 
 	    if (expression instanceof Negate negate) {
-	        checkNumericOperand(
-	        		negate,
-	        		negate.getValue(),
-	                SephirahPackage.Literals.NEGATE__VALUE,
-	                "Operator -x requires a numeric operand.",
-	                context);
+	        checkNegateOperandType(negate, context);
 	    }
 
 	    if (expression instanceof ComparisonCondition comparison) {
-	        checkNumericOperand(
-	        		comparison,
-	        		comparison.getLeft(),
-	                SephirahPackage.Literals.COMPARISON_CONDITION__LEFT,
-	                "Comparison operators require numeric operands.",
-	                context);
-	        checkNumericOperand(
-	        		comparison,
-	        		comparison.getRight(),
-	                SephirahPackage.Literals.COMPARISON_CONDITION__RIGHT,
-	                "Comparison operators require numeric operands.",
-	                context);
+	        checkComparisonOperandTypes(comparison, context);
 	    }
 
 	    if (expression instanceof AndCondition andCondition) {
-	        checkBooleanOperand(
-	        		andCondition,
-	        		andCondition.getLeft(),
-	                SephirahPackage.Literals.AND_CONDITION__LEFT,
-	                "Operator 'and' requires boolean operands.",
-	                context);
-	        checkBooleanOperand(
-	        		andCondition,
-	        		andCondition.getRight(),
-	                SephirahPackage.Literals.AND_CONDITION__RIGHT,
-	                "Operator 'and' requires boolean operands.",
-	                context);
+	        checkAndOperandTypes(andCondition, context);
 	    }
 
 	    if (expression instanceof OrCondition orCondition) {
-	        checkBooleanOperand(
-	        		orCondition,
-	        		orCondition.getLeft(),
-	                SephirahPackage.Literals.OR_CONDITION__LEFT,
-	                "Operator 'or' requires boolean operands.",
-	                context);
-	        checkBooleanOperand(
-	        		orCondition,
-	        		orCondition.getRight(),
-	                SephirahPackage.Literals.OR_CONDITION__RIGHT,
-	                "Operator 'or' requires boolean operands.",
-	                context);
+	        checkOrOperandTypes(orCondition, context);
 	    }
 
 	    if (expression instanceof NotCondition notCondition) {
-	        checkBooleanOperand(
-	        		notCondition,
-	        		notCondition.getCondition(),
-	                SephirahPackage.Literals.NOT_CONDITION__CONDITION,
-	                "Operator 'not' requires a boolean operand.",
-	                context);
+	        checkNotOperandType(notCondition, context);
 	    }
 
 	    if (expression instanceof Conditional conditional) {
-	        checkBooleanOperand(
-	        		conditional,
-	        		conditional.getCondition(),
-	                SephirahPackage.Literals.CONDITIONAL__CONDITION,
-	                "If expressions require a boolean condition.",
-	                context);
-
-	        SephirahType thenType = inferType(conditional.getThenBranch(), context);
-	        SephirahType elseType = inferType(conditional.getElseBranch(), context);
-
-	        if (thenType != SephirahType.UNKNOWN
-	                && elseType != SephirahType.UNKNOWN
-	                && thenType != elseType) {
-	            error("If expression branches must return compatible types.",
-	            		conditional,
-	                    SephirahPackage.Literals.CONDITIONAL__ELSE_BRANCH,
-	                    TYPE_MISMATCH);
-	        }
+	        checkConditionType(conditional, context);
+	        checkConditionalBranchTypes(conditional, context);
 	    }
 
 	    TreeIterator<EObject> contents = expression.eAllContents();
@@ -819,18 +829,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	}
 	
 	private void checkNumericOperand(
-			Expression expression,
-			EStructuralFeature feature,
-			String message) {
-		SephirahType type = inferType(expression);
-		
-		if(type == SephirahType.BOOLEAN) {
-			error(message, feature, TYPE_MISMATCH);
-		}
-	}
-	
-	private void checkNumericOperand(
-			EObject source,
+	        EObject source,
 	        Expression expression,
 	        EStructuralFeature feature,
 	        String message,
@@ -838,9 +837,27 @@ public class SephirahValidator extends AbstractSephirahValidator {
 
 	    SephirahType type = inferType(expression, context);
 
-	    if (type == SephirahType.BOOLEAN) {
-	        error(message, source, feature, TYPE_MISMATCH);
+	    if (type != SephirahType.BOOLEAN) {
+	        return;
 	    }
+
+	    Optional<ParameterBinding> binding =
+	            findParameterBindingForExpression(expression, context);
+
+	    if (binding.isPresent()) {
+	        ParameterBinding parameter = binding.get();
+
+	        error("Argument " + (parameter.argumentIndex + 1)
+	                + " gives parameter '" + parameter.parameterName
+	                + "' type boolean, but this call uses it where a number is required.",
+	                parameter.call,
+	                SephirahPackage.Literals.METHOD_CALL__ARGS,
+	                parameter.argumentIndex,
+	                TYPE_MISMATCH);
+	        return;
+	    }
+
+	    error(message, source, feature, TYPE_MISMATCH);
 	}
 
 	private static boolean expressionContainsVariableName(Expression expression, String name) {
@@ -947,6 +964,36 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		
 		return Optional.empty();
 	}
+	
+	private static Optional<ParameterBinding> findParameterBinding(
+	        String name,
+	        TypeInferenceContext context) {
+
+	    for (Map<String, ParameterBinding> scope : context.localParameterBindings) {
+	        ParameterBinding binding = scope.get(name);
+
+	        if (binding != null) {
+	            return Optional.of(binding);
+	        }
+	    }
+
+	    return Optional.empty();
+	}
+	
+	private static Optional<ParameterBinding> findParameterBindingForExpression(
+	        Expression expression,
+	        TypeInferenceContext context) {
+
+	    if (expression instanceof Variable variable) {
+	        String name = variable.getName();
+
+	        if (name != null) {
+	            return findParameterBinding(name, context);
+	        }
+	    }
+
+	    return Optional.empty();
+	}
 
 	private static String findVariableCycleMessage(Throwable throwable) {
 	    Throwable current = throwable;
@@ -1017,6 +1064,10 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 		String name = methodCall.getName();
 		
+		if (!context.resolvingFunctions.add(name)) {
+		    return SephirahType.UNKNOWN;
+		}
+		
 		if(name == null || name.isBlank()) {
 			return SephirahType.UNKNOWN;
 		}
@@ -1061,11 +1112,6 @@ public class SephirahValidator extends AbstractSephirahValidator {
 			context.resolvingFunctions.remove(name);
 		}
 	}
-	
-	private static SephirahType inferType(Expression expression) {
-		return inferType(expression, new TypeInferenceContext());
-	}
-	
 	
 	private static SephirahType inferType(Expression expression,
 			TypeInferenceContext context) {
@@ -1438,10 +1484,33 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		}
 	}
 	
+	private static TypeInferenceContext freshTypeContext() {
+	    return new TypeInferenceContext();
+	}
+	
 	private static final class TypeInferenceContext{
 		private final Set<String> resolvingVariables = new HashSet<>();
 		private final Set<String> resolvingFunctions = new HashSet<>();
 		private final Deque<Map<String, SephirahType>> localVariableTypes = new ArrayDeque<>();
+		private final Deque<Map<String, ParameterBinding>> localParameterBindings = new ArrayDeque<>();
+	}
+	
+	private static final class ParameterBinding {
+	    private final MethodCall call;
+	    private final int argumentIndex;
+	    private final String parameterName;
+	    private final SephirahType type;
+
+	    private ParameterBinding(
+	            MethodCall call,
+	            int argumentIndex,
+	            String parameterName,
+	            SephirahType type) {
+	        this.call = call;
+	        this.argumentIndex = argumentIndex;
+	        this.parameterName = parameterName;
+	        this.type = type;
+	    }
 	}
 	
 	private enum SephirahType {
