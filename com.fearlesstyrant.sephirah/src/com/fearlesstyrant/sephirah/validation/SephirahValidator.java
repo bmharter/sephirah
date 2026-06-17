@@ -389,7 +389,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	        
 	        parameterTypes.put(parameterName, argumentType);
 	        parameterBindings.put(parameterName,
-	        		new ParameterBinding(methodCall, i, parameterName, argumentType));
+	        		new ParameterBinding(methodCall, i, parameterName));
 	    }
 
 	    context.localVariableTypes.push(parameterTypes);
@@ -1499,17 +1499,14 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	    private final MethodCall call;
 	    private final int argumentIndex;
 	    private final String parameterName;
-	    private final SephirahType type;
 
 	    private ParameterBinding(
 	            MethodCall call,
 	            int argumentIndex,
-	            String parameterName,
-	            SephirahType type) {
+	            String parameterName) {
 	        this.call = call;
 	        this.argumentIndex = argumentIndex;
 	        this.parameterName = parameterName;
-	        this.type = type;
 	    }
 	}
 	
