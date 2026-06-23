@@ -47,12 +47,12 @@ public final class Methods {
                 				SephirahType.NUMBER),
                 		Methods::floor)
                 .register("min",
-                		FunctionSignature.atLeast(1,
+                		FunctionSignature.varargs(1,
                 				SephirahType.NUMBER,
                 				SephirahType.NUMBER),
                 		Methods::min)
                 .register("max",
-                		FunctionSignature.atLeast(1,
+                		FunctionSignature.varargs(1,
                 				SephirahType.NUMBER,
                 				SephirahType.NUMBER),
                 		Methods::max)
@@ -104,12 +104,12 @@ public final class Methods {
                 				SephirahType.NUMBER),
                 		Methods::floor)
                 .register("min",
-                		FunctionSignature.atLeast(1,
+                		FunctionSignature.varargs(1,
                 				SephirahType.NUMBER,
                 				SephirahType.NUMBER),
                 		Methods::min)
                 .register("max",
-                		FunctionSignature.atLeast(1,
+                		FunctionSignature.varargs(1,
                 				SephirahType.NUMBER,
                 				SephirahType.NUMBER),
                 		Methods::max)

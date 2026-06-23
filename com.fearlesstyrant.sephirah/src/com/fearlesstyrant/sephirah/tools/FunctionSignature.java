@@ -13,15 +13,18 @@ public final class FunctionSignature {
     private final int maxArgs;
     private final List<SephirahType> parameterTypes;
     private final SephirahType returnType;
+    private final SephirahType repeatedParameterType;
 
     private FunctionSignature(
             int minArgs,
             int maxArgs,
             List<SephirahType> parameterTypes,
+            SephirahType repeatedParameterType,
             SephirahType returnType) {
         this.minArgs = minArgs;
         this.maxArgs = maxArgs;
         this.parameterTypes = parameterTypes;
+        this.repeatedParameterType = repeatedParameterType;
         this.returnType = returnType;
     }
     
@@ -30,6 +33,7 @@ public final class FunctionSignature {
                 minArgs,
                 Integer.MAX_VALUE,
                 Collections.emptyList(),
+                SephirahType.UNKNOWN,
                 SephirahType.UNKNOWN);
     }
 
@@ -41,6 +45,7 @@ public final class FunctionSignature {
                 minArgs,
                 Integer.MAX_VALUE,
                 Arrays.asList(parameterTypes),
+                SephirahType.UNKNOWN,
                 returnType);
     }
 
@@ -49,6 +54,7 @@ public final class FunctionSignature {
                 count,
                 count,
                 Collections.emptyList(),
+                SephirahType.UNKNOWN,
                 SephirahType.UNKNOWN);
     }
 
@@ -60,6 +66,7 @@ public final class FunctionSignature {
                 count,
                 count,
                 Arrays.asList(parameterTypes),
+                SephirahType.UNKNOWN,
                 returnType);
     }
 
@@ -76,17 +83,25 @@ public final class FunctionSignature {
     }
 
     public Optional<SephirahType> getParameterType(int index) {
-        if (index < 0 || index >= parameterTypes.size()) {
+        if (index < 0) {
             return Optional.empty();
         }
+        
+        if(index < parameterTypes.size()) {
+        	SephirahType type = parameterTypes.get(index);
 
-        SephirahType type = parameterTypes.get(index);
+            if (type == SephirahType.UNKNOWN) {
+                return Optional.empty();
+            }
 
-        if (type == SephirahType.UNKNOWN) {
-            return Optional.empty();
+            return Optional.of(type);
         }
-
-        return Optional.of(type);
+        
+        if(repeatedParameterType == SephirahType.UNKNOWN) {
+        	return Optional.empty();
+        }
+        
+        return Optional.of(repeatedParameterType);
     }
 
     public String describeMismatch(String name, int actual) {
@@ -103,4 +118,20 @@ public final class FunctionSignature {
         return "Function " + name + " expects between " + minArgs
                 + " and " + maxArgs + " arguments, but got " + actual + ".";
     }
+
+	public SephirahType getRepeatedParameterType() {
+		return repeatedParameterType;
+	}
+	
+	public static FunctionSignature varargs(
+			int minArgs,
+			SephirahType returnType,
+			SephirahType repeatedParameterType) {
+		return new FunctionSignature(
+				minArgs,
+				Integer.MAX_VALUE,
+				Collections.emptyList(),
+				repeatedParameterType,
+				returnType);
+	}
 }
