@@ -1,4 +1,0 @@
-SephirahDoc duplicateVariableRegression
-
-var duplicate = 1;
-var duplicate = 2;

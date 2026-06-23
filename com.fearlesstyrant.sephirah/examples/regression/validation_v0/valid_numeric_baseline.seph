@@ -1,0 +1,11 @@
+SephirahDoc validNumericBaseline
+
+var score = 10;
+var bonus = 2;
+
+score + bonus;
+score - bonus;
+score * bonus;
+score / bonus;
+score ^ bonus;
+-score;

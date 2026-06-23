@@ -1,0 +1,5 @@
+SephirahDoc errorBuiltinFunctionConflict
+
+def abs(value) = value;
+
+abs(1);

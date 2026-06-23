@@ -1,0 +1,5 @@
+SephirahDoc warningUnusedParameter
+
+def bad(x, y) = x;
+
+bad(1, 2);

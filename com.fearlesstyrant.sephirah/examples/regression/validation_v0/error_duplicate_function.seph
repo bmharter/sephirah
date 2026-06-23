@@ -1,0 +1,6 @@
+SephirahDoc errorDuplicateFunction
+
+def f() = 1;
+def f() = 2;
+
+f();

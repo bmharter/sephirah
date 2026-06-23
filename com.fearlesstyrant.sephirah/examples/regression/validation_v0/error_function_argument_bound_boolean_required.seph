@@ -1,0 +1,5 @@
+SephirahDoc errorFunctionArgumentBoundBooleanRequired
+
+def bad(score) = not score;
+
+bad(10);

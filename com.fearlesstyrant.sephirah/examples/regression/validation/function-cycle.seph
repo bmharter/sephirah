@@ -1,6 +1,0 @@
-SephirahDoc functionCycleRegression
-
-f(1);
-
-def f(x) = g(x);
-def g(x) = f(x);

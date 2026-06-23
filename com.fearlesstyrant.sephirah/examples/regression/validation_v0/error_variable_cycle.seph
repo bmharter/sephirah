@@ -1,0 +1,6 @@
+SephirahDoc errorVariableCycle
+
+var a = b;
+var b = a;
+
+a;

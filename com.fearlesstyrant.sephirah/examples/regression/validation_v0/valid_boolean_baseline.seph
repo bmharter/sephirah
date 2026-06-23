@@ -1,0 +1,9 @@
+SephirahDoc validBooleanBaseline
+
+var score = 10;
+var eligible = score >= 10;
+
+eligible;
+not false;
+true and eligible;
+false or eligible;

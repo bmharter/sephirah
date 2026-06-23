@@ -1,0 +1,5 @@
+SephirahDoc errorDuplicateParameter
+
+def bad(x, x) = x;
+
+bad(1, 2);

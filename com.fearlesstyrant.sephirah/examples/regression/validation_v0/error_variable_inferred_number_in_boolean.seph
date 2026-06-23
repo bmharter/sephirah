@@ -1,0 +1,5 @@
+SephirahDoc errorVariableInferredNumberInBoolean
+
+var score = 10;
+
+not score;

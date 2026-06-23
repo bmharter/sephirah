@@ -1,0 +1,5 @@
+SephirahDoc errorVariableInferredBooleanInArithmetic
+
+var eligible = true;
+
+eligible + 1;

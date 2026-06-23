@@ -1,0 +1,5 @@
+SephirahDoc warningUnusedVariable
+
+var unused = 10;
+
+1;

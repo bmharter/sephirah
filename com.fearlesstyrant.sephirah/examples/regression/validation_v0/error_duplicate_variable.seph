@@ -1,0 +1,6 @@
+SephirahDoc errorDuplicateVariable
+
+var score = 1;
+var score = 2;
+
+score;

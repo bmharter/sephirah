@@ -1,0 +1,6 @@
+SephirahDoc validConditional
+
+var score = 10;
+
+if score >= 10 then 1 else 0;
+if true then false else true;

@@ -1,0 +1,3 @@
+SephirahDoc errorComparisonBooleanOperand
+
+true > 1;

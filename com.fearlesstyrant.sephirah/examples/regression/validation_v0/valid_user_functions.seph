@@ -1,0 +1,9 @@
+SephirahDoc validUserFunctions
+
+def add(a, b) = a + b;
+def eligible(score) = score >= 10;
+def gate(score) = if eligible(score) then 1 else 0;
+
+add(2, 3);
+eligible(10);
+gate(10);

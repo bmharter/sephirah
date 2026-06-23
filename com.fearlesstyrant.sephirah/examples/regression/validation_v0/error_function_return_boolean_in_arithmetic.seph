@@ -1,0 +1,5 @@
+SephirahDoc errorFunctionReturnBooleanInArithmetic
+
+def eligible(score) = score >= 10;
+
+eligible(10) + 1;
