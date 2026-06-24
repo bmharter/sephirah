@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.fearlesstyrant.sephirah.feature"
+      label="Sephirah Eclipse Support"
+      version="0.1.0.qualifier"
+      provider-name="Ben Harter">
+
+   <description>
+      Eclipse editor and validation support for Sephirah .seph files.
+   </description>
+
+   <plugin
+         id="com.fearlesstyrant.sephirah"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.fearlesstyrant.sephirah.ide"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.fearlesstyrant.sephirah.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

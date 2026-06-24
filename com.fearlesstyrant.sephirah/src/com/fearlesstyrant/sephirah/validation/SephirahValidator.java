@@ -524,7 +524,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 			return;
 		}
 
-		info("Declared variable has not been used.",
+		warning("Declared variable has not been used.",
 				SephirahPackage.Literals.ASSIGNMENT__NAME,
 				UNUSED_VARIABLE,
 				name);
@@ -1110,14 +1110,11 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	    return false;
 	}
 	
-	private static SephirahType inferFunctionCallType(MethodCall methodCall,
+	private static SephirahType inferFunctionCallType(
+			MethodCall methodCall,
 			TypeInferenceContext context) {
 	
 		String name = methodCall.getName();
-		
-		if (!context.resolvingFunctions.add(name)) {
-		    return SephirahType.UNKNOWN;
-		}
 		
 		if(name == null || name.isBlank()) {
 			return SephirahType.UNKNOWN;

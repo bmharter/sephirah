@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="com.fearlesstyrant.sephirah.feature">
+      <category name="com.fearlesstyrant.sephirah.category"/>
+   </feature>
+
+   <category-def
+      name="com.fearlesstyrant.sephirah.category"
+      label="Sephirah">
+      <description>
+         Sephirah language editor and validator for Eclipse.
+      </description>
+   </category-def>
+</site>

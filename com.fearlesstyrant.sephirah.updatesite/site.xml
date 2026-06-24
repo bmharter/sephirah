@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.fearlesstyrant.sephirah.feature_0.1.0.202606241016.jar" id="com.fearlesstyrant.sephirah.feature" version="0.1.0.202606241016">
+      <category name="Sephirah"/>
+   </feature>
+   <category-def name="Sephirah" label="Sephirah"/>
+</site>
