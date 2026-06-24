@@ -14,15 +14,16 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
 Bundle-RequiredExecutionEnvironment: JavaSE-21
-Export-Package: com.fearlesstyrant.sephirah.sephirah.impl,
- com.fearlesstyrant.sephirah.sephirah,
- com.fearlesstyrant.sephirah.sephirah.util,
- com.fearlesstyrant.sephirah.validation,
- com.fearlesstyrant.sephirah.services,
+Export-Package: com.fearlesstyrant.sephirah,
+ com.fearlesstyrant.sephirah.generator,
  com.fearlesstyrant.sephirah.parser.antlr,
- com.fearlesstyrant.sephirah.serializer,
  com.fearlesstyrant.sephirah.parser.antlr.internal,
  com.fearlesstyrant.sephirah.scoping,
- com.fearlesstyrant.sephirah.generator,
- com.fearlesstyrant.sephirah
+ com.fearlesstyrant.sephirah.sephirah,
+ com.fearlesstyrant.sephirah.sephirah.impl,
+ com.fearlesstyrant.sephirah.sephirah.util,
+ com.fearlesstyrant.sephirah.serializer,
+ com.fearlesstyrant.sephirah.services,
+ com.fearlesstyrant.sephirah.tools.compile,
+ com.fearlesstyrant.sephirah.validation
 Import-Package: org.apache.log4j
