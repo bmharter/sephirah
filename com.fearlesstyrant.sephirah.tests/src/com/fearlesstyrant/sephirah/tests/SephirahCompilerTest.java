@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.fearlesstyrant.sephirah.sephirah.FormulaModel;
+import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 import com.fearlesstyrant.sephirah.tools.value.SephirahValues;
 import com.fearlesstyrant.sephirah.tools.compile.CompiledSephirahModule;
 import com.fearlesstyrant.sephirah.tools.compile.SephirahCompiler;
@@ -196,5 +197,26 @@ public class SephirahCompilerTest {
         assertEquals(true, module.hasFunction("add"));
         assertEquals(true, module.hasFunction("abs"));
         assertEquals(false, module.hasFunction("missing"));
+    }
+    
+    @Test
+    public void compiledModuleCanEvaluateAllEvaluationEntries() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileEvaluationEntries\n\n"
+              + "var score = 10;\n"
+              + "def add(a, b) = a + b;\n\n"
+              + "score;\n"
+              + "score >= 10;\n"
+              + "add(2, 3);\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        List<SephirahValue> results = module.evaluateAll();
+
+        assertEquals("10", results.get(0).toString());
+        assertEquals("true", results.get(1).toString());
+        assertEquals("5", results.get(2).toString());
+        assertEquals(3, module.getEvaluationCount());
     }
 }

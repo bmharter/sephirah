@@ -35,12 +35,28 @@ public class SephirahCompiler {
 				resolver);
 		
 		Map<String, Expression> variables = compileVariables(model);
+		List<Expression> expressions = compileEvaluations(model);
 		
 		return new CompiledSephirahModule(
 				name,
 				context,
 				functions,
-				variables);
+				variables,
+				expressions);
+	}
+	
+	private List<Expression> compileEvaluations(FormulaModel model) {
+		List<Expression> results = new ArrayList<>();
+		
+		for(Evaluation evaluation : model.getValues()) {
+			if(evaluation.getExpression() == null) {
+				continue;
+			}
+			
+			results.add(evaluation.getExpression());
+		}
+		
+		return results;
 	}
 	
 	private FunctionRegistry compileFunctions(

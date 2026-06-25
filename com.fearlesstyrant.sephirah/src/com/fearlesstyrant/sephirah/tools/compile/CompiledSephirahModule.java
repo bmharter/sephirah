@@ -13,20 +13,27 @@ public final class CompiledSephirahModule {
 	private final EvaluationContext context;
 	private final FunctionRegistry functions;
 	private final Map<String, Expression> variables;
+	private final List<Expression> evaluations;
 	
 	public CompiledSephirahModule(
 			String name,
 			EvaluationContext context,
 			FunctionRegistry functions,
-			Map<String, Expression> variables) {
+			Map<String, Expression> variables,
+			List<Expression> evaluations) {
 		this.name = name;
 		this.context = context;
 		this.functions = functions;
 		this.variables = Map.copyOf(variables);
+		this.evaluations = evaluations;
 	}
 
 	public String getName() {
 		return name;
+	}
+	
+	public int getEvaluationCount() {
+		return evaluations.size();
 	}
 	
 	public Set<String> getFunctionNames() {
@@ -43,6 +50,16 @@ public final class CompiledSephirahModule {
 	
 	public boolean hasVariable(String name) {
 		return variables.containsKey(name);
+	}
+	
+	public List<SephirahValue> evaluateAll() {
+		List<SephirahValue> results = new ArrayList<>();
+		
+		for(Expression expression : evaluations) {
+			results.add(evaluateExpression(expression));
+		}
+		
+		return results;
 	}
 	
 	public SephirahValue evaluateVariable(String name) {
