@@ -62,6 +62,22 @@ public final class CompiledSephirahModule {
 		return results;
 	}
 	
+	public List<CompiledEvaluationResult> evaluateAllResults() {
+	    List<CompiledEvaluationResult> results = new ArrayList<>();
+
+	    for (int i = 0; i < evaluations.size(); i++) {
+	        Expression expression = evaluations.get(i);
+	        SephirahValue value = evaluateExpression(expression);
+
+	        results.add(new CompiledEvaluationResult(
+	                i,
+	                expression,
+	                value));
+	    }
+
+	    return results;
+	}
+	
 	public SephirahValue evaluateVariable(String name) {
 		Expression expression = variables.get(name);
 		

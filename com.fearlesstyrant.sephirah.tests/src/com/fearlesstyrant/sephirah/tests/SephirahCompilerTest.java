@@ -14,8 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import com.fearlesstyrant.sephirah.sephirah.FormulaModel;
 import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 import com.fearlesstyrant.sephirah.tools.value.SephirahValues;
-import com.fearlesstyrant.sephirah.tools.compile.CompiledSephirahModule;
-import com.fearlesstyrant.sephirah.tools.compile.SephirahCompiler;
+import com.fearlesstyrant.sephirah.tools.compile.*;
 
 import com.google.inject.Inject;
 
@@ -218,5 +217,33 @@ public class SephirahCompilerTest {
         assertEquals("true", results.get(1).toString());
         assertEquals("5", results.get(2).toString());
         assertEquals(3, module.getEvaluationCount());
+    }
+    
+    @Test
+    public void compiledModuleCanReturnStructuredEvaluationResults() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileStructuredEvaluationResults\n\n"
+              + "var score = 10;\n"
+              + "def add(a, b) = a + b;\n\n"
+              + "score;\n"
+              + "score >= 10;\n"
+              + "add(2, 3);\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        List<CompiledEvaluationResult> results =
+                module.evaluateAllResults();
+
+        assertEquals(3, results.size());
+
+        assertEquals(0, results.get(0).getIndex());
+        assertEquals("10", results.get(0).getValue().toString());
+
+        assertEquals(1, results.get(1).getIndex());
+        assertEquals("true", results.get(1).getValue().toString());
+
+        assertEquals(2, results.get(2).getIndex());
+        assertEquals("5", results.get(2).getValue().toString());
     }
 }
