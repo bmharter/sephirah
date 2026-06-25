@@ -29,6 +29,18 @@ public final class CompiledSephirahModule {
 		return name;
 	}
 	
+	public Set<String> getFunctionNames() {
+		return functions.getFunctionNames();
+	}
+	
+	public Set<String> getVariableNames() {
+	    return Collections.unmodifiableSet(variables.keySet());
+	}
+	
+	public boolean hasFunction(String name) {
+		return functions.contains(name);
+	}
+	
 	public boolean hasVariable(String name) {
 		return variables.containsKey(name);
 	}

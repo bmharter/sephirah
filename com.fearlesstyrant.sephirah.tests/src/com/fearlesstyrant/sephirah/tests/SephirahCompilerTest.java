@@ -164,4 +164,37 @@ public class SephirahCompilerTest {
                 true,
                 module.callForBooleanWithJavaValues("gate", 5, true));
     }
+    
+    @Test
+    public void compiledModuleExposesVariableNames() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileVariableNames\n\n"
+              + "var score = 10;\n"
+              + "var eligible = score >= 10;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        assertEquals(
+                true,
+                module.getVariableNames().contains("score"));
+
+        assertEquals(
+                true,
+                module.getVariableNames().contains("eligible"));
+    }
+    
+    @Test
+    public void compiledModuleCanReportFunctionPresence() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileFunctionPresence\n\n"
+              + "def add(a, b) = a + b;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        assertEquals(true, module.hasFunction("add"));
+        assertEquals(true, module.hasFunction("abs"));
+        assertEquals(false, module.hasFunction("missing"));
+    }
 }

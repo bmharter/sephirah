@@ -1,10 +1,7 @@
 package com.fearlesstyrant.sephirah.tools;
 
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 
@@ -95,6 +92,10 @@ public final class FunctionRegistry {
         Objects.requireNonNull(name, "name must not be null");
 
         return functions.containsKey(name);
+    }
+    
+    public Set<String> getFunctionNames() {
+    	return functions.keySet();
     }
     
     public FunctionSignature getSignature(String name) {
