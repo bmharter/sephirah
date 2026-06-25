@@ -1,10 +1,11 @@
 package com.fearlesstyrant.sephirah.tools.compile;
 
 import java.util.*;
+import java.math.BigDecimal;
 
 import com.fearlesstyrant.sephirah.sephirah.Expression;
 import com.fearlesstyrant.sephirah.tools.*;
-import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
+import com.fearlesstyrant.sephirah.tools.value.*;
 
 public final class CompiledSephirahModule {
 
@@ -42,11 +43,52 @@ public final class CompiledSephirahModule {
         return evaluateExpression(expression);
 	}
 	
+	public BigDecimal evaluateNumberVariable(String name) {
+		return SephirahValues.requireNumeric(evaluateVariable(name));
+	}
+	
+	public boolean evaluateBooleanVariable(String name) {
+		return SephirahValues.requireBoolean(evaluateVariable(name));
+	}
+	
 	public SephirahValue evaluateExpression(Expression expression) {
         return new Computer(context, functions).evaluateValue(expression);
     }
 
     public SephirahValue call(String name, List<SephirahValue> arguments) {
         return functions.invoke(name, arguments, context);
+    }
+    
+    public SephirahValue callWithNumbers(String name, BigDecimal... arguments) {
+    	return call(
+    			name,
+    			Arrays.stream(arguments)
+    				.<SephirahValue>map(SephirahValues::numeric)
+    				.toList());
+    }
+    
+    public SephirahValue callWithNumbers(String name, int... arguments) {
+    	return call(
+    			name,
+    			Arrays.stream(arguments)
+    				.mapToObj(BigDecimal::valueOf)
+    				.<SephirahValue>map(SephirahValues::numeric)
+    				.toList());
+    }
+    
+    public BigDecimal callForNumber(String name, BigDecimal... arguments) {
+        return SephirahValues.requireNumeric(callWithNumbers(name, arguments));
+    }
+
+    public BigDecimal callForNumber(String name, int... arguments) {
+        return SephirahValues.requireNumeric(callWithNumbers(name, arguments));
+    }
+
+    public boolean callForBoolean(String name, BigDecimal... arguments) {
+        return SephirahValues.requireBoolean(callWithNumbers(name, arguments));
+    }
+
+    public boolean callForBoolean(String name, int... arguments) {
+        return SephirahValues.requireBoolean(callWithNumbers(name, arguments));
     }
 }

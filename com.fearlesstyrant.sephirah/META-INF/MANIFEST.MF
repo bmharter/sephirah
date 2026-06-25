@@ -25,5 +25,6 @@ Export-Package: com.fearlesstyrant.sephirah,
  com.fearlesstyrant.sephirah.serializer,
  com.fearlesstyrant.sephirah.services,
  com.fearlesstyrant.sephirah.tools.compile,
+ com.fearlesstyrant.sephirah.tools.value,
  com.fearlesstyrant.sephirah.validation
 Import-Package: org.apache.log4j
