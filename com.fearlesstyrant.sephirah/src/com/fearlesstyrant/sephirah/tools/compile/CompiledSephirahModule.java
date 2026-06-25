@@ -91,4 +91,18 @@ public final class CompiledSephirahModule {
     public boolean callForBoolean(String name, int... arguments) {
         return SephirahValues.requireBoolean(callWithNumbers(name, arguments));
     }
+    
+    public SephirahValue callWithBooleans(String name, Boolean... arguments) {
+        List<SephirahValue> values = new ArrayList<>();
+        
+        for(boolean arguement : arguments) {
+        	values.add(SephirahValues.bool(arguement));
+        }
+        
+        return call(name, values);
+    }
+    
+    public boolean callForBoolean(String name, Boolean... arguments) {
+    	return SephirahValues.requireBoolean(callWithBooleans(name, arguments));
+    }
 }

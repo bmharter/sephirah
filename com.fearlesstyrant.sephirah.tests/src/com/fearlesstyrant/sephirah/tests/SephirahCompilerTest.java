@@ -108,4 +108,32 @@ public class SephirahCompilerTest {
                 true,
                 module.evaluateBooleanVariable("eligible"));
     }
+    
+    @Test
+    public void compiledModuleCanCallBooleanFunctionWithBooleanConvenienceMethod() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileConvenienceBooleanCall\n\n"
+              + "def invert(flag) = not flag;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        assertEquals(
+                true,
+                module.callForBoolean("invert", false));
+    }
+    
+    @Test
+    public void compiledModuleCanCallTwoBooleanFunctionWithBooleanConvenienceMethod() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileConvenienceTwoBooleanCall\n\n"
+              + "def both(left, right) = left and right;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        assertEquals(
+                false,
+                module.callForBoolean("both", true, false));
+    }
 }
