@@ -105,4 +105,52 @@ public final class CompiledSephirahModule {
     public boolean callForBoolean(String name, Boolean... arguments) {
     	return SephirahValues.requireBoolean(callWithBooleans(name, arguments));
     }
+    
+    public SephirahValue callWithJavaValues(String name, Object... arguments) {
+        List<SephirahValue> values = new ArrayList<>();
+
+        for (Object argument : arguments) {
+            values.add(toSephirahValue(argument));
+        }
+
+        return call(name, values);
+    }
+
+    public BigDecimal callForNumberWithJavaValues(String name, Object... arguments) {
+        return SephirahValues.requireNumeric(callWithJavaValues(name, arguments));
+    }
+
+    public boolean callForBooleanWithJavaValues(String name, Object... arguments) {
+        return SephirahValues.requireBoolean(callWithJavaValues(name, arguments));
+    }
+
+    private static SephirahValue toSephirahValue(Object argument) {
+        if (argument instanceof SephirahValue value) {
+            return value;
+        }
+
+        if (argument instanceof BigDecimal value) {
+            return SephirahValues.numeric(value);
+        }
+
+        if (argument instanceof Integer value) {
+            return SephirahValues.numeric(BigDecimal.valueOf(value));
+        }
+
+        if (argument instanceof Long value) {
+            return SephirahValues.numeric(BigDecimal.valueOf(value));
+        }
+
+        if (argument instanceof Double value) {
+            return SephirahValues.numeric(BigDecimal.valueOf(value));
+        }
+
+        if (argument instanceof Boolean value) {
+            return SephirahValues.bool(value);
+        }
+
+        throw new IllegalArgumentException(
+                "Unsupported Sephirah argument type: "
+                        + (argument == null ? "null" : argument.getClass().getName()));
+    }
 }

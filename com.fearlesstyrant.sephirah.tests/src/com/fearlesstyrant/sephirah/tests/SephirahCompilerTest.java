@@ -136,4 +136,32 @@ public class SephirahCompilerTest {
                 false,
                 module.callForBoolean("both", true, false));
     }
+    
+    @Test
+    public void compiledModuleCanCallMixedArgumentFunctionReturningNumber() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileMixedArgumentsNumber\n\n"
+              + "def choose(flag, yesValue, noValue) = if flag then yesValue else noValue;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        assertEquals(
+                "10",
+                module.callForNumberWithJavaValues("choose", true, 10, 5).toString());
+    }
+    
+    @Test
+    public void compiledModuleCanCallMixedArgumentFunctionReturningBoolean() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileMixedArgumentsBoolean\n\n"
+              + "def gate(score, override) = score >= 10 or override;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        assertEquals(
+                true,
+                module.callForBooleanWithJavaValues("gate", 5, true));
+    }
 }
