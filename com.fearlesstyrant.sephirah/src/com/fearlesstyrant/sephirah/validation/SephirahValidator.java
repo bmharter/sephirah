@@ -18,7 +18,7 @@ import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 
 import com.fearlesstyrant.sephirah.sephirah.*;
 import com.fearlesstyrant.sephirah.tools.*;
-import com.fearlesstyrant.sephirah.tools.value.SephirahType;
+import com.fearlesstyrant.sephirah.tools.type.*;
 import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 
 /**
@@ -59,7 +59,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	        return;
 	    }
 
-	    TypeInferenceContext context = freshTypeContext();
+	    ValidatorTypeContext context = new ValidatorTypeContext();
 
 	    for (int i = 0; i < methodCall.getArgs().size(); i++) {
 	        Optional<SephirahType> expectedType = signature.getParameterType(i);
@@ -68,7 +68,8 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	            continue;
 	        }
 
-	        SephirahType actualType = inferType(methodCall.getArgs().get(i), context);
+	        SephirahType actualType = inferType(methodCall.getArgs().get(i),
+	        		context);
 
 	        if (actualType == SephirahType.UNKNOWN) {
 	            continue;
@@ -413,7 +414,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	        return;
 	    }
 
-	    TypeInferenceContext context = new TypeInferenceContext();
+	    ValidatorTypeContext context = new ValidatorTypeContext();
 
 	    Map<String, SephirahType> parameterTypes = new HashMap<>();
 	    Map<String, ParameterBinding> parameterBindings = new HashMap<>();
@@ -428,20 +429,21 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	            continue;
 	        }
 
-	        SephirahType argumentType = inferType(argument, context);
+	        SephirahType argumentType = inferType(argument,
+	        		context);
 	        
 	        parameterTypes.put(parameterName, argumentType);
 	        parameterBindings.put(parameterName,
 	        		new ParameterBinding(methodCall, i, parameterName));
 	    }
 
-	    context.localVariableTypes.push(parameterTypes);
+	    context.inferenceContext.pushLocalVariableTypes(parameterTypes);
 	    context.localParameterBindings.push(parameterBindings);
 
 	    try {
 	        checkExpressionTypesInContext(definition.getExpr(), context);
 	    } finally {
-	        context.localVariableTypes.pop();
+	        context.inferenceContext.popLocalVariableTypes();
 	        context.localParameterBindings.pop();
 	    }
 	}
@@ -532,10 +534,10 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	@Check
 	public void checkAndOperandTypes(AndCondition condition) {
-		checkAndOperandTypes(condition, freshTypeContext());
+		checkAndOperandTypes(condition, new ValidatorTypeContext());
 	}
 	
-	private void checkAndOperandTypes(AndCondition condition, TypeInferenceContext context) {
+	private void checkAndOperandTypes(AndCondition condition, ValidatorTypeContext context) {
 		checkBooleanOperand(
 				condition,
 				condition.getLeft(),
@@ -552,10 +554,10 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	@Check
 	public void checkOrOperandTypes(OrCondition condition) {
-			checkOrOperandTypes(condition, freshTypeContext());
+			checkOrOperandTypes(condition, new ValidatorTypeContext());
 	}
 	
-	private void checkOrOperandTypes(OrCondition condition, TypeInferenceContext context) {
+	private void checkOrOperandTypes(OrCondition condition, ValidatorTypeContext context) {
 		checkBooleanOperand(
 				condition,
 				condition.getLeft(),
@@ -572,10 +574,10 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	@Check
 	public void checkNotOperandType(NotCondition condition) {
-		checkNotOperandType(condition, freshTypeContext());
+		checkNotOperandType(condition, new ValidatorTypeContext());
 	}
 	
-	private void checkNotOperandType(NotCondition condition, TypeInferenceContext context) {
+	private void checkNotOperandType(NotCondition condition, ValidatorTypeContext context) {
 		checkBooleanOperand(
 				condition,
 				condition.getCondition(),
@@ -586,12 +588,12 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	@Check
 	public void checkConditionalBranchTypes(Conditional conditional) {
-	    checkConditionalBranchTypes(conditional, freshTypeContext());
+	    checkConditionalBranchTypes(conditional, new ValidatorTypeContext());
 	}
 	
 	private void checkConditionalBranchTypes(
 			Conditional conditional,
-			TypeInferenceContext context) {
+			ValidatorTypeContext context) {
 		SephirahType thenType = inferType(conditional.getThenBranch(), context);
 	    SephirahType elseType = inferType(conditional.getElseBranch(), context);
 
@@ -609,10 +611,10 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	@Check 
 	public void checkConditionType(Conditional conditional) {
-		checkConditionType(conditional, freshTypeContext());
+		checkConditionType(conditional, new ValidatorTypeContext());
 	}
 	
-	private void checkConditionType(Conditional conditional, TypeInferenceContext context) {
+	private void checkConditionType(Conditional conditional, ValidatorTypeContext context) {
 		checkBooleanOperand(
 				conditional,
 				conditional.getCondition(),
@@ -623,12 +625,12 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	@Check
 	public void checkComparisonOperandTypes(ComparisonCondition comparison) {
-	    checkComparisonOperandTypes(comparison, freshTypeContext());
+	    checkComparisonOperandTypes(comparison, new ValidatorTypeContext());
 	}
 	
 	private void checkComparisonOperandTypes(
 			ComparisonCondition comparison,
-			TypeInferenceContext context) {
+			ValidatorTypeContext context) {
 		checkNumericOperand(
 	    		comparison,
 	    		comparison.getLeft(),
@@ -645,10 +647,10 @@ public class SephirahValidator extends AbstractSephirahValidator {
 
 	@Check
 	public void checkAddOperandTypes(Add add) {
-		checkAddOperandTypes(add, freshTypeContext());
+		checkAddOperandTypes(add, new ValidatorTypeContext());
 	}
 	
-	private void checkAddOperandTypes(Add add, TypeInferenceContext context) {
+	private void checkAddOperandTypes(Add add, ValidatorTypeContext context) {
 		checkNumericOperand(
 				add,
 				add.getLeft(),
@@ -663,10 +665,10 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	@Check
 	public void checkSubtractOperandTypes(Subtract subtract) {
-		checkSubtractOperandTypes(subtract, freshTypeContext());
+		checkSubtractOperandTypes(subtract, new ValidatorTypeContext());
 	}
 	
-	private void checkSubtractOperandTypes(Subtract subtract, TypeInferenceContext context) {
+	private void checkSubtractOperandTypes(Subtract subtract, ValidatorTypeContext context) {
 		checkNumericOperand(
 				subtract,
 				subtract.getLeft(),
@@ -681,10 +683,10 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	@Check
 	public void checkMultiplyOperandTypes(Multiply multiply) {
-		checkMultiplyOperandTypes(multiply, freshTypeContext());
+		checkMultiplyOperandTypes(multiply, new ValidatorTypeContext());
 	}
 	
-	private void checkMultiplyOperandTypes(Multiply multiply, TypeInferenceContext context) {
+	private void checkMultiplyOperandTypes(Multiply multiply, ValidatorTypeContext context) {
 		checkNumericOperand(
 				multiply,
 				multiply.getLeft(),
@@ -699,10 +701,10 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	@Check
 	public void checkDivideOperandTypes(Divide divide) {
-		checkDivideOperandTypes(divide, freshTypeContext());
+		checkDivideOperandTypes(divide, new ValidatorTypeContext());
 	}
 	
-	private void checkDivideOperandTypes(Divide divide, TypeInferenceContext context) {
+	private void checkDivideOperandTypes(Divide divide, ValidatorTypeContext context) {
 		checkNumericOperand(
 				divide,
 				divide.getLeft(),
@@ -717,10 +719,10 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	@Check
 	public void checkExponentOperandTypes(Exponent exponent) {
-		checkExponentOperandTypes(exponent, freshTypeContext());
+		checkExponentOperandTypes(exponent, new ValidatorTypeContext());
 	}
 	
-	private void checkExponentOperandTypes(Exponent exponent, TypeInferenceContext context) {
+	private void checkExponentOperandTypes(Exponent exponent, ValidatorTypeContext context) {
 		checkNumericOperand(
 				exponent,
 				exponent.getLeft(),
@@ -735,10 +737,10 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	@Check
 	public void checkNegateOperandType(Negate negate) {
-		checkNegateOperandType(negate, freshTypeContext());
+		checkNegateOperandType(negate, new ValidatorTypeContext());
 	}
 	
-	private void checkNegateOperandType(Negate negate, TypeInferenceContext context) {
+	private void checkNegateOperandType(Negate negate, ValidatorTypeContext context) {
 		checkNumericOperand(
 				negate,
 				negate.getValue(),
@@ -751,7 +753,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	        Expression expression,
 	        EStructuralFeature feature,
 	        String message,
-	        TypeInferenceContext context) {
+	        ValidatorTypeContext context) {
 
 	    SephirahType type = inferType(expression, context);
 
@@ -780,7 +782,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	private void checkExpressionTypesInContext(
 	        Expression expression,
-	        TypeInferenceContext context) {
+	        ValidatorTypeContext context) {
 
 	    if (expression == null) {
 	        return;
@@ -876,7 +878,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	        Expression expression,
 	        EStructuralFeature feature,
 	        String message,
-	        TypeInferenceContext context) {
+	        ValidatorTypeContext context) {
 
 	    SephirahType type = inferType(expression, context);
 
@@ -1003,22 +1005,9 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		return null;
 	}
 	
-	private static Optional<SephirahType> findLocalVariableType(String name,
-			TypeInferenceContext context) {
-		for(Map<String, SephirahType> scope: context.localVariableTypes) {
-			SephirahType type = scope.get(name);
-			
-			if(type != null) {
-				return Optional.of(type);
-			}
-		}
-		
-		return Optional.empty();
-	}
-	
 	private static Optional<ParameterBinding> findParameterBinding(
 	        String name,
-	        TypeInferenceContext context) {
+	        ValidatorTypeContext context) {
 
 	    for (Map<String, ParameterBinding> scope : context.localParameterBindings) {
 	        ParameterBinding binding = scope.get(name);
@@ -1033,7 +1022,7 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	
 	private static Optional<ParameterBinding> findParameterBindingForExpression(
 	        Expression expression,
-	        TypeInferenceContext context) {
+	        ValidatorTypeContext context) {
 
 	    if (expression instanceof Variable variable) {
 	        String name = variable.getName();
@@ -1110,236 +1099,12 @@ public class SephirahValidator extends AbstractSephirahValidator {
 	    return false;
 	}
 	
-	private static SephirahType inferFunctionCallType(
-			MethodCall methodCall,
-			TypeInferenceContext context) {
-	
-		String name = methodCall.getName();
-		
-		if(name == null || name.isBlank()) {
-			return SephirahType.UNKNOWN;
-		}
-		
-		FunctionSignature builtInSignature = Methods.standardRegistry().getSignature(name);
-		
-		if (builtInSignature != null) {
-	        return builtInSignature.getReturnType()
-	                .orElse(SephirahType.UNKNOWN);
-	    }
-
-	    if (!context.resolvingFunctions.add(name)) {
-	        return SephirahType.UNKNOWN;
-	    }
-		
-	    try {
-	    	FormulaModel model = EcoreUtil2.getContainerOfType(methodCall, FormulaModel.class);
-			
-			if(model == null) {
-				return SephirahType.UNKNOWN;
-			}
-			
-			Definition definition = findDefinition(model, name);
-			
-			if(definition == null || definition.getExpr() == null) {
-				return SephirahType.UNKNOWN;
-			}
-			
-			if(definition.getArgs().size() != methodCall.getArgs().size()) {
-				return SephirahType.UNKNOWN;
-			}
-			
-			Map<String, SephirahType> parameterTypes = new HashMap<>();
-			
-			for(int i = 0; i < methodCall.getArgs().size(); i++) {
-				Assignment parameter = definition.getArgs().get(i);
-				Expression argument = methodCall.getArgs().get(i);
-				
-				String parameterName = parameter.getName();
-				
-				if(parameterName == null || parameterName.isBlank()) {
-					continue;
-				}
-				
-				parameterTypes.put(parameterName, inferType(argument, context));
-			}
-			
-			context.localVariableTypes.push(parameterTypes);
-			
-			try {
-				return inferType(definition.getExpr(), context);
-			} finally {
-				context.localVariableTypes.pop();
-			}
-	    } finally {
-	    	context.resolvingFunctions.remove(name);
-	    }
-	}
-	
-	private static SephirahType inferType(Expression expression,
-			TypeInferenceContext context) {
-		if(expression == null) {
-			return SephirahType.UNKNOWN;
-		}
-		
-		if(expression instanceof NumberLiteral || expression instanceof Constant) {
-			return SephirahType.NUMBER;
-		}
-		
-		if(expression instanceof BooleanLiteral) {
-			return SephirahType.BOOLEAN;
-		}
-		
-		if(expression instanceof Add add) {
-			return inferNumericBinaryType(add.getLeft(), add.getRight(), context);
-		}
-		
-		if(expression instanceof Subtract subtract) {
-			return inferNumericBinaryType(subtract.getLeft(), subtract.getRight(), context);
-		}
-		
-		if(expression instanceof Multiply multiply) {
-			return inferNumericBinaryType(multiply.getLeft(), multiply.getRight(), context);
-		}
-		
-		if(expression instanceof Divide divide) {
-			return inferNumericBinaryType(divide.getLeft(), divide.getRight(), context);
-		}
-		
-		if(expression instanceof Exponent exponent) {
-			return inferNumericBinaryType(exponent.getLeft(), exponent.getRight(), context);
-		}
-		
-		if(expression instanceof Negate negate) {
-			SephirahType valueType = inferType(negate.getValue(), context);
-			
-			if(valueType != SephirahType.NUMBER) {
-				return SephirahType.UNKNOWN;
-			}
-			
-			return valueType;
-		}
-		
-		if (expression instanceof ComparisonCondition comparison) {
-		    SephirahType leftType = inferType(comparison.getLeft(), context);
-		    SephirahType rightType = inferType(comparison.getRight(), context);
-
-		    if (leftType != SephirahType.NUMBER || rightType != SephirahType.NUMBER) {
-		        return SephirahType.UNKNOWN;
-		    }
-
-		    return SephirahType.BOOLEAN;
-		}
-
-		if (expression instanceof AndCondition andCondition) {
-		    return inferBooleanBinaryType(
-		            andCondition.getLeft(),
-		            andCondition.getRight(),
-		            context);
-		}
-
-		if (expression instanceof OrCondition orCondition) {
-		    return inferBooleanBinaryType(
-		            orCondition.getLeft(),
-		            orCondition.getRight(),
-		            context);
-		}
-
-		if (expression instanceof NotCondition notCondition) {
-		    SephirahType conditionType = inferType(notCondition.getCondition(), context);
-
-		    if (conditionType != SephirahType.BOOLEAN) {
-		        return SephirahType.UNKNOWN;
-		    }
-
-		    return SephirahType.BOOLEAN;
-		}
-		
-		if(expression instanceof Conditional conditional) {
-			SephirahType thenType = inferType(conditional.getThenBranch(), context);
-			SephirahType elseType = inferType(conditional.getElseBranch(), context);
-			
-			if(thenType == elseType) {
-				return thenType;
-			}
-			
-			return SephirahType.UNKNOWN;
-		}
-		
-		if(expression instanceof Variable variable) {
-			return inferVariableType(variable, context);
-		}
-		
-		if(expression instanceof MethodCall methodCall) {
-	        return inferFunctionCallType(methodCall, context);
-	    }
-
-	    return SephirahType.UNKNOWN;
-	}
-	
-	private static SephirahType inferBooleanBinaryType(
-	        Expression left,
-	        Expression right,
-	        TypeInferenceContext context) {
-
-	    SephirahType leftType = inferType(left, context);
-	    SephirahType rightType = inferType(right, context);
-
-	    if (leftType != SephirahType.BOOLEAN || rightType != SephirahType.BOOLEAN) {
-	        return SephirahType.UNKNOWN;
-	    }
-
-	    return SephirahType.BOOLEAN;
-	}
-	
-	private static SephirahType inferNumericBinaryType(Expression left,
-			Expression right,
-			TypeInferenceContext context) {
-		SephirahType leftType = inferType(left, context);
-		SephirahType rightType = inferType(right, context);
-		
-		if(leftType != SephirahType.NUMBER || rightType != SephirahType.NUMBER) {
-			return SephirahType.UNKNOWN;
-		}
-		
-		return SephirahType.NUMBER;
-	}
-	
-	private static SephirahType inferVariableType(Variable variable,
-			TypeInferenceContext context) {
-		String name = variable.getName();
-		
-		if(name == null || name.isBlank() || name.contains(".")) {
-			return SephirahType.UNKNOWN;
-		}
-		
-		Optional<SephirahType> localType = findLocalVariableType(name, context);
-		
-		if(localType.isPresent()) {
-			return localType.get();
-		}
-		
-		if(!context.resolvingVariables.add(name)) {
-			return SephirahType.UNKNOWN;
-		}
-		
-		try {
-			FormulaModel model = EcoreUtil2.getContainerOfType(variable, FormulaModel.class);
-			
-			if(model == null) {
-				return SephirahType.UNKNOWN;
-			}
-			
-			for(Assignment assignment : model.getVariables()) {
-				if(assignment instanceof VariableAssignment variableAssignment
-						&& name.equals(variableAssignment.getName())) {
-					return inferType(variableAssignment.getValue(), context);
-				}
-			}
-			
-			return SephirahType.UNKNOWN;
-		} finally {
-			context.resolvingVariables.remove(name);
-		}
+	private static SephirahType inferType(
+	        Expression expression,
+	        ValidatorTypeContext context) {
+	    return SephirahTypeInferencer.inferType(
+	            expression,
+	            context.inferenceContext);
 	}
 	
 	private static boolean isKnownFunction(MethodCall methodCall, String name) {
@@ -1546,15 +1311,12 @@ public class SephirahValidator extends AbstractSephirahValidator {
 		}
 	}
 	
-	private static TypeInferenceContext freshTypeContext() {
-	    return new TypeInferenceContext();
-	}
-	
-	private static final class TypeInferenceContext{
-		private final Set<String> resolvingVariables = new HashSet<>();
-		private final Set<String> resolvingFunctions = new HashSet<>();
-		private final Deque<Map<String, SephirahType>> localVariableTypes = new ArrayDeque<>();
-		private final Deque<Map<String, ParameterBinding>> localParameterBindings = new ArrayDeque<>();
+	private static final class ValidatorTypeContext {
+	    private final SephirahTypeInferenceContext inferenceContext =
+	            SephirahTypeInferenceContext.empty();
+
+	    private final Deque<Map<String, ParameterBinding>> localParameterBindings =
+	            new ArrayDeque<>();
 	}
 	
 	private static final class ParameterBinding {

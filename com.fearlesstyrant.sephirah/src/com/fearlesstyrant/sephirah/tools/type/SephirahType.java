@@ -1,4 +1,4 @@
-package com.fearlesstyrant.sephirah.tools.value;
+package com.fearlesstyrant.sephirah.tools.type;
 
 public enum SephirahType {
 	BOOLEAN,

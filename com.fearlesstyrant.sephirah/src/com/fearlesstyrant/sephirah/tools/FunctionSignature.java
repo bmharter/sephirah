@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import com.fearlesstyrant.sephirah.tools.value.SephirahType;
+import com.fearlesstyrant.sephirah.tools.type.SephirahType;
 
 public final class FunctionSignature {
 

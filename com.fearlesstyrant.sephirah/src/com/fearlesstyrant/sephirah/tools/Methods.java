@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fearlesstyrant.sephirah.tools.value.SephirahType;
+import com.fearlesstyrant.sephirah.tools.type.SephirahType;
 import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 import com.fearlesstyrant.sephirah.tools.value.SephirahValues;
 

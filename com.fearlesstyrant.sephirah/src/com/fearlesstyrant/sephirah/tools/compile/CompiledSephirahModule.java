@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 
 import com.fearlesstyrant.sephirah.sephirah.Expression;
 import com.fearlesstyrant.sephirah.tools.*;
+import com.fearlesstyrant.sephirah.tools.type.SephirahType;
+import com.fearlesstyrant.sephirah.tools.type.SephirahTypeInferencer;
 import com.fearlesstyrant.sephirah.tools.value.*;
 
 public final class CompiledSephirahModule {
@@ -25,7 +27,7 @@ public final class CompiledSephirahModule {
 		this.context = context;
 		this.functions = functions;
 		this.variables = Map.copyOf(variables);
-		this.evaluations = evaluations;
+		this.evaluations = List.copyOf(evaluations);
 	}
 
 	public String getName() {
@@ -42,6 +44,12 @@ public final class CompiledSephirahModule {
 	
 	public Set<String> getVariableNames() {
 	    return Collections.unmodifiableSet(variables.keySet());
+	}
+	
+	public SephirahType getVariableType(String name) {
+		Expression expression = variables.get(name);
+		
+		return SephirahTypeInferencer.inferType(expression);
 	}
 	
 	public boolean hasFunction(String name) {
@@ -137,7 +145,7 @@ public final class CompiledSephirahModule {
         return SephirahValues.requireBoolean(callWithNumbers(name, arguments));
     }
     
-    public SephirahValue callWithBooleans(String name, Boolean... arguments) {
+    public SephirahValue callWithBooleans(String name, boolean... arguments) {
         List<SephirahValue> values = new ArrayList<>();
         
         for(boolean arguement : arguments) {
@@ -147,7 +155,7 @@ public final class CompiledSephirahModule {
         return call(name, values);
     }
     
-    public boolean callForBoolean(String name, Boolean... arguments) {
+    public boolean callForBoolean(String name, boolean... arguments) {
     	return SephirahValues.requireBoolean(callWithBooleans(name, arguments));
     }
     
