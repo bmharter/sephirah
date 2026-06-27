@@ -15,6 +15,7 @@ import com.fearlesstyrant.sephirah.sephirah.FormulaModel;
 import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 import com.fearlesstyrant.sephirah.tools.value.SephirahValues;
 import com.fearlesstyrant.sephirah.tools.compile.*;
+import com.fearlesstyrant.sephirah.tools.type.SephirahType;
 
 import com.google.inject.Inject;
 
@@ -245,5 +246,55 @@ public class SephirahCompilerTest {
 
         assertEquals(2, results.get(2).getIndex());
         assertEquals("5", results.get(2).getValue().toString());
+    }
+    
+    @Test
+    public void compiledModuleCanReportNumberVariableType() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileNumberVariableType\n\n"
+              + "var score = 10;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        assertEquals(
+                SephirahType.NUMBER,
+                module.getVariableType("score"));
+    }
+    
+    @Test
+    public void compiledModuleCanReportBooleanVariableType() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileBooleanVariableType\n\n"
+              + "var score = 10;\n"
+              + "var eligible = score >= 10;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        assertEquals(
+                SephirahType.BOOLEAN,
+                module.getVariableType("eligible"));
+    }
+    
+    @Test
+    public void compiledModuleThrowsForMissingVariableType() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileMissingVariableType\n\n"
+              + "var score = 10;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        try {
+            module.getVariableType("missing");
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Unknown variable: missing",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for missing variable type.");
     }
 }

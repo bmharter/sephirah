@@ -49,6 +49,10 @@ public final class CompiledSephirahModule {
 	public SephirahType getVariableType(String name) {
 		Expression expression = variables.get(name);
 		
+		if (expression == null) {
+	        throw new IllegalArgumentException("Unknown variable: " + name);
+	    }
+		
 		return SephirahTypeInferencer.inferType(expression);
 	}
 	
