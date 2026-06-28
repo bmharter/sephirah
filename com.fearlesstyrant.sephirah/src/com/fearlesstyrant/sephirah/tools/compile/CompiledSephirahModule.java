@@ -42,6 +42,16 @@ public final class CompiledSephirahModule {
 		return functions.getFunctionNames();
 	}
 	
+	public FunctionSignature getFunctionSignature(String name) {
+	    FunctionSignature signature = functions.getSignature(name);
+
+	    if (signature == null) {
+	        throw new IllegalArgumentException("Unknown function: " + name);
+	    }
+
+	    return signature;
+	}
+	
 	public Set<String> getVariableNames() {
 	    return Collections.unmodifiableSet(variables.keySet());
 	}

@@ -14,6 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import com.fearlesstyrant.sephirah.sephirah.FormulaModel;
 import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
 import com.fearlesstyrant.sephirah.tools.value.SephirahValues;
+import com.fearlesstyrant.sephirah.tools.FunctionSignature;
 import com.fearlesstyrant.sephirah.tools.compile.*;
 import com.fearlesstyrant.sephirah.tools.type.SephirahType;
 
@@ -296,5 +297,64 @@ public class SephirahCompilerTest {
         }
 
         throw new AssertionError("Expected IllegalArgumentException for missing variable type.");
+    }
+    
+    @Test
+    public void compiledModuleCanReportBuiltinFunctionSignature() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileBuiltinFunctionSignature\n\n"
+              + "abs(-5);\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        FunctionSignature signature =
+                module.getFunctionSignature("abs");
+
+        assertEquals(
+                SephirahType.NUMBER,
+                signature.getReturnType().get());
+
+        assertEquals(
+                SephirahType.NUMBER,
+                signature.getParameterType(0).get());
+    }
+    
+    @Test
+    public void compiledModuleThrowsForMissingFunctionSignature() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileMissingFunctionSignature\n\n"
+              + "var score = 10;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        try {
+            module.getFunctionSignature("missing");
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Unknown function: missing",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for missing function signature.");
+    }
+    
+    @Test
+    public void compiledModuleCanReportUserFunctionAritySignature() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileUserFunctionSignature\n\n"
+              + "def add(a, b) = a + b;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        FunctionSignature signature =
+                module.getFunctionSignature("add");
+
+        assertEquals(true, signature.accepts(2));
+        assertEquals(false, signature.accepts(1));
+        assertEquals(false, signature.accepts(3));
     }
 }
