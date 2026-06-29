@@ -1,9 +1,11 @@
-attack_bonus(level, strength_mod)
+SephirahDoc declarativeOrdering
 
-level = 5
+attack_bonus(level, strength_mod);
 
-strength_mod = 3
+var level = 5;
 
-def attack_bonus(level, strength_mod) = proficiency(level) + strength_mod
+var strength_mod = 3;
 
-def proficiency(level) = (level + 7) / 4
+def attack_bonus(level, strength_mod) = proficiency(level) + strength_mod;
+
+def proficiency(level) = (level + 7) / 4;

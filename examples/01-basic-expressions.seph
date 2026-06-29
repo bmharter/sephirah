@@ -1,3 +1,5 @@
-5 + 7
-12 * 3
-(10 + 2) / 3
+SephirahDoc basicExpressions
+
+5 + 7;
+12 * 3;
+(10 + 2) / 3;

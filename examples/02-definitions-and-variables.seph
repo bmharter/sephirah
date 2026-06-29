@@ -1,8 +1,10 @@
-def proficiency(level) = (level + 7) / 4
+SephirahDoc definitionsAndVariables
 
-def attack_bonus(level, strength_mod) = proficiency(level) + strength_mod
+def proficiency(level) = (level + 7) / 4;
 
-level = 5
-strength_mod = 3
+def attack_bonus(level, strength_mod) = proficiency(level) + strength_mod;
 
-attack_bonus(level, strength_mod)
+var level = 5;
+var strength_mod = 3;
+
+attack_bonus(level, strength_mod);
