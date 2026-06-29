@@ -16,22 +16,39 @@ public final class CompiledSephirahModule {
 	private final FunctionRegistry functions;
 	private final Map<String, Expression> variables;
 	private final List<Expression> evaluations;
+	private final Set<String> definedFunctionNames;
 	
 	public CompiledSephirahModule(
 			String name,
 			EvaluationContext context,
 			FunctionRegistry functions,
 			Map<String, Expression> variables,
-			List<Expression> evaluations) {
+			List<Expression> evaluations,
+			Set<String> definedFunctionNames) {
 		this.name = name;
 		this.context = context;
 		this.functions = functions;
 		this.variables = Map.copyOf(variables);
 		this.evaluations = List.copyOf(evaluations);
+		this.definedFunctionNames = definedFunctionNames;
 	}
 
 	public String getName() {
 		return name;
+	}
+	
+	public Set<String> getDefinedFunctionNames() {
+	    return definedFunctionNames;
+	}
+
+	public List<CompiledFunction> getDefinedFunctions() {
+	    List<CompiledFunction> results = new ArrayList<>();
+
+	    for (String name : definedFunctionNames) {
+	        results.add(getFunction(name));
+	    }
+
+	    return results;
 	}
 	
 	public int getEvaluationCount() {

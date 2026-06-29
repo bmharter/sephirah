@@ -36,13 +36,31 @@ public class SephirahCompiler {
 		
 		Map<String, Expression> variables = compileVariables(model);
 		List<Expression> expressions = compileEvaluations(model);
+		Set<String> definedFunctionNames = compileDefinedFunctionNames(model);
 		
 		return new CompiledSephirahModule(
 				name,
 				context,
 				functions,
 				variables,
-				expressions);
+				expressions,
+				definedFunctionNames);
+	}
+	
+	private Set<String> compileDefinedFunctionNames(FormulaModel model) {
+	    Set<String> names = new LinkedHashSet<>();
+
+	    for (Definition definition : model.getMethodDefs()) {
+	        String name = definition.getName();
+
+	        if (name == null || name.isBlank()) {
+	            continue;
+	        }
+
+	        names.add(name);
+	    }
+
+	    return names;
 	}
 	
 	private List<Expression> compileEvaluations(FormulaModel model) {
