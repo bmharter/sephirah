@@ -357,4 +357,22 @@ public class SephirahCompilerTest {
         assertEquals(false, signature.accepts(1));
         assertEquals(false, signature.accepts(3));
     }
+    
+    @Test
+    public void compiledEvaluationResultsIncludeInferredTypes() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileEvaluationResultTypes\n\n"
+              + "var score = 10;\n\n"
+              + "score;\n"
+              + "score >= 10;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        List<CompiledEvaluationResult> results =
+                module.evaluateAllResults();
+
+        assertEquals(SephirahType.NUMBER, results.get(0).getType());
+        assertEquals(SephirahType.BOOLEAN, results.get(1).getType());
+    }
 }

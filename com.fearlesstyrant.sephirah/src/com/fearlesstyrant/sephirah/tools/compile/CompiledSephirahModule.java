@@ -90,11 +90,13 @@ public final class CompiledSephirahModule {
 	    for (int i = 0; i < evaluations.size(); i++) {
 	        Expression expression = evaluations.get(i);
 	        SephirahValue value = evaluateExpression(expression);
-
+	        SephirahType type = SephirahTypeInferencer.inferType(expression);
+	        
 	        results.add(new CompiledEvaluationResult(
 	                i,
 	                expression,
-	                value));
+	                value,
+	                type));
 	    }
 
 	    return results;
