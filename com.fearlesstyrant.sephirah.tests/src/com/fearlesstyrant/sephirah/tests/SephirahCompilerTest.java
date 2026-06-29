@@ -599,4 +599,87 @@ public class SephirahCompilerTest {
         assertEquals(true, exports.getFunctionNames().contains("add"));
         assertEquals(false, exports.getFunctionNames().contains("abs"));
     }
+    
+    @Test
+    public void compiledModuleExportsCanLookupVariables() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileExportVariableLookup\n\n"
+              + "var score = 10;\n"
+              + "var eligible = score >= 10;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        CompiledModuleExports exports = module.getExports();
+
+        assertEquals(true, exports.hasVariable("score"));
+        assertEquals(false, exports.hasVariable("missing"));
+
+        CompiledVariable variable = exports.getVariable("eligible");
+
+        assertEquals("eligible", variable.getName());
+        assertEquals(SephirahType.BOOLEAN, variable.getType());
+    }
+    
+    @Test
+    public void compiledModuleExportsCanLookupFunctions() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileExportFunctionLookup\n\n"
+              + "def add(a, b) = a + b;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        CompiledModuleExports exports = module.getExports();
+
+        assertEquals(true, exports.hasFunction("add"));
+        assertEquals(false, exports.hasFunction("abs"));
+
+        CompiledFunction function = exports.getFunction("add");
+
+        assertEquals("add", function.getName());
+        assertEquals(true, function.getSignature().accepts(2));
+    }
+    
+    @Test
+    public void compiledModuleExportsThrowForMissingVariableLookup() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileMissingExportVariableLookup\n\n"
+              + "var score = 10;\n");
+
+        CompiledModuleExports exports =
+                new SephirahCompiler().compile(model).getExports();
+
+        try {
+            exports.getVariable("missing");
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Unknown exported variable: missing",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for missing exported variable.");
+    }
+    
+    @Test
+    public void compiledModuleExportsThrowForMissingFunctionLookup() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileMissingExportFunctionLookup\n\n"
+              + "def add(a, b) = a + b;\n");
+
+        CompiledModuleExports exports =
+                new SephirahCompiler().compile(model).getExports();
+
+        try {
+            exports.getFunction("missing");
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Unknown exported function: missing",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for missing exported function.");
+    }
 }

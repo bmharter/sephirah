@@ -41,4 +41,32 @@ public final class CompiledModuleExports {
 
 	    return names;
 	}
+	
+	public boolean hasVariable(String name) {
+	    return getVariableNames().contains(name);
+	}
+
+	public CompiledVariable getVariable(String name) {
+	    for (CompiledVariable variable : variables) {
+	        if (variable.getName().equals(name)) {
+	            return variable;
+	        }
+	    }
+
+	    throw new IllegalArgumentException("Unknown exported variable: " + name);
+	}
+
+	public boolean hasFunction(String name) {
+	    return getFunctionNames().contains(name);
+	}
+
+	public CompiledFunction getFunction(String name) {
+	    for (CompiledFunction function : functions) {
+	        if (function.getName().equals(name)) {
+	            return function;
+	        }
+	    }
+
+	    throw new IllegalArgumentException("Unknown exported function: " + name);
+	}
 }
