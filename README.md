@@ -44,7 +44,7 @@ A future-facing boolean example is kept under `examples/future/` until boolean r
 
 This launch kit includes three lightweight tools:
 
-1. `tools/repo_health_check.ps1` — checks that the repo root is clean and not accidentally pointed at an Eclipse workspace root.
+1. `repo_health_check.ps1` — checks that the repo root is clean and not accidentally pointed at an Eclipse workspace root.
 2. `tools/build_showcase.py` — generates a Markdown showcase from the example `.seph` files.
 3. `tools/publish_sephirah.ps1` — publishes the existing local repository to GitHub using GitHub CLI.
 
