@@ -505,4 +505,29 @@ public class SephirahCompilerTest {
 
         assertEquals(true, module.hasFunction("abs"));
     }
+    
+    @Test
+    public void compiledModuleSummaryDistinguishesDefinedFunctionsFromBuiltins() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileSummaryDefinedFunctions\n\n"
+              + "def add(a, b) = a + b;\n"
+              + "def eligible(score) = score >= 10;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        CompiledModuleSummary summary = module.getSummary();
+
+        assertEquals(true, summary.getDefinedFunctions().stream()
+                .anyMatch(function -> function.getName().equals("add")));
+
+        assertEquals(true, summary.getDefinedFunctions().stream()
+                .anyMatch(function -> function.getName().equals("eligible")));
+
+        assertEquals(false, summary.getDefinedFunctions().stream()
+                .anyMatch(function -> function.getName().equals("abs")));
+
+        assertEquals(true, summary.getFunctions().stream()
+                .anyMatch(function -> function.getName().equals("abs")));
+    }
 }

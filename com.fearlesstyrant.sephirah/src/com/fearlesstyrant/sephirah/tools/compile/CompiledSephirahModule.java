@@ -107,6 +107,7 @@ public final class CompiledSephirahModule {
 				name,
 				getVariables(),
 				getFunctions(),
+				getDefinedFunctions(),
 				getEvaluationCount());
 	}
 	
