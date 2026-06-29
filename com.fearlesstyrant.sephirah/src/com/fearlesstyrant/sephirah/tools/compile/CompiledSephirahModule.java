@@ -85,6 +85,14 @@ public final class CompiledSephirahModule {
 				SephirahTypeInferencer.inferType(expression));
 	}
 	
+	public CompiledModuleSummary getSummary() {
+		return new CompiledModuleSummary(
+				name,
+				getVariables(),
+				getFunctions(),
+				getEvaluationCount());
+	}
+	
 	public List<CompiledVariable> getVariables() {
 		List<CompiledVariable> results = new ArrayList<>();
 		

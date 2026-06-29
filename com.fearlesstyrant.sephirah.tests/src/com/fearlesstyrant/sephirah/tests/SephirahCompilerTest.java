@@ -456,4 +456,36 @@ public class SephirahCompilerTest {
         assertEquals(true, functions.stream()
                 .anyMatch(function -> function.getName().equals("abs")));
     }
+    
+    @Test
+    public void compiledModuleCanReturnSummary() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileModuleSummary\n\n"
+              + "var score = 10;\n"
+              + "var eligible = score >= 10;\n\n"
+              + "def add(a, b) = a + b;\n\n"
+              + "score;\n"
+              + "eligible;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        CompiledModuleSummary summary = module.getSummary();
+
+        assertEquals("compileModuleSummary", summary.getName());
+        assertEquals(2, summary.getVariables().size());
+        assertEquals(2, summary.getEvaluationCount());
+
+        assertEquals(true, summary.getVariables().stream()
+                .anyMatch(variable -> variable.getName().equals("score")));
+
+        assertEquals(true, summary.getVariables().stream()
+                .anyMatch(variable -> variable.getName().equals("eligible")));
+
+        assertEquals(true, summary.getFunctions().stream()
+                .anyMatch(function -> function.getName().equals("add")));
+
+        assertEquals(true, summary.getFunctions().stream()
+                .anyMatch(function -> function.getName().equals("abs")));
+    }
 }
