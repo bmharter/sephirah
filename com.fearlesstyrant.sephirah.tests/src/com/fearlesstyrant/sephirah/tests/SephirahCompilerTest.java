@@ -579,4 +579,24 @@ public class SephirahCompilerTest {
         assertEquals(false, exports.getFunctions().stream()
                 .anyMatch(function -> function.getName().equals("abs")));
     }
+    
+    @Test
+    public void compiledModuleExportsExposeSymbolNames() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileExportNames\n\n"
+              + "var score = 10;\n"
+              + "var eligible = score >= 10;\n\n"
+              + "def add(a, b) = a + b;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        CompiledModuleExports exports = module.getExports();
+
+        assertEquals(true, exports.getVariableNames().contains("score"));
+        assertEquals(true, exports.getVariableNames().contains("eligible"));
+
+        assertEquals(true, exports.getFunctionNames().contains("add"));
+        assertEquals(false, exports.getFunctionNames().contains("abs"));
+    }
 }
