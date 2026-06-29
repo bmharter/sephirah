@@ -32,6 +32,7 @@ public class SephirahParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, SephirahGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getFormulaModelAccess().getAlternatives_2(), "rule__FormulaModel__Alternatives_2");
+			builder.put(grammarAccess.getDocNameAccess().getAlternatives(), "rule__DocName__Alternatives");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getAlternatives(), "rule__ConditionalExpression__Alternatives");
 			builder.put(grammarAccess.getNotBooleanExpressionAccess().getAlternatives(), "rule__NotBooleanExpression__Alternatives");
 			builder.put(grammarAccess.getPrimaryBooleanExpressionAccess().getAlternatives(), "rule__PrimaryBooleanExpression__Alternatives");
@@ -44,8 +45,10 @@ public class SephirahParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getValidIDAccess().getAlternatives(), "rule__ValidID__Alternatives");
 			builder.put(grammarAccess.getComparisonOperatorAccess().getAlternatives(), "rule__ComparisonOperator__Alternatives");
 			builder.put(grammarAccess.getFormulaModelAccess().getGroup(), "rule__FormulaModel__Group__0");
-			builder.put(grammarAccess.getDocNameAccess().getGroup(), "rule__DocName__Group__0");
+			builder.put(grammarAccess.getDocNameAccess().getGroup_0(), "rule__DocName__Group_0__0");
+			builder.put(grammarAccess.getDocNameAccess().getGroup_1(), "rule__DocName__Group_1__0");
 			builder.put(grammarAccess.getImportAccess().getGroup(), "rule__Import__Group__0");
+			builder.put(grammarAccess.getImportAccess().getGroup_2(), "rule__Import__Group_2__0");
 			builder.put(grammarAccess.getDefinitionAccess().getGroup(), "rule__Definition__Group__0");
 			builder.put(grammarAccess.getDefinitionAccess().getGroup_3(), "rule__Definition__Group_3__0");
 			builder.put(grammarAccess.getDefinitionAccess().getGroup_3_1(), "rule__Definition__Group_3_1__0");
@@ -89,8 +92,10 @@ public class SephirahParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFormulaModelAccess().getMethodDefsAssignment_2_0(), "rule__FormulaModel__MethodDefsAssignment_2_0");
 			builder.put(grammarAccess.getFormulaModelAccess().getVariablesAssignment_2_1(), "rule__FormulaModel__VariablesAssignment_2_1");
 			builder.put(grammarAccess.getFormulaModelAccess().getValuesAssignment_2_2(), "rule__FormulaModel__ValuesAssignment_2_2");
-			builder.put(grammarAccess.getDocNameAccess().getNameAssignment_1(), "rule__DocName__NameAssignment_1");
-			builder.put(grammarAccess.getImportAccess().getNameAssignment_1(), "rule__Import__NameAssignment_1");
+			builder.put(grammarAccess.getDocNameAccess().getNameAssignment_0_1(), "rule__DocName__NameAssignment_0_1");
+			builder.put(grammarAccess.getDocNameAccess().getNameAssignment_1_1(), "rule__DocName__NameAssignment_1_1");
+			builder.put(grammarAccess.getImportAccess().getModuleAssignment_1(), "rule__Import__ModuleAssignment_1");
+			builder.put(grammarAccess.getImportAccess().getAliasAssignment_2_1(), "rule__Import__AliasAssignment_2_1");
 			builder.put(grammarAccess.getDefinitionAccess().getNameAssignment_1(), "rule__Definition__NameAssignment_1");
 			builder.put(grammarAccess.getDefinitionAccess().getArgsAssignment_3_0(), "rule__Definition__ArgsAssignment_3_0");
 			builder.put(grammarAccess.getDefinitionAccess().getArgsAssignment_3_1_1(), "rule__Definition__ArgsAssignment_3_1_1");

@@ -99,55 +99,93 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	public class DocNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.DocName");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cSephirahDocKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Keyword cSephirahDocKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Assignment cNameAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cNameQualifiedNameParserRuleCall_0_1_0 = (RuleCall)cNameAssignment_0_1.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cNumDocKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNameQualifiedNameParserRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
 		
 		//DocName:
 		//    'SephirahDoc' name=QualifiedName
+		//    | 'NumDoc' name=QualifiedName
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'SephirahDoc' name=QualifiedName
-		public Group getGroup() { return cGroup; }
+		//| 'NumDoc' name=QualifiedName
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'SephirahDoc' name=QualifiedName
+		public Group getGroup_0() { return cGroup_0; }
 		
 		//'SephirahDoc'
-		public Keyword getSephirahDocKeyword_0() { return cSephirahDocKeyword_0; }
+		public Keyword getSephirahDocKeyword_0_0() { return cSephirahDocKeyword_0_0; }
 		
 		//name=QualifiedName
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_0_1() { return cNameAssignment_0_1; }
 		
 		//QualifiedName
-		public RuleCall getNameQualifiedNameParserRuleCall_1_0() { return cNameQualifiedNameParserRuleCall_1_0; }
+		public RuleCall getNameQualifiedNameParserRuleCall_0_1_0() { return cNameQualifiedNameParserRuleCall_0_1_0; }
+		
+		//'NumDoc' name=QualifiedName
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'NumDoc'
+		public Keyword getNumDocKeyword_1_0() { return cNumDocKeyword_1_0; }
+		
+		//name=QualifiedName
+		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
+		
+		//QualifiedName
+		public RuleCall getNameQualifiedNameParserRuleCall_1_1_0() { return cNameQualifiedNameParserRuleCall_1_1_0; }
 	}
 	public class ImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.Import");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cModuleAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cModuleQualifiedNameParserRuleCall_1_0 = (RuleCall)cModuleAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cAsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cAliasAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cAliasValidIDParserRuleCall_2_1_0 = (RuleCall)cAliasAssignment_2_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Import:
-		//    'import' name=QualifiedName ';'
+		//    'import' module=QualifiedName ('as' alias=ValidID)? ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'import' name=QualifiedName ';'
+		//'import' module=QualifiedName ('as' alias=ValidID)? ';'
 		public Group getGroup() { return cGroup; }
 		
 		//'import'
 		public Keyword getImportKeyword_0() { return cImportKeyword_0; }
 		
-		//name=QualifiedName
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//module=QualifiedName
+		public Assignment getModuleAssignment_1() { return cModuleAssignment_1; }
 		
 		//QualifiedName
-		public RuleCall getNameQualifiedNameParserRuleCall_1_0() { return cNameQualifiedNameParserRuleCall_1_0; }
+		public RuleCall getModuleQualifiedNameParserRuleCall_1_0() { return cModuleQualifiedNameParserRuleCall_1_0; }
+		
+		//('as' alias=ValidID)?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'as'
+		public Keyword getAsKeyword_2_0() { return cAsKeyword_2_0; }
+		
+		//alias=ValidID
+		public Assignment getAliasAssignment_2_1() { return cAliasAssignment_2_1; }
+		
+		//ValidID
+		public RuleCall getAliasValidIDParserRuleCall_2_1_0() { return cAliasValidIDParserRuleCall_2_1_0; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 	public class DefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.fearlesstyrant.sephirah.Sephirah.Definition");
@@ -1324,6 +1362,7 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	//DocName:
 	//    'SephirahDoc' name=QualifiedName
+	//    | 'NumDoc' name=QualifiedName
 	//;
 	public DocNameElements getDocNameAccess() {
 		return pDocName;
@@ -1334,7 +1373,7 @@ public class SephirahGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Import:
-	//    'import' name=QualifiedName ';'
+	//    'import' module=QualifiedName ('as' alias=ValidID)? ';'
 	//;
 	public ImportElements getImportAccess() {
 		return pImport;

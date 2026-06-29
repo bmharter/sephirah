@@ -397,9 +397,20 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
    * @generated
    */
   @Override
-  public EAttribute getImport_Name()
+  public EAttribute getImport_Module()
   {
     return (EAttribute)importEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getImport_Alias()
+  {
+    return (EAttribute)importEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1071,7 +1082,8 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
     createEAttribute(docNameEClass, DOC_NAME__NAME);
 
     importEClass = createEClass(IMPORT);
-    createEAttribute(importEClass, IMPORT__NAME);
+    createEAttribute(importEClass, IMPORT__MODULE);
+    createEAttribute(importEClass, IMPORT__ALIAS);
 
     definitionEClass = createEClass(DEFINITION);
     createEAttribute(definitionEClass, DEFINITION__NAME);
@@ -1215,7 +1227,8 @@ public class SephirahPackageImpl extends EPackageImpl implements SephirahPackage
     initEAttribute(getDocName_Name(), ecorePackage.getEString(), "name", null, 0, 1, DocName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getImport_Name(), ecorePackage.getEString(), "name", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getImport_Module(), ecorePackage.getEString(), "module", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getImport_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(definitionEClass, Definition.class, "Definition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Definition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -407,17 +407,11 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     DocName returns DocName
 	 *
 	 * Constraint:
-	 *     name=QualifiedName
+	 *     (name=QualifiedName | name=QualifiedName)
 	 * </pre>
 	 */
 	protected void sequence_DocName(ISerializationContext context, DocName semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.DOC_NAME__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.DOC_NAME__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDocNameAccess().getNameQualifiedNameParserRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -506,17 +500,11 @@ public class SephirahSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Import returns Import
 	 *
 	 * Constraint:
-	 *     name=QualifiedName
+	 *     (module=QualifiedName alias=ValidID?)
 	 * </pre>
 	 */
 	protected void sequence_Import(ISerializationContext context, Import semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SephirahPackage.Literals.IMPORT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SephirahPackage.Literals.IMPORT__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getImportAccess().getNameQualifiedNameParserRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

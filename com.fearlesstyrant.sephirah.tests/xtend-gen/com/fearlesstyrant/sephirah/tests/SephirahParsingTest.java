@@ -31,11 +31,9 @@ public class SephirahParsingTest {
       _builder.append("SephirahDoc parsingSmokeTest");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("\t        ");
       _builder.append("var score = 10;");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("    \t    ");
       _builder.append("score;");
       _builder.newLine();
       final FormulaModel result = this.parseHelper.parse(_builder);
@@ -47,6 +45,69 @@ public class SephirahParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  @Test
+  public void loadModelWithImport() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("SephirahDoc importSmokeTest");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("import math_helpers;");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("var score = 10;");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("score;");
+      _builder.newLine();
+      final FormulaModel result = this.parseHelper.parse(_builder);
+      Assertions.assertNotNull(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      boolean _isEmpty = errors.isEmpty();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: ");
+      String _join = IterableExtensions.join(errors, ", ");
+      _builder_1.append(_join);
+      Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      Assertions.assertEquals(1, result.getImports().size());
+      Assertions.assertEquals("math_helpers", result.getImports().get(0).getModule());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  @Test
+  public void loadModelWithAliasedImport() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("SephirahDoc aliasedImportSmokeTest");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("import math.helpers as math;");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("var score = 10;");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("score;");
+      _builder.newLine();
+      final FormulaModel result = this.parseHelper.parse(_builder);
+      Assertions.assertNotNull(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      boolean _isEmpty = errors.isEmpty();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: ");
+      String _join = IterableExtensions.join(errors, ", ");
+      _builder_1.append(_join);
+      Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      Assertions.assertEquals(1, result.getImports().size());
+      Assertions.assertEquals("math.helpers", result.getImports().get(0).getModule());
+      Assertions.assertEquals("math", result.getImports().get(0).getAlias());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

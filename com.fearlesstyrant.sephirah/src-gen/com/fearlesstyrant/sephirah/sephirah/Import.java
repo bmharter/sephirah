@@ -14,7 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.fearlesstyrant.sephirah.sephirah.Import#getName <em>Name</em>}</li>
+ *   <li>{@link com.fearlesstyrant.sephirah.sephirah.Import#getModule <em>Module</em>}</li>
+ *   <li>{@link com.fearlesstyrant.sephirah.sephirah.Import#getAlias <em>Alias</em>}</li>
  * </ul>
  *
  * @see com.fearlesstyrant.sephirah.sephirah.SephirahPackage#getImport()
@@ -24,25 +25,47 @@ import org.eclipse.emf.ecore.EObject;
 public interface Import extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Module</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see com.fearlesstyrant.sephirah.sephirah.SephirahPackage#getImport_Name()
+   * @return the value of the '<em>Module</em>' attribute.
+   * @see #setModule(String)
+   * @see com.fearlesstyrant.sephirah.sephirah.SephirahPackage#getImport_Module()
    * @model
    * @generated
    */
-  String getName();
+  String getModule();
 
   /**
-   * Sets the value of the '{@link com.fearlesstyrant.sephirah.sephirah.Import#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link com.fearlesstyrant.sephirah.sephirah.Import#getModule <em>Module</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Module</em>' attribute.
+   * @see #getModule()
    * @generated
    */
-  void setName(String value);
+  void setModule(String value);
+
+  /**
+   * Returns the value of the '<em><b>Alias</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Alias</em>' attribute.
+   * @see #setAlias(String)
+   * @see com.fearlesstyrant.sephirah.sephirah.SephirahPackage#getImport_Alias()
+   * @model
+   * @generated
+   */
+  String getAlias();
+
+  /**
+   * Sets the value of the '{@link com.fearlesstyrant.sephirah.sephirah.Import#getAlias <em>Alias</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Alias</em>' attribute.
+   * @see #getAlias()
+   * @generated
+   */
+  void setAlias(String value);
 
 } // Import

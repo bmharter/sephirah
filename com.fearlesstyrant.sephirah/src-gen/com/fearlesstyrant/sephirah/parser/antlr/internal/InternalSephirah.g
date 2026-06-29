@@ -195,27 +195,55 @@ ruleDocName returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='SephirahDoc'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getDocNameAccess().getSephirahDocKeyword_0());
-		}
 		(
+			otherlv_0='SephirahDoc'
+			{
+				newLeafNode(otherlv_0, grammarAccess.getDocNameAccess().getSephirahDocKeyword_0_0());
+			}
 			(
-				{
-					newCompositeNode(grammarAccess.getDocNameAccess().getNameQualifiedNameParserRuleCall_1_0());
-				}
-				lv_name_1_0=ruleQualifiedName
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDocNameRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDocNameAccess().getNameQualifiedNameParserRuleCall_0_1_0());
 					}
-					set(
-						$current,
-						"name",
-						lv_name_1_0,
-						"com.fearlesstyrant.sephirah.Sephirah.QualifiedName");
-					afterParserOrEnumRuleCall();
-				}
+					lv_name_1_0=ruleQualifiedName
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDocNameRule());
+						}
+						set(
+							$current,
+							"name",
+							lv_name_1_0,
+							"com.fearlesstyrant.sephirah.Sephirah.QualifiedName");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+		    |
+		(
+			otherlv_2='NumDoc'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getDocNameAccess().getNumDocKeyword_1_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getDocNameAccess().getNameQualifiedNameParserRuleCall_1_1_0());
+					}
+					lv_name_3_0=ruleQualifiedName
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDocNameRule());
+						}
+						set(
+							$current,
+							"name",
+							lv_name_3_0,
+							"com.fearlesstyrant.sephirah.Sephirah.QualifiedName");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
 		)
 	)
@@ -244,25 +272,50 @@ ruleImport returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getImportAccess().getNameQualifiedNameParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getImportAccess().getModuleQualifiedNameParserRuleCall_1_0());
 				}
-				lv_name_1_0=ruleQualifiedName
+				lv_module_1_0=ruleQualifiedName
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getImportRule());
 					}
 					set(
 						$current,
-						"name",
-						lv_name_1_0,
+						"module",
+						lv_module_1_0,
 						"com.fearlesstyrant.sephirah.Sephirah.QualifiedName");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_2=';'
+		(
+			otherlv_2='as'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getImportAccess().getAsKeyword_2_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getImportAccess().getAliasValidIDParserRuleCall_2_1_0());
+					}
+					lv_alias_3_0=ruleValidID
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getImportRule());
+						}
+						set(
+							$current,
+							"alias",
+							lv_alias_3_0,
+							"com.fearlesstyrant.sephirah.Sephirah.ValidID");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		otherlv_4=';'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getImportAccess().getSemicolonKeyword_2());
+			newLeafNode(otherlv_4, grammarAccess.getImportAccess().getSemicolonKeyword_3());
 		}
 	)
 ;

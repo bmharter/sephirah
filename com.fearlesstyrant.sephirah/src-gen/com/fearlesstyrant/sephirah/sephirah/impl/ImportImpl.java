@@ -21,7 +21,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.fearlesstyrant.sephirah.sephirah.impl.ImportImpl#getName <em>Name</em>}</li>
+ *   <li>{@link com.fearlesstyrant.sephirah.sephirah.impl.ImportImpl#getModule <em>Module</em>}</li>
+ *   <li>{@link com.fearlesstyrant.sephirah.sephirah.impl.ImportImpl#getAlias <em>Alias</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,24 +30,44 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class ImportImpl extends MinimalEObjectImpl.Container implements Import
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getModule() <em>Module</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getModule()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String MODULE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getModule() <em>Module</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getModule()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected String module = MODULE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAlias()
+   * @generated
+   * @ordered
+   */
+  protected static final String ALIAS_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getAlias() <em>Alias</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAlias()
+   * @generated
+   * @ordered
+   */
+  protected String alias = ALIAS_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -75,9 +96,9 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
    * @generated
    */
   @Override
-  public String getName()
+  public String getModule()
   {
-    return name;
+    return module;
   }
 
   /**
@@ -86,12 +107,37 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setModule(String newModule)
   {
-    String oldName = name;
-    name = newName;
+    String oldModule = module;
+    module = newModule;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SephirahPackage.IMPORT__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, SephirahPackage.IMPORT__MODULE, oldModule, module));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getAlias()
+  {
+    return alias;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setAlias(String newAlias)
+  {
+    String oldAlias = alias;
+    alias = newAlias;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SephirahPackage.IMPORT__ALIAS, oldAlias, alias));
   }
 
   /**
@@ -104,8 +150,10 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     switch (featureID)
     {
-      case SephirahPackage.IMPORT__NAME:
-        return getName();
+      case SephirahPackage.IMPORT__MODULE:
+        return getModule();
+      case SephirahPackage.IMPORT__ALIAS:
+        return getAlias();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,8 +168,11 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     switch (featureID)
     {
-      case SephirahPackage.IMPORT__NAME:
-        setName((String)newValue);
+      case SephirahPackage.IMPORT__MODULE:
+        setModule((String)newValue);
+        return;
+      case SephirahPackage.IMPORT__ALIAS:
+        setAlias((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +188,11 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     switch (featureID)
     {
-      case SephirahPackage.IMPORT__NAME:
-        setName(NAME_EDEFAULT);
+      case SephirahPackage.IMPORT__MODULE:
+        setModule(MODULE_EDEFAULT);
+        return;
+      case SephirahPackage.IMPORT__ALIAS:
+        setAlias(ALIAS_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -154,8 +208,10 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     switch (featureID)
     {
-      case SephirahPackage.IMPORT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case SephirahPackage.IMPORT__MODULE:
+        return MODULE_EDEFAULT == null ? module != null : !MODULE_EDEFAULT.equals(module);
+      case SephirahPackage.IMPORT__ALIAS:
+        return ALIAS_EDEFAULT == null ? alias != null : !ALIAS_EDEFAULT.equals(alias);
     }
     return super.eIsSet(featureID);
   }
@@ -171,8 +227,10 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (module: ");
+    result.append(module);
+    result.append(", alias: ");
+    result.append(alias);
     result.append(')');
     return result.toString();
   }

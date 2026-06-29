@@ -17,10 +17,11 @@ FormulaModel:
 
 DocName:
 	'SephirahDoc' name=QualifiedName
+	| 'NumDoc' name=QualifiedName
 ;
 
 Import:
-	'import' name=QualifiedName ';'
+	'import' module=QualifiedName ('as' alias=ValidID)? ';'
 ;
 
 Definition:

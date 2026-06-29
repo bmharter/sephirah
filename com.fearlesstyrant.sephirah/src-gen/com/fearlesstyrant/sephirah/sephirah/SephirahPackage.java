@@ -161,13 +161,22 @@ public interface SephirahPackage extends EPackage
   int IMPORT = 2;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Module</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IMPORT__NAME = 0;
+  int IMPORT__MODULE = 0;
+
+  /**
+   * The feature id for the '<em><b>Alias</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPORT__ALIAS = 1;
 
   /**
    * The number of structural features of the '<em>Import</em>' class.
@@ -176,7 +185,7 @@ public interface SephirahPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IMPORT_FEATURE_COUNT = 1;
+  int IMPORT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.DefinitionImpl <em>Definition</em>}' class.
@@ -1028,15 +1037,26 @@ public interface SephirahPackage extends EPackage
   EClass getImport();
 
   /**
-   * Returns the meta object for the attribute '{@link com.fearlesstyrant.sephirah.sephirah.Import#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link com.fearlesstyrant.sephirah.sephirah.Import#getModule <em>Module</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see com.fearlesstyrant.sephirah.sephirah.Import#getName()
+   * @return the meta object for the attribute '<em>Module</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.Import#getModule()
    * @see #getImport()
    * @generated
    */
-  EAttribute getImport_Name();
+  EAttribute getImport_Module();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.fearlesstyrant.sephirah.sephirah.Import#getAlias <em>Alias</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Alias</em>'.
+   * @see com.fearlesstyrant.sephirah.sephirah.Import#getAlias()
+   * @see #getImport()
+   * @generated
+   */
+  EAttribute getImport_Alias();
 
   /**
    * Returns the meta object for class '{@link com.fearlesstyrant.sephirah.sephirah.Definition <em>Definition</em>}'.
@@ -1744,12 +1764,20 @@ public interface SephirahPackage extends EPackage
     EClass IMPORT = eINSTANCE.getImport();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Module</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute IMPORT__NAME = eINSTANCE.getImport_Name();
+    EAttribute IMPORT__MODULE = eINSTANCE.getImport_Module();
+
+    /**
+     * The meta object literal for the '<em><b>Alias</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IMPORT__ALIAS = eINSTANCE.getImport_Alias();
 
     /**
      * The meta object literal for the '{@link com.fearlesstyrant.sephirah.sephirah.impl.DefinitionImpl <em>Definition</em>}' class.

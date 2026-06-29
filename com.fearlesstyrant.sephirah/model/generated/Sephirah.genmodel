@@ -25,7 +25,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//DocName/name"/>
     </genClasses>
     <genClasses ecoreClass="Sephirah.ecore#//Import">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//Import/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//Import/module"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//Import/alias"/>
     </genClasses>
     <genClasses ecoreClass="Sephirah.ecore#//Definition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sephirah.ecore#//Definition/name"/>
