@@ -67,7 +67,7 @@ docs/showcase.md
 Install and authenticate GitHub CLI first, then run from the Sephirah repo root:
 
 ```powershell
-.\tools\repo_health_check.ps1
+.\repo_health_check.ps1
 .\tools\publish_sephirah.ps1 -Visibility public
 ```
 
