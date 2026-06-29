@@ -88,4 +88,3 @@ if (-not $origin) {
 
 Write-Host "\nPublished Sephirah to GitHub." -ForegroundColor Green
 Write-Host "Open it with: gh repo view --web"
-
