@@ -30,6 +30,14 @@ examples/                        Small `.seph` examples
 tools/                           Repo/demo helper scripts
 ```
 
+## Command-line demo
+
+Sephirah includes an experimental CLI entry point:
+
+```text
+com.fearlesstyrant.sephirah.cli.SephirahCli
+```
+
 ## Demo examples
 
 The `examples/` folder is meant to show the language at a glance:
