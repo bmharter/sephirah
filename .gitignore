@@ -1,20 +1,28 @@
-@"
-# Eclipse workspace/runtime metadata
+# Eclipse workspace metadata — never commit the workspace root
 .metadata/
 .recommenders/
 RemoteSystemsTempFiles/
 
-# Build outputs
-**/bin/
-**/test-bin/
-**/target/
+# Java / Xtext / Eclipse build outputs
+bin/
+target/
+build/
 *.class
+*.xtendbin
 
-# Logs/caches
+# Logs and local temp files
 *.log
 *.tmp
+*.bak
+*.swp
 
-# OS files
+# OS/editor noise
 .DS_Store
 Thumbs.db
-"@ | Set-Content ".gitignore"
+.vscode/
+.idea/
+*.iml
+
+# Keep Eclipse project descriptors unless intentionally removed.
+# Xtext/Eclipse plugin projects often rely on .project, .classpath, MANIFEST.MF,
+# build.properties, feature.xml, site.xml, and some .settings files.

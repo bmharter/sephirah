@@ -1,0 +1,5 @@
+def is_veteran(level) = level >= 5
+
+level = 7
+
+is_veteran(level)

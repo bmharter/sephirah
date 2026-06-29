@@ -1,0 +1,17 @@
+{
+  "name": "sephirah-github-launch-kit",
+  "created_for": "bmharter/sephirah",
+  "contents": [
+    "README.md",
+    ".gitignore",
+    "docs/repo-cleanup-checklist.md",
+    "docs/demo-tools-roadmap.md",
+    "docs/github-actions-ci-template.yml",
+    "examples/*.seph",
+    "tools/build_showcase.py",
+    "tools/repo_health_check.ps1",
+    "tools/publish_sephirah.ps1",
+    "tools/cli-validator-design.md"
+  ],
+  "notes": "Copy contents into the local Sephirah repo root, review, then run the PowerShell health/publish scripts."
+}

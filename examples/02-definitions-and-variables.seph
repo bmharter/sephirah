@@ -1,0 +1,8 @@
+def proficiency(level) = (level + 7) / 4
+
+def attack_bonus(level, strength_mod) = proficiency(level) + strength_mod
+
+level = 5
+strength_mod = 3
+
+attack_bonus(level, strength_mod)
