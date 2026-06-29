@@ -51,6 +51,14 @@ public final class CompiledSephirahModule {
 	    return results;
 	}
 	
+	public Set<String> getDefinedVariableNames() {
+	    return getVariableNames();
+	}
+
+	public List<CompiledVariable> getDefinedVariables() {
+	    return getVariables();
+	}
+	
 	public int getEvaluationCount() {
 		return evaluations.size();
 	}
@@ -106,6 +114,7 @@ public final class CompiledSephirahModule {
 		return new CompiledModuleSummary(
 				name,
 				getVariables(),
+				getDefinedVariables(),
 				getFunctions(),
 				getDefinedFunctions(),
 				getEvaluationCount());

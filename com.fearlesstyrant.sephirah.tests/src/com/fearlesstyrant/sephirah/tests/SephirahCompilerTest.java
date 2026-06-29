@@ -530,4 +530,25 @@ public class SephirahCompilerTest {
         assertEquals(true, summary.getFunctions().stream()
                 .anyMatch(function -> function.getName().equals("abs")));
     }
+    
+    @Test
+    public void compiledModuleSummaryIncludesDefinedVariables() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileSummaryDefinedVariables\n\n"
+              + "var score = 10;\n"
+              + "var eligible = score >= 10;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        CompiledModuleSummary summary = module.getSummary();
+
+        assertEquals(2, summary.getDefinedVariables().size());
+
+        assertEquals(true, summary.getDefinedVariables().stream()
+                .anyMatch(variable -> variable.getName().equals("score")));
+
+        assertEquals(true, summary.getDefinedVariables().stream()
+                .anyMatch(variable -> variable.getName().equals("eligible")));
+    }
 }
