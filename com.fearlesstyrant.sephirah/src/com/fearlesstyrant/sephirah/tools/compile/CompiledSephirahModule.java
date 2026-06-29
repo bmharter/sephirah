@@ -63,6 +63,12 @@ public final class CompiledSephirahModule {
 		return evaluations.size();
 	}
 	
+	public CompiledModuleExports getExports() {
+		return new CompiledModuleExports(
+				getDefinedVariables(),
+				getDefinedFunctions());
+	}
+	
 	public CompiledFunction getFunction(String name) {
 		FunctionSignature signature = functions.getSignature(name);
 		

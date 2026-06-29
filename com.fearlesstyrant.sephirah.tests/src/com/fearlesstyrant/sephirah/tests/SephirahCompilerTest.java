@@ -551,4 +551,32 @@ public class SephirahCompilerTest {
         assertEquals(true, summary.getDefinedVariables().stream()
                 .anyMatch(variable -> variable.getName().equals("eligible")));
     }
+    
+    @Test
+    public void compiledModuleExportsOnlyDefinedSymbols() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileExports\n\n"
+              + "var score = 10;\n"
+              + "var eligible = score >= 10;\n\n"
+              + "def add(a, b) = a + b;\n\n"
+              + "score;\n"
+              + "abs(-5);\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        CompiledModuleExports exports = module.getExports();
+
+        assertEquals(true, exports.getVariables().stream()
+                .anyMatch(variable -> variable.getName().equals("score")));
+
+        assertEquals(true, exports.getVariables().stream()
+                .anyMatch(variable -> variable.getName().equals("eligible")));
+
+        assertEquals(true, exports.getFunctions().stream()
+                .anyMatch(function -> function.getName().equals("add")));
+
+        assertEquals(false, exports.getFunctions().stream()
+                .anyMatch(function -> function.getName().equals("abs")));
+    }
 }
