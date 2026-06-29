@@ -28,7 +28,15 @@ public class SephirahParsingTest {
   public void loadModel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Hello Xtext!");
+      _builder.append("SephirahDoc parsingSmokeTest");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("var score = 10;");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("    \t    ");
+      _builder.append("score;");
       _builder.newLine();
       final FormulaModel result = this.parseHelper.parse(_builder);
       Assertions.assertNotNull(result);

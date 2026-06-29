@@ -20,11 +20,20 @@ class SephirahParsingTest {
 	
 	@Test
 	def void loadModel() {
-		val result = parseHelper.parse('''
-			Hello Xtext!
-		''')
-		Assertions.assertNotNull(result)
-		val errors = result.eResource.errors
-		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
-	}
+    	val result = parseHelper.parse('''
+        	SephirahDoc parsingSmokeTest
+
+	        var score = 10;
+
+    	    score;
+	    ''')
+
+    	Assertions.assertNotNull(result)
+
+	    val errors = result.eResource.errors
+	    Assertions.assertTrue(
+    	    errors.isEmpty,
+        	'''Unexpected errors: «errors.join(", ")»'''
+    )
+}
 }
