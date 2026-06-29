@@ -38,6 +38,26 @@ public final class CompiledSephirahModule {
 		return evaluations.size();
 	}
 	
+	public CompiledFunction getFunction(String name) {
+		FunctionSignature signature = functions.getSignature(name);
+		
+		if (signature == null) {
+	        throw new IllegalArgumentException("Unknown function: " + name);
+	    }
+		
+		return new CompiledFunction(name, signature);
+	}
+	
+	public List<CompiledFunction> getFunctions() {
+		List<CompiledFunction> results = new ArrayList<>();
+		
+		for(String name : functions.getFunctionNames()) {
+			results.add(getFunction(name));
+		}
+		
+		return results;
+	}
+	
 	public Set<String> getFunctionNames() {
 		return functions.getFunctionNames();
 	}

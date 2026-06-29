@@ -406,4 +406,54 @@ public class SephirahCompilerTest {
 
         assertEquals(2, variables.size());
     }
+    
+    @Test
+    public void compiledModuleCanReturnCompiledFunctionDescriptor() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileFunctionDescriptor\n\n"
+              + "def add(a, b) = a + b;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        CompiledFunction function = module.getFunction("add");
+
+        assertEquals("add", function.getName());
+        assertEquals(true, function.getSignature().accepts(2));
+        assertEquals(false, function.getSignature().accepts(1));
+    }
+    
+    @Test
+    public void compiledModuleCanReturnBuiltinFunctionDescriptor() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileBuiltinFunctionDescriptor\n\n"
+              + "abs(-5);\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        CompiledFunction function = module.getFunction("abs");
+
+        assertEquals("abs", function.getName());
+        assertEquals(SephirahType.NUMBER, function.getSignature().getReturnType().get());
+        assertEquals(SephirahType.NUMBER, function.getSignature().getParameterType(0).get());
+    }
+    
+    @Test
+    public void compiledModuleCanReturnAllCompiledFunctionDescriptors() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileAllFunctionDescriptors\n\n"
+              + "def add(a, b) = a + b;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        List<CompiledFunction> functions = module.getFunctions();
+
+        assertEquals(true, functions.stream()
+                .anyMatch(function -> function.getName().equals("add")));
+
+        assertEquals(true, functions.stream()
+                .anyMatch(function -> function.getName().equals("abs")));
+    }
 }
