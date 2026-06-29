@@ -52,6 +52,29 @@ public final class CompiledSephirahModule {
 	    return signature;
 	}
 	
+	public CompiledVariable getVariable(String name) {
+		Expression expression = variables.get(name);
+		
+		if(expression == null) {
+			throw new IllegalArgumentException("Unknown variable: " + name);
+		}
+		
+		return new CompiledVariable(
+				name,
+				expression,
+				SephirahTypeInferencer.inferType(expression));
+	}
+	
+	public List<CompiledVariable> getVariables() {
+		List<CompiledVariable> results = new ArrayList<>();
+		
+		for(String name : variables.keySet()) {
+			results.add(getVariable(name));
+		}
+		
+		return results;
+	}
+	
 	public Set<String> getVariableNames() {
 	    return Collections.unmodifiableSet(variables.keySet());
 	}

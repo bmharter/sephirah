@@ -375,4 +375,35 @@ public class SephirahCompilerTest {
         assertEquals(SephirahType.NUMBER, results.get(0).getType());
         assertEquals(SephirahType.BOOLEAN, results.get(1).getType());
     }
+    
+    @Test
+    public void compiledModuleCanReturnCompiledVariableDescriptor() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileVariableDescriptor\n\n"
+              + "var score = 10;\n"
+              + "var eligible = score >= 10;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        CompiledVariable variable = module.getVariable("eligible");
+
+        assertEquals("eligible", variable.getName());
+        assertEquals(SephirahType.BOOLEAN, variable.getType());
+    }
+    
+    @Test
+    public void compiledModuleCanReturnAllCompiledVariableDescriptors() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc compileAllVariableDescriptors\n\n"
+              + "var score = 10;\n"
+              + "var eligible = score >= 10;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        List<CompiledVariable> variables = module.getVariables();
+
+        assertEquals(2, variables.size());
+    }
 }
