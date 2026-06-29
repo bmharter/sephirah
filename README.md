@@ -91,6 +91,10 @@ Suggested resume bullet:
 
 > Built an Xtext-based domain-specific language with parser, validation, Eclipse editor integration, example programs, and a GitHub-ready demonstration workflow.
 
+## Known status
+
+Sephirah is an early prototype. The current repository demonstrates grammar, parsing, validation, editor integration, examples, and an experimental CLI demo. Build automation and packaged CLI distribution are future work.
+
 ## Roadmap
 
 - Stabilize the expression type system.
