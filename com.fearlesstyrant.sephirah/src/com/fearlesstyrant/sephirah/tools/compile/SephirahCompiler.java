@@ -14,21 +14,32 @@ public class SephirahCompiler {
 	private CompiledSephirahModule compile(
 	        FormulaModel model,
 	        FunctionRegistry baseFunctions) {
+	   return compile(model, baseFunctions, null);
+	}
+	
+	private CompiledSephirahModule compile(
+	        FormulaModel model,
+	        FunctionRegistry baseFunctions,
+	        CompiledSephirahModuleSet importedModules) {
 	    if (model == null) {
 	        throw new IllegalArgumentException("Cannot compile null Sephirah model.");
 	    }
 
-	    String name = model.getName() == null
-	            || model.getName().getName() == null
-	            || model.getName().getName().isBlank()
-	            ? "<anonymous>"
-	            : model.getName().getName();
+	    String name = getModuleName(model);
 
 	    MutableFunctionRegistryReference reference =
 	            new MutableFunctionRegistryReference(baseFunctions);
 
-	    ModuleValueResolver resolver =
+	    ModuleValueResolver localResolver =
 	            new ModuleValueResolver(model, reference::get);
+
+	    ValueResolver resolver = localResolver;
+
+	    if (importedModules != null) {
+	        resolver = new ImportAwareValueResolver(
+	                localResolver,
+	                buildImportedModulesByLocalName(model, importedModules));
+	    }
 
 	    FunctionRegistry functions =
 	            compileFunctions(model, baseFunctions, resolver, reference);
@@ -77,10 +88,25 @@ public class SephirahCompiler {
 							firstPassModule,
 							firstPassSet);
 			
-			linkedModules.add(compile(model, baseFunctions));
+			linkedModules.add(compile(model, baseFunctions, firstPassSet));
 		}
 		
 		return new CompiledSephirahModuleSet(linkedModules);
+	}
+	
+	private Map<String, CompiledSephirahModule> buildImportedModulesByLocalName(
+	        FormulaModel model,
+	        CompiledSephirahModuleSet modules) {
+	    Map<String, CompiledSephirahModule> results = new HashMap<>();
+
+	    for (CompiledImport imported : compileImports(model)) {
+	        CompiledSephirahModule importedModule =
+	                modules.getModule(imported.getModuleName());
+
+	        results.put(imported.getLocalName(), importedModule);
+	    }
+
+	    return results;
 	}
 	
 	private Set<String> compileDefinedFunctionNames(FormulaModel model) {
@@ -116,7 +142,7 @@ public class SephirahCompiler {
 	private FunctionRegistry compileFunctions(
 			FormulaModel model,
 			FunctionRegistry baseFunctions,
-			ModuleValueResolver resolver,
+			ValueResolver resolver,
 			MutableFunctionRegistryReference reference) {
 		
 		return ModuleFunctionCompiler.compile(model, baseFunctions, resolver, reference);

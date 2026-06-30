@@ -852,4 +852,64 @@ public class SephirahCompilerTest {
         assertEquals(false, gameRules.getExports().hasFunction("math.double"));
         assertEquals(false, gameRules.getDefinedFunctionNames().contains("math.double"));
     }
+    
+    @Test
+    public void compiledModuleCanUseAliasedImportedVariable() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "var baseScore = 10;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers as math;\n\n"
+              + "var result = math.baseScore + 5;\n");
+
+        CompiledSephirahModuleSet modules =
+                new SephirahCompiler().compileAll(List.of(math, game));
+
+        assertEquals(
+                new BigDecimal("15"),
+                modules.getModule("game_rules")
+                        .evaluateNumberVariable("result"));
+    }
+    
+    @Test
+    public void compiledModuleCanUseUnaliasedImportedVariable() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "var baseScore = 10;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers;\n\n"
+              + "var result = math_helpers.baseScore + 5;\n");
+
+        CompiledSephirahModuleSet modules =
+                new SephirahCompiler().compileAll(List.of(math, game));
+
+        assertEquals(
+                new BigDecimal("15"),
+                modules.getModule("game_rules")
+                        .evaluateNumberVariable("result"));
+    }
+    
+    @Test
+    public void compiledModuleCanUseImportedBooleanVariable() throws Exception {
+        FormulaModel flags = parseHelper.parse(
+                "SephirahDoc flags\n\n"
+              + "var enabled = true;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import flags;\n\n"
+              + "var result = if flags.enabled then 10 else 0;\n");
+
+        CompiledSephirahModuleSet modules =
+                new SephirahCompiler().compileAll(List.of(flags, game));
+
+        assertEquals(
+                new BigDecimal("10"),
+                modules.getModule("game_rules")
+                        .evaluateNumberVariable("result"));
+    }
 }
