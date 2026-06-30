@@ -789,4 +789,67 @@ public class SephirahCompilerTest {
 
         throw new AssertionError("Expected IllegalArgumentException for unknown imported module.");
     }
+    
+    @Test
+    public void compiledModuleCanCallAliasedImportedFunction() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "def double(value) = value * 2;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers as math;\n\n"
+              + "var result = math.double(5);\n");
+
+        CompiledSephirahModuleSet modules =
+                new SephirahCompiler().compileAll(List.of(math, game));
+
+        CompiledSephirahModule gameRules =
+                modules.getModule("game_rules");
+
+        assertEquals(
+                new BigDecimal("10"),
+                gameRules.evaluateNumberVariable("result"));
+    }
+    
+    @Test
+    public void compiledModuleCanCallUnaliasedImportedFunction() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "def double(value) = value * 2;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers;\n\n"
+              + "var result = math_helpers.double(5);\n");
+
+        CompiledSephirahModuleSet modules =
+                new SephirahCompiler().compileAll(List.of(math, game));
+
+        assertEquals(
+                new BigDecimal("10"),
+                modules.getModule("game_rules")
+                        .evaluateNumberVariable("result"));
+    }
+    
+    @Test
+    public void importedFunctionsAreCallableButNotExported() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "def double(value) = value * 2;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers as math;\n\n"
+              + "var result = math.double(5);\n");
+
+        CompiledSephirahModule gameRules =
+                new SephirahCompiler()
+                        .compileAll(List.of(math, game))
+                        .getModule("game_rules");
+
+        assertEquals(true, gameRules.hasFunction("math.double"));
+        assertEquals(false, gameRules.getExports().hasFunction("math.double"));
+        assertEquals(false, gameRules.getDefinedFunctionNames().contains("math.double"));
+    }
 }

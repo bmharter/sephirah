@@ -8,56 +8,79 @@ import com.fearlesstyrant.sephirah.tools.*;
 public class SephirahCompiler {
 
 	public CompiledSephirahModule compile(FormulaModel model) {
-		if (model == null) {
-            throw new IllegalArgumentException("Cannot compile null Sephirah model.");
-        }
-		
-		String name = model.getName() == null
-				|| model.getName().getName() == null
-				|| model.getName().getName().isBlank()
-				? "<anonymous>"
-				: model.getName().getName();
-		
-		 FunctionRegistry baseFunctions = Methods.standardRegistry();
+		return compile(model, Methods.standardRegistry());
+	}
+	
+	private CompiledSephirahModule compile(
+	        FormulaModel model,
+	        FunctionRegistry baseFunctions) {
+	    if (model == null) {
+	        throw new IllegalArgumentException("Cannot compile null Sephirah model.");
+	    }
 
-		 MutableFunctionRegistryReference reference =
-		            new MutableFunctionRegistryReference(baseFunctions);
+	    String name = model.getName() == null
+	            || model.getName().getName() == null
+	            || model.getName().getName().isBlank()
+	            ? "<anonymous>"
+	            : model.getName().getName();
 
-		 ModuleValueResolver resolver =
-		            new ModuleValueResolver(model, reference::get);
-		
-		FunctionRegistry functions = compileFunctions(model, baseFunctions, resolver, reference);
-		
-		reference.set(functions);
-		
-		EvaluationContext context = new EvaluationContext(
-				Collections.emptyMap(),
-				resolver);
-		
-		Map<String, Expression> variables = compileVariables(model);
-		List<Expression> expressions = compileEvaluations(model);
-		Set<String> definedFunctionNames = compileDefinedFunctionNames(model);
-		List<CompiledImport> imports = compileImports(model);
-		
-		return new CompiledSephirahModule(
-				name,
-				context,
-				functions,
-				variables,
-				expressions,
-				definedFunctionNames,
-				imports);
+	    MutableFunctionRegistryReference reference =
+	            new MutableFunctionRegistryReference(baseFunctions);
+
+	    ModuleValueResolver resolver =
+	            new ModuleValueResolver(model, reference::get);
+
+	    FunctionRegistry functions =
+	            compileFunctions(model, baseFunctions, resolver, reference);
+
+	    reference.set(functions);
+
+	    EvaluationContext context =
+	            new EvaluationContext(Collections.emptyMap(), resolver);
+
+	    Map<String, Expression> variables = compileVariables(model);
+	    List<Expression> expressions = compileEvaluations(model);
+	    Set<String> definedFunctionNames = compileDefinedFunctionNames(model);
+	    List<CompiledImport> imports = compileImports(model);
+
+	    return new CompiledSephirahModule(
+	            name,
+	            context,
+	            functions,
+	            variables,
+	            expressions,
+	            definedFunctionNames,
+	            imports);
 	}
 	
 	public CompiledSephirahModuleSet compileAll(
 			Collection<FormulaModel> models) {
-		List<CompiledSephirahModule> modules = new ArrayList<>();
+		List<CompiledSephirahModule> firstPassModules = new ArrayList<>();
 		
 		for(FormulaModel model : models) {
-			modules.add(compile(model));
+			firstPassModules.add(compile(model));
 		}
 		
-		return new CompiledSephirahModuleSet(modules);
+		CompiledSephirahModuleSet firstPassSet = 
+				new CompiledSephirahModuleSet(firstPassModules);
+		
+		List<CompiledSephirahModule> linkedModules = new ArrayList<>();
+		
+		for(FormulaModel model : models) {
+			String moduleName = getModuleName(model);
+			
+			CompiledSephirahModule firstPassModule =
+					firstPassSet.getModule(moduleName);
+			
+			FunctionRegistry baseFunctions = 
+					buildImportAwareBaseRegistry(
+							firstPassModule,
+							firstPassSet);
+			
+			linkedModules.add(compile(model, baseFunctions));
+		}
+		
+		return new CompiledSephirahModuleSet(linkedModules);
 	}
 	
 	private Set<String> compileDefinedFunctionNames(FormulaModel model) {
@@ -134,5 +157,51 @@ public class SephirahCompiler {
 		}
 		
 		return variables;
+	}
+	
+	private FunctionRegistry buildImportAwareBaseRegistry(
+			CompiledSephirahModule module,
+			CompiledSephirahModuleSet modules) {
+		FunctionRegistry.Builder builder = 
+				Methods.standardRegistry().toBuilder();
+		
+		for(CompiledImport anImport : module.getImports()) {
+			CompiledSephirahModule importedModule =
+					modules.getModule(anImport.getModuleName());
+			
+			String localModuleName = anImport.getLocalName();
+			
+			for(CompiledFunction function : importedModule.getExports().getFunctions()) {
+				registerImportedFunction(
+						builder,
+						localModuleName,
+						importedModule,
+						function);
+			}
+		}
+		
+		return builder.build();
+	}
+	
+	private String getModuleName(FormulaModel model) {
+	    return model.getName() == null
+	            || model.getName().getName() == null
+	            || model.getName().getName().isBlank()
+	            ? "<anonymous>"
+	            : model.getName().getName();
+	}
+	
+	private void registerImportedFunction(
+			FunctionRegistry.Builder builder,
+			String localModuleName,
+			CompiledSephirahModule importedModule,
+			CompiledFunction function) {
+		String importedFunctionName = localModuleName + "." + function.getName();
+		
+		builder.register(new RegisteredFunction(
+				importedFunctionName,
+				function.getSignature(),
+				(arguments, context) -> 
+					importedModule.call(function.getName(), arguments)));
 	}
 }
