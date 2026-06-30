@@ -912,4 +912,78 @@ public class SephirahCompilerTest {
                 modules.getModule("game_rules")
                         .evaluateNumberVariable("result"));
     }
+    
+    @Test
+    public void compileAllThrowsForDuplicateModuleNames() throws Exception {
+        FormulaModel first = parseHelper.parse(
+                "SephirahDoc duplicate\n\n"
+              + "var score = 10;\n");
+
+        FormulaModel second = parseHelper.parse(
+                "SephirahDoc duplicate\n\n"
+              + "var score = 20;\n");
+
+        try {
+            new SephirahCompiler().compileAll(List.of(first, second));
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Duplicate Sephirah module name: duplicate",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for duplicate module name.");
+    }
+    
+    @Test
+    public void compileAllThrowsForDuplicateImportLocalNames() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "var baseScore = 10;\n");
+
+        FormulaModel combat = parseHelper.parse(
+                "SephirahDoc combat_math\n\n"
+              + "var damage = 5;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers as math;\n"
+              + "import combat_math as math;\n\n"
+              + "var result = 10;\n");
+
+        try {
+            new SephirahCompiler().compileAll(List.of(math, combat, game));
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Module game_rules has duplicate import local name: math",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for duplicate import local name.");
+    }
+    
+    @Test
+    public void compileAllThrowsForDuplicateUnaliasedImports() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "var baseScore = 10;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers;\n"
+              + "import math_helpers;\n\n"
+              + "var result = 10;\n");
+
+        try {
+            new SephirahCompiler().compileAll(List.of(math, game));
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Module game_rules has duplicate import local name: math_helpers",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for duplicate unaliased import.");
+    }
 }

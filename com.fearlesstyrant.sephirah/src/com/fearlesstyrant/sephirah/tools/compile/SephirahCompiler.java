@@ -98,12 +98,21 @@ public class SephirahCompiler {
 	        FormulaModel model,
 	        CompiledSephirahModuleSet modules) {
 	    Map<String, CompiledSephirahModule> results = new HashMap<>();
-
+	    
 	    for (CompiledImport imported : compileImports(model)) {
+	    	String localName = imported.getLocalName();
+	    	
+	    	if(results.containsKey(localName)) {
+	    		throw new IllegalArgumentException(
+	    	            "Module " + getModuleName(model)
+	    	            + " has duplicate import local name: "
+	    	            + localName);
+	    	}
+	    	
 	        CompiledSephirahModule importedModule =
 	                modules.getModule(imported.getModuleName());
 
-	        results.put(imported.getLocalName(), importedModule);
+	        results.put(localName, importedModule);
 	    }
 
 	    return results;

@@ -10,7 +10,14 @@ public final class CompiledSephirahModuleSet {
 		Map<String, CompiledSephirahModule> byName = new LinkedHashMap<>();
 		
 		for(CompiledSephirahModule module : modules) {
-			byName.put(module.getName(), module);
+			String name = module.getName();
+			
+			if(byName.containsKey(name)) {
+				throw new IllegalArgumentException(
+		                "Duplicate Sephirah module name: " + name);
+			}
+			
+			byName.put(name, module);
 		}
 		
 		validateImports(byName);
