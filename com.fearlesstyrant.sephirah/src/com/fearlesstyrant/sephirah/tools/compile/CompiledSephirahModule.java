@@ -5,8 +5,7 @@ import java.math.BigDecimal;
 
 import com.fearlesstyrant.sephirah.sephirah.Expression;
 import com.fearlesstyrant.sephirah.tools.*;
-import com.fearlesstyrant.sephirah.tools.type.SephirahType;
-import com.fearlesstyrant.sephirah.tools.type.SephirahTypeInferencer;
+import com.fearlesstyrant.sephirah.tools.type.*;
 import com.fearlesstyrant.sephirah.tools.value.*;
 
 public final class CompiledSephirahModule {
@@ -18,6 +17,7 @@ public final class CompiledSephirahModule {
 	private final List<Expression> evaluations;
 	private final Set<String> definedFunctionNames;
 	private final List<CompiledImport> imports;
+	private final SephirahTypeInferenceContext typeContext;
 	
 	public CompiledSephirahModule(
 			String name,
@@ -26,14 +26,18 @@ public final class CompiledSephirahModule {
 			Map<String, Expression> variables,
 			List<Expression> evaluations,
 			Set<String> definedFunctionNames,
-			List<CompiledImport> imports) {
+			List<CompiledImport> imports,
+			SephirahTypeInferenceContext typeContext) {
 		this.name = name;
 		this.context = context;
 		this.functions = functions;
 		this.variables = Map.copyOf(variables);
 		this.evaluations = List.copyOf(evaluations);
-		this.definedFunctionNames = definedFunctionNames;
+		this.definedFunctionNames = Set.copyOf(definedFunctionNames);
 		this.imports = List.copyOf(imports);
+		this.typeContext = typeContext == null
+				? SephirahTypeInferenceContext.empty()
+				: typeContext;
 	}
 
 	public String getName() {
@@ -120,7 +124,7 @@ public final class CompiledSephirahModule {
 		return new CompiledVariable(
 				name,
 				expression,
-				SephirahTypeInferencer.inferType(expression));
+				inferType(expression));
 	}
 	
 	public CompiledModuleSummary getSummary() {
@@ -154,7 +158,7 @@ public final class CompiledSephirahModule {
 	        throw new IllegalArgumentException("Unknown variable: " + name);
 	    }
 		
-		return SephirahTypeInferencer.inferType(expression);
+		return inferType(expression);
 	}
 	
 	public boolean hasFunction(String name) {
@@ -181,7 +185,7 @@ public final class CompiledSephirahModule {
 	    for (int i = 0; i < evaluations.size(); i++) {
 	        Expression expression = evaluations.get(i);
 	        SephirahValue value = evaluateExpression(expression);
-	        SephirahType type = SephirahTypeInferencer.inferType(expression);
+	        SephirahType type = inferType(expression);
 	        
 	        results.add(new CompiledEvaluationResult(
 	                i,
@@ -317,5 +321,11 @@ public final class CompiledSephirahModule {
     public boolean importsModule(String name) {
     	return imports.stream()
     			.anyMatch(imported -> imported.getModuleName().equals(name));
+    }
+    
+    private SephirahType inferType(Expression expression) {
+        return SephirahTypeInferencer.inferType(
+                expression,
+                typeContext.copyForInference());
     }
 }

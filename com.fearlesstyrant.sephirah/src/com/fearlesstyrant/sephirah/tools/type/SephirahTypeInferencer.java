@@ -169,6 +169,15 @@ public final class SephirahTypeInferencer {
 	        return builtInSignature.getReturnType()
 	                .orElse(SephirahType.UNKNOWN);
 	    }
+		
+		Optional<FunctionSignature> externalSignature =
+				context.findExternalFunctionSignature(name);
+		
+		if(externalSignature.isPresent()) {
+			return externalSignature.get()
+					.getReturnType()
+					.orElse(SephirahType.UNKNOWN);
+		}
 
 	    if (!context.beginResolvingFunction(name)) {
 	        return SephirahType.UNKNOWN;
@@ -250,8 +259,19 @@ public final class SephirahTypeInferencer {
 			SephirahTypeInferenceContext context) {
 		String name = variable.getName();
 		
-		if(name == null || name.isBlank() || name.contains(".")) {
-			return SephirahType.UNKNOWN;
+		if (name == null || name.isBlank()) {
+		    return SephirahType.UNKNOWN;
+		}
+
+		Optional<SephirahType> externalType =
+		        context.findExternalVariableType(name);
+
+		if (externalType.isPresent()) {
+		    return externalType.get();
+		}
+
+		if (name.contains(".")) {
+		    return SephirahType.UNKNOWN;
 		}
 		
 		Optional<SephirahType> localType = context.findLocalVariableType(name);

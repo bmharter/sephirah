@@ -986,4 +986,65 @@ public class SephirahCompilerTest {
 
         throw new AssertionError("Expected IllegalArgumentException for duplicate unaliased import.");
     }
+    
+    @Test
+    public void compiledModuleCanInferImportedNumericVariableType() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "var baseScore = 10;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers as math;\n\n"
+              + "var result = math.baseScore + 5;\n");
+
+        CompiledSephirahModuleSet modules =
+                new SephirahCompiler().compileAll(List.of(math, game));
+
+        assertEquals(
+                SephirahType.NUMBER,
+                modules.getModule("game_rules")
+                        .getVariableType("result"));
+    }
+    
+    @Test
+    public void compiledModuleCanInferImportedBooleanVariableType() throws Exception {
+        FormulaModel flags = parseHelper.parse(
+                "SephirahDoc flags\n\n"
+              + "var enabled = true;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import flags;\n\n"
+              + "var enabledCopy = flags.enabled;\n");
+
+        CompiledSephirahModuleSet modules =
+                new SephirahCompiler().compileAll(List.of(flags, game));
+
+        assertEquals(
+                SephirahType.BOOLEAN,
+                modules.getModule("game_rules")
+                        .getVariableType("enabledCopy"));
+    }
+    
+    @Test
+    public void compiledVariableDescriptorUsesImportedTypeContext() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "var baseScore = 10;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers as math;\n\n"
+              + "var result = math.baseScore + 5;\n");
+
+        CompiledVariable variable =
+                new SephirahCompiler()
+                        .compileAll(List.of(math, game))
+                        .getModule("game_rules")
+                        .getVariable("result");
+
+        assertEquals("result", variable.getName());
+        assertEquals(SephirahType.NUMBER, variable.getType());
+    }
 }

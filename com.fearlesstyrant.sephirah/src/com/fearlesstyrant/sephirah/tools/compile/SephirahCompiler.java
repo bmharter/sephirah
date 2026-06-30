@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.fearlesstyrant.sephirah.sephirah.*;
 import com.fearlesstyrant.sephirah.tools.*;
+import com.fearlesstyrant.sephirah.tools.type.SephirahTypeInferenceContext;
 
 public class SephirahCompiler {
 
@@ -54,6 +55,9 @@ public class SephirahCompiler {
 	    Set<String> definedFunctionNames = compileDefinedFunctionNames(model);
 	    List<CompiledImport> imports = compileImports(model);
 
+	    SephirahTypeInferenceContext typeContext =
+	            buildTypeInferenceContext(model, importedModules);
+	    
 	    return new CompiledSephirahModule(
 	            name,
 	            context,
@@ -61,7 +65,8 @@ public class SephirahCompiler {
 	            variables,
 	            expressions,
 	            definedFunctionNames,
-	            imports);
+	            imports,
+	            typeContext);
 	}
 	
 	public CompiledSephirahModuleSet compileAll(
@@ -216,6 +221,42 @@ public class SephirahCompiler {
 		}
 		
 		return builder.build();
+	}
+	
+	private SephirahTypeInferenceContext buildTypeInferenceContext(
+	        FormulaModel model,
+	        CompiledSephirahModuleSet importedModules) {
+	    SephirahTypeInferenceContext context =
+	            SephirahTypeInferenceContext.empty();
+
+	    if (importedModules == null) {
+	        return context;
+	    }
+
+	    Map<String, CompiledSephirahModule> importedByLocalName =
+	            buildImportedModulesByLocalName(model, importedModules);
+
+	    for (Map.Entry<String, CompiledSephirahModule> entry
+	            : importedByLocalName.entrySet()) {
+	        String localName = entry.getKey();
+	        CompiledSephirahModule importedModule = entry.getValue();
+
+	        for (CompiledVariable variable
+	                : importedModule.getExports().getVariables()) {
+	            context.registerExternalVariableType(
+	                    localName + "." + variable.getName(),
+	                    variable.getType());
+	        }
+
+	        for (CompiledFunction function
+	                : importedModule.getExports().getFunctions()) {
+	            context.registerExternalFunctionSignature(
+	                    localName + "." + function.getName(),
+	                    function.getSignature());
+	        }
+	    }
+
+	    return context;
 	}
 	
 	private String getModuleName(FormulaModel model) {
