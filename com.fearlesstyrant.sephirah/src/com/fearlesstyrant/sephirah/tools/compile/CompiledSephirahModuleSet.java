@@ -13,6 +13,8 @@ public final class CompiledSephirahModuleSet {
 			byName.put(module.getName(), module);
 		}
 		
+		validateImports(byName);
+		
 		this.modules = Map.copyOf(byName);
 	}
 
@@ -40,5 +42,19 @@ public final class CompiledSephirahModuleSet {
 	
 	public int size() {
 		return modules.size();
+	}
+	
+	private static void validateImports(
+	        Map<String, CompiledSephirahModule> modules) {
+	    for (CompiledSephirahModule module : modules.values()) {
+	        for (CompiledImport imported : module.getImports()) {
+	            if (!modules.containsKey(imported.getModuleName())) {
+	                throw new IllegalArgumentException(
+	                        "Module " + module.getName()
+	                        + " imports unknown module: "
+	                        + imported.getModuleName());
+	            }
+	        }
+	    }
 	}
 }

@@ -37,6 +37,7 @@ public class SephirahCompiler {
 		Map<String, Expression> variables = compileVariables(model);
 		List<Expression> expressions = compileEvaluations(model);
 		Set<String> definedFunctionNames = compileDefinedFunctionNames(model);
+		List<CompiledImport> imports = compileImports(model);
 		
 		return new CompiledSephirahModule(
 				name,
@@ -44,7 +45,8 @@ public class SephirahCompiler {
 				functions,
 				variables,
 				expressions,
-				definedFunctionNames);
+				definedFunctionNames,
+				imports);
 	}
 	
 	public CompiledSephirahModuleSet compileAll(
@@ -95,6 +97,23 @@ public class SephirahCompiler {
 			MutableFunctionRegistryReference reference) {
 		
 		return ModuleFunctionCompiler.compile(model, baseFunctions, resolver, reference);
+	}
+	
+	private List<CompiledImport> compileImports(FormulaModel model) {
+		List<CompiledImport> results = new ArrayList<>();
+		
+		for(Import anImport : model.getImports()) {
+			String moduleName = anImport.getModule();
+			
+			if(moduleName == null || moduleName.isBlank()) {
+				continue;
+			}
+			
+			results.add(new CompiledImport(anImport.getModule(),
+					anImport.getAlias()));
+		}
+		
+		return results;
 	}
 	
 	private Map<String, Expression> compileVariables(FormulaModel model) {

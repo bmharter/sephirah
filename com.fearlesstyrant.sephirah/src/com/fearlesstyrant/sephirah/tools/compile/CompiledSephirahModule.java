@@ -17,6 +17,7 @@ public final class CompiledSephirahModule {
 	private final Map<String, Expression> variables;
 	private final List<Expression> evaluations;
 	private final Set<String> definedFunctionNames;
+	private final List<CompiledImport> imports;
 	
 	public CompiledSephirahModule(
 			String name,
@@ -24,13 +25,15 @@ public final class CompiledSephirahModule {
 			FunctionRegistry functions,
 			Map<String, Expression> variables,
 			List<Expression> evaluations,
-			Set<String> definedFunctionNames) {
+			Set<String> definedFunctionNames,
+			List<CompiledImport> imports) {
 		this.name = name;
 		this.context = context;
 		this.functions = functions;
 		this.variables = Map.copyOf(variables);
 		this.evaluations = List.copyOf(evaluations);
 		this.definedFunctionNames = definedFunctionNames;
+		this.imports = List.copyOf(imports);
 	}
 
 	public String getName() {
@@ -101,6 +104,10 @@ public final class CompiledSephirahModule {
 	    }
 
 	    return signature;
+	}
+	
+	public List<CompiledImport> getImports() {
+		return imports;
 	}
 	
 	public CompiledVariable getVariable(String name) {
@@ -305,5 +312,10 @@ public final class CompiledSephirahModule {
         throw new IllegalArgumentException(
                 "Unsupported Sephirah argument type: "
                         + (argument == null ? "null" : argument.getClass().getName()));
+    }
+    
+    public boolean importsModule(String name) {
+    	return imports.stream()
+    			.anyMatch(imported -> imported.getModuleName().equals(name));
     }
 }

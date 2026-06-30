@@ -726,4 +726,67 @@ public class SephirahCompilerTest {
 
         throw new AssertionError("Expected IllegalArgumentException for missing module.");
     }
+    
+    @Test
+    public void compiledModuleRecordsImports() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "def double(value) = value * 2;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers;\n\n"
+              + "var score = 10;\n");
+
+        CompiledSephirahModuleSet modules =
+                new SephirahCompiler().compileAll(List.of(math, game));
+
+        CompiledSephirahModule gameRules =
+                modules.getModule("game_rules");
+
+        assertEquals(1, gameRules.getImports().size());
+        assertEquals(true, gameRules.importsModule("math_helpers"));
+        assertEquals("math_helpers", gameRules.getImports().get(0).getLocalName());
+    }
+    
+    @Test
+    public void compiledModuleRecordsAliasedImports() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "def double(value) = value * 2;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers as math;\n\n"
+              + "var score = 10;\n");
+
+        CompiledSephirahModuleSet modules =
+                new SephirahCompiler().compileAll(List.of(math, game));
+
+        CompiledImport imported =
+                modules.getModule("game_rules").getImports().get(0);
+
+        assertEquals("math_helpers", imported.getModuleName());
+        assertEquals("math", imported.getAlias());
+        assertEquals("math", imported.getLocalName());
+    }
+    
+    @Test
+    public void compileAllThrowsForUnknownImportedModule() throws Exception {
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers;\n\n"
+              + "var score = 10;\n");
+
+        try {
+            new SephirahCompiler().compileAll(List.of(game));
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Module game_rules imports unknown module: math_helpers",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for unknown imported module.");
+    }
 }
