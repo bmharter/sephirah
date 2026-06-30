@@ -47,6 +47,17 @@ public class SephirahCompiler {
 				definedFunctionNames);
 	}
 	
+	public CompiledSephirahModuleSet compileAll(
+			Collection<FormulaModel> models) {
+		List<CompiledSephirahModule> modules = new ArrayList<>();
+		
+		for(FormulaModel model : models) {
+			modules.add(compile(model));
+		}
+		
+		return new CompiledSephirahModuleSet(modules);
+	}
+	
 	private Set<String> compileDefinedFunctionNames(FormulaModel model) {
 	    Set<String> names = new LinkedHashSet<>();
 

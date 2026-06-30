@@ -682,4 +682,48 @@ public class SephirahCompilerTest {
 
         throw new AssertionError("Expected IllegalArgumentException for missing exported function.");
     }
+    
+    @Test
+    public void compilerCanCompileMultipleModulesIntoModuleSet() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "def double(value) = value * 2;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "var score = 10;\n");
+
+        CompiledSephirahModuleSet modules =
+                new SephirahCompiler().compileAll(List.of(math, game));
+
+        assertEquals(2, modules.size());
+
+        assertEquals(true, modules.hasModule("math_helpers"));
+        assertEquals(true, modules.hasModule("game_rules"));
+        assertEquals(false, modules.hasModule("missing"));
+
+        assertEquals(true, modules.getModule("math_helpers").hasFunction("double"));
+        assertEquals(true, modules.getModule("game_rules").hasVariable("score"));
+    }
+    
+    @Test
+    public void compiledModuleSetThrowsForMissingModule() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc only_module\n\n"
+              + "var score = 10;\n");
+
+        CompiledSephirahModuleSet modules =
+                new SephirahCompiler().compileAll(List.of(model));
+
+        try {
+            modules.getModule("missing");
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Unknown module: missing",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for missing module.");
+    }
 }
