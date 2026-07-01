@@ -4,7 +4,7 @@ import java.util.*;
 
 import com.fearlesstyrant.sephirah.sephirah.*;
 import com.fearlesstyrant.sephirah.tools.*;
-import com.fearlesstyrant.sephirah.tools.type.SephirahTypeInferenceContext;
+import com.fearlesstyrant.sephirah.tools.type.*;
 
 import org.eclipse.xtext.EcoreUtil2;
 
@@ -84,6 +84,7 @@ public class SephirahCompiler {
 		
 		for (FormulaModel model : models) {
 		    validateImportedSymbolReferences(model, firstPassSet);
+		    validateImportedTypeReferences(model, firstPassSet);
 		}
 		
 		List<CompiledSephirahModule> linkedModules = new ArrayList<>();
@@ -293,6 +294,181 @@ public class SephirahCompiler {
 					importedModule.call(function.getName(), arguments)));
 	}
 	
+	private void validateBooleanOperand(
+	        Expression expression,
+	        SephirahTypeInferenceContext context,
+	        String message) {
+	    SephirahType type =
+	            SephirahTypeInferencer.inferType(
+	                    expression,
+	                    context.copyForInference());
+
+	    if (type == SephirahType.NUMBER) {
+	        throw new IllegalArgumentException(message);
+	    }
+	}
+	
+	private void validateConditionalType(
+	        Conditional conditional,
+	        SephirahTypeInferenceContext context) {
+	    validateBooleanOperand(
+	            conditional.getCondition(),
+	            context,
+	            "If expressions require a boolean condition.");
+
+	    SephirahType thenType =
+	            SephirahTypeInferencer.inferType(
+	                    conditional.getThenBranch(),
+	                    context.copyForInference());
+
+	    SephirahType elseType =
+	            SephirahTypeInferencer.inferType(
+	                    conditional.getElseBranch(),
+	                    context.copyForInference());
+
+	    if (thenType == SephirahType.UNKNOWN
+	            || elseType == SephirahType.UNKNOWN) {
+	        return;
+	    }
+
+	    if (thenType != elseType) {
+	        throw new IllegalArgumentException(
+	                "If expression branches must return compatible types.");
+	    }
+	}
+	
+	private void validateExpressionType(
+	        Expression expression,
+	        SephirahTypeInferenceContext context) {
+	    if (expression == null) {
+	        return;
+	    }
+
+	    if (expression instanceof Add add) {
+	        validateNumericOperand(
+	                add.getLeft(),
+	                context,
+	                "Operator + requires numeric operands.");
+
+	        validateNumericOperand(
+	                add.getRight(),
+	                context,
+	                "Operator + requires numeric operands.");
+	        return;
+	    }
+
+	    if (expression instanceof Subtract subtract) {
+	        validateNumericOperand(
+	                subtract.getLeft(),
+	                context,
+	                "Operator - requires numeric operands.");
+
+	        validateNumericOperand(
+	                subtract.getRight(),
+	                context,
+	                "Operator - requires numeric operands.");
+	        return;
+	    }
+
+	    if (expression instanceof Multiply multiply) {
+	        validateNumericOperand(
+	                multiply.getLeft(),
+	                context,
+	                "Operator * requires numeric operands.");
+
+	        validateNumericOperand(
+	                multiply.getRight(),
+	                context,
+	                "Operator * requires numeric operands.");
+	        return;
+	    }
+
+	    if (expression instanceof Divide divide) {
+	        validateNumericOperand(
+	                divide.getLeft(),
+	                context,
+	                "Operator / requires numeric operands.");
+
+	        validateNumericOperand(
+	                divide.getRight(),
+	                context,
+	                "Operator / requires numeric operands.");
+	        return;
+	    }
+
+	    if (expression instanceof Exponent exponent) {
+	        validateNumericOperand(
+	                exponent.getLeft(),
+	                context,
+	                "Operator ^ requires numeric operands.");
+
+	        validateNumericOperand(
+	                exponent.getRight(),
+	                context,
+	                "Operator ^ requires numeric operands.");
+	        return;
+	    }
+
+	    if (expression instanceof Negate negate) {
+	        validateNumericOperand(
+	                negate.getValue(),
+	                context,
+	                "Operator -x requires a numeric operand.");
+	        return;
+	    }
+
+	    if (expression instanceof ComparisonCondition comparison) {
+	        validateNumericOperand(
+	                comparison.getLeft(),
+	                context,
+	                "Comparison operators require numeric operands.");
+
+	        validateNumericOperand(
+	                comparison.getRight(),
+	                context,
+	                "Comparison operators require numeric operands.");
+	        return;
+	    }
+
+	    if (expression instanceof AndCondition andCondition) {
+	        validateBooleanOperand(
+	                andCondition.getLeft(),
+	                context,
+	                "Operator 'and' requires boolean operands.");
+
+	        validateBooleanOperand(
+	                andCondition.getRight(),
+	                context,
+	                "Operator 'and' requires boolean operands.");
+	        return;
+	    }
+
+	    if (expression instanceof OrCondition orCondition) {
+	        validateBooleanOperand(
+	                orCondition.getLeft(),
+	                context,
+	                "Operator 'or' requires boolean operands.");
+
+	        validateBooleanOperand(
+	                orCondition.getRight(),
+	                context,
+	                "Operator 'or' requires boolean operands.");
+	        return;
+	    }
+
+	    if (expression instanceof NotCondition notCondition) {
+	        validateBooleanOperand(
+	                notCondition.getCondition(),
+	                context,
+	                "Operator 'not' requires a boolean operand.");
+	        return;
+	    }
+
+	    if (expression instanceof Conditional conditional) {
+	        validateConditionalType(conditional, context);
+	    }
+	}
+	
 	private void validateImportedSymbolReferences(
 	        FormulaModel model,
 	        CompiledSephirahModuleSet modules) {
@@ -347,6 +523,18 @@ public class SephirahCompiler {
 	    }
 	}
 	
+	private void validateImportedTypeReferences(
+	        FormulaModel model,
+	        CompiledSephirahModuleSet modules) {
+	    SephirahTypeInferenceContext context =
+	            buildTypeInferenceContext(model, modules);
+
+	    for (Expression expression
+	            : EcoreUtil2.getAllContentsOfType(model, Expression.class)) {
+	        validateExpressionType(expression, context);
+	    }
+	}
+	
 	private void validateImportedVariableReference(
 	        Variable variable,
 	        Map<String, CompiledSephirahModule> importedByLocalName) {
@@ -370,6 +558,20 @@ public class SephirahCompiler {
 	    if (!importedModule.getExports().hasVariable(variableName)) {
 	        throw new IllegalArgumentException(
 	                "Unknown imported variable: " + name);
+	    }
+	}
+	
+	private void validateNumericOperand(
+	        Expression expression,
+	        SephirahTypeInferenceContext context,
+	        String message) {
+	    SephirahType type =
+	            SephirahTypeInferencer.inferType(
+	                    expression,
+	                    context.copyForInference());
+
+	    if (type == SephirahType.BOOLEAN) {
+	        throw new IllegalArgumentException(message);
 	    }
 	}
 }

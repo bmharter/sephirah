@@ -1267,4 +1267,73 @@ public class SephirahCompilerTest {
                         .getReturnType()
                         .isPresent());
     }
+    
+    @Test
+    public void compileAllThrowsForImportedBooleanUsedInArithmetic() throws Exception {
+        FormulaModel flags = parseHelper.parse(
+                "SephirahDoc flags\n\n"
+              + "var enabled = true;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import flags;\n\n"
+              + "var result = flags.enabled + 5;\n");
+
+        try {
+            new SephirahCompiler().compileAll(List.of(flags, game));
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Operator + requires numeric operands.",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for imported boolean used in arithmetic.");
+    }
+    
+    @Test
+    public void compileAllThrowsForImportedNumberUsedWithNot() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "var baseScore = 10;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers as math;\n\n"
+              + "var result = not math.baseScore;\n");
+
+        try {
+            new SephirahCompiler().compileAll(List.of(math, game));
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Operator 'not' requires a boolean operand.",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for imported number used with not.");
+    }
+    
+    @Test
+    public void compileAllThrowsForImportedNumberUsedAsIfCondition() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "var baseScore = 10;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers as math;\n\n"
+              + "var result = if math.baseScore then 10 else 0;\n");
+
+        try {
+            new SephirahCompiler().compileAll(List.of(math, game));
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "If expressions require a boolean condition.",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for imported number used as condition.");
+    }
 }
