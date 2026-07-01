@@ -326,6 +326,19 @@ public class SephirahCompiler {
 	        throw new IllegalArgumentException(
 	                "Unknown imported function: " + name);
 	    }
+	    
+	    CompiledFunction importedFunction =
+	            importedModule.getExports().getFunction(functionName);
+
+	    FunctionSignature signature =
+	            importedFunction.getSignature();
+
+	    int actual = methodCall.getArgs().size();
+
+	    if (!signature.accepts(actual)) {
+	        throw new IllegalArgumentException(
+	                signature.describeMismatch(name, actual));
+	    }
 	}
 	
 	private void validateImportedVariableReference(

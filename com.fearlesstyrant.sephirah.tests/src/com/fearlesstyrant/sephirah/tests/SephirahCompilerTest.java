@@ -1105,4 +1105,50 @@ public class SephirahCompilerTest {
 
         assertEquals(true, modules.hasModule("game_rules"));
     }
+    
+    @Test
+    public void compileAllThrowsForImportedFunctionArityMismatch() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "def double(value) = value * 2;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers as math;\n\n"
+              + "var result = math.double(5, 10);\n");
+
+        try {
+            new SephirahCompiler().compileAll(List.of(math, game));
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Function math.double expects 1 argument(s), but got 2.",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for imported function arity mismatch.");
+    }
+    
+    @Test
+    public void compileAllThrowsForUnaliasedImportedFunctionArityMismatch() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "def double(value) = value * 2;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers;\n\n"
+              + "var result = math_helpers.double(5, 10);\n");
+
+        try {
+            new SephirahCompiler().compileAll(List.of(math, game));
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Function math_helpers.double expects 1 argument(s), but got 2.",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for unaliased imported function arity mismatch.");
+    }
 }
