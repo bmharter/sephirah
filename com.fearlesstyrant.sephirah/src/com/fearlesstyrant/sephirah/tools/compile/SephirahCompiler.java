@@ -6,6 +6,8 @@ import com.fearlesstyrant.sephirah.sephirah.*;
 import com.fearlesstyrant.sephirah.tools.*;
 import com.fearlesstyrant.sephirah.tools.type.SephirahTypeInferenceContext;
 
+import org.eclipse.xtext.EcoreUtil2;
+
 public class SephirahCompiler {
 
 	public CompiledSephirahModule compile(FormulaModel model) {
@@ -79,6 +81,10 @@ public class SephirahCompiler {
 		
 		CompiledSephirahModuleSet firstPassSet = 
 				new CompiledSephirahModuleSet(firstPassModules);
+		
+		for (FormulaModel model : models) {
+		    validateImportedSymbolReferences(model, firstPassSet);
+		}
 		
 		List<CompiledSephirahModule> linkedModules = new ArrayList<>();
 		
@@ -279,5 +285,72 @@ public class SephirahCompiler {
 				function.getSignature(),
 				(arguments, context) -> 
 					importedModule.call(function.getName(), arguments)));
+	}
+	
+	private void validateImportedSymbolReferences(
+	        FormulaModel model,
+	        CompiledSephirahModuleSet modules) {
+	    Map<String, CompiledSephirahModule> importedByLocalName =
+	            buildImportedModulesByLocalName(model, modules);
+
+	    for (Variable variable : EcoreUtil2.getAllContentsOfType(model, Variable.class)) {
+	        validateImportedVariableReference(variable, importedByLocalName);
+	    }
+
+	    for (MethodCall methodCall : EcoreUtil2.getAllContentsOfType(model, MethodCall.class)) {
+	        validateImportedFunctionReference(methodCall, importedByLocalName);
+	    }
+	}
+	
+	private void validateImportedFunctionReference(
+	        MethodCall methodCall,
+	        Map<String, CompiledSephirahModule> importedByLocalName) {
+	    String name = methodCall.getName();
+
+	    if (name == null || name.isBlank() || !name.contains(".")) {
+	        return;
+	    }
+
+	    int dot = name.indexOf('.');
+	    String localModuleName = name.substring(0, dot);
+	    String functionName = name.substring(dot + 1);
+
+	    CompiledSephirahModule importedModule =
+	            importedByLocalName.get(localModuleName);
+
+	    if (importedModule == null) {
+	        return;
+	    }
+
+	    if (!importedModule.getExports().hasFunction(functionName)) {
+	        throw new IllegalArgumentException(
+	                "Unknown imported function: " + name);
+	    }
+	}
+	
+	private void validateImportedVariableReference(
+	        Variable variable,
+	        Map<String, CompiledSephirahModule> importedByLocalName) {
+	    String name = variable.getName();
+
+	    if (name == null || name.isBlank() || !name.contains(".")) {
+	        return;
+	    }
+
+	    int dot = name.indexOf('.');
+	    String localModuleName = name.substring(0, dot);
+	    String variableName = name.substring(dot + 1);
+
+	    CompiledSephirahModule importedModule =
+	            importedByLocalName.get(localModuleName);
+
+	    if (importedModule == null) {
+	        return;
+	    }
+
+	    if (!importedModule.getExports().hasVariable(variableName)) {
+	        throw new IllegalArgumentException(
+	                "Unknown imported variable: " + name);
+	    }
 	}
 }

@@ -1047,4 +1047,62 @@ public class SephirahCompilerTest {
         assertEquals("result", variable.getName());
         assertEquals(SephirahType.NUMBER, variable.getType());
     }
+    
+    @Test
+    public void compileAllThrowsForUnknownImportedVariable() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "var baseScore = 10;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers as math;\n\n"
+              + "var result = math.missing + 5;\n");
+
+        try {
+            new SephirahCompiler().compileAll(List.of(math, game));
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Unknown imported variable: math.missing",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for unknown imported variable.");
+    }
+    
+    @Test
+    public void compileAllThrowsForUnknownImportedFunction() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "def double(value) = value * 2;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers as math;\n\n"
+              + "var result = math.missing(5);\n");
+
+        try {
+            new SephirahCompiler().compileAll(List.of(math, game));
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Unknown imported function: math.missing",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for unknown imported function.");
+    }
+    
+    @Test
+    public void compileAllIgnoresUnknownDottedHostPathsForNow() throws Exception {
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "var result = self.strength;\n");
+
+        CompiledSephirahModuleSet modules =
+                new SephirahCompiler().compileAll(List.of(game));
+
+        assertEquals(true, modules.hasModule("game_rules"));
+    }
 }
