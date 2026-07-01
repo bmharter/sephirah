@@ -1194,4 +1194,77 @@ public class SephirahCompilerTest {
 
         throw new AssertionError("Expected IllegalArgumentException for two-module import cycle.");
     }
+    
+    @Test
+    public void compiledModuleExportsNoArgumentFunctionReturnTypes() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc functionReturnTypes\n\n"
+              + "def alwaysTen() = 10;\n"
+              + "def enabled() = true;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        CompiledModuleExports exports =
+                module.getExports();
+
+        assertEquals(
+                SephirahType.NUMBER,
+                exports.getFunction("alwaysTen")
+                        .getSignature()
+                        .getReturnType()
+                        .get());
+
+        assertEquals(
+                SephirahType.BOOLEAN,
+                exports.getFunction("enabled")
+                        .getSignature()
+                        .getReturnType()
+                        .get());
+    }
+    
+    @Test
+    public void compiledModuleCanInferImportedNoArgumentFunctionReturnTypes() throws Exception {
+        FormulaModel math = parseHelper.parse(
+                "SephirahDoc math_helpers\n\n"
+              + "def alwaysTen() = 10;\n"
+              + "def enabled() = true;\n");
+
+        FormulaModel game = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import math_helpers as math;\n\n"
+              + "var score = math.alwaysTen() + 5;\n"
+              + "var flag = math.enabled();\n");
+
+        CompiledSephirahModule gameRules =
+                new SephirahCompiler()
+                        .compileAll(List.of(math, game))
+                        .getModule("game_rules");
+
+        assertEquals(
+                SephirahType.NUMBER,
+                gameRules.getVariableType("score"));
+
+        assertEquals(
+                SephirahType.BOOLEAN,
+                gameRules.getVariableType("flag"));
+    }
+    
+    @Test
+    public void compiledModuleLeavesParameterDependentFunctionReturnTypeUnknown() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc parameterDependentReturnType\n\n"
+              + "def identity(value) = value;\n");
+
+        CompiledSephirahModule module =
+                new SephirahCompiler().compile(model);
+
+        assertEquals(
+                false,
+                module.getExports()
+                        .getFunction("identity")
+                        .getSignature()
+                        .getReturnType()
+                        .isPresent());
+    }
 }

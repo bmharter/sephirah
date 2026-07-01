@@ -6,6 +6,7 @@ import org.eclipse.emf.common.util.EList;
 
 import com.fearlesstyrant.sephirah.sephirah.*;
 import com.fearlesstyrant.sephirah.tools.value.SephirahValue;
+import com.fearlesstyrant.sephirah.tools.type.*;
 
 /**
  * Compiles module-level Sephirah definitions into callable runtime functions.
@@ -21,46 +22,80 @@ public final class ModuleFunctionCompiler {
 			FunctionRegistry baseRegistry,
 			ValueResolver moduleResolver,
 			MutableFunctionRegistryReference registryReference) {
-		Objects.requireNonNull(model, "model must not be null");
-		Objects.requireNonNull(baseRegistry, "baseRegistry must not be null");
-		Objects.requireNonNull(moduleResolver, "moduleResolver must not be null");
-		Objects.requireNonNull(registryReference, "registryReference must not be null");
-		
-		FunctionRegistry.Builder builder = baseRegistry.toBuilder();
-		
-		ThreadLocal<Deque<String>> callStack =
-		        ThreadLocal.withInitial(ArrayDeque::new);
-		
-		for(Definition definition : model.getMethodDefs()) {
-			String name = definition.getName();
-			
-			if(name == null || name.isBlank()) {
-				continue;
-			}
-			
-			if (baseRegistry.contains(name)) {
-                throw new IllegalArgumentException(
-                        "Function declaration conflicts with built-in function: " + name);
-            }
-			
-			int totalArgs = definition.getArgs().size();
-			
-			FunctionSignature signature = FunctionSignature.exactly(totalArgs);
-			RegisteredFunction function = new RegisteredFunction(
-					name,
-					signature,
-					createFunction(
-							definition,
-							moduleResolver,
-							registryReference,
-							callStack
-							)
-					);
-			
-			builder.register(function);
-		}
-		
-		return builder.build();
+		return compile(
+				model,
+				baseRegistry,
+				moduleResolver,
+				registryReference,
+				SephirahTypeInferenceContext.empty());
+	}
+	
+	public static FunctionRegistry compile(
+	        FormulaModel model,
+	        FunctionRegistry baseRegistry,
+	        ValueResolver moduleResolver,
+	        MutableFunctionRegistryReference registryReference,
+	        SephirahTypeInferenceContext typeContext) {
+	    Objects.requireNonNull(model, "model must not be null");
+	    Objects.requireNonNull(baseRegistry, "baseRegistry must not be null");
+	    Objects.requireNonNull(moduleResolver, "moduleResolver must not be null");
+	    Objects.requireNonNull(registryReference, "registryReference must not be null");
+	    Objects.requireNonNull(typeContext, "typeContext must not be null");
+
+	    FunctionRegistry.Builder builder = baseRegistry.toBuilder();
+
+	    ThreadLocal<Deque<String>> callStack =
+	            ThreadLocal.withInitial(ArrayDeque::new);
+
+	    for (Definition definition : model.getMethodDefs()) {
+	        String name = definition.getName();
+
+	        if (name == null || name.isBlank()) {
+	            continue;
+	        }
+
+	        if (baseRegistry.contains(name)) {
+	            throw new IllegalArgumentException(
+	                    "Function declaration conflicts with built-in function: " + name);
+	        }
+
+	        FunctionSignature signature =
+	                createSignature(definition, typeContext);
+
+	        RegisteredFunction function = new RegisteredFunction(
+	                name,
+	                signature,
+	                createFunction(
+	                        definition,
+	                        moduleResolver,
+	                        registryReference,
+	                        callStack));
+
+	        builder.register(function);
+	    }
+
+	    return builder.build();
+	}
+	
+	private static FunctionSignature createSignature(
+	        Definition definition,
+	        SephirahTypeInferenceContext typeContext) {
+	    int totalArgs = definition.getArgs().size();
+
+	    if (definition.getExpr() == null) {
+	        return FunctionSignature.exactly(totalArgs);
+	    }
+
+	    SephirahType returnType =
+	            SephirahTypeInferencer.inferType(
+	                    definition.getExpr(),
+	                    typeContext.copyForInference());
+
+	    if (returnType == SephirahType.UNKNOWN) {
+	        return FunctionSignature.exactly(totalArgs);
+	    }
+
+	    return FunctionSignature.exactly(totalArgs, returnType);
 	}
 	
 	private static SephirahFunction createFunction(Definition definition,

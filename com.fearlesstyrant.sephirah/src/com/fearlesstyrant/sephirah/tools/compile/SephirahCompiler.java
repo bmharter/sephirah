@@ -44,9 +44,12 @@ public class SephirahCompiler {
 	                buildImportedModulesByLocalName(model, importedModules));
 	    }
 
+	    SephirahTypeInferenceContext typeContext =
+	            buildTypeInferenceContext(model, importedModules);
+	    
 	    FunctionRegistry functions =
-	            compileFunctions(model, baseFunctions, resolver, reference);
-
+	            compileFunctions(model, baseFunctions, resolver, reference, typeContext);
+	    
 	    reference.set(functions);
 
 	    EvaluationContext context =
@@ -56,9 +59,6 @@ public class SephirahCompiler {
 	    List<Expression> expressions = compileEvaluations(model);
 	    Set<String> definedFunctionNames = compileDefinedFunctionNames(model);
 	    List<CompiledImport> imports = compileImports(model);
-
-	    SephirahTypeInferenceContext typeContext =
-	            buildTypeInferenceContext(model, importedModules);
 	    
 	    return new CompiledSephirahModule(
 	            name,
@@ -163,9 +163,15 @@ public class SephirahCompiler {
 			FormulaModel model,
 			FunctionRegistry baseFunctions,
 			ValueResolver resolver,
-			MutableFunctionRegistryReference reference) {
+			MutableFunctionRegistryReference reference,
+			SephirahTypeInferenceContext typeContext) {
 		
-		return ModuleFunctionCompiler.compile(model, baseFunctions, resolver, reference);
+		return ModuleFunctionCompiler.compile(
+				model,
+				baseFunctions,
+				resolver,
+				reference,
+				typeContext);
 	}
 	
 	private List<CompiledImport> compileImports(FormulaModel model) {
