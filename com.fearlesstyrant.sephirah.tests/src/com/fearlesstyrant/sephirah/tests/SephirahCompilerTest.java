@@ -1151,4 +1151,47 @@ public class SephirahCompilerTest {
 
         throw new AssertionError("Expected IllegalArgumentException for unaliased imported function arity mismatch.");
     }
+    
+    @Test
+    public void compileAllThrowsForSelfImportCycle() throws Exception {
+        FormulaModel model = parseHelper.parse(
+                "SephirahDoc game_rules\n\n"
+              + "import game_rules;\n\n"
+              + "var score = 10;\n");
+
+        try {
+            new SephirahCompiler().compileAll(List.of(model));
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Cyclic Sephirah module import: game_rules -> game_rules",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for self import cycle.");
+    }
+    
+    @Test
+    public void compileAllThrowsForTwoModuleImportCycle() throws Exception {
+        FormulaModel rulesA = parseHelper.parse(
+                "SephirahDoc rules_a\n\n"
+              + "import rules_b;\n\n"
+              + "var score = 10;\n");
+
+        FormulaModel rulesB = parseHelper.parse(
+                "SephirahDoc rules_b\n\n"
+              + "import rules_a;\n\n"
+              + "var bonus = 5;\n");
+
+        try {
+            new SephirahCompiler().compileAll(List.of(rulesA, rulesB));
+        } catch (IllegalArgumentException exception) {
+            assertEquals(
+                    "Cyclic Sephirah module import: rules_a -> rules_b -> rules_a",
+                    exception.getMessage());
+            return;
+        }
+
+        throw new AssertionError("Expected IllegalArgumentException for two-module import cycle.");
+    }
 }

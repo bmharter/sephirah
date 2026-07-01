@@ -21,6 +21,7 @@ public final class CompiledSephirahModuleSet {
 		}
 		
 		validateImports(byName);
+		validateImportCycles(byName);
 		
 		this.modules = Map.copyOf(byName);
 	}
@@ -63,5 +64,87 @@ public final class CompiledSephirahModuleSet {
 	            }
 	        }
 	    }
+	}
+	
+	private static void validateImportCycles(
+	        Map<String, CompiledSephirahModule> modules) {
+	    Set<String> visited = new HashSet<>();
+	    Deque<String> stack = new ArrayDeque<>();
+
+	    for (String moduleName : modules.keySet()) {
+	        checkImportCycle(moduleName, modules, visited, stack);
+	    }
+	}
+
+	private static void checkImportCycle(
+	        String moduleName,
+	        Map<String, CompiledSephirahModule> modules,
+	        Set<String> visited,
+	        Deque<String> stack) {
+	    if (stack.contains(moduleName)) {
+	        throw new IllegalArgumentException(
+	                "Cyclic Sephirah module import: "
+	                + formatImportCycle(moduleName, stack));
+	    }
+
+	    if (visited.contains(moduleName)) {
+	        return;
+	    }
+
+	    CompiledSephirahModule module = modules.get(moduleName);
+
+	    if (module == null) {
+	        return;
+	    }
+
+	    stack.push(moduleName);
+
+	    try {
+	        for (CompiledImport imported : module.getImports()) {
+	            checkImportCycle(
+	                    imported.getModuleName(),
+	                    modules,
+	                    visited,
+	                    stack);
+	        }
+
+	        visited.add(moduleName);
+	    } finally {
+	        stack.pop();
+	    }
+	}
+
+	private static String formatImportCycle(
+	        String repeatedName,
+	        Deque<String> stack) {
+	    List<String> path = new ArrayList<>(stack);
+	    Collections.reverse(path);
+
+	    int cycleStart = path.indexOf(repeatedName);
+
+	    StringBuilder builder = new StringBuilder();
+
+	    if (cycleStart >= 0) {
+	        for (int i = cycleStart; i < path.size(); i++) {
+	            if (builder.length() > 0) {
+	                builder.append(" -> ");
+	            }
+
+	            builder.append(path.get(i));
+	        }
+
+	        builder.append(" -> ").append(repeatedName);
+	        return builder.toString();
+	    }
+
+	    builder.append(repeatedName);
+
+	    for (String name : path) {
+	        builder.append(" -> ").append(name);
+	    }
+
+	    builder.append(" -> ").append(repeatedName);
+
+	    return builder.toString();
 	}
 }
